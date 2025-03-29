@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GroundHit3State : BaseHitState
 {
-    public override void OnEnter()
+    public override void OnEnter(StateManager stateManager)
     {
-        base.OnEnter();
+        base.OnEnter(stateManager);
 
         //Attack
         attackIndex = 3;
-        CharacterCtrl.Instance.Animator.SetTrigger("Attack" + attackIndex);
+        this.stateManager.CharacterCtrl.Animator.SetTrigger("Attack" + attackIndex);
         Debug.Log("Player Attack " + attackIndex + " Fired!");
     }
 
@@ -20,7 +20,7 @@ public class GroundHit3State : BaseHitState
 
         if (Fixedtime >= duration)
         {
-            CharacterCtrl.Instance.StateManager.SetNextStateToMain();
+            this.stateManager.SetNextStateToMain();
         }
     }
 }

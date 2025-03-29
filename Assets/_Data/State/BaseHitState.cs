@@ -11,7 +11,7 @@ public class BaseHitState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (!CharacterCtrl.Instance.CharacterIntro.IsReady) return;
+        if (!this.stateManager.CharacterCtrl.CharacterIntro.IsReady) return;
         if (Fixedtime >= duration * 0.5f && InputManager.Instance.GetAttackHitInput())
         {
             shouldCombo = true;

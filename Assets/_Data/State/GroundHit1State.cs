@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GroundHit1State : BaseHitState
 {
-    public override void OnEnter()
+    public override void OnEnter(StateManager stateManager)
     {
-        base.OnEnter();
+        base.OnEnter(stateManager);
         //Attack
         attackIndex = 1;
-        CharacterCtrl.Instance.Animator.SetTrigger("Attack" + attackIndex);
+        this.stateManager.CharacterCtrl.Animator.SetTrigger("Attack" + attackIndex);
         Debug.Log("Player Attack " + attackIndex + " Fired!");
     }
 
@@ -21,11 +21,11 @@ public class GroundHit1State : BaseHitState
         {
             if (shouldCombo)
             {
-                CharacterCtrl.Instance.StateManager.SetNextState(new GroundHit2State());
+                this.stateManager.SetNextState(new GroundHit2State());
             }
             else
             {
-                CharacterCtrl.Instance.StateManager.SetNextStateToMain();
+                this.stateManager.SetNextStateToMain();
             }
         }
     }

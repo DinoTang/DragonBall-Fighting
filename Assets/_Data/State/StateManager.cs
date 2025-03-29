@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class StateManager : DinoBehaviour
 {
-
+    [SerializeField] protected CharacterCtrl characterCtrl;
+    public CharacterCtrl CharacterCtrl => characterCtrl;
     public State mainStateType = new IdleCombatState();
 
     public State CurrentState { get; set; }
@@ -11,7 +12,17 @@ public class StateManager : DinoBehaviour
     {
         SetNextStateToMain();
     }
-
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        this.LoadCharacterCtrl();
+    }
+    protected void LoadCharacterCtrl()
+    {
+        if (this.characterCtrl != null) return;
+        this.characterCtrl = GetComponent<CharacterCtrl>();
+        Debug.Log(transform.name + ": LoadCharacterCtrl", gameObject);
+    }
     protected void Update()
     {
         if (nextState != null)
@@ -31,7 +42,7 @@ public class StateManager : DinoBehaviour
             CurrentState.OnExit();
         }
         CurrentState = _newState;
-        CurrentState.OnEnter();
+        CurrentState.OnEnter(this);
     }
 
     public void SetNextState(State _newState)

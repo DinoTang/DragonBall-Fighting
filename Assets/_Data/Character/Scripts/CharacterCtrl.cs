@@ -4,8 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(StateManager))]
 public class CharacterCtrl : DinoBehaviour
 {
-    protected static CharacterCtrl instance;
-    public static CharacterCtrl Instance => instance;
     [SerializeField] protected Rigidbody2D rgb;
     public Rigidbody2D Rgb => rgb;
     [SerializeField] protected Animator animator;
@@ -20,11 +18,7 @@ public class CharacterCtrl : DinoBehaviour
     public CharacterAttack CharacterAttack => characterAttack;
     [SerializeField] protected DamageSender damageSender;
     public DamageSender DamageSender => damageSender;
-    protected override void Awake()
-    {
-        base.Awake();
-        instance = this;
-    }
+    
     protected override void LoadComponent()
     {
         base.LoadComponent();

@@ -3,8 +3,11 @@ public abstract class State
     protected float Time { get; set; }
     protected float Fixedtime { get; set; }
     protected float Latetime { get; set; }
-
-    public virtual void OnEnter() { }
+    protected StateManager stateManager;
+    public virtual void OnEnter(StateManager stateManager)
+    {
+        this.stateManager = stateManager;
+    }
 
     public virtual void OnUpdate()
     {
