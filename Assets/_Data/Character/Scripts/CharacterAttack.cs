@@ -9,6 +9,7 @@ public class CharacterAttack : CharacterAbstract
     protected void Update()
     {
         if (!this.characterCtrl.CharacterIntro.IsReady) return;
+        if (this.characterCtrl.StateManager.CurrentState.GetType() == typeof(CooldownState)) return;
         if (InputManager.Instance.GetAttackHitInput()
         && this.characterCtrl.StateManager.CurrentState.GetType() == typeof(IdleCombatState))
         {

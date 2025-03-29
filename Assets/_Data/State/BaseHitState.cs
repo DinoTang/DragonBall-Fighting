@@ -7,7 +7,6 @@ public class BaseHitState : State
     public float duration = 0.3f;
     protected bool shouldCombo = false;
     protected int attackIndex;
-
     public override void OnUpdate()
     {
         base.OnUpdate();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,10 @@ public class GroundHit3State : BaseHitState
 
         if (Fixedtime >= duration)
         {
-            this.stateManager.SetNextStateToMain();
+            this.stateManager.SetNextState(new CooldownState());
         }
     }
+
+
+
 }
