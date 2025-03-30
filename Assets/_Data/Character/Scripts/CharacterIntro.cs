@@ -9,7 +9,6 @@ public class CharacterIntro : CharacterAbstract
     public AnimatorController normalController;
     public AnimatorController ssj2Controller;
     public AnimationClip transformClip;
-    public bool isHardMode = false;
     [SerializeField] protected bool isReady;
     public bool IsReady => isReady;
     protected override void Start()
@@ -20,15 +19,15 @@ public class CharacterIntro : CharacterAbstract
     IEnumerator TransformToSSJ2()
     {
         yield return new WaitForSeconds(2f);
+
         animator.Play(transformClip.name);
-
         yield return new WaitForSeconds(transformClip.length);
-        animator.runtimeAnimatorController = ssj2Controller;
-
+        
+        this.characterCtrl.StateManager.SetNextState(new IdleState());
         yield return new WaitForSeconds(2f);
+        animator.runtimeAnimatorController = ssj2Controller;
+        this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
         this.isReady = true;
-        this.isHardMode = true;
-        animator.SetBool("isHardMode", isHardMode);
     }
 
     protected void EnableHitbox()

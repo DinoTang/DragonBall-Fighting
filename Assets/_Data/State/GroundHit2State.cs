@@ -6,12 +6,8 @@ public class GroundHit2State : BaseHitState
 {
     public override void OnEnter(StateManager stateManager)
     {
+        this.attackCounter = 2;
         base.OnEnter(stateManager);
-
-        //Attack
-        attackIndex = 2;
-        this.stateManager.CharacterCtrl.Animator.SetTrigger("Attack" + attackIndex);
-        Debug.Log("Player Attack " + attackIndex + " Fired!");
     }
 
     public override void OnUpdate()
@@ -26,7 +22,7 @@ public class GroundHit2State : BaseHitState
             }
             else
             {
-                this.stateManager.SetNextStateToMain();
+                this.BackMainState();
             }
         }
     }

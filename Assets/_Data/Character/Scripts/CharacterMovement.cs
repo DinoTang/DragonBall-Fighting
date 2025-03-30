@@ -6,11 +6,10 @@ public class CharacterMovement : CharacterAbstract
     [SerializeField] protected Vector2 movement;
     [SerializeField] protected float speed = 15;
     [SerializeField] protected float horizontal;
-    [SerializeField] protected bool isMoving = false;
-    public bool IsMoving => isMoving;
     protected void FixedUpdate()
     {
         if (!this.characterCtrl.CharacterIntro.IsReady) return;
+        if (this.characterCtrl.CharacterAttack.IsAttack) return;
         this.UpdateMovementState();
         this.Moving();
     }
@@ -21,19 +20,18 @@ public class CharacterMovement : CharacterAbstract
         if (this.horizontal != 0)
         {
             this.Flipping();
-            this.isMoving = true;
             this.movement = new Vector2(this.horizontal, 0);
+            this.characterCtrl.StateManager.SetNextState(new MovingState());
         }
-        else
+        else if (this.characterCtrl.StateManager.CurrentState.GetType() == typeof(MovingState))
         {
-            this.isMoving = false;
             this.movement = Vector2.zero;
+            this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
         }
     }
     public void Moving()
     {
         this.characterCtrl.Rgb.velocity = this.movement * this.speed;
-        this.characterCtrl.Animator.SetBool("IsMoving", this.isMoving);
     }
 
     public void Flipping()

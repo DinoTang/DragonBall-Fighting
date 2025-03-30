@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleCombatState : State
+public class IdleState : State
 {
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsHardMode", true);
+        this.stateManager.CharacterCtrl.Animator.SetBool("IsIdle", true);
     }
 
     public override void OnExit()
     {
         base.OnExit();
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsHardMode", false);
     }
 }

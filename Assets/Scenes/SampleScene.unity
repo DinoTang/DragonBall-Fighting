@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27444a0653e3dc479d3ef709a5c516f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 0}
+  characterCtrl: {fileID: 1795711757}
   animator: {fileID: 1025743598}
   normalController: {fileID: 9100000, guid: fe0686d766d696d4089d5338394d8863, type: 2}
   ssj2Controller: {fileID: 9100000, guid: 4a34254a223d2c5448f14b762a015af9, type: 2}
@@ -606,6 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad4e6cb66d8efa459db7c81da652a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterCtrl: {fileID: 1795711757}
 --- !u!1 &2090662901
 GameObject:
   m_ObjectHideFlags: 0

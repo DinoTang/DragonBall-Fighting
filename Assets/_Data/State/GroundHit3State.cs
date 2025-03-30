@@ -7,12 +7,8 @@ public class GroundHit3State : BaseHitState
 {
     public override void OnEnter(StateManager stateManager)
     {
+        this.attackCounter = 3;
         base.OnEnter(stateManager);
-
-        //Attack
-        attackIndex = 3;
-        this.stateManager.CharacterCtrl.Animator.SetTrigger("Attack" + attackIndex);
-        Debug.Log("Player Attack " + attackIndex + " Fired!");
     }
 
     public override void OnUpdate()
@@ -21,7 +17,7 @@ public class GroundHit3State : BaseHitState
 
         if (Fixedtime >= duration)
         {
-            this.stateManager.SetNextState(new CooldownState());
+            this.BackMainState();
         }
     }
 
