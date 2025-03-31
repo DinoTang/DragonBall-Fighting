@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9b2b137daa27fb245b2eec6254cebdfe
+guid: c4989829d6f3eaf42b8f98acb3329986
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GokuSSJ2_Crouch_0
+      name: GokuSSJ2_CrouchStrongHit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9522b541376641544bc7b1ab728c9f4a
-      internalID: -2024749339
+      spriteID: 43f6ab7457598ea47a7786726b0d82ed
+      internalID: 695644612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Crouch_1
+      name: GokuSSJ2_CrouchStrongHit_1
       rect:
         serializedVersion: 2
         x: 128
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4479e3984b4e20845bddc96ea3d5d844
-      internalID: -1095257013
+      spriteID: 77f303b462aa33047bdf231ec28211e9
+      internalID: -1010829878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Crouch_2
+      name: GokuSSJ2_CrouchStrongHit_2
       rect:
         serializedVersion: 2
         x: 256
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16fda83612ed39a49b4a4e0b0c739f85
-      internalID: 1549272929
+      spriteID: 6406c899d42b6f54c99d6750f8ef3cac
+      internalID: 403476656
       vertices: []
       indices: 
       edges: []
@@ -170,9 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GokuSSJ2_Crouch_0: -2024749339
-      GokuSSJ2_Crouch_1: -1095257013
-      GokuSSJ2_Crouch_2: 1549272929
+      GokuSSJ2_CrouchStrongHit_0: 695644612
+      GokuSSJ2_CrouchStrongHit_1: -1010829878
+      GokuSSJ2_CrouchStrongHit_2: 403476656
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

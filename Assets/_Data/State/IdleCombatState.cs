@@ -14,6 +14,8 @@ public class IdleCombatState : State
     {
         if (InputManager.Instance.GetJumpInput()) this.stateManager.SetNextState(new AirState());
         if (InputManager.Instance.GetHorizontal() != 0) this.stateManager.SetNextState(new MovingState());
+        if (InputManager.Instance.GetCrouchInput()) this.stateManager.SetNextState(new CrouchState());
+        if (InputManager.Instance.GetStrongHitInput()) this.stateManager.SetNextState(new GroundStrongHitState());
     }
     public override void OnExit()
     {

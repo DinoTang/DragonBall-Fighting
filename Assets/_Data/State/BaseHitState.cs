@@ -20,7 +20,7 @@ public class BaseHitState : State
     {
         base.OnUpdate();
         if (!this.stateManager.CharacterCtrl.CharacterIntro.IsReady) return;
-        if (Fixedtime > duration * 0.5f && InputManager.Instance.GetAttackHitInput())
+        if (Fixedtime > duration * 0.5f && InputManager.Instance.GetNormalHitInput())
         {
             shouldCombo = true;
         }

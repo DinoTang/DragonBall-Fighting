@@ -19,13 +19,21 @@ public class InputManager : DinoBehaviour
         return Input.GetAxisRaw("Horizontal");
     }
 
-    public bool GetAttackHitInput()
+    public bool GetNormalHitInput()
     {
         return Input.GetKeyDown(KeyCode.J);
     }
-
+    public bool GetStrongHitInput()
+    {
+        return Input.GetKeyDown(KeyCode.U);
+    }
     public bool GetJumpInput()
     {
         return Input.GetKeyDown(KeyCode.K);
     }
+    public bool GetCrouchInput()
+    {
+        return Input.GetKey(KeyCode.S);
+    }
+
 }

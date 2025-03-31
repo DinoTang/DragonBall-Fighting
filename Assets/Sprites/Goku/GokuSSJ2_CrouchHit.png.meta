@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9b2b137daa27fb245b2eec6254cebdfe
+guid: a5bf208ae8758f54c87b4b945d376be3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GokuSSJ2_Crouch_0
+      name: GokuSSJ2_CrouchHit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9522b541376641544bc7b1ab728c9f4a
-      internalID: -2024749339
+      spriteID: 3509ead18c9a682438cac338cd889ee3
+      internalID: -1807964564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Crouch_1
+      name: GokuSSJ2_CrouchHit_1
       rect:
         serializedVersion: 2
         x: 128
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4479e3984b4e20845bddc96ea3d5d844
-      internalID: -1095257013
+      spriteID: 1264dd3d9b1535e4f93f0ba1c95e0f1d
+      internalID: 1698288195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Crouch_2
+      name: GokuSSJ2_CrouchHit_2
       rect:
         serializedVersion: 2
         x: 256
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16fda83612ed39a49b4a4e0b0c739f85
-      internalID: 1549272929
+      spriteID: 855292ec68d674c47bf860bc1379c896
+      internalID: 10031276
       vertices: []
       indices: 
       edges: []
@@ -170,9 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GokuSSJ2_Crouch_0: -2024749339
-      GokuSSJ2_Crouch_1: -1095257013
-      GokuSSJ2_Crouch_2: 1549272929
+      GokuSSJ2_CrouchHit_0: -1807964564
+      GokuSSJ2_CrouchHit_1: 1698288195
+      GokuSSJ2_CrouchHit_2: 10031276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -15,7 +15,7 @@ public class CharacterAttack : CharacterAbstract
         if (!this.characterCtrl.CharacterIntro.IsReady) return;
         this.characterCtrl.Animator.SetBool("IsAttack", this.isAttack);
         if (this.characterCtrl.StateManager.CurrentState.GetType() == typeof(CooldownState)) return;
-        if (InputManager.Instance.GetAttackHitInput()
+        if (InputManager.Instance.GetNormalHitInput()
         && this.characterCtrl.StateManager.CurrentState.GetType() == typeof(IdleCombatState))
         {
 
