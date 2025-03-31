@@ -35,5 +35,8 @@ public class InputManager : DinoBehaviour
     {
         return Input.GetKey(KeyCode.S);
     }
-
+    public bool GetChargeInput()
+    {
+        return Input.GetKey(KeyCode.L);
+    }
 }
