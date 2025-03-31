@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseHitState : State
 {
-    public float duration = 0.3f;
+    public float duration = 0.5f;
     protected bool shouldCombo = false;
     protected int attackCounter;
     public override void OnEnter(StateManager stateManager)

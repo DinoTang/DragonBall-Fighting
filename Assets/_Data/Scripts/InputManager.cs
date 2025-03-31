@@ -23,4 +23,9 @@ public class InputManager : DinoBehaviour
     {
         return Input.GetKeyDown(KeyCode.J);
     }
+
+    public bool GetJumpInput()
+    {
+        return Input.GetKeyDown(KeyCode.K);
+    }
 }

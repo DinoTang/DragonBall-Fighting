@@ -12,13 +12,11 @@ public class CharacterCtrl : DinoBehaviour
     public StateManager StateManager => stateManager;
     [SerializeField] protected CharacterIntro characterIntro;
     public CharacterIntro CharacterIntro => characterIntro;
-    [SerializeField] protected CharacterMovement characterMovement;
-    public CharacterMovement CharacterMovement => characterMovement;
     [SerializeField] protected CharacterAttack characterAttack;
     public CharacterAttack CharacterAttack => characterAttack;
     [SerializeField] protected DamageSender damageSender;
     public DamageSender DamageSender => damageSender;
-    
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -26,7 +24,6 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadAnimator();
         this.LoadStateManager();
         this.LoadCharacterIntro();
-        this.LoadCharacterMovement();
         this.LoadCharacterAttack();
         this.LoadDamageSender();
     }
@@ -48,12 +45,6 @@ public class CharacterCtrl : DinoBehaviour
         this.stateManager = GetComponent<StateManager>();
         Debug.Log(transform.name + ": LoadStateManager", gameObject);
     }
-    protected void LoadCharacterMovement()
-    {
-        if (this.characterMovement != null) return;
-        this.characterMovement = GetComponentInChildren<CharacterMovement>();
-        Debug.Log(transform.name + ": LoadCharacterMovement", gameObject);
-    }
     protected void LoadCharacterIntro()
     {
         if (this.characterIntro != null) return;
@@ -71,5 +62,13 @@ public class CharacterCtrl : DinoBehaviour
         if (this.damageSender != null) return;
         this.damageSender = GetComponentInChildren<DamageSender>();
         Debug.Log(transform.name + ": LoadDamageSender", gameObject);
+    }
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+        Ground groundCollider = collision.transform.GetComponent<Ground>();
+        if (groundCollider == null) return;
+        if (this.stateManager.CurrentState == null) return;
+        if (this.stateManager.CurrentState.GetType() == typeof(IdleCombatState)) return;
+        this.stateManager.SetNextState(new IdleCombatState());
     }
 }
