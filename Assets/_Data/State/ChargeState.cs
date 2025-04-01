@@ -15,7 +15,7 @@ public class ChargeState : State
     {
         base.OnUpdate();
         Debug.Log(this.Time);
-        if (Input.GetKeyUp(KeyCode.L)) this.stateManager.SetNextState(new IdleCombatState());
+        if (InputManager.Instance.HoldChargeInput()) this.stateManager.SetNextState(new IdleCombatState());
         if (this.Time >= 6f)
         {
             this.chargeLevel++;

@@ -27,16 +27,36 @@ public class InputManager : DinoBehaviour
     {
         return Input.GetKeyDown(KeyCode.U);
     }
-    public bool GetJumpInput()
+    public bool GetKickInput()
     {
         return Input.GetKeyDown(KeyCode.K);
+    }
+    public bool GetJumpInput()
+    {
+        return Input.GetKeyDown(KeyCode.W);
     }
     public bool GetCrouchInput()
     {
         return Input.GetKey(KeyCode.S);
     }
+    public bool HoldCrouchInput()
+    {
+        return Input.GetKeyUp(KeyCode.S);
+    }
     public bool GetChargeInput()
     {
         return Input.GetKey(KeyCode.L);
+    }
+    public bool HoldChargeInput()
+    {
+        return Input.GetKeyUp(KeyCode.L);
+    }
+    public bool GetBlockHitInput()
+    {
+        return Input.GetKey(KeyCode.H);
+    }
+    public bool HoldBlockHitInput()
+    {
+        return Input.GetKeyUp(KeyCode.H);
     }
 }

@@ -159,6 +159,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: GokuSSJ2_StrongHit_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd828416ad448414790faf203466887f
+      internalID: 1379563741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -173,6 +194,7 @@ TextureImporter:
       GokuSSJ2_StrongHit_0: 1986500034
       GokuSSJ2_StrongHit_1: -1182125517
       GokuSSJ2_StrongHit_2: -1693815075
+      GokuSSJ2_StrongHit_3: 1379563741
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

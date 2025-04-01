@@ -12,8 +12,6 @@ public class CharacterCtrl : DinoBehaviour
     public StateManager StateManager => stateManager;
     [SerializeField] protected CharacterIntro characterIntro;
     public CharacterIntro CharacterIntro => characterIntro;
-    [SerializeField] protected CharacterAttack characterAttack;
-    public CharacterAttack CharacterAttack => characterAttack;
     [SerializeField] protected DamageSender damageSender;
     public DamageSender DamageSender => damageSender;
 
@@ -24,7 +22,6 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadAnimator();
         this.LoadStateManager();
         this.LoadCharacterIntro();
-        this.LoadCharacterAttack();
         this.LoadDamageSender();
     }
     protected void LoadRigidbody()
@@ -50,12 +47,6 @@ public class CharacterCtrl : DinoBehaviour
         if (this.characterIntro != null) return;
         this.characterIntro = GetComponentInChildren<CharacterIntro>();
         Debug.Log(transform.name + ": LoadCharacterIntro", gameObject);
-    }
-    protected void LoadCharacterAttack()
-    {
-        if (this.characterAttack != null) return;
-        this.characterAttack = GetComponentInChildren<CharacterAttack>();
-        Debug.Log(transform.name + ": LoadCharacterAttack", gameObject);
     }
     protected void LoadDamageSender()
     {

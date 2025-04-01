@@ -13,7 +13,7 @@ public class GroundHit1State : BaseHitState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        
+
         if (Fixedtime >= duration)
         {
             if (shouldCombo)

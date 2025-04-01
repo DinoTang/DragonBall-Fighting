@@ -18,7 +18,7 @@ public class CharacterIntro : CharacterAbstract
     }
     IEnumerator TransformToSSJ2()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         animator.Play(transformClip.name);
         yield return new WaitForSeconds(transformClip.length);

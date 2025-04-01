@@ -10,9 +10,8 @@ public class BaseHitState : State
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
-        this.stateManager.CharacterCtrl.CharacterAttack.SetIsAttack(true);
         //Attack
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", this.stateManager.CharacterCtrl.CharacterAttack.IsAttack);
+        this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", true);
         this.stateManager.CharacterCtrl.Animator.SetInteger("AttackCounter", attackCounter);
         Debug.Log("Player Attack " + attackCounter + " Fired!");
     }
@@ -25,11 +24,13 @@ public class BaseHitState : State
             shouldCombo = true;
         }
     }
-
+    public override void OnExit()
+    {
+        base.OnExit();
+        this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", false);
+    }
     protected void BackMainState()
     {
-        this.stateManager.CharacterCtrl.CharacterAttack.SetIsAttack(false);
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", this.stateManager.CharacterCtrl.CharacterAttack.IsAttack);
         this.stateManager.SetNextStateToMain();
     }
 }
