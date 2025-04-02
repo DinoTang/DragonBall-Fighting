@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf91a00d64d4c7544816972c36225c71
+guid: 02aa69b57ea3ac343845c240869879fe
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GokuSSJ2_Charge1_0
+      name: GokuSSJ2_JumpHit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd82142eda75920418c2631aae9891dc
-      internalID: -1205134363
+      spriteID: 65d7ce1c2c7d6f14eb4b60eff8f2a8fd
+      internalID: 865011365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Charge1_1
+      name: GokuSSJ2_JumpHit_1
       rect:
         serializedVersion: 2
         x: 128
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35cec60152ac9884eadd2ec8c8f482ab
-      internalID: -1998469256
+      spriteID: 8a70734e038511c4b8ecca49e927b447
+      internalID: 1889793961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Charge1_2
+      name: GokuSSJ2_JumpHit_2
       rect:
         serializedVersion: 2
         x: 256
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87b0559a7566e3c4abb2fc481550f69e
-      internalID: 1754190644
+      spriteID: a6da5987c8553cc46b47fc256e6d7c0e
+      internalID: 630376390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Charge1_3
+      name: GokuSSJ2_JumpHit_3
       rect:
         serializedVersion: 2
         x: 384
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7bb61602e5e97e47b0ddbd9a42bcb30
-      internalID: -851337747
+      spriteID: f7eaa6fafba65a34bb2b9353ed4b41dc
+      internalID: 618987109
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GokuSSJ2_Charge1_0: -1205134363
-      GokuSSJ2_Charge1_1: -1998469256
-      GokuSSJ2_Charge1_2: 1754190644
-      GokuSSJ2_Charge1_3: -851337747
+      GokuSSJ2_JumpHit_0: 865011365
+      GokuSSJ2_JumpHit_1: 1889793961
+      GokuSSJ2_JumpHit_2: 630376390
+      GokuSSJ2_JumpHit_3: 618987109
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

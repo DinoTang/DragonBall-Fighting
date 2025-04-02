@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseAirHitState : State
+public class BaseAirHitState : BaseAirState
 {
-    public float duration = 0.3f;
+    public float duration = 0.5f;
     protected int attackCounter;
     public override void OnEnter(StateManager stateManager)
     {
@@ -18,7 +18,6 @@ public class BaseAirHitState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (!this.stateManager.CharacterCtrl.CharacterIntro.IsReady) return;
         if (Fixedtime >= duration)
         {
             this.BackMainState();
@@ -29,8 +28,6 @@ public class BaseAirHitState : State
         base.OnExit();
         this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", false);
     }
-    protected void BackMainState()
-    {
-        this.stateManager.SetNextState(new AirState());
-    }
+    
+
 }

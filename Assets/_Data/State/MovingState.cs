@@ -20,10 +20,34 @@ public class MovingState : State
 
         if (InputManager.Instance.GetJumpInput())
         {
-            this.stateManager.SetNextState(new AirState());
+            this.stateManager.SetNextState(new JumpState());
             return;
         }
-
+        if (InputManager.Instance.GetNormalHitInput())
+        {
+            this.stateManager.SetNextState(new GroundHit1State());
+            return;
+        }
+        if (InputManager.Instance.GetKickInput())
+        {
+            this.stateManager.SetNextState(new KickState());
+            return;
+        }
+        if (InputManager.Instance.GetStrongHitInput())
+        {
+            this.stateManager.SetNextState(new GroundStrongHitState());
+            return;
+        }
+        if (InputManager.Instance.GetBlockHitInput())
+        {
+            this.stateManager.SetNextState(new BlockState());
+            return;
+        }
+        if (InputManager.Instance.GetCrouchInput())
+        {
+            this.stateManager.SetNextState(new CrouchState());
+            return;
+        }
         this.UpdateMovement();
         this.ApplyMovement();
     }

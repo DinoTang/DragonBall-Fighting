@@ -14,7 +14,7 @@ public class CharacterCtrl : DinoBehaviour
     public CharacterIntro CharacterIntro => characterIntro;
     [SerializeField] protected DamageSender damageSender;
     public DamageSender DamageSender => damageSender;
-
+    public bool IsGround { get; set; }
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -59,7 +59,9 @@ public class CharacterCtrl : DinoBehaviour
         Ground groundCollider = collision.transform.GetComponent<Ground>();
         if (groundCollider == null) return;
         if (this.stateManager.CurrentState == null) return;
+        this.IsGround = true;
         if (this.stateManager.CurrentState.GetType() == typeof(IdleCombatState)) return;
         this.stateManager.SetNextState(new IdleCombatState());
+        this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
     }
 }

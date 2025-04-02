@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5ea134ad79b2c6b4194889f109ed49f4
+guid: 4410f2e783986ed409ce758adbb701d8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -97,13 +97,202 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GokuSSJ2_Charge_0
+      name: Training Dummy Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 755d91778abcbf34b9251b548ca2119c
+      internalID: -889198716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c31d4e600f9627e469ec3947b1fe9a58
+      internalID: 1135562121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61a0563e41d27bb44bb8d9a65cee2093
+      internalID: 195262587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c951a41aa80864f8dfdd2eafdc6292
+      internalID: -1595589469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11a09087679fe8547bee9f2ef0ac4138
+      internalID: 1373340727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fee4f0bc3f7af714e83528f5f6596fd5
+      internalID: -1233345431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89fc765c10c4cdb4ea4cec7ecd2bc1ae
+      internalID: 1023464083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7e1a3287b5b8ca42a87eb557d075c19
+      internalID: 1000240336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d4bd9ecdfe8f8e47ab1722ebd50140a
+      internalID: 1369752565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_9
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 107
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +300,83 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edb8688633a2c31418c630fc7bc8c9bd
-      internalID: -881642873
+      spriteID: 2d031c918ad26e247bcfe80e5ca696c3
+      internalID: -1943319156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Charge_1
+      name: Training Dummy Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa2631ec25b061748b09b2f7f20a4687
+      internalID: 292856007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dcae871e281fc341b328d137ba2df38
+      internalID: 1314413312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89bccb4747706e047926b2e800c05b74
+      internalID: -1545893425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Training Dummy Sprite Sheet_13
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 128
-        height: 107
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +384,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccb0bb30922a75c43a9d2ad1c26cbfd3
-      internalID: 505526918
+      spriteID: 0a6f50e2b440798469dca0fda28c498c
+      internalID: -1148830321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Charge_2
+      name: Training Dummy Sprite Sheet_14
       rect:
         serializedVersion: 2
-        x: 256
+        x: 160
         y: 0
-        width: 128
-        height: 107
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +405,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2072fc1a713acc54397133cf33e918b5
-      internalID: 1532537921
+      spriteID: 20053c90317290742ac349e00250e578
+      internalID: -1206441269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Charge_3
+      name: Training Dummy Sprite Sheet_15
       rect:
         serializedVersion: 2
-        x: 384
+        x: 192
         y: 0
-        width: 128
-        height: 107
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +426,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00be8b1e44e3eac4b85bab40f4ba792a
-      internalID: 691964220
+      spriteID: 658898436cf0d6d42a12810949ee0d25
+      internalID: -1781665082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Charge_4
+      name: Training Dummy Sprite Sheet_16
       rect:
         serializedVersion: 2
-        x: 512
+        x: 224
         y: 0
-        width: 128
-        height: 107
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,134 +447,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba955f1d0a9d40e46ad4ccaa04880095
-      internalID: 2058016225
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GokuSSJ2_Charge_5
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 128
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7591d30f599c21f4daf8cfb84a98263f
-      internalID: -11768469
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GokuSSJ2_Charge_6
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 128
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fe31d5895aa855745a78dae9c31cc588
-      internalID: -1359489453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GokuSSJ2_Charge_7
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 0
-        width: 128
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d798b8f1f479c7a4591ac6aee52269a1
-      internalID: -310339759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GokuSSJ2_Charge_8
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 128
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82480dec62d18a6438ac86aeabc866bb
-      internalID: -507615509
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GokuSSJ2_Charge_9
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 128
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6722d3f162fc7f4e99d4eb7ec842d28
-      internalID: 515055430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GokuSSJ2_Charge_10
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 0
-        width: 128
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ded128aff49b9a74f93bfcd3113d9273
-      internalID: -32492340
+      spriteID: 3322d0f18968315409042b11e6a41823
+      internalID: 919448281
       vertices: []
       indices: 
       edges: []
@@ -338,17 +464,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GokuSSJ2_Charge_0: -881642873
-      GokuSSJ2_Charge_1: 505526918
-      GokuSSJ2_Charge_10: -32492340
-      GokuSSJ2_Charge_2: 1532537921
-      GokuSSJ2_Charge_3: 691964220
-      GokuSSJ2_Charge_4: 2058016225
-      GokuSSJ2_Charge_5: -11768469
-      GokuSSJ2_Charge_6: -1359489453
-      GokuSSJ2_Charge_7: -310339759
-      GokuSSJ2_Charge_8: -507615509
-      GokuSSJ2_Charge_9: 515055430
+      Training Dummy Sprite Sheet_0: -889198716
+      Training Dummy Sprite Sheet_1: 1135562121
+      Training Dummy Sprite Sheet_10: 292856007
+      Training Dummy Sprite Sheet_11: 1314413312
+      Training Dummy Sprite Sheet_12: -1545893425
+      Training Dummy Sprite Sheet_13: -1148830321
+      Training Dummy Sprite Sheet_14: -1206441269
+      Training Dummy Sprite Sheet_15: -1781665082
+      Training Dummy Sprite Sheet_16: 919448281
+      Training Dummy Sprite Sheet_2: 195262587
+      Training Dummy Sprite Sheet_3: -1595589469
+      Training Dummy Sprite Sheet_4: 1373340727
+      Training Dummy Sprite Sheet_5: -1233345431
+      Training Dummy Sprite Sheet_6: 1023464083
+      Training Dummy Sprite Sheet_7: 1000240336
+      Training Dummy Sprite Sheet_8: 1369752565
+      Training Dummy Sprite Sheet_9: -1943319156
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
