@@ -7,7 +7,7 @@ public class AirState : BaseAirState
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", true);
+        this.animator.SetBool("IsJump", true);
     }
     public override void OnUpdate()
     {
@@ -20,7 +20,7 @@ public class AirState : BaseAirState
     public override void OnExit()
     {
         base.OnExit();
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
+        this.animator.SetBool("IsJump", false);
     }
 
 }

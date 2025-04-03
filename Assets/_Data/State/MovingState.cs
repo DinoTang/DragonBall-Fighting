@@ -5,90 +5,101 @@ using UnityEngine;
 public class MovingState : State
 {
     protected float speed = 15f;
-    private Vector2 movement;
-    private float horizontal;
-
-    public override void OnEnter(StateManager stateManager)
-    {
-        base.OnEnter(stateManager);
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsMoving", true);
-    }
+    protected Vector2 movement;
+    protected float horizontal;
 
     public override void OnUpdate()
     {
         base.OnUpdate();
 
-        if (InputManager.Instance.GetJumpInput())
-        {
-            this.stateManager.SetNextState(new JumpState());
-            return;
-        }
-        if (InputManager.Instance.GetNormalHitInput())
-        {
-            this.stateManager.SetNextState(new GroundHit1State());
-            return;
-        }
-        if (InputManager.Instance.GetKickInput())
-        {
-            this.stateManager.SetNextState(new KickState());
-            return;
-        }
-        if (InputManager.Instance.GetStrongHitInput())
-        {
-            this.stateManager.SetNextState(new GroundStrongHitState());
-            return;
-        }
-        if (InputManager.Instance.GetBlockHitInput())
-        {
-            this.stateManager.SetNextState(new BlockState());
-            return;
-        }
-        if (InputManager.Instance.GetCrouchInput())
-        {
-            this.stateManager.SetNextState(new CrouchState());
-            return;
-        }
+        if (this.CanOtherAction()) return;
+
         this.UpdateMovement();
         this.ApplyMovement();
+        this.SetMoveAnimation();
     }
-
     public override void OnExit()
     {
         base.OnExit();
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsMoving", false);
+        this.ResetMoveAnimation();
     }
-
-    private void UpdateMovement()
+    protected void UpdateMovement()
     {
         this.horizontal = InputManager.Instance.GetHorizontal();
 
         if (this.horizontal != 0)
         {
-            this.Flipping();
             this.movement = new Vector2(this.horizontal, 0);
         }
         else
         {
             this.movement = Vector2.zero;
+            this.ResetMoveAnimation();
             this.stateManager.SetNextState(new IdleCombatState());
         }
     }
 
-    private void ApplyMovement()
+    protected void ApplyMovement()
     {
-        this.stateManager.CharacterCtrl.Rgb.velocity =
-            new Vector2(this.movement.x * this.speed, this.stateManager.CharacterCtrl.Rgb.velocity.y);
+        Rigidbody2D rb = this.stateManager.CharacterCtrl.Rgb;
+        rb.velocity = new Vector2(this.movement.x * this.speed, rb.velocity.y);
     }
 
-    private void Flipping()
+    protected void SetMoveAnimation()
     {
-        if (this.horizontal > 0)
+        bool isFacingRight = this.stateManager.transform.localScale.x == 1;
+
+        ResetMoveAnimation();
+
+        if (this.movement.x == 1)
         {
-            this.stateManager.transform.localScale = new Vector3(1, 1, 1);
+            this.animator.SetBool(isFacingRight ? "MoveForward" : "MoveBackward", true);
         }
-        else
+        else if (this.movement.x == -1)
         {
-            this.stateManager.transform.localScale = new Vector3(-1, 1, 1);
+            this.animator.SetBool(isFacingRight ? "MoveBackward" : "MoveForward", true);
         }
+    }
+
+    protected void ResetMoveAnimation()
+    {
+        this.animator.SetBool("MoveForward", false);
+        this.animator.SetBool("MoveBackward", false);
+    }
+
+    protected bool CanOtherAction()
+    {
+        if (InputManager.Instance.GetJumpInput())
+        {
+            this.stateManager.SetNextState(new JumpState());
+            return true;
+        }
+        if (InputManager.Instance.GetNormalHitInput())
+        {
+            this.stateManager.SetNextState(new GroundHit1State());
+            return true;
+        }
+        if (InputManager.Instance.GetKickInput())
+        {
+            this.stateManager.SetNextState(new KickState());
+            return true;
+        }
+        if (InputManager.Instance.GetStrongHitInput())
+        {
+            this.stateManager.SetNextState(new GroundStrongHitState());
+            return true;
+        }
+        if (InputManager.Instance.GetBlockHitInput())
+        {
+            this.stateManager.SetNextState(new BlockState());
+            return true;
+        }
+        if (InputManager.Instance.GetCrouchInput())
+        {
+            this.stateManager.SetNextState(new CrouchState());
+            return true;
+        }
+
+        return false;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class CharacterAbstract : DinoBehaviour
 {
+    [Header("Character Abstract")]
     [SerializeField] protected CharacterCtrl characterCtrl;
 
     protected override void LoadComponent()

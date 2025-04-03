@@ -8,7 +8,6 @@ public class StateManager : DinoBehaviour
 
     public State CurrentState { get; set; }
     public State nextState;
-    
     protected override void LoadComponent()
     {
         base.LoadComponent();

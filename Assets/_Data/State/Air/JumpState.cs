@@ -9,13 +9,13 @@ public class JumpState : State
     {
         base.OnEnter(stateManager);
         this.stateManager.CharacterCtrl.IsGround = false;
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", true);
+        this.animator.SetBool("IsJump", true);
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(this.stateManager.CharacterCtrl.Rgb.velocity.x, this.jumpForce);
         this.stateManager.SetNextState(new AirState());
     }
     public override void OnExit()
     {
         base.OnExit();
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
+        this.animator.SetBool("IsJump", false);
     }
 }

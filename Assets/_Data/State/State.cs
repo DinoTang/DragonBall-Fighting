@@ -1,12 +1,16 @@
+using UnityEngine;
+
 public abstract class State
 {
     protected float Time { get; set; }
     protected float Fixedtime { get; set; }
     protected float Latetime { get; set; }
     protected StateManager stateManager;
+    protected Animator animator;
     public virtual void OnEnter(StateManager stateManager)
     {
         this.stateManager = stateManager;
+        this.animator = this.stateManager.CharacterCtrl.Animator;
     }
 
     public virtual void OnUpdate()

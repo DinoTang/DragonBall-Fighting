@@ -10,9 +10,9 @@ public class BaseAirHitState : BaseAirState
     {
         base.OnEnter(stateManager);
         //Attack
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", true);
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", true);
-        this.stateManager.CharacterCtrl.Animator.SetInteger("AttackCounter", attackCounter);
+        this.animator.SetBool("IsJump", true);
+        this.animator.SetBool("IsAttack", true);
+        this.animator.SetInteger("AttackCounter", attackCounter);
         Debug.Log("Player Attack " + attackCounter + " Fired!");
     }
     public override void OnUpdate()
@@ -26,7 +26,7 @@ public class BaseAirHitState : BaseAirState
     public override void OnExit()
     {
         base.OnExit();
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", false);
+        this.animator.SetBool("IsAttack", false);
     }
     
 

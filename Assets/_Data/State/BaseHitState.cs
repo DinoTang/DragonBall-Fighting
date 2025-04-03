@@ -17,8 +17,8 @@ public class BaseHitState : State
         //Attack
         this.attackMoveTime = Time + this.attackMoveDuration;
         this.isMovingDuringAttack = true;
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", true);
-        this.stateManager.CharacterCtrl.Animator.SetInteger("AttackCounter", attackCounter);
+        this.animator.SetBool("IsAttack", true);
+        this.animator.SetInteger("AttackCounter", attackCounter);
         Debug.Log("Player Attack " + attackCounter + " Fired!");
     }
     public override void OnUpdate()
@@ -33,7 +33,7 @@ public class BaseHitState : State
     public override void OnExit()
     {
         base.OnExit();
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", false);
+        this.animator.SetBool("IsAttack", false);
     }
     protected void BackMainState()
     {

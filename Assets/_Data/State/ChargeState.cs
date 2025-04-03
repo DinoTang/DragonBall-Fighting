@@ -8,13 +8,13 @@ public class ChargeState : State
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsCharge", true);
-        this.stateManager.CharacterCtrl.Animator.SetInteger("Charging", this.chargeLevel);
+        this.animator.SetBool("IsCharge", true);
+        this.animator.SetInteger("Charging", this.chargeLevel);
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (InputManager.Instance.HoldChargeInput()) this.stateManager.SetNextState(new IdleCombatState());
+        if (InputManager.Instance.ReleaseChargeInput()) this.stateManager.SetNextState(new IdleCombatState());
         if (this.Time >= 2f)
         {
             this.chargeLevel++;
@@ -33,12 +33,12 @@ public class ChargeState : State
     public override void OnExit()
     {
         base.OnExit();
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsCharge", false);
+        this.animator.SetBool("IsCharge", false);
     }
 
     protected void ChargingLevel()
     {
-        this.stateManager.CharacterCtrl.Animator.SetInteger("Charging", this.chargeLevel);
+        this.animator.SetInteger("Charging", this.chargeLevel);
         this.Time = 0;
     }
 }

@@ -7,14 +7,14 @@ public class AirBlockState : BaseAirState
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", true);
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsBlock", true);
+        this.animator.SetBool("IsJump", true);
+        this.animator.SetBool("IsBlock", true);
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (InputManager.Instance.HoldBlockHitInput())
+        if (InputManager.Instance.ReleaseBlockHitInput())
         {
             this.BackMainState();
         }
@@ -23,6 +23,6 @@ public class AirBlockState : BaseAirState
     public override void OnExit()
     {
         base.OnExit();
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsBlock", false);
+        this.animator.SetBool("IsBlock", false);
     }
 }

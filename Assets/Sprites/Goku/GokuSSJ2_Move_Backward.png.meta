@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 29142b64f3a15394ba880e352efda6b5
+guid: 075fc64218a867943954e3cc13c331da
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GokuSSJ2_Move_0
+      name: GokuSSJ2_Move_Backward_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d8934ca4163aa44ca42c8f89390884a
-      internalID: 1381527612
+      spriteID: ed7fcbe578c6f4843bc17e118f9cb8ec
+      internalID: 375495198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GokuSSJ2_Move_1
+      name: GokuSSJ2_Move_Backward_1
       rect:
         serializedVersion: 2
         x: 128
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3cafda7c32756640ab5aefa7824a311
-      internalID: -1806583207
+      spriteID: b768e662fd13dfb4692a7214f1e080f9
+      internalID: -1848182815
       vertices: []
       indices: 
       edges: []
@@ -149,8 +149,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GokuSSJ2_Move_0: 1381527612
-      GokuSSJ2_Move_1: -1806583207
+      GokuSSJ2_Move_Backward_0: 375495198
+      GokuSSJ2_Move_Backward_1: -1848182815
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

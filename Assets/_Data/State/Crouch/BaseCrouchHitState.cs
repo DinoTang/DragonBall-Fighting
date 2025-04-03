@@ -10,18 +10,18 @@ public class BaseCrouchHitState : State
     {
         base.OnEnter(stateManager);
         //Attack
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsCrouch", true);
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", true);
-        this.stateManager.CharacterCtrl.Animator.SetInteger("AttackCounter", attackCounter);
+        this.animator.SetBool("IsCrouch", true);
+        this.animator.SetBool("IsAttack", true);
+        this.animator.SetInteger("AttackCounter", attackCounter);
         Debug.Log("Player Attack " + attackCounter + " Fired!");
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
         if (!this.stateManager.CharacterCtrl.CharacterIntro.IsReady) return;
-        if (InputManager.Instance.HoldCrouchInput())
+        if (InputManager.Instance.ReleaseCrouchInput())
         {
-            this.stateManager.CharacterCtrl.Animator.SetBool("IsCrouch", false);
+            this.animator.SetBool("IsCrouch", false);
             this.stateManager.SetNextState(new IdleCombatState());
         }
         if (Fixedtime >= duration)
@@ -32,7 +32,7 @@ public class BaseCrouchHitState : State
     public override void OnExit()
     {
         base.OnExit();
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", false);
+        this.animator.SetBool("IsAttack", false);
     }
     protected void BackMainState()
     {
