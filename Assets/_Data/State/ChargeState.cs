@@ -14,9 +14,8 @@ public class ChargeState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        Debug.Log(this.Time);
         if (InputManager.Instance.HoldChargeInput()) this.stateManager.SetNextState(new IdleCombatState());
-        if (this.Time >= 6f)
+        if (this.Time >= 2f)
         {
             this.chargeLevel++;
             if (this.chargeLevel == 2)

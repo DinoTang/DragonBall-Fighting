@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class BaseHitState : State
 {
-    public float duration = 0.5f;
+    protected float duration = 0.5f;
     protected bool shouldCombo = false;
     protected int attackCounter;
+    protected float attackMoveSpeed = 1f;
+    protected float attackMoveDuration = 0.1f;
+    protected float attackMoveTime;
+    protected bool isMovingDuringAttack = false;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
         //Attack
+        this.attackMoveTime = Time + this.attackMoveDuration;
+        this.isMovingDuringAttack = true;
         this.stateManager.CharacterCtrl.Animator.SetBool("IsAttack", true);
         this.stateManager.CharacterCtrl.Animator.SetInteger("AttackCounter", attackCounter);
         Debug.Log("Player Attack " + attackCounter + " Fired!");
@@ -18,7 +24,7 @@ public class BaseHitState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (!this.stateManager.CharacterCtrl.CharacterIntro.IsReady) return;
+        this.MoveShortDistance();
         if (Fixedtime > duration * 0.5f && InputManager.Instance.GetNormalHitInput())
         {
             shouldCombo = true;
@@ -32,5 +38,17 @@ public class BaseHitState : State
     protected void BackMainState()
     {
         this.stateManager.SetNextStateToMain();
+    }
+    protected void MoveShortDistance()
+    {
+        if (isMovingDuringAttack && Time < attackMoveTime)
+        {
+            float moveStep = this.attackMoveSpeed * this.Time * this.stateManager.transform.localScale.x;
+            this.stateManager.CharacterCtrl.transform.position += new Vector3(moveStep, 0, 0);
+        }
+        else
+        {
+            this.isMovingDuringAttack = false;
+        }
     }
 }
