@@ -13,8 +13,11 @@ public class CharacterIntro : CharacterAbstract
     public bool IsReady => isReady;
     protected override void Start()
     {
-        animator.runtimeAnimatorController = normalController;
-        StartCoroutine(TransformToSSJ2());
+        // animator.runtimeAnimatorController = normalController;
+        // StartCoroutine(TransformToSSJ2());
+        this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
+        this.characterCtrl.IsGround = true;
+        this.isReady = true;
     }
     IEnumerator TransformToSSJ2()
     {

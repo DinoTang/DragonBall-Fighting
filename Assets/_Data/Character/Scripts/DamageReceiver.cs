@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageReceiver : DinoBehaviour
 {
     [Header("Damage Receiver")]
+    [SerializeField] protected CharacterCtrl characterCtrl;
     [SerializeField] protected CapsuleCollider2D collide;
     [SerializeField] protected bool isDead = false;
     [SerializeField] protected float currentHP;
@@ -17,8 +18,15 @@ public class DamageReceiver : DinoBehaviour
     protected override void LoadComponent()
     {
         base.LoadComponent();
+        this.LoadCharacterCtrl();
         this.LoadCollider();
         this.currentHP = this.maxHP;
+    }
+    protected void LoadCharacterCtrl()
+    {
+        if (this.characterCtrl != null) return;
+        this.characterCtrl = GetComponent<CharacterCtrl>();
+        Debug.Log(transform.name + ": LoadCharacterCtrl");
     }
     protected void LoadCollider()
     {
@@ -37,6 +45,7 @@ public class DamageReceiver : DinoBehaviour
     {
         if (this.isDead) return;
         this.currentHP -= hp;
+        this.OnHurt();
         this.IsDead();
     }
     public bool CheckDead()
@@ -53,5 +62,11 @@ public class DamageReceiver : DinoBehaviour
     protected virtual void OnDead()
     {
 
+    }
+
+    protected virtual void OnHurt()
+    {
+        this.characterCtrl.Animator.SetBool("IsHardMode", false);
+        this.characterCtrl.StateManager.SetNextState(new Hurt1State());
     }
 }
