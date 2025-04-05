@@ -16,6 +16,8 @@ public class CharacterCtrl : DinoBehaviour
     public CharacterFlip CharacterFlip => characterFlip;
     [SerializeField] protected DamageSender damageSender;
     public DamageSender DamageSender => damageSender;
+    [SerializeField] protected DamageReceiver damageReceiver;
+    public DamageReceiver DamageReceiver => damageReceiver;
     public bool IsGround { get; set; }
     protected override void LoadComponent()
     {
@@ -26,6 +28,7 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadCharacterIntro();
         this.LoadCharacterFlip();
         this.LoadDamageSender();
+        this.LoadDamageReceiver();
     }
     protected void LoadRigidbody()
     {
@@ -62,6 +65,12 @@ public class CharacterCtrl : DinoBehaviour
         if (this.damageSender != null) return;
         this.damageSender = GetComponentInChildren<DamageSender>();
         Debug.Log(transform.name + ": LoadDamageSender", gameObject);
+    }
+    protected void LoadDamageReceiver()
+    {
+        if (this.damageReceiver != null) return;
+        this.damageReceiver = GetComponentInChildren<DamageReceiver>();
+        Debug.Log(transform.name + ": LoadDamageReceiver", gameObject);
     }
     protected void OnCollisionEnter2D(Collision2D collision)
     {

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hurt1State : HurtState
+public class Hurt2State : HurtState
 {
     public override void OnEnter(StateManager stateManager)
     {
-        this.hurtCounter = 1;
+        this.hurtCounter = 2;
         base.OnEnter(stateManager);
     }
     public override void OnUpdate()
@@ -16,7 +16,7 @@ public class Hurt1State : HurtState
         {
             if (shouldHurt)
             {
-                this.stateManager.SetNextState(new Hurt2State());
+                this.stateManager.SetNextState(new Hurt3State());
             }
             else
             {

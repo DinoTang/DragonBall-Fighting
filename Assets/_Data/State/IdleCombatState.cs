@@ -13,6 +13,7 @@ public class IdleCombatState : State
     public override void OnUpdate()
     {
         this.stateManager.CharacterCtrl.CharacterFlip.Flipping();
+        if (this.stateManager.IsVegeta) return;
         if (InputManager.Instance.GetHorizontal() != 0) this.stateManager.SetNextState(new MovingState());
         if (InputManager.Instance.GetNormalHitInput()) this.stateManager.SetNextState(new GroundHit1State());
         if (InputManager.Instance.GetJumpInput()) this.stateManager.SetNextState(new JumpState());

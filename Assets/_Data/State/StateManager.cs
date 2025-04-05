@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class StateManager : DinoBehaviour
 {
+    [SerializeField] protected bool isVegeta;
+    public bool IsVegeta => isVegeta;
     [SerializeField] protected CharacterCtrl characterCtrl;
     public CharacterCtrl CharacterCtrl => characterCtrl;
     public State mainStateType = new IdleCombatState();

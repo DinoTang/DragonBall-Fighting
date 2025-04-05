@@ -8,8 +8,14 @@ public class DamageReceiver : DinoBehaviour
     [SerializeField] protected CharacterCtrl characterCtrl;
     [SerializeField] protected CapsuleCollider2D collide;
     [SerializeField] protected bool isDead = false;
+    [SerializeField] protected bool isHurt = false;
+    public bool IsHurt => isHurt;
     [SerializeField] protected float currentHP;
     [SerializeField] protected float maxHP = 5;
+    public void SetIsHurt(bool isHurt)
+    {
+        this.isHurt = isHurt;
+    }
     protected override void OnEnable()
     {
         this.isDead = false;
@@ -25,7 +31,7 @@ public class DamageReceiver : DinoBehaviour
     protected void LoadCharacterCtrl()
     {
         if (this.characterCtrl != null) return;
-        this.characterCtrl = GetComponent<CharacterCtrl>();
+        this.characterCtrl = GetComponentInParent<CharacterCtrl>();
         Debug.Log(transform.name + ": LoadCharacterCtrl");
     }
     protected void LoadCollider()
@@ -66,7 +72,9 @@ public class DamageReceiver : DinoBehaviour
 
     protected virtual void OnHurt()
     {
-        this.characterCtrl.Animator.SetBool("IsHardMode", false);
+        this.isHurt = true;
+        if (this.characterCtrl.StateManager.CurrentState.GetType() == typeof(Hurt1State) ||
+        this.characterCtrl.StateManager.CurrentState.GetType() == typeof(Hurt2State)) return;
         this.characterCtrl.StateManager.SetNextState(new Hurt1State());
     }
 }

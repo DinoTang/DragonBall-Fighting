@@ -7,9 +7,11 @@ public class HurtState : State
     protected float hurtDuration = 0.5f;
     protected Vector2 knockbackForce;
     protected int hurtCounter;
+    protected bool shouldHurt = false;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
+        this.stateManager.CharacterCtrl.DamageReceiver.SetIsHurt(false);
         this.animator.SetBool("IsHurt", true);
         this.animator.SetInteger("HurtCounter", hurtCounter);
         Debug.Log("Player Hurt: " + hurtCounter);
@@ -17,10 +19,7 @@ public class HurtState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.Fixedtime >= this.hurtDuration)
-        {
-            // this.stateManager.SetNextState(new IdleCombatState());
-        }
+        if (this.stateManager.CharacterCtrl.DamageReceiver.IsHurt) this.shouldHurt = true;
     }
     public override void OnExit()
     {
