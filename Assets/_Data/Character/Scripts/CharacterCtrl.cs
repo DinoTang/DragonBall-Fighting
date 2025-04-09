@@ -18,6 +18,10 @@ public class CharacterCtrl : DinoBehaviour
     public DamageSender DamageSender => damageSender;
     [SerializeField] protected DamageReceiver damageReceiver;
     public DamageReceiver DamageReceiver => damageReceiver;
+    [SerializeField] protected EnergyShotSpawner energyShotSpawner;
+    public EnergyShotSpawner EnergyShotSpawner => energyShotSpawner;
+    [SerializeField] protected EnergyShot energyShot;
+    public EnergyShot EnergyShot => energyShot;
     public bool IsGround { get; set; }
     protected override void LoadComponent()
     {
@@ -29,6 +33,8 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadCharacterFlip();
         this.LoadDamageSender();
         this.LoadDamageReceiver();
+        this.LoadEnergyShotSpawner();
+        this.LoadEnergyShot();
     }
     protected void LoadRigidbody()
     {
@@ -71,6 +77,18 @@ public class CharacterCtrl : DinoBehaviour
         if (this.damageReceiver != null) return;
         this.damageReceiver = GetComponentInChildren<DamageReceiver>();
         Debug.Log(transform.name + ": LoadDamageReceiver", gameObject);
+    }
+    protected void LoadEnergyShotSpawner()
+    {
+        if (this.energyShotSpawner != null) return;
+        this.energyShotSpawner = FindAnyObjectByType<EnergyShotSpawner>();
+        Debug.Log(transform.name + ": LoadEnergyShotSpawner", gameObject);
+    }
+    protected void LoadEnergyShot()
+    {
+        if (this.energyShot != null) return;
+        this.energyShot = FindAnyObjectByType<EnergyShot>();
+        Debug.Log(transform.name + ": LoadEnergyShot", gameObject);
     }
     protected void OnCollisionEnter2D(Collision2D collision)
     {

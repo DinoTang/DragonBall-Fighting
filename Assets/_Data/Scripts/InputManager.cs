@@ -58,4 +58,8 @@ public class InputManager : DinoBehaviour
     {
         return Input.GetKeyUp(KeyCode.H);
     }
+    public bool GetPowerFiredInput()
+    {
+        return Input.GetKeyDown(KeyCode.I);
+    }
 }

@@ -22,6 +22,7 @@ public class IdleCombatState : State
         if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new KickState());
         if (InputManager.Instance.GetChargeInput()) this.stateManager.SetNextState(new ChargeState());
         if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new BlockState());
+        if (InputManager.Instance.GetPowerFiredInput()) this.stateManager.SetNextState(new PowerFiredState());
     }
     public override void OnExit()
     {
