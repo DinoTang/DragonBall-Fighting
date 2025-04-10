@@ -10,6 +10,12 @@ public abstract class Spawner : DinoBehaviour
         new_energyShot.transform.SetPositionAndRotation(pos, rot);
         return new_energyShot;
     }
+    public virtual EnergyShotFX Spawn(EnergyShotFX energyShot_prefab, Vector2 pos, Quaternion rot)
+    {
+        EnergyShotFX new_energyShotFX = Instantiate(energyShot_prefab);
+        new_energyShotFX.transform.SetPositionAndRotation(pos, rot);
+        return new_energyShotFX;
+    }
     public virtual Transform Spawn(Transform prefab)
     {
         Transform new_Prefab = Instantiate(prefab);

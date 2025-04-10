@@ -8,9 +8,7 @@ public class PowerFiredState : State
     {
         base.OnEnter(stateManager);
         this.animator.SetBool("IsPowerFired", true);
-        Vector2 newPos = this.stateManager.transform.position;
-        Quaternion newRot = this.stateManager.transform.rotation;
-        this.stateManager.CharacterCtrl.EnergyShotSpawner.Spawn(this.stateManager.CharacterCtrl.EnergyShot, newPos, newRot);
+        
     }
     public override void OnUpdate()
     {

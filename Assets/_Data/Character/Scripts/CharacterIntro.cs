@@ -28,7 +28,7 @@ public class CharacterIntro : CharacterAbstract
 
         this.characterCtrl.StateManager.SetNextState(new IdleState());
         yield return new WaitForSeconds(2f);
-        
+
         animator.runtimeAnimatorController = ssj2Controller;
         this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
         this.characterCtrl.IsGround = true;
@@ -43,5 +43,21 @@ public class CharacterIntro : CharacterAbstract
     protected void DisableHitbox()
     {
         this.characterCtrl.DamageSender.DisableCollider();
+    }
+
+    protected void EnableSpawnEnergyShot()
+    {
+        Vector2 newPos = this.characterCtrl.transform.position;
+        newPos.x += 1.5f;
+        Quaternion newRot = this.characterCtrl.transform.rotation;
+        this.characterCtrl.EnergyShotSpawner.Spawn(this.characterCtrl.EnergyShot, newPos, newRot);
+    }
+
+    protected void EnableSpawnShotEffect()
+    {
+        Vector2 newPos = this.characterCtrl.transform.position;
+        newPos.x += 1.5f;
+        Quaternion newRot = this.characterCtrl.transform.rotation;
+        this.characterCtrl.FXSpawner.Spawn(this.characterCtrl.EnergyShotFX, newPos, newRot);
     }
 }

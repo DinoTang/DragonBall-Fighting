@@ -22,6 +22,10 @@ public class CharacterCtrl : DinoBehaviour
     public EnergyShotSpawner EnergyShotSpawner => energyShotSpawner;
     [SerializeField] protected EnergyShot energyShot;
     public EnergyShot EnergyShot => energyShot;
+    [SerializeField] protected FXSpawner fXSpawner;
+    public FXSpawner FXSpawner => fXSpawner;
+    [SerializeField] protected EnergyShotFX energyShotFX;
+    public EnergyShotFX EnergyShotFX => energyShotFX;
     public bool IsGround { get; set; }
     protected override void LoadComponent()
     {
@@ -35,6 +39,8 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadDamageReceiver();
         this.LoadEnergyShotSpawner();
         this.LoadEnergyShot();
+        this.LoadFXSpawner();
+        this.LoadEnergyShotFX();
     }
     protected void LoadRigidbody()
     {
@@ -89,6 +95,18 @@ public class CharacterCtrl : DinoBehaviour
         if (this.energyShot != null) return;
         this.energyShot = FindAnyObjectByType<EnergyShot>();
         Debug.Log(transform.name + ": LoadEnergyShot", gameObject);
+    }
+    protected void LoadFXSpawner()
+    {
+        if (this.fXSpawner != null) return;
+        this.fXSpawner = FindAnyObjectByType<FXSpawner>();
+        Debug.Log(transform.name + ": LoadFXSpawner", gameObject);
+    }
+    protected void LoadEnergyShotFX()
+    {
+        if (this.energyShotFX != null) return;
+        this.energyShotFX = FindAnyObjectByType<EnergyShotFX>();
+        Debug.Log(transform.name + ": LoadEnergyShotFX", gameObject);
     }
     protected void OnCollisionEnter2D(Collision2D collision)
     {
