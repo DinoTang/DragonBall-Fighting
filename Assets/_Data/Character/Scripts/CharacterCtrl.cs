@@ -22,10 +22,12 @@ public class CharacterCtrl : DinoBehaviour
     public EnergyShotSpawner EnergyShotSpawner => energyShotSpawner;
     [SerializeField] protected EnergyShot energyShot;
     public EnergyShot EnergyShot => energyShot;
-    [SerializeField] protected FXSpawner fXSpawner;
-    public FXSpawner FXSpawner => fXSpawner;
+    [SerializeField] protected EnergyShotFXSpawner energyShotFXSpawner;
+    public EnergyShotFXSpawner EnergyShotFXSpawner => energyShotFXSpawner;
     [SerializeField] protected EnergyShotFX energyShotFX;
     public EnergyShotFX EnergyShotFX => energyShotFX;
+    [SerializeField] protected FirePoint firePoint;
+    public FirePoint FirePoint => firePoint;
     public bool IsGround { get; set; }
     protected override void LoadComponent()
     {
@@ -41,6 +43,7 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadEnergyShot();
         this.LoadFXSpawner();
         this.LoadEnergyShotFX();
+        this.LoadFirePoint();
     }
     protected void LoadRigidbody()
     {
@@ -98,8 +101,8 @@ public class CharacterCtrl : DinoBehaviour
     }
     protected void LoadFXSpawner()
     {
-        if (this.fXSpawner != null) return;
-        this.fXSpawner = FindAnyObjectByType<FXSpawner>();
+        if (this.energyShotFXSpawner != null) return;
+        this.energyShotFXSpawner = FindAnyObjectByType<EnergyShotFXSpawner>();
         Debug.Log(transform.name + ": LoadFXSpawner", gameObject);
     }
     protected void LoadEnergyShotFX()
@@ -107,6 +110,13 @@ public class CharacterCtrl : DinoBehaviour
         if (this.energyShotFX != null) return;
         this.energyShotFX = FindAnyObjectByType<EnergyShotFX>();
         Debug.Log(transform.name + ": LoadEnergyShotFX", gameObject);
+    }
+    protected void LoadFirePoint()
+    {
+        if (this.firePoint != null) return;
+        this.firePoint = FindAnyObjectByType<FirePoint>();
+        Debug.Log(transform.name + ": loadFirePoint", gameObject);
+
     }
     protected void OnCollisionEnter2D(Collision2D collision)
     {

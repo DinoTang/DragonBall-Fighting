@@ -14,8 +14,8 @@ public abstract class DinoBehaviour : MonoBehaviour
 
     protected virtual void Reset()
     {
-        this.LoadComponent();
         this.ResetValue();
+        this.LoadComponent();
     }
     protected virtual void OnEnable()
     {

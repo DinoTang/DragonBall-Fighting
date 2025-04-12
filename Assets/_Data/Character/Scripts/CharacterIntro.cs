@@ -47,17 +47,15 @@ public class CharacterIntro : CharacterAbstract
 
     protected void EnableSpawnEnergyShot()
     {
-        Vector2 newPos = this.characterCtrl.transform.position;
-        newPos.x += 1.5f;
-        Quaternion newRot = this.characterCtrl.transform.rotation;
-        this.characterCtrl.EnergyShotSpawner.Spawn(this.characterCtrl.EnergyShot, newPos, newRot);
+        Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
+        EnergyShot energyShot = this.characterCtrl.EnergyShotSpawner.Spawn(this.characterCtrl.EnergyShot, newPos);
+        energyShot.Init(this.characterCtrl);
     }
 
     protected void EnableSpawnShotEffect()
     {
-        Vector2 newPos = this.characterCtrl.transform.position;
-        newPos.x += 1.5f;
-        Quaternion newRot = this.characterCtrl.transform.rotation;
-        this.characterCtrl.FXSpawner.Spawn(this.characterCtrl.EnergyShotFX, newPos, newRot);
+        Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
+        EnergyShotFX energyShotFX = this.characterCtrl.EnergyShotFXSpawner.Spawn(this.characterCtrl.EnergyShotFX, newPos);
+        // energyShotFX.Init
     }
 }
