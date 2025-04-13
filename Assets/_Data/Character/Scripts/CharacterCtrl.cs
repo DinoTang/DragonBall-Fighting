@@ -124,8 +124,8 @@ public class CharacterCtrl : DinoBehaviour
         if (groundCollider == null) return;
         if (this.stateManager.CurrentState == null) return;
         this.IsGround = true;
-        if (this.stateManager.CurrentState.GetType() == typeof(IdleCombatState)) return;
-        this.stateManager.SetNextState(new IdleCombatState());
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
+        // if (this.stateManager.CurrentState.GetType() == typeof(IdleCombatState)) return;
+        // this.stateManager.SetNextState(new IdleCombatState());
+        // this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
     }
 }

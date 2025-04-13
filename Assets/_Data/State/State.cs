@@ -10,6 +10,7 @@ public abstract class State
     public virtual void OnEnter(StateManager stateManager)
     {
         this.stateManager = stateManager;
+        Debug.Log(this.stateManager);
         this.animator = this.stateManager.CharacterCtrl.Animator;
     }
 

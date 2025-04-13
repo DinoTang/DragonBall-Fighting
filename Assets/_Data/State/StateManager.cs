@@ -2,14 +2,20 @@ using UnityEngine;
 
 public class StateManager : DinoBehaviour
 {
-    [SerializeField] protected bool isVegeta;
-    public bool IsVegeta => isVegeta;
+    // [SerializeField] protected bool isVegeta;
+    // public bool IsVegeta => isVegeta;
     [SerializeField] protected CharacterCtrl characterCtrl;
     public CharacterCtrl CharacterCtrl => characterCtrl;
-    public State mainStateType = new IdleCombatState();
+    public State mainStateType;
 
     public State CurrentState { get; set; }
     public State nextState;
+    protected override void Start()
+    {
+        base.Start();
+        this.mainStateType = new VegetaIdleState();
+        this.SetState(mainStateType); 
+    }
     protected override void LoadComponent()
     {
         base.LoadComponent();

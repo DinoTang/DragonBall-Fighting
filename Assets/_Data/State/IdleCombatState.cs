@@ -7,14 +7,14 @@ public class IdleCombatState : State
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
-        this.animator.SetBool("IsHardMode", true);
+        this.animator.SetBool("IsIdle", true);
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.stateManager.CharacterCtrl.Rgb.velocity.y);
     }
     public override void OnUpdate()
     {
         this.stateManager.CharacterCtrl.CharacterFlip.Flipping();
-        if (this.stateManager.IsVegeta) return;
-        if (InputManager.Instance.GetHorizontal() != 0) this.stateManager.SetNextState(new MovingState());
+        // if (this.stateManager.IsVegeta) return;
+        if (InputManager.Instance.GetHorizontal() != 0) this.stateManager.SetNextState(new MoveState());
         if (InputManager.Instance.GetNormalHitInput()) this.stateManager.SetNextState(new GroundHit1State());
         if (InputManager.Instance.GetJumpInput()) this.stateManager.SetNextState(new JumpState());
         if (InputManager.Instance.GetCrouchInput()) this.stateManager.SetNextState(new CrouchState());
@@ -27,6 +27,6 @@ public class IdleCombatState : State
     public override void OnExit()
     {
         base.OnExit();
-        this.animator.SetBool("IsHardMode", false);
+        this.animator.SetBool("IsIdle", false);
     }
 }

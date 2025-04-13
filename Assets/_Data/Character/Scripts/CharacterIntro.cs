@@ -15,7 +15,7 @@ public class CharacterIntro : CharacterAbstract
     {
         // animator.runtimeAnimatorController = normalController;
         // StartCoroutine(TransformToSSJ2());
-        this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
+        this.characterCtrl.StateManager.SetNextState(new VegetaIdleState());
         this.characterCtrl.IsGround = true;
         this.isReady = true;
     }

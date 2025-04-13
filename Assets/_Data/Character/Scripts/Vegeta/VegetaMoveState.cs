@@ -2,72 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : State
+public class VegetaMoveState : MoveState
 {
-    protected float speed = 15f;
-    protected Vector2 movement;
-    protected float horizontal;
-
+    public override void OnEnter(StateManager stateManager)
+    {
+        base.OnEnter(stateManager);
+        this.animator.SetBool("IsMove", true);
+    }
     public override void OnUpdate()
     {
         base.OnUpdate();
-
-        // if (this.CanOtherAction()) return;
-
-        this.UpdateMovement();
-        this.ApplyMovement();
-        this.SetMoveAnimation();
+        this.Flipping();
     }
     public override void OnExit()
     {
         base.OnExit();
-        this.ResetMoveAnimation();
+        // this.ResetMoveAnimation();
+        this.animator.SetBool("IsMove", false);
     }
-    protected virtual void UpdateMovement()
+    protected void Flipping()
     {
-        this.horizontal = InputManager.Instance.GetHorizontal();
-
-        if (this.horizontal != 0)
-        {
-            this.movement = new Vector2(this.horizontal, 0);
-        }
-        else
-        {
-            this.movement = Vector2.zero;
-            this.ResetMoveAnimation();
-            this.stateManager.SetNextStateToMain();
-        }
+        if (this.horizontal > 0) this.stateManager.transform.localScale = new Vector3(1, 1, 1);
+        else if (this.horizontal < 0) this.stateManager.transform.localScale = new Vector3(-1, 1, 1);
     }
-
-    protected virtual void ApplyMovement()
+    protected override void ApplyMovement()
     {
         Rigidbody2D rb = this.stateManager.CharacterCtrl.Rgb;
         rb.velocity = new Vector2(this.movement.x * this.speed, rb.velocity.y);
     }
-
-    protected virtual void SetMoveAnimation()
+    protected override void SetMoveAnimation()
     {
-        bool isFacingRight = this.stateManager.transform.localScale.x == 1;
 
-        ResetMoveAnimation();
-
-        if (this.movement.x == 1)
-        {
-            this.animator.SetBool(isFacingRight ? "MoveForward" : "MoveBackward", true);
-        }
-        else if (this.movement.x == -1)
-        {
-            this.animator.SetBool(isFacingRight ? "MoveBackward" : "MoveForward", true);
-        }
     }
 
-    protected virtual void ResetMoveAnimation()
+    protected override void ResetMoveAnimation()
     {
-        this.animator.SetBool("MoveForward", false);
-        this.animator.SetBool("MoveBackward", false);
+
     }
 
-    protected virtual bool CanOtherAction()
+    protected override bool CanOtherAction()
     {
         if (InputManager.Instance.GetJumpInput())
         {
