@@ -34,17 +34,13 @@ public class StateManager : DinoBehaviour
             SetState(nextState);
         }
 
-        if (CurrentState != null)
-            CurrentState.OnUpdate();
+        CurrentState?.OnUpdate();
     }
 
     private void SetState(State _newState)
     {
         nextState = null;
-        if (CurrentState != null)
-        {
-            CurrentState.OnExit();
-        }
+        CurrentState?.OnExit();
         CurrentState = _newState;
         CurrentState.OnEnter(this);
     }
@@ -73,5 +69,8 @@ public class StateManager : DinoBehaviour
     {
         nextState = mainStateType;
     }
-
+    public void StopAddVelocity()
+    {
+        this.characterCtrl.Rgb.velocity = Vector2.zero;
+    }
 }

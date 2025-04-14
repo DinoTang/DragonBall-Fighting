@@ -7,7 +7,7 @@ public class BaseHitState : State
     protected float duration = 0.5f;
     protected bool shouldCombo = false;
     protected int attackCounter;
-    protected float attackMoveSpeed = 1f;
+    protected float attackMoveSpeed = 0.5f;
     protected float attackMoveDuration = 0.1f;
     protected float attackMoveTime;
     protected bool isMovingDuringAttack = false;

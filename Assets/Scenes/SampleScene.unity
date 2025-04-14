@@ -293,53 +293,6 @@ Transform:
   - {fileID: 1117606269}
   m_Father: {fileID: 1268870146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &402150655
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 402150656}
-  - component: {fileID: 402150657}
-  m_Layer: 0
-  m_Name: CharacterFlipping
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &402150656
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402150655}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1795711755}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &402150657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402150655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 150347e8604f3cc47beb57cff862a245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 1795711757}
-  enemyTarget: {fileID: 751414175}
-  distanceX: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +420,6 @@ Transform:
   m_Children:
   - {fileID: 1864161638}
   - {fileID: 1290374232}
-  - {fileID: 1541893439}
   - {fileID: 986110740}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -531,7 +483,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 20
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -542,7 +494,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!114 &751414178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,12 +511,11 @@ MonoBehaviour:
   animator: {fileID: 1864161640}
   stateManager: {fileID: 751414179}
   characterIntro: {fileID: 1864161641}
-  characterFlip: {fileID: 1541893438}
   damageSender: {fileID: 986110738}
-  damageReceiver: {fileID: 0}
-  energyShotSpawner: {fileID: 0}
+  damageReceiver: {fileID: 1290374233}
+  energyShotSpawner: {fileID: 1903190135}
   energyShot: {fileID: 0}
-  energyShotFXSpawner: {fileID: 0}
+  energyShotFXSpawner: {fileID: 214625176}
   energyShotFX: {fileID: 0}
   firePoint: {fileID: 0}
 --- !u!114 &751414179
@@ -579,7 +530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad4e6cb66d8efa459db7c81da652a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVegeta: 1
   characterCtrl: {fileID: 751414178}
 --- !u!1 &986110737
 GameObject:
@@ -1215,53 +1165,6 @@ Transform:
   - {fileID: 1515727293}
   m_Father: {fileID: 146896646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1541893437
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1541893439}
-  - component: {fileID: 1541893438}
-  m_Layer: 0
-  m_Name: CharacterFlipping
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1541893438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541893437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 150347e8604f3cc47beb57cff862a245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 751414178}
-  enemyTarget: {fileID: 1795711755}
-  distanceX: 0
---- !u!4 &1541893439
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541893437}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 751414175}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1629058465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1795711755
 Transform:
   m_ObjectHideFlags: 0
@@ -1650,7 +1553,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1025743597}
-  - {fileID: 402150656}
   - {fileID: 2026743239}
   - {fileID: 1629058466}
   - {fileID: 1840796996}
@@ -1672,7 +1574,6 @@ MonoBehaviour:
   animator: {fileID: 1025743598}
   stateManager: {fileID: 1795711760}
   characterIntro: {fileID: 1025743600}
-  characterFlip: {fileID: 402150657}
   damageSender: {fileID: 1629058467}
   damageReceiver: {fileID: 0}
   energyShotSpawner: {fileID: 1903190135}
@@ -1719,7 +1620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad4e6cb66d8efa459db7c81da652a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVegeta: 0
   characterCtrl: {fileID: 1795711757}
 --- !u!61 &1795711761
 BoxCollider2D:
@@ -1906,7 +1806,7 @@ Animator:
   m_GameObject: {fileID: 1864161637}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e5d2746f578db2b45aff0bb5340034a1, type: 2}
+  m_Controller: {fileID: 9100000, guid: b15dda60f98b9414ca7f3d2682af05bd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AirState : BaseAirState
 {
+    protected float jumpForce = 50f;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
@@ -14,7 +15,7 @@ public class AirState : BaseAirState
         base.OnUpdate();
         if (InputManager.Instance.GetNormalHitInput()) this.stateManager.SetNextState(new AirHitState());
         if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new AirKickState());
-        if (InputManager.Instance.GetStrongHitInput()) this.stateManager.SetNextState(new AirStrongHitState());
+        // if (InputManager.Instance.GetStrongHitInput()) this.stateManager.SetNextState(new AirStrongHitState());
         if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new AirBlockState());
     }
     public override void OnExit()

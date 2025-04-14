@@ -52,14 +52,18 @@ public class InputManager : DinoBehaviour
     }
     public bool GetBlockHitInput()
     {
-        return Input.GetKey(KeyCode.H);
+        return Input.GetKey(KeyCode.S);
     }
     public bool ReleaseBlockHitInput()
     {
-        return Input.GetKeyUp(KeyCode.H);
+        return Input.GetKeyUp(KeyCode.S);
     }
     public bool GetPowerFiredInput()
     {
         return Input.GetKeyDown(KeyCode.I);
+    }
+    public bool GetLauncherInput()
+    {
+        return Input.GetKeyDown(KeyCode.O);
     }
 }

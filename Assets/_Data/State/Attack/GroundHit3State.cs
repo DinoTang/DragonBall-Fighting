@@ -17,7 +17,14 @@ public class GroundHit3State : BaseHitState
 
         if (Fixedtime >= duration)
         {
-            this.BackMainState();
+            if (shouldCombo)
+            {
+                this.stateManager.SetNextState(new GroundHit4State());
+            }
+            else
+            {
+                this.BackMainState();
+            }
         }
     }
 

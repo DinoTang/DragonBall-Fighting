@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 [RequireComponent(typeof(StateManager))]
 public class CharacterCtrl : DinoBehaviour
@@ -12,8 +13,6 @@ public class CharacterCtrl : DinoBehaviour
     public StateManager StateManager => stateManager;
     [SerializeField] protected CharacterIntro characterIntro;
     public CharacterIntro CharacterIntro => characterIntro;
-    [SerializeField] protected CharacterFlip characterFlip;
-    public CharacterFlip CharacterFlip => characterFlip;
     [SerializeField] protected DamageSender damageSender;
     public DamageSender DamageSender => damageSender;
     [SerializeField] protected DamageReceiver damageReceiver;
@@ -36,7 +35,6 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadAnimator();
         this.LoadStateManager();
         this.LoadCharacterIntro();
-        this.LoadCharacterFlip();
         this.LoadDamageSender();
         this.LoadDamageReceiver();
         this.LoadEnergyShotSpawner();
@@ -68,12 +66,6 @@ public class CharacterCtrl : DinoBehaviour
         if (this.characterIntro != null) return;
         this.characterIntro = GetComponentInChildren<CharacterIntro>();
         Debug.Log(transform.name + ": LoadCharacterIntro", gameObject);
-    }
-    protected void LoadCharacterFlip()
-    {
-        if (this.characterFlip != null) return;
-        this.characterFlip = GetComponentInChildren<CharacterFlip>();
-        Debug.Log(transform.name + ": LoadCharacterFlip", gameObject);
     }
     protected void LoadDamageSender()
     {
@@ -124,8 +116,8 @@ public class CharacterCtrl : DinoBehaviour
         if (groundCollider == null) return;
         if (this.stateManager.CurrentState == null) return;
         this.IsGround = true;
-        // if (this.stateManager.CurrentState.GetType() == typeof(IdleCombatState)) return;
-        // this.stateManager.SetNextState(new IdleCombatState());
-        // this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
+        if (this.stateManager.CurrentState.GetType() == typeof(VegetaIdleState)) return;
+        this.stateManager.SetNextState(new VegetaIdleState());
+        this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
     }
 }

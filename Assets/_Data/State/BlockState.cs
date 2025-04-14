@@ -12,7 +12,8 @@ public class BlockState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (InputManager.Instance.ReleaseBlockHitInput()) this.stateManager.SetNextState(new IdleCombatState());
+        Debug.Log("Block state: velocity" + this.stateManager.CharacterCtrl.Rgb.velocity);
+        if (InputManager.Instance.ReleaseBlockHitInput()) this.stateManager.SetNextStateToMain();
     }
     public override void OnExit()
     {
