@@ -4,41 +4,25 @@ using UnityEngine;
 
 public class ChargeState : State
 {
-    public int chargeLevel = 1;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
         this.animator.SetBool("IsCharge", true);
-        this.animator.SetInteger("Charging", this.chargeLevel);
+        this.stateManager.CharacterCtrl.ReadyKiChargeFXSpawner.Spawn(this.stateManager.CharacterCtrl.ReadyKiChargeFX,
+         this.stateManager.transform.position);
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
         if (InputManager.Instance.ReleaseChargeInput()) this.stateManager.SetNextState(new IdleCombatState());
-        if (this.Time >= 2f)
-        {
-            this.chargeLevel++;
-            if (this.chargeLevel == 2)
-            {
-                this.ChargingLevel();
-                return;
-            }
-            if (this.chargeLevel == 3)
-            {
-                this.ChargingLevel();
-                return;
-            }
-        }
+        // Spawn Smoke Effect 
+        this.stateManager.CharacterCtrl.EnableSmokeEffect();
     }
     public override void OnExit()
     {
         base.OnExit();
         this.animator.SetBool("IsCharge", false);
+        this.stateManager.CharacterCtrl.DisableSmokeEffect();
     }
-
-    protected void ChargingLevel()
-    {
-        this.animator.SetInteger("Charging", this.chargeLevel);
-        this.Time = 0;
-    }
+    
 }

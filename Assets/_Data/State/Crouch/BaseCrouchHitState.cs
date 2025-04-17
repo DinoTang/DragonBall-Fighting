@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseCrouchHitState : State
 {
-    public float duration = 0.5f;
     protected int attackCounter;
     public override void OnEnter(StateManager stateManager)
     {

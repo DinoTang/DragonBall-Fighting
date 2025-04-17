@@ -13,7 +13,7 @@ public class AirState : BaseAirState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (InputManager.Instance.GetNormalHitInput()) this.stateManager.SetNextState(new AirHitState());
+        if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new AirHitState());
         if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new AirKickState());
         // if (InputManager.Instance.GetStrongHitInput()) this.stateManager.SetNextState(new AirStrongHitState());
         if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new AirBlockState());

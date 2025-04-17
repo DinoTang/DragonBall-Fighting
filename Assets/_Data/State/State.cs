@@ -5,6 +5,7 @@ public abstract class State
     protected float Time { get; set; }
     protected float Fixedtime { get; set; }
     protected float Latetime { get; set; }
+    protected float duration = 0.3f;
     protected StateManager stateManager;
     protected Animator animator;
     public virtual void OnEnter(StateManager stateManager)

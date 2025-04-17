@@ -13,7 +13,7 @@ public class CrouchState : State
     {
         base.OnUpdate();
         if (InputManager.Instance.ReleaseCrouchInput()) this.stateManager.SetNextState(new IdleCombatState());
-        if (InputManager.Instance.GetNormalHitInput()) this.stateManager.SetNextState(new CrouchHitState());
+        if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new CrouchHitState());
         if (InputManager.Instance.GetStrongHitInput()) this.stateManager.SetNextState(new CrouchStrongHitState());
         if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new CrouchKickState());
         this.CrouchBlockHit();

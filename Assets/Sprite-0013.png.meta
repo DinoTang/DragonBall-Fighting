@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2c3a112b4a0df07449022c41aa145383
+guid: 788d4907895fa6b41894adbc0e0f03ee
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vegeta_Air_Kick_0
+      name: Sprite-0013_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 144
-        height: 128
+        width: 199.25
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d258a8b138a3ee468f431a396068aed
-      internalID: -1763487405
+      spriteID: 335fff02aa2268543bb2f210d461c779
+      internalID: -1654473233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vegeta_Air_Kick_1
+      name: Sprite-0013_1
       rect:
         serializedVersion: 2
-        x: 144
+        x: 199
         y: 0
-        width: 144
-        height: 128
+        width: 199.25
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6bdc62971735a746b91f8ce07a17408
-      internalID: 1999548139
+      spriteID: 349a44343136194448de72150279857d
+      internalID: 1521069120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vegeta_Air_Kick_2
+      name: Sprite-0013_2
       rect:
         serializedVersion: 2
-        x: 288
+        x: 398
         y: 0
-        width: 144
-        height: 128
+        width: 199.25
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eeed06e2c829cb942a81f395d5128288
-      internalID: 1876146669
+      spriteID: 9f15e6247c95f0f44b56abe111aba126
+      internalID: 244059751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vegeta_Air_Kick_3
+      name: Sprite-0013_3
       rect:
         serializedVersion: 2
-        x: 432
+        x: 597
         y: 0
-        width: 144
-        height: 128
+        width: 199.25
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,29 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27e8b8d6fa2c11645b90339df61fb1e0
-      internalID: -103074453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vegeta_Air_Kick_4
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 0
-        width: 144
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 632645d6870cedc4b83e6aefeb6f7809
-      internalID: -241272833
+      spriteID: eb0dd1fe46b955f43907e1725c0d80e7
+      internalID: 1082614512
       vertices: []
       indices: 
       edges: []
@@ -212,11 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Vegeta_Air_Kick_0: -1763487405
-      Vegeta_Air_Kick_1: 1999548139
-      Vegeta_Air_Kick_2: 1876146669
-      Vegeta_Air_Kick_3: -103074453
-      Vegeta_Air_Kick_4: -241272833
+      Sprite-0013_0: -1654473233
+      Sprite-0013_1: 1521069120
+      Sprite-0013_2: 244059751
+      Sprite-0013_3: 1082614512
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

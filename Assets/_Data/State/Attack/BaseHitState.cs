@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseHitState : State
 {
-    protected float duration = 0.5f;
     protected bool shouldCombo = false;
     protected int attackCounter;
     protected float attackMoveSpeed = 0.5f;
@@ -25,7 +24,7 @@ public class BaseHitState : State
     {
         base.OnUpdate();
         this.MoveShortDistance();
-        if (Fixedtime > duration * 0.5f && InputManager.Instance.GetNormalHitInput())
+        if (Fixedtime > duration * 0.5f && InputManager.Instance.GetHitInput())
         {
             shouldCombo = true;
         }

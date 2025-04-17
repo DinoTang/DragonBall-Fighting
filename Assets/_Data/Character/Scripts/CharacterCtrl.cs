@@ -27,6 +27,14 @@ public class CharacterCtrl : DinoBehaviour
     public EnergyShotFX EnergyShotFX => energyShotFX;
     [SerializeField] protected FirePoint firePoint;
     public FirePoint FirePoint => firePoint;
+    [SerializeField] protected ReadyKiChargeFXSpawner readyKiChargeFXSpawner;
+    public ReadyKiChargeFXSpawner ReadyKiChargeFXSpawner => readyKiChargeFXSpawner;
+    [SerializeField] protected ReadyKiChargeFX readyKiChargeFX;
+    public ReadyKiChargeFX ReadyKiChargeFX => readyKiChargeFX;
+    // [SerializeField] protected KiChargeSmokeFXSpawner kiChargeSmokeFXSpawner;
+    // public KiChargeSmokeFXSpawner KiChargeSmokeFXSpawner => kiChargeSmokeFXSpawner;
+    [SerializeField] protected Transform kiChargeSmokeFX;
+    public Transform KiChargeSmokeFX => kiChargeSmokeFX;
     public bool IsGround { get; set; }
     protected override void LoadComponent()
     {
@@ -120,4 +128,20 @@ public class CharacterCtrl : DinoBehaviour
         this.stateManager.SetNextState(new VegetaIdleState());
         this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
     }
+
+    public void EnableSmokeEffect()
+    {
+        this.kiChargeSmokeFX.gameObject.SetActive(true);
+    }
+    public void DisableSmokeEffect()
+    {
+        this.kiChargeSmokeFX.gameObject.SetActive(false);
+    }
+    // IEnumerator SpawnSmokeEffect_IEnumerator()
+    // {
+    //     yield return new WaitForSeconds(1f);
+    //     this.kiChargeSmokeFXSpawner.Spawn(this.kiChargeSmokeFX,
+    //     this.transform.position);
+    // }
 }
+

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3fb2931019476e84eb19358d07b839e3
+guid: 8ecdafc9844d3714ea78069a912461a2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vegeta_Air_Hit_0
+      name: Vegeta_Ki_Charge_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 144
-        height: 128
+        width: 192
+        height: 159
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ea033c0487831e4580f1794d8ffb93d
-      internalID: -214944120
+      spriteID: 482368b5aa548344784530132663a776
+      internalID: 80054511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vegeta_Air_Hit_1
+      name: Vegeta_Ki_Charge_1
       rect:
         serializedVersion: 2
-        x: 144
+        x: 192
         y: 0
-        width: 144
-        height: 128
+        width: 192
+        height: 159
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 616f64d5cd5e59949929d0475dbf8bc8
-      internalID: 899899698
+      spriteID: 9a1f78b2de08ace478684828507e096e
+      internalID: 1177156118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vegeta_Air_Hit_2
+      name: Vegeta_Ki_Charge_2
       rect:
         serializedVersion: 2
-        x: 288
+        x: 384
         y: 0
-        width: 144
-        height: 128
+        width: 192
+        height: 159
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,41 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41dd06ca480570b4294068c2824987af
-      internalID: -451073598
+      spriteID: f949d461898f1f9429e0331884a90328
+      internalID: -862171599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vegeta_Air_Hit_3
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 0
-        width: 144
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 541491615c7d7b542bb7145bb01dfc78
-      internalID: 1568690309
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vegeta_Air_Hit_4
+      name: Vegeta_Ki_Charge_3
       rect:
         serializedVersion: 2
         x: 576
         y: 0
-        width: 144
-        height: 128
+        width: 192
+        height: 159
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccdc607aedb92b54a9cc8060b1120d10
-      internalID: -1686706661
+      spriteID: c30250fab7e4f1e499bba0eaf0e2a21e
+      internalID: 731992549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vegeta_Air_Hit_5
+      name: Vegeta_Ki_Charge_4
       rect:
         serializedVersion: 2
-        x: 720
+        x: 768
         y: 0
-        width: 144
-        height: 128
+        width: 192
+        height: 159
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81c1096881ade2c45a135729de325866
-      internalID: 872916780
+      spriteID: 7516e555a8883bf48b72478f1891d7b3
+      internalID: 917310928
       vertices: []
       indices: 
       edges: []
@@ -233,12 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Vegeta_Air_Hit_0: -214944120
-      Vegeta_Air_Hit_1: 899899698
-      Vegeta_Air_Hit_2: -451073598
-      Vegeta_Air_Hit_3: 1568690309
-      Vegeta_Air_Hit_4: -1686706661
-      Vegeta_Air_Hit_5: 872916780
+      Vegeta_Ki_Charge_0: 80054511
+      Vegeta_Ki_Charge_1: 1177156118
+      Vegeta_Ki_Charge_2: -862171599
+      Vegeta_Ki_Charge_3: 731992549
+      Vegeta_Ki_Charge_4: 917310928
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -18,7 +18,15 @@ public class InputManager : DinoBehaviour
     {
         return Input.GetAxisRaw("Horizontal");
     }
-    public bool GetNormalHitInput()
+    public bool GetLeftInput()
+    {
+        return Input.GetKeyDown(KeyCode.A);
+    }
+    public bool GetRightInput()
+    {
+        return Input.GetKeyDown(KeyCode.D);
+    }
+    public bool GetHitInput()
     {
         return Input.GetKeyDown(KeyCode.J);
     }
@@ -30,11 +38,15 @@ public class InputManager : DinoBehaviour
     {
         return Input.GetKeyDown(KeyCode.K);
     }
-    public bool GetJumpInput()
+    public bool GetUpInput()
     {
         return Input.GetKeyDown(KeyCode.W);
     }
-    public bool GetCrouchInput()
+    public bool GetDownInput()
+    {
+        return Input.GetKeyDown(KeyCode.S);
+    }
+    public bool GetBlockInput()
     {
         return Input.GetKey(KeyCode.S);
     }
