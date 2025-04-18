@@ -8,11 +8,14 @@ public abstract class Spawner<T> : DinoBehaviour where T : PoolObj
     [Header("Spawner")]
     [SerializeField] protected int spawnCount = 0;
     [SerializeField] protected PoolHolder poolHolder;
+    [SerializeField] protected Transform prefab;
     [SerializeField] protected List<T> poolObjsList = new();
+    [SerializeField] protected List<T> prefabs = new();
     protected override void LoadComponent()
     {
         base.LoadComponent();
         this.LoadPoolHolder();
+        this.LoadPrefabs();
     }
 
     protected void LoadPoolHolder()
@@ -20,6 +23,29 @@ public abstract class Spawner<T> : DinoBehaviour where T : PoolObj
         if (this.poolHolder != null) return;
         this.poolHolder = GetComponentInChildren<PoolHolder>();
         Debug.Log(transform.name + ": LoadPoolHolder", gameObject);
+    }
+    protected void LoadPrefab()
+    {
+        if (this.prefab != null) return;
+        this.prefab = transform.Find("Prefab");
+        Debug.Log(transform.name + ": LoadPoolHolder", gameObject);
+    }
+    protected void LoadPrefabs()
+    {
+        this.LoadPrefab();
+        if (this.prefabs.Count > 0) return;
+        foreach (Transform prefab in this.prefab)
+        {
+            T prefabT = prefab.GetComponent<T>();
+            this.prefabs.Add(prefabT);
+        }
+        Debug.Log(transform.name + ": LoadPrefabs", gameObject);
+    }
+    public virtual T Spawn(string prefabName, Vector2 pos)
+    {
+        T prefab = GetPrefabByName(prefabName);
+        if (prefab == null) return null;
+        return Spawn(prefab, pos);
     }
     public virtual T Spawn(T prefab, Vector2 pos)
     {
@@ -39,6 +65,15 @@ public abstract class Spawner<T> : DinoBehaviour where T : PoolObj
             this.UpdateName(prefab.transform, new_Obj.transform);
         }
         return new_Obj;
+    }
+    protected virtual T GetPrefabByName(string prefabName)
+    {
+        foreach (T child in this.prefabs)
+        {
+            if (child.GetName() != prefabName) continue;
+            return child;
+        }
+        return null;
     }
     public void Despawn(T obj)
     {

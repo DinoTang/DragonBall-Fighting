@@ -127,6 +127,7 @@ public class CharacterCtrl : DinoBehaviour
         if (this.stateManager.CurrentState.GetType() == typeof(VegetaIdleState)) return;
         this.stateManager.SetNextState(new VegetaIdleState());
         this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
+        SmokeLandedFXSpawner.Instance.Spawn(SmokeLandedFXSpawner.Instance.nameFX, transform.position);
     }
 
     public void EnableSmokeEffect()
@@ -137,11 +138,6 @@ public class CharacterCtrl : DinoBehaviour
     {
         this.kiChargeSmokeFX.gameObject.SetActive(false);
     }
-    // IEnumerator SpawnSmokeEffect_IEnumerator()
-    // {
-    //     yield return new WaitForSeconds(1f);
-    //     this.kiChargeSmokeFXSpawner.Spawn(this.kiChargeSmokeFX,
-    //     this.transform.position);
-    // }
+
 }
 

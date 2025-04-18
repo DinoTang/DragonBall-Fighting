@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cd764a1c28b775b4899d6db15acf7a08
+guid: f67e93d9470528c47be398e3698479ae
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: super_saiyan_gas_nzc_effect_sprite_sheet_by_duannian_dh3dn71_0
+      name: Vegeta_End_Ki_Charge_0
       rect:
         serializedVersion: 2
-        x: 1384
-        y: 2345
-        width: 151
-        height: 175
+        x: 0
+        y: 0
+        width: 192
+        height: 159
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b49343d64a4cd1545bd9f227c760e58f
-      internalID: -1451496338
+      spriteID: abef3d3fc0499704092d9488a3e7d40f
+      internalID: -1812558268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vegeta_End_Ki_Charge_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 192
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c85992099a33484aa8241b476c58e77
+      internalID: 277160974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vegeta_End_Ki_Charge_2
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 192
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd0e6a1c6475be04798ac10dbba03f58
+      internalID: 1587065674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vegeta_End_Ki_Charge_3
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 192
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eec0f49a8fba99740a36106e6131d911
+      internalID: 160740648
       vertices: []
       indices: 
       edges: []
@@ -128,7 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      super_saiyan_gas_nzc_effect_sprite_sheet_by_duannian_dh3dn71_0: -1451496338
+      Vegeta_End_Ki_Charge_0: -1812558268
+      Vegeta_End_Ki_Charge_1: 277160974
+      Vegeta_End_Ki_Charge_2: 1587065674
+      Vegeta_End_Ki_Charge_3: 160740648
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

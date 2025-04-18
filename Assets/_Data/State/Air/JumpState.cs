@@ -11,6 +11,8 @@ public class JumpState : State
         this.stateManager.CharacterCtrl.IsGround = false;
         this.animator.SetBool("IsJump", true);
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.jumpForce);
+        SmokeJumpFXSpawner.Instance.Spawn(SmokeJumpFXSpawner.Instance.nameFX, this.animator.transform.position);
+
         this.stateManager.SetNextState(new AirState());
     }
     public override void OnExit()
