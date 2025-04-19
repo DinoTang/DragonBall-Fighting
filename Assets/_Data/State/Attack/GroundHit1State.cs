@@ -13,15 +13,16 @@ public class GroundHit1State : BaseHitState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        
+
         if (Fixedtime >= duration)
         {
-            if (shouldCombo)
+            if (this.shouldCombo && this.isHitSuccessful)
             {
                 this.stateManager.SetNextState(new GroundHit2State());
             }
             else
             {
+                this.stateManager.CharacterCtrl.DamageSender.SetIsHitSuccessful(false);
                 this.BackMainState();
             }
         }

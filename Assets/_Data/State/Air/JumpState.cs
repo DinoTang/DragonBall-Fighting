@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpState : State
 {
-    protected float jumpForce = 50f;
+    protected float jumpForce = 40f;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);

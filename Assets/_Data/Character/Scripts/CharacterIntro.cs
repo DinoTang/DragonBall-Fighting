@@ -15,7 +15,7 @@ public class CharacterIntro : CharacterAbstract
     {
         // animator.runtimeAnimatorController = normalController;
         // StartCoroutine(TransformToSSJ2());
-        this.characterCtrl.StateManager.SetNextState(new VegetaIdleState());
+        this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
         this.characterCtrl.IsGround = true;
         this.isReady = true;
     }
@@ -45,17 +45,17 @@ public class CharacterIntro : CharacterAbstract
         this.characterCtrl.DamageSender.DisableCollider();
     }
 
-    protected void EnableSpawnEnergyShot()
-    {
-        Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
-        EnergyShot energyShot = this.characterCtrl.EnergyShotSpawner.Spawn(this.characterCtrl.EnergyShot, newPos);
-        energyShot.Init(this.characterCtrl);
-    }
+    // protected void EnableSpawnEnergyShot()
+    // {
+    //     Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
+    //     EnergyShot energyShot = this.characterCtrl.EnergyShotSpawner.Spawn(this.characterCtrl.EnergyShot, newPos);
+    //     energyShot.Init(this.characterCtrl);
+    // }
 
-    protected void EnableSpawnShotEffect()
-    {
-        Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
-        EnergyShotFX energyShotFX = this.characterCtrl.EnergyShotFXSpawner.Spawn(this.characterCtrl.EnergyShotFX, newPos);
-        // energyShotFX.Init
-    }
+    // protected void EnableSpawnShotEffect()
+    // {
+    //     Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
+    //     EnergyShotFX energyShotFX = this.characterCtrl.EnergyShotFXSpawner.Spawn(this.characterCtrl.EnergyShotFX, newPos);
+    //     // energyShotFX.Init
+    // }
 }

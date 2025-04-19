@@ -6,7 +6,7 @@ public class ReadyKiChargeFXSpawner : Spawner<ReadyKiChargeFX>
 {
     protected static ReadyKiChargeFXSpawner instance;
     public static ReadyKiChargeFXSpawner Instance => instance;
-
+    public string nameFX = "ReadyKiChargeFX";
     protected override void Awake()
     {
         base.Awake();

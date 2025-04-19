@@ -17,13 +17,14 @@ public class GroundHit3State : BaseHitState
 
         if (Fixedtime >= duration)
         {
-            if (shouldCombo)
+            if (shouldCombo && this.isHitSuccessful)
             {
                 this.stateManager.SetNextState(new GroundHit4State());
             }
             else
             {
                 this.BackMainState();
+                this.stateManager.CharacterCtrl.DamageSender.SetIsHitSuccessful(false);
             }
         }
     }

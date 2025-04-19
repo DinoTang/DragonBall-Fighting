@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VegetaMoveState : MoveState
+public class KiCharge : DinoBehaviour
 {
-    
+   
 }

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class StateManager : DinoBehaviour
 {
-    // [SerializeField] protected bool isVegeta;
-    // public bool IsVegeta => isVegeta;
     [SerializeField] protected CharacterCtrl characterCtrl;
+    [SerializeField] protected bool isClone = false;
+    public bool IsClone => isClone;
     public CharacterCtrl CharacterCtrl => characterCtrl;
     public State mainStateType;
 
@@ -13,8 +13,8 @@ public class StateManager : DinoBehaviour
     protected override void Start()
     {
         base.Start();
-        this.mainStateType = new VegetaIdleState();
-        this.SetState(mainStateType); 
+        this.mainStateType = new IdleCombatState();
+        this.SetState(mainStateType);
     }
     protected override void LoadComponent()
     {

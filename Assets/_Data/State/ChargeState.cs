@@ -8,8 +8,8 @@ public class ChargeState : State
     {
         base.OnEnter(stateManager);
         this.animator.SetBool("IsCharge", true);
-        this.stateManager.CharacterCtrl.ReadyKiChargeFXSpawner.Spawn(this.stateManager.CharacterCtrl.ReadyKiChargeFX,
-         this.stateManager.transform.position);
+        ReadyKiChargeFXSpawner.Instance.Spawn(ReadyKiChargeFXSpawner.Instance.nameFX,
+        this.stateManager.transform.position);
     }
     public override void OnUpdate()
     {
@@ -24,5 +24,5 @@ public class ChargeState : State
         this.animator.SetBool("IsCharge", false);
         this.stateManager.CharacterCtrl.DisableSmokeEffect();
     }
-    
+
 }

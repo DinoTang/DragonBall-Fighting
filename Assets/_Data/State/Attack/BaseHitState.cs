@@ -5,8 +5,9 @@ using UnityEngine;
 public class BaseHitState : State
 {
     protected bool shouldCombo = false;
+    protected bool isHitSuccessful;
     protected int attackCounter;
-    protected float attackMoveSpeed = 0.5f;
+    protected float attackMoveSpeed = 0.1f;
     protected float attackMoveDuration = 0.1f;
     protected float attackMoveTime;
     protected bool isMovingDuringAttack = false;
@@ -23,7 +24,10 @@ public class BaseHitState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
+        this.isHitSuccessful = this.stateManager.CharacterCtrl.DamageSender.IsHitSuccessful;
+
         this.MoveShortDistance();
+
         if (Fixedtime > duration * 0.5f && InputManager.Instance.GetHitInput())
         {
             shouldCombo = true;
@@ -40,6 +44,7 @@ public class BaseHitState : State
     }
     protected void MoveShortDistance()
     {
+        if (!this.isHitSuccessful) return;
         if (isMovingDuringAttack && Time < attackMoveTime)
         {
             float moveStep = this.attackMoveSpeed * this.Time * this.stateManager.transform.localScale.x;

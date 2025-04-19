@@ -2,9 +2,15 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class DamageSender : DinoBehaviour
 {
-    [SerializeField] protected float damage = 1f;
-    [SerializeField] protected CircleCollider2D _collider;
 
+    [SerializeField] protected CircleCollider2D _collider;
+    [SerializeField] protected float damage = 1f;
+    [SerializeField] protected bool isHitSuccessful = false;
+    public bool IsHitSuccessful => isHitSuccessful;
+    public void SetIsHitSuccessful(bool isHitSuccessful)
+    {
+        this.isHitSuccessful = isHitSuccessful;
+    }
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -43,5 +49,6 @@ public class DamageSender : DinoBehaviour
     protected virtual void SendDamage(DamageReceiver damageReceiver)
     {
         damageReceiver.DeductHP(this.damage);
+        this.isHitSuccessful = true;
     }
 }

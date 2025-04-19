@@ -16,15 +16,16 @@ public class MoveState : State
     {
         base.OnUpdate();
         if (HandleOtherActions()) return;
-
         this.UpdateMovement();
         this.ApplyMovement();
-        this.Flipping();
+        this.SetAnimMove();
+        // this.Flipping();
     }
     public override void OnExit()
     {
         base.OnExit();
         this.animator.SetBool("IsMove", false);
+        this.ResetAnimMove();
     }
     protected virtual void UpdateMovement()
     {
@@ -46,11 +47,11 @@ public class MoveState : State
         Rigidbody2D rb = this.stateManager.CharacterCtrl.Rgb;
         rb.velocity = new Vector2(this.movement.x * this.speed, rb.velocity.y);
     }
-    protected void Flipping()
-    {
-        if (this.horizontal > 0) this.stateManager.transform.localScale = new Vector3(1, 1, 1);
-        else if (this.horizontal < 0) this.stateManager.transform.localScale = new Vector3(-1, 1, 1);
-    }
+    // protected void Flipping()
+    // {
+    //     if (this.horizontal > 0) this.stateManager.transform.localScale = new Vector3(1, 1, 1);
+    //     else if (this.horizontal < 0) this.stateManager.transform.localScale = new Vector3(-1, 1, 1);
+    // }
     protected virtual bool HandleOtherActions()
     {
         if (TrySwitchState(new JumpState(), InputManager.Instance.GetUpInput())) return true;
@@ -70,5 +71,27 @@ public class MoveState : State
             return true;
         }
         return false;
+    }
+    protected void ResetAnimMove()
+    {
+        this.animator.SetBool("IsForwardMove", false);
+        this.animator.SetBool("IsBackMove", false);
+    }
+    protected void SetAnimMove()
+    {
+        if (this.movement.x == 0)
+        {
+            this.ResetAnimMove();
+        }
+        if ((this.movement.x < 0 && stateManager.transform.localScale.x == 1) || (this.movement.x > 0 && stateManager.transform.localScale.x == -1))
+        {
+            this.animator.SetBool("IsForwardMove", false);
+            this.animator.SetBool("IsBackMove", true);
+        }
+        else if (this.movement.x > 0 && stateManager.transform.localScale.x == 1 || (this.movement.x < 0 && stateManager.transform.localScale.x == -1))
+        {
+            this.animator.SetBool("IsForwardMove", true);
+            this.animator.SetBool("IsBackMove", false);
+        }
     }
 }

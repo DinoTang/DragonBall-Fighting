@@ -13,28 +13,15 @@ public class CharacterCtrl : DinoBehaviour
     public StateManager StateManager => stateManager;
     [SerializeField] protected CharacterIntro characterIntro;
     public CharacterIntro CharacterIntro => characterIntro;
+    [SerializeField] protected CharacterFlip characterFlip;
+    public CharacterFlip CharacterFlip => characterFlip;
     [SerializeField] protected DamageSender damageSender;
     public DamageSender DamageSender => damageSender;
     [SerializeField] protected DamageReceiver damageReceiver;
     public DamageReceiver DamageReceiver => damageReceiver;
-    [SerializeField] protected EnergyShotSpawner energyShotSpawner;
-    public EnergyShotSpawner EnergyShotSpawner => energyShotSpawner;
-    [SerializeField] protected EnergyShot energyShot;
-    public EnergyShot EnergyShot => energyShot;
-    [SerializeField] protected EnergyShotFXSpawner energyShotFXSpawner;
-    public EnergyShotFXSpawner EnergyShotFXSpawner => energyShotFXSpawner;
-    [SerializeField] protected EnergyShotFX energyShotFX;
-    public EnergyShotFX EnergyShotFX => energyShotFX;
+    [SerializeField] protected KiCharge kiCharge;
     [SerializeField] protected FirePoint firePoint;
     public FirePoint FirePoint => firePoint;
-    [SerializeField] protected ReadyKiChargeFXSpawner readyKiChargeFXSpawner;
-    public ReadyKiChargeFXSpawner ReadyKiChargeFXSpawner => readyKiChargeFXSpawner;
-    [SerializeField] protected ReadyKiChargeFX readyKiChargeFX;
-    public ReadyKiChargeFX ReadyKiChargeFX => readyKiChargeFX;
-    // [SerializeField] protected KiChargeSmokeFXSpawner kiChargeSmokeFXSpawner;
-    // public KiChargeSmokeFXSpawner KiChargeSmokeFXSpawner => kiChargeSmokeFXSpawner;
-    [SerializeField] protected Transform kiChargeSmokeFX;
-    public Transform KiChargeSmokeFX => kiChargeSmokeFX;
     public bool IsGround { get; set; }
     protected override void LoadComponent()
     {
@@ -43,12 +30,10 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadAnimator();
         this.LoadStateManager();
         this.LoadCharacterIntro();
+        this.LoadCharacterFlip();
         this.LoadDamageSender();
         this.LoadDamageReceiver();
-        this.LoadEnergyShotSpawner();
-        this.LoadEnergyShot();
-        this.LoadFXSpawner();
-        this.LoadEnergyShotFX();
+        this.LoadKiCharge();
         this.LoadFirePoint();
     }
     protected void LoadRigidbody()
@@ -75,6 +60,12 @@ public class CharacterCtrl : DinoBehaviour
         this.characterIntro = GetComponentInChildren<CharacterIntro>();
         Debug.Log(transform.name + ": LoadCharacterIntro", gameObject);
     }
+    protected void LoadCharacterFlip()
+    {
+        if (this.characterFlip != null) return;
+        this.characterFlip = GetComponentInChildren<CharacterFlip>();
+        Debug.Log(transform.name + ": LoadCharacterFlip", gameObject);
+    }
     protected void LoadDamageSender()
     {
         if (this.damageSender != null) return;
@@ -87,29 +78,12 @@ public class CharacterCtrl : DinoBehaviour
         this.damageReceiver = GetComponentInChildren<DamageReceiver>();
         Debug.Log(transform.name + ": LoadDamageReceiver", gameObject);
     }
-    protected void LoadEnergyShotSpawner()
+    protected void LoadKiCharge()
     {
-        if (this.energyShotSpawner != null) return;
-        this.energyShotSpawner = FindAnyObjectByType<EnergyShotSpawner>();
-        Debug.Log(transform.name + ": LoadEnergyShotSpawner", gameObject);
-    }
-    protected void LoadEnergyShot()
-    {
-        if (this.energyShot != null) return;
-        this.energyShot = FindAnyObjectByType<EnergyShot>();
-        Debug.Log(transform.name + ": LoadEnergyShot", gameObject);
-    }
-    protected void LoadFXSpawner()
-    {
-        if (this.energyShotFXSpawner != null) return;
-        this.energyShotFXSpawner = FindAnyObjectByType<EnergyShotFXSpawner>();
-        Debug.Log(transform.name + ": LoadFXSpawner", gameObject);
-    }
-    protected void LoadEnergyShotFX()
-    {
-        if (this.energyShotFX != null) return;
-        this.energyShotFX = FindAnyObjectByType<EnergyShotFX>();
-        Debug.Log(transform.name + ": LoadEnergyShotFX", gameObject);
+        if (this.kiCharge != null) return;
+        this.kiCharge = GetComponentInChildren<KiCharge>();
+        Debug.Log(transform.name + ": LoadKiCharge", gameObject);
+
     }
     protected void LoadFirePoint()
     {
@@ -124,19 +98,19 @@ public class CharacterCtrl : DinoBehaviour
         if (groundCollider == null) return;
         if (this.stateManager.CurrentState == null) return;
         this.IsGround = true;
-        if (this.stateManager.CurrentState.GetType() == typeof(VegetaIdleState)) return;
-        this.stateManager.SetNextState(new VegetaIdleState());
+        if (this.stateManager.CurrentState.GetType() == typeof(IdleCombatState)) return;
+        this.stateManager.SetNextState(new IdleCombatState());
         this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
         SmokeLandedFXSpawner.Instance.Spawn(SmokeLandedFXSpawner.Instance.nameFX, transform.position);
     }
 
     public void EnableSmokeEffect()
     {
-        this.kiChargeSmokeFX.gameObject.SetActive(true);
+        this.kiCharge.gameObject.SetActive(true);
     }
     public void DisableSmokeEffect()
     {
-        this.kiChargeSmokeFX.gameObject.SetActive(false);
+        this.kiCharge.gameObject.SetActive(false);
     }
 
 }

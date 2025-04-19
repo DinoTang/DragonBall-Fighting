@@ -7,6 +7,7 @@ public class DamageReceiver : DinoBehaviour
     [Header("Damage Receiver")]
     [SerializeField] protected CharacterCtrl characterCtrl;
     [SerializeField] protected CapsuleCollider2D collide;
+    [SerializeField] protected bool isImmortal = false;
     [SerializeField] protected bool isDead = false;
     [SerializeField] protected bool isHurt = false;
     public bool IsHurt => isHurt;
@@ -49,6 +50,7 @@ public class DamageReceiver : DinoBehaviour
 
     public void DeductHP(float hp)
     {
+        if (this.isImmortal) return;
         if (this.isDead) return;
         this.currentHP -= hp;
         this.OnHurt();
