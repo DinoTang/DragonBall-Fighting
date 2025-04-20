@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f4aa692040643ba49a8134f4a4a1a08e
+guid: ce8c24c3dc56ccb4aa60d0e2e48d4236
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: VegetaSSJ2_Hardmode_Idle_0
+      name: VegetaSSJ_Tele_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 192
-        height: 159
+        width: 144
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5759ce2fd6b2b644844c589259a4df5
-      internalID: -1752233569
+      spriteID: 88064b59071dd3e4c832bff3dc48739d
+      internalID: -736532119
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ2_Hardmode_Idle_1
+      name: VegetaSSJ_Tele_1
       rect:
         serializedVersion: 2
-        x: 192
+        x: 144
         y: 0
-        width: 192
-        height: 159
+        width: 144
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a395ed29568807f4f881afe73810ce53
-      internalID: 537759703
+      spriteID: dcc2d28bd174ff64f984630a6d1b0325
+      internalID: -415105815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ2_Hardmode_Idle_2
+      name: VegetaSSJ_Tele_2
       rect:
         serializedVersion: 2
-        x: 384
+        x: 288
         y: 0
-        width: 192
-        height: 159
+        width: 144
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69760cf81dd2f73459a02e1606e6e921
-      internalID: -1026033026
+      spriteID: c66bb56b4b03af94eb58fb755f184500
+      internalID: -1887861909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ2_Hardmode_Idle_3
+      name: VegetaSSJ_Tele_3
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 144
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a2279aa09dcc7f45ae48c0a06ea458d
+      internalID: -2028568414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VegetaSSJ_Tele_4
       rect:
         serializedVersion: 2
         x: 576
         y: 0
-        width: 192
-        height: 159
+        width: 144
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +195,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 147cf0f63a2a30a4189cf91681f0a549
-      internalID: 686443187
+      spriteID: 3ea6ff4a03bc9b24093b017c96ef66ed
+      internalID: -1328249098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VegetaSSJ_Tele_5
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 144
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 818531d6a18e1ae428c6a1d3d3177357
+      internalID: -1483572507
       vertices: []
       indices: 
       edges: []
@@ -191,10 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      VegetaSSJ2_Hardmode_Idle_0: -1752233569
-      VegetaSSJ2_Hardmode_Idle_1: 537759703
-      VegetaSSJ2_Hardmode_Idle_2: -1026033026
-      VegetaSSJ2_Hardmode_Idle_3: 686443187
+      VegetaSSJ_Tele_0: -736532119
+      VegetaSSJ_Tele_1: -415105815
+      VegetaSSJ_Tele_2: -1887861909
+      VegetaSSJ_Tele_3: -2028568414
+      VegetaSSJ_Tele_4: -1328249098
+      VegetaSSJ_Tele_5: -1483572507
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

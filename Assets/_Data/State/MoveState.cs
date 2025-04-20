@@ -41,7 +41,10 @@ public class MoveState : State
             this.stateManager.SetNextStateToMain();
         }
     }
-
+    public void StopAddVelocity()
+    {
+        this.stateManager.CharacterCtrl.Rgb.velocity = Vector2.zero;
+    }
     protected virtual void ApplyMovement()
     {
         Rigidbody2D rb = this.stateManager.CharacterCtrl.Rgb;
@@ -66,7 +69,7 @@ public class MoveState : State
     {
         if (input)
         {
-            stateManager.StopAddVelocity();
+            this.StopAddVelocity();
             stateManager.SetNextState(newState);
             return true;
         }

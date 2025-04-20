@@ -69,8 +69,5 @@ public class StateManager : DinoBehaviour
     {
         nextState = mainStateType;
     }
-    public void StopAddVelocity()
-    {
-        this.characterCtrl.Rgb.velocity = Vector2.zero;
-    }
+    
 }
