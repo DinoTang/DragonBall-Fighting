@@ -655,6 +655,7 @@ MonoBehaviour:
   characterCtrl: {fileID: 751414178}
   inputBuffer: {fileID: 1224640670}
   combo: 
+  distanceTele: 10
 --- !u!4 &188798269
 Transform:
   m_ObjectHideFlags: 0
@@ -737,6 +738,7 @@ MonoBehaviour:
   poolObjsList: []
   prefabs:
   - {fileID: 347017986}
+  energyShotFXName: EnergyShotFX
 --- !u!4 &214625177
 Transform:
   m_ObjectHideFlags: 0
@@ -1092,7 +1094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &347017986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,6 +1107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd91a11a66393e443a368036ceb4a38b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 1211687312}
 --- !u!4 &347017987
 Transform:
   m_ObjectHideFlags: 0
@@ -1362,6 +1365,7 @@ MonoBehaviour:
   characterCtrl: {fileID: 359469047}
   inputBuffer: {fileID: 345241791}
   combo: 
+  distanceTele: 10
 --- !u!1 &470561082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,6 +1988,7 @@ Transform:
   - {fileID: 986110740}
   - {fileID: 188798269}
   - {fileID: 1224640671}
+  - {fileID: 1327183335}
   - {fileID: 1230360321}
   - {fileID: 2030696168}
   m_Father: {fileID: 0}
@@ -2080,7 +2085,7 @@ MonoBehaviour:
   damageSender: {fileID: 986110738}
   damageReceiver: {fileID: 1290374233}
   kiCharge: {fileID: 1230360322}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1327183334}
 --- !u!114 &751414179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2858,6 +2863,7 @@ GameObject:
   - component: {fileID: 1211687309}
   - component: {fileID: 1211687311}
   - component: {fileID: 1211687310}
+  - component: {fileID: 1211687312}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -2953,6 +2959,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1211687312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211687308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed2a782384644241aa3a14ffc212a64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 4
 --- !u!1 &1224640669
 GameObject:
   m_ObjectHideFlags: 0
@@ -3254,6 +3273,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1903190136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1327183333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1327183335}
+  - component: {fileID: 1327183334}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1327183334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327183333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6f9c62e5e53b74883c6534dfc88a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1327183335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327183333}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.1, y: -0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 751414175}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1365645942
 GameObject:
   m_ObjectHideFlags: 0
@@ -3407,8 +3470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5fdf2156416174e930da07932829c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  owner: {fileID: 0}
+  speed: 50
   model: {fileID: 1684830731}
   direction: {x: 0, y: 0}
 --- !u!4 &1522682345
@@ -3685,8 +3747,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1903190136}
-  - {fileID: 685260064}
   - {fileID: 214625177}
+  - {fileID: 685260064}
   - {fileID: 771113320}
   - {fileID: 2091663109}
   - {fileID: 620540936}
@@ -4598,6 +4660,7 @@ MonoBehaviour:
   poolObjsList: []
   prefabs:
   - {fileID: 1522682344}
+  energyShotName: EnergyShot
 --- !u!4 &1903190136
 Transform:
   m_ObjectHideFlags: 0

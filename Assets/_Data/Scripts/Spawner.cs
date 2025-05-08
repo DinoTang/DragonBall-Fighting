@@ -38,6 +38,7 @@ public abstract class Spawner<T> : DinoBehaviour where T : PoolObj
         {
             T prefabT = prefab.GetComponent<T>();
             this.prefabs.Add(prefabT);
+            prefabT.gameObject.SetActive(false);
         }
         Debug.Log(transform.name + ": LoadPrefabs", gameObject);
     }
