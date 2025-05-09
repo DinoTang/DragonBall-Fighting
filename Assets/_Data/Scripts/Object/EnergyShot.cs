@@ -8,6 +8,8 @@ public class EnergyShot : PoolObj
     [SerializeField] protected float speed = 20f;
     [SerializeField] protected Model model;
     [SerializeField] protected Vector2 direction;
+    [SerializeField] protected CharacterCtrl owner;
+    public CharacterCtrl Owner => owner;
     public override string GetName()
     {
         return characterEnum.ToString();
@@ -30,6 +32,7 @@ public class EnergyShot : PoolObj
     }
     public void Init(CharacterCtrl owner)
     {
+        this.owner = owner;
         if (owner.transform.localScale.x == -1)
         {
             this.direction = Vector2.left;

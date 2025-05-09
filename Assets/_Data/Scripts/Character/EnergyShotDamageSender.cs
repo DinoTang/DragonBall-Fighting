@@ -23,6 +23,8 @@ public class EnergyShotDamageSender : DamageSender
     }
     protected override void SendDamage(DamageReceiver damageReceiver)
     {
+        CharacterCtrl owner = damageReceiver.transform.parent.GetComponent<CharacterCtrl>();
+        if (energyShotCtrl.EnergyShot.Owner == owner) return;
         base.SendDamage(damageReceiver);
         this.energyShotCtrl.EnergyShotDespawn.DoDespawn();
         ExplosionFX explosionFX = ExplosionFXSpawner.Instance.Spawn(ExplosionFXSpawner.Instance.explosionFXSpawner, damageReceiver.transform.position);

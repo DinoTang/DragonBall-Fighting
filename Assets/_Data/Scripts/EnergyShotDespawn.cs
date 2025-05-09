@@ -9,4 +9,8 @@ public class EnergyShotDespawn : Despawn<EnergyShot>
         base.ResetValue();
         this.lifeTime = 4;
     }
+    public void ResetCurrentTime()
+    {
+        this.currentTime = this.lifeTime;
+    }
 }
