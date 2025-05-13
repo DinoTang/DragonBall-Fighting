@@ -17,6 +17,8 @@ public class ChargeState : State
         if (InputManager.Instance.ReleaseChargeInput()) this.stateManager.SetNextState(new IdleCombatState());
         // Spawn Smoke Effect 
         this.stateManager.CharacterCtrl.EnableSmokeEffect();
+
+        this.stateManager.CharacterCtrl.KiManager.ChargeKi();
     }
     public override void OnExit()
     {

@@ -26,6 +26,12 @@ public class CharacterCtrl : DinoBehaviour
     [SerializeField] protected KiCharge kiCharge;
     [SerializeField] protected FirePoint firePoint;
     public FirePoint FirePoint => firePoint;
+
+    [Header("Ki System")]
+    [SerializeField] protected KiManager kiManager;
+    public KiManager KiManager => kiManager;
+    [SerializeField] protected SkillManager skillManager;
+    public SkillManager SkillManager => skillManager;
     public bool IsGround { get; set; }
     protected override void LoadComponent()
     {
@@ -40,6 +46,8 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadDamageReceiver();
         this.LoadKiCharge();
         this.LoadFirePoint();
+        this.LoadKiManager();
+        this.LoadSkillManager();
     }
     protected void LoadRigidbody()
     {
@@ -102,6 +110,19 @@ public class CharacterCtrl : DinoBehaviour
         this.firePoint = FindAnyObjectByType<FirePoint>();
         Debug.Log(transform.name + ": loadFirePoint", gameObject);
 
+    }
+    protected void LoadKiManager()
+    {
+        if (this.kiManager != null) return;
+        this.kiManager = GetComponentInChildren<KiManager>();
+        Debug.Log(transform.name + ": LoadKiManager", gameObject);
+
+    }
+    protected void LoadSkillManager()
+    {
+        if (this.skillManager != null) return;
+        this.skillManager = GetComponentInChildren<SkillManager>();
+        Debug.Log(transform.name + ": LoadSkillManager", gameObject);
     }
     protected void OnCollisionEnter2D(Collision2D collision)
     {

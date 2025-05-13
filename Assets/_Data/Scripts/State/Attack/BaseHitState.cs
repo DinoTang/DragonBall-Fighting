@@ -15,7 +15,7 @@ public class BaseHitState : State
     {
         base.OnEnter(stateManager);
         //Attack
-        this.attackMoveTime = Time + this.attackMoveDuration;
+        this.attackMoveTime = Timed + this.attackMoveDuration;
         this.isMovingDuringAttack = true;
         this.animator.SetBool("IsAttack", true);
         this.animator.SetInteger("AttackCounter", attackCounter);
@@ -45,9 +45,9 @@ public class BaseHitState : State
     protected void MoveShortDistance()
     {
         if (!this.isHitSuccessful) return;
-        if (isMovingDuringAttack && Time < attackMoveTime)
+        if (isMovingDuringAttack && Timed < attackMoveTime)
         {
-            float moveStep = this.attackMoveSpeed * this.Time * this.stateManager.transform.localScale.x;
+            float moveStep = this.attackMoveSpeed * this.Timed * this.stateManager.transform.localScale.x;
             this.stateManager.CharacterCtrl.transform.position += new Vector3(moveStep, 0, 0);
         }
         else

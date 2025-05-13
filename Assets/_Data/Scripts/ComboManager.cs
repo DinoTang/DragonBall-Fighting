@@ -14,7 +14,7 @@ public class ComboManager : DinoBehaviour
         if (InputManager.Instance.GetRightInput()) this.inputBuffer.AddInput(InputKey.Right);
         if (InputManager.Instance.GetHitInput()) this.inputBuffer.AddInput(InputKey.Hit);
         if (InputManager.Instance.GetKickInput()) this.inputBuffer.AddInput(InputKey.Kick);
-
+        if (InputManager.Instance.GetPowerFiredInput()) this.inputBuffer.AddInput(InputKey.Skill);
         this.combo = this.inputBuffer.GetComboString();
 
         // if (this.combo == "Down+Left+Hit" || this.combo == "Down+Right+Hit")
@@ -28,6 +28,7 @@ public class ComboManager : DinoBehaviour
         //     this.inputBuffer.ClearCombo();
         // }
         this.TeleCombo();
+        this.SkillOneCombo();
     }
 
     protected void SpawnEffectWhenTele()
@@ -59,6 +60,18 @@ public class ComboManager : DinoBehaviour
             else this.characterCtrl.StateManager.SetNextState(new Tele2());
             this.Teleing(this.distanceTele);
             this.inputBuffer.ClearCombo();
+        }
+    }
+
+    protected void SkillOneCombo()
+    {
+        if (this.combo == "Right+Skill")
+        {
+            if (this.characterCtrl.transform.localScale.x == 1) this.characterCtrl.SkillManager.TryUseSkill("Big Bang Attack");
+        }
+        else if(this.combo == "Left+Skill")
+        {
+            if (this.characterCtrl.transform.localScale.x == -1) this.characterCtrl.SkillManager.TryUseSkill("Big Bang Attack");
         }
     }
 }

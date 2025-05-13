@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30e146e66f1e05045a4f0063a1fc63bf, type: 3}
-  m_Name: Vegeta
+  m_Name: Vegeta_Skill1
   m_EditorClassIdentifier: 
-  energyShot: {fileID: 0}
-  energyShotFX: {fileID: 0}
+  skillName: Big Bang Attack
+  kiCost: 100
+  cooldown: 3
+  animation: {fileID: 0}
+  vfxPrefab: {fileID: 0}

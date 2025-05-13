@@ -6,4 +6,5 @@ public enum InputKey{
     Hit,
     Kick,
     Special,
+    Skill,
 }
