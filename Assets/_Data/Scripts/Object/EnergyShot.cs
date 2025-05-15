@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnergyShot : PoolObj
 {
+    [Header("Energy Shot")]
     [SerializeField] protected CharacterEnum characterEnum;
     [SerializeField] protected float speed = 20f;
     [SerializeField] protected Model model;

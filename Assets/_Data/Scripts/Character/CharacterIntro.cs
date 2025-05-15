@@ -34,28 +34,4 @@ public class CharacterIntro : CharacterAbstract
         this.characterCtrl.IsGround = true;
         this.isReady = true;
     }
-
-    protected void EnableHitbox()
-    {
-        this.characterCtrl.CharacterDamageSender.EnableCollider();
-    }
-
-    protected void DisableHitbox()
-    {
-        this.characterCtrl.CharacterDamageSender.DisableCollider();
-    }
-
-    protected void EnableSpawnEnergyShot()
-    {
-        Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
-        EnergyShot energyShot = EnergyShotSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), newPos);
-        energyShot.Init(this.characterCtrl);
-    }
-
-    protected void EnableSpawnShotEffect()
-    {
-        Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
-        EnergyShotFX energyShotFX = EnergyShotFXSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), newPos);
-        energyShotFX.Init(this.characterCtrl);
-    }
 }

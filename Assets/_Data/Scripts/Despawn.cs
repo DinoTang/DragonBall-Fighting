@@ -19,6 +19,10 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
     {
         this.DespawnByTime();
     }
+    public void ResetCurrentTime()
+    {
+        this.currentTime = this.lifeTime;
+    }
     protected void LoadSpawner()
     {
         if (this.spawner != null) return;

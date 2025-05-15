@@ -10,6 +10,7 @@ public class EnergyShotFX : PoolObj
     {
         return this.characterEnum.ToString();
     }
+    
     public void Init(CharacterCtrl owner)
     {
         if (owner.transform.localScale.x == -1)

@@ -586,6 +586,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 147909795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &102887396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 102887398}
+  - component: {fileID: 102887397}
+  m_Layer: 0
+  m_Name: KiManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &102887397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102887396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e446c8447d22c42a3293368e108dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCtrl: {fileID: 0}
+  totalKi: 0
+  kiChargeRate: 10
+  currentKi: 0
+--- !u!4 &102887398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102887396}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &128252242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1537,8 @@ MonoBehaviour:
   characterDamageReceiver: {fileID: 0}
   kiCharge: {fileID: 0}
   firePoint: {fileID: 0}
+  kiManager: {fileID: 0}
+  skillManager: {fileID: 0}
 --- !u!114 &359469048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2086,6 +2136,54 @@ MonoBehaviour:
   characterCtrl: {fileID: 751414178}
   enemy: {fileID: 359469052}
   distance: 0
+--- !u!1 &584261296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 584261298}
+  - component: {fileID: 584261297}
+  m_Layer: 0
+  m_Name: KiManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &584261297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584261296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e446c8447d22c42a3293368e108dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCtrl: {fileID: 751414178}
+  totalKi: 300
+  kiChargeRate: 20
+  currentKi: 0
+--- !u!4 &584261298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584261296}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 751414175}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &609928337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2442,6 +2540,8 @@ Transform:
   - {fileID: 1230360321}
   - {fileID: 2030696168}
   - {fileID: 1791492196}
+  - {fileID: 584261298}
+  - {fileID: 1221265640}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &751414176
@@ -2539,6 +2639,8 @@ MonoBehaviour:
   characterDamageReceiver: {fileID: 1290374236}
   kiCharge: {fileID: 1230360322}
   firePoint: {fileID: 1327183334}
+  kiManager: {fileID: 584261297}
+  skillManager: {fileID: 1221265639}
 --- !u!114 &751414179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3505,6 +3607,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 4
+--- !u!1 &1221265638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1221265640}
+  - component: {fileID: 1221265639}
+  m_Layer: 0
+  m_Name: SkillManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1221265639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221265638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34c0e32bab23ab49a89097c688540f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCtrl: {fileID: 751414178}
+  skillList:
+  - {fileID: 11400000, guid: 52d6dd39fe7a5f6409ae45ef92aa3753, type: 2}
+--- !u!4 &1221265640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221265638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 751414175}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1224640669
 GameObject:
   m_ObjectHideFlags: 0
@@ -4770,6 +4919,8 @@ MonoBehaviour:
   characterDamageReceiver: {fileID: 0}
   kiCharge: {fileID: 0}
   firePoint: {fileID: 1840796997}
+  kiManager: {fileID: 0}
+  skillManager: {fileID: 0}
 --- !u!50 &1795711759
 Rigidbody2D:
   serializedVersion: 4
@@ -6201,3 +6352,4 @@ SceneRoots:
   - {fileID: 751414175}
   - {fileID: 359469051}
   - {fileID: 1714476829}
+  - {fileID: 102887398}
