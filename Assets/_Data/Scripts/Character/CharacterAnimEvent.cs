@@ -31,7 +31,7 @@ public class CharacterAnimEvent : CharacterAbstract
 
     protected void EnableSpawnEnergyShotSkill_1()
     {
-        string ShotSkill_Name = VegetaShotSkillSpawner.Instance.GetSkill(SkillLevelEnum.level_1);
+        string ShotSkill_Name = ShotSkillSpawner.Instance.GetSkill(SkillSlot.Skill_1);
         if (ShotSkill_Name == "")
         {
             Debug.Log(transform.parent.name + ": Khong tim thay ten cua ShotSKill");
@@ -39,7 +39,7 @@ public class CharacterAnimEvent : CharacterAbstract
         }
         Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
         newPos.x += 1.5f;
-        VegetaShotSkill vegetaSkill = VegetaShotSkillSpawner.Instance.Spawn(ShotSkill_Name, newPos);
+        ShotSkill vegetaSkill = ShotSkillSpawner.Instance.Spawn(ShotSkill_Name, newPos);
         vegetaSkill.Init(this.characterCtrl);
     }
 }

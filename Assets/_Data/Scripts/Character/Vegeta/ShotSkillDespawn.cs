@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VegetaShotSkillDespawn : Despawn<VegetaShotSkill>
+public class ShotSkillDespawn : Despawn<ShotSkill>
 {
     protected override void ResetValue()
     {

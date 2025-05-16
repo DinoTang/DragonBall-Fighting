@@ -27,6 +27,10 @@ public class EnergyShotDamageSender : DamageSender
         if (this.energyShotCtrl.EnergyShot.Owner == owner) return;
         base.SendDamage(damageReceiver);
         this.energyShotCtrl.EnergyShotDespawn.DoDespawn();
-        ExplosionFX explosionFX = ExplosionFXSpawner.Instance.Spawn(ExplosionFXSpawner.Instance.explosionFXSpawner, damageReceiver.transform.position);
+    }
+    protected override void OnHitExplosionFX(Transform target)
+    {
+        base.OnHitExplosionFX(target);
+        this.SpawnHitExplosionFX(ExplosionFXSpawner.efx_DefaultName, target);
     }
 }

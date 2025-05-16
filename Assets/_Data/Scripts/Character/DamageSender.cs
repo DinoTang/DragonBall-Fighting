@@ -48,5 +48,15 @@ public class DamageSender : DinoBehaviour
     {
         damageReceiver.DeductHP(this.damage);
         this.isHitSuccessful = true;
+        this.OnHitExplosionFX(damageReceiver.transform);
+    }
+    protected virtual void OnHitExplosionFX(Transform target)
+    {
+
+    }
+    protected virtual void SpawnHitExplosionFX(string efx_name, Transform target)
+    {
+        ExplosionFXSpawner.Instance.Spawn(efx_name, target.position);
+
     }
 }

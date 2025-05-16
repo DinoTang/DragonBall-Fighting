@@ -3,17 +3,18 @@ using UnityEngine;
 public class ShotSkillDamageSender : DamageSender
 {
     [Header("Shot Skill Damage Sender")]
-    [SerializeField] protected VegetaShotSkillCtrl vegetaShotSkillCtrl;
+    [SerializeField] protected ShotSkillCtrl shotSkillCtrl;
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.LoadVegetaShotSkillCtrl();
+        this.LoadShotSkillCtrl();
+        this.damage = this.shotSkillCtrl.ShotSkillData.damage;
     }
-    protected void LoadVegetaShotSkillCtrl()
+    protected void LoadShotSkillCtrl()
     {
-        if (this.vegetaShotSkillCtrl != null) return;
-        this.vegetaShotSkillCtrl = GetComponentInParent<VegetaShotSkillCtrl>();
-        Debug.Log(transform.name + ": LoadVegetaShotSkillCtrl", gameObject);
+        if (this.shotSkillCtrl != null) return;
+        this.shotSkillCtrl = GetComponentInParent<ShotSkillCtrl>();
+        Debug.Log(transform.name + ": LoadShotSkillCtrl", gameObject);
     }
     protected override void LoadCollider()
     {
@@ -24,13 +25,15 @@ public class ShotSkillDamageSender : DamageSender
     protected override void SendDamage(DamageReceiver damageReceiver)
     {
         CharacterCtrl owner = damageReceiver.transform.parent.GetComponent<CharacterCtrl>();
-        if (this.vegetaShotSkillCtrl.VegetaShotSkill.Owner == owner) return;
+        if (this.shotSkillCtrl.ShotSkill.Owner == owner) return;
         base.SendDamage(damageReceiver);
-        this.vegetaShotSkillCtrl.VegetaShotSkillDespawn.DoDespawn();
-        ExplosionFX explosionFX = ExplosionFXSpawner.Instance.Spawn(ExplosionFXSpawner.Instance.explosionFXSpawner, damageReceiver.transform.position);
+        this.shotSkillCtrl.ShotSkillDespawn.DoDespawn();
     }
-    protected virtual void SpawnExplosionFX()
+
+    protected override void OnHitExplosionFX(Transform target)
     {
-        
+        base.OnHitExplosionFX(target);
+        string explosionFXName = this.shotSkillCtrl.ShotSkillData.fxName;
+        this.SpawnHitExplosionFX(explosionFXName, target);
     }
 }
