@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotSkill : EnergyShot
+public class SkillProjectile : _ProjectileBase
 {
-    [Header("Shot Skill")]
+    [Header("Skill Projectile")]
     [SerializeField] protected SkillSlot skillSlot;
     public SkillSlot SkillSlot => skillSlot;
     public override string GetName()

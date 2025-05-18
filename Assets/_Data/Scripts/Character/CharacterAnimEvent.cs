@@ -15,31 +15,31 @@ public class CharacterAnimEvent : CharacterAbstract
         this.characterCtrl.CharacterDamageSender.DisableCollider();
     }
 
-    protected void EnableSpawnEnergyShot()
+    protected void EnableSpawnBasicProjectile()
     {
         Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
-        EnergyShot energyShot = EnergyShotSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), newPos);
-        energyShot.Init(this.characterCtrl);
+        BasicProjectile basicProj = BasicProjSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), newPos);
+        basicProj.Init(this.characterCtrl);
     }
 
-    protected void EnableSpawnShotEffect()
+    protected void EnableSpawnBasicProjectileEffect()
     {
         Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
-        EnergyShotFX energyShotFX = EnergyShotFXSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), newPos);
-        energyShotFX.Init(this.characterCtrl);
+        BasicProjectileFX basicProjFX = BasicProjFXSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), newPos);
+        basicProjFX.Init(this.characterCtrl);
     }
 
-    protected void EnableSpawnEnergyShotSkill_1()
+    protected void EnableSpawnSkillProjectileOne()
     {
-        string ShotSkill_Name = ShotSkillSpawner.Instance.GetSkill(SkillSlot.Skill_1);
-        if (ShotSkill_Name == "")
+        string skillProj_Name = SkillProjSpawner.Instance.GetSkill(SkillSlot.Skill_1);
+        if (skillProj_Name == "")
         {
-            Debug.Log(transform.parent.name + ": Khong tim thay ten cua ShotSKill");
+            Debug.Log(transform.parent.name + ": Khong tim thay ten cua SkillProjectile");
             return;
         }
         Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
         newPos.x += 1.5f;
-        ShotSkill vegetaSkill = ShotSkillSpawner.Instance.Spawn(ShotSkill_Name, newPos);
+        SkillProjectile vegetaSkill = SkillProjSpawner.Instance.Spawn(skillProj_Name, newPos);
         vegetaSkill.Init(this.characterCtrl);
     }
 }

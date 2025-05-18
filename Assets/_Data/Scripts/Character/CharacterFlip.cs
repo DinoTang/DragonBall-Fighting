@@ -28,6 +28,9 @@ public class CharacterFlip : CharacterAbstract
         if (this.distance < 0) transform.parent.localScale = new Vector3(1, 1, 1);
         else transform.parent.localScale = new Vector3(-1, 1, 1);
     }
-
+    protected void Update()
+    {
+        this.Flipping();
+    }
 
 }

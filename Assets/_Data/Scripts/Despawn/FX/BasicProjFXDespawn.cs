@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyShotDespawn : Despawn<EnergyShot>
+public class BasicProjFXDespawn : Despawn<BasicProjectileFX>
 {
     protected override void ResetValue()
     {
         base.ResetValue();
-        this.lifeTime = 4;
+        this.lifeTime = 1;
     }
 }

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotSkillSpawner : Spawner<ShotSkill>
+public class SkillProjSpawner : Spawner<SkillProjectile>
 {
-    protected static ShotSkillSpawner instance;
-    public static ShotSkillSpawner Instance => instance;
+    protected static SkillProjSpawner instance;
+    public static SkillProjSpawner Instance => instance;
     [Header("Shot Skill Spawner")]
     [SerializeField] protected CharacterSelector characterSelector;
     [SerializeField] protected List<SkillDataSO> skillList;
@@ -38,10 +38,10 @@ public class ShotSkillSpawner : Spawner<ShotSkill>
     public string GetSkill(SkillSlot skillSlot)
     {
         string skillLevel = skillSlot.ToString();
-        foreach (ShotSkill shotSkill in this.prefabs)
+        foreach (SkillProjectile skillProj in this.prefabs)
         {
-            if (shotSkill.GetName() != skillLevel) continue;
-            return shotSkill.GetName();
+            if (skillProj.GetName() != skillLevel) continue;
+            return skillProj.GetName();
         }
         return "";
     }

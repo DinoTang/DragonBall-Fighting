@@ -630,7 +630,7 @@ AnimatorStateMachine:
     m_Position: {x: 400, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 283828482347649856}
-    m_Position: {x: 400, y: 390, z: 0}
+    m_Position: {x: 580, y: 630, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1384975403022680475}
     m_Position: {x: 400, y: 260, z: 0}
@@ -692,7 +692,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VegetaSSJ_PowerFired
+  m_Name: VegetaSSJ_BasicProjectile
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1429,12 +1429,6 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: ComboCount
     m_Type: 3
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: skill1
-    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0

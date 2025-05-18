@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotSkillDespawn : Despawn<ShotSkill>
+public class BasicProjDespawn : Despawn<BasicProjectile>
 {
     protected override void ResetValue()
     {
         base.ResetValue();
-        this.lifeTime = 5f;
+        this.lifeTime = 4;
     }
 }

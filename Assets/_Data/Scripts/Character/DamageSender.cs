@@ -2,6 +2,7 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class DamageSender : DinoBehaviour
 {
+    [Header("Damage Sender")]
     [SerializeField] protected CircleCollider2D _collider;
     [SerializeField] protected float damage = 1f;
     [SerializeField] protected bool isHitSuccessful = false;
@@ -54,9 +55,9 @@ public class DamageSender : DinoBehaviour
     {
 
     }
-    protected virtual void SpawnHitExplosionFX(string efx_name, Transform target)
+    protected ExplosionFX SpawnHitExplosionFX(string efx_name, Transform target)
     {
-        ExplosionFXSpawner.Instance.Spawn(efx_name, target.position);
-
+        ExplosionFX efx = ExplosionFXSpawner.Instance.Spawn(efx_name, target.position);
+        return efx;
     }
 }

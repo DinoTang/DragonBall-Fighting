@@ -1,19 +1,19 @@
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-public class EnergyShotDamageSender : DamageSender
+public class BasicProjDamageSender : DamageSender
 {
-    [Header("Energy Shot Damage Sender")]
-    [SerializeField] protected EnergyShotCtrl energyShotCtrl;
+    [Header("Basic Projectile Damage Sender")]
+    [SerializeField] protected BasicProjCtrl basicProjCtrl;
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.LoadEnergyShotCtrl();
+        this.LoadBasicProjCtrl();
     }
-    protected void LoadEnergyShotCtrl()
+    protected void LoadBasicProjCtrl()
     {
-        if (this.energyShotCtrl != null) return;
-        this.energyShotCtrl = GetComponentInParent<EnergyShotCtrl>();
-        Debug.Log(transform.name + ": LoadEnergyShotCtrl", gameObject);
+        if (this.basicProjCtrl != null) return;
+        this.basicProjCtrl = GetComponentInParent<BasicProjCtrl>();
+        Debug.Log(transform.name + ": LoadBasicProjCtrl", gameObject);
     }
     protected override void LoadCollider()
     {
@@ -24,9 +24,9 @@ public class EnergyShotDamageSender : DamageSender
     protected override void SendDamage(DamageReceiver damageReceiver)
     {
         CharacterCtrl owner = damageReceiver.transform.parent.GetComponent<CharacterCtrl>();
-        if (this.energyShotCtrl.EnergyShot.Owner == owner) return;
+        if (this.basicProjCtrl.BasicProj.Owner == owner) return;
         base.SendDamage(damageReceiver);
-        this.energyShotCtrl.EnergyShotDespawn.DoDespawn();
+        this.basicProjCtrl.BasicProjDespawn.DoDespawn();
     }
     protected override void OnHitExplosionFX(Transform target)
     {
