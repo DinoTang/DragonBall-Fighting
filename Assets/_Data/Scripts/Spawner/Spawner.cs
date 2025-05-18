@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -42,21 +43,21 @@ public abstract class Spawner<T> : DinoBehaviour where T : PoolObj
         }
         Debug.Log(transform.name + ": LoadPrefabs", gameObject);
     }
-    public virtual T Spawn(string prefabName, Vector2 pos)
+    public virtual T Spawn(string prefabName, Vector2 pos, CharacterCtrl owner = null)
     {
         T prefab = GetPrefabByName(prefabName);
         if (prefab == null) return null;
-        return Spawn(prefab, pos);
+        return Spawn(prefab, pos, owner);
     }
-    public virtual T Spawn(T prefab, Vector2 pos)
+    public virtual T Spawn(T prefab, Vector2 pos, CharacterCtrl owner = null)
     {
-        T new_Obj = Spawn(prefab);
+        T new_Obj = Spawn(prefab, owner);
         new_Obj.transform.position = pos;
         new_Obj.gameObject.SetActive(true);
         new_Obj.transform.parent = this.poolHolder.transform;
         return new_Obj;
     }
-    public virtual T Spawn(T prefab)
+    public virtual T Spawn(T prefab, CharacterCtrl owner = null)
     {
         T new_Obj = this.GetObjFromPool(prefab);
         if (new_Obj == null)
@@ -65,6 +66,7 @@ public abstract class Spawner<T> : DinoBehaviour where T : PoolObj
             new_Obj = Instantiate(prefab);
             this.UpdateName(prefab.transform, new_Obj.transform);
         }
+        if (owner != null) new_Obj.Init(owner);
         return new_Obj;
     }
     protected virtual T GetPrefabByName(string prefabName)

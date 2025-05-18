@@ -6,9 +6,9 @@ public class Model : DinoBehaviour
 {
     [SerializeField] protected int size = 4;
     public int Size => size;
-    protected override void LoadComponent()
+    protected override void ResetValue()
     {
-        base.LoadComponent();
+        base.ResetValue();
         this.LoadSize();
     }
 

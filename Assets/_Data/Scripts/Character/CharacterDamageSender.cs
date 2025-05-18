@@ -23,6 +23,6 @@ public class CharacterDamageSender : DamageSender
     protected override void OnHitExplosionFX(Transform target)
     {
         base.OnHitExplosionFX(target);
-        this.SpawnHitExplosionFX("Hit_Effect", target);
+        this.SpawnHitExplosionFX("Hit_Effect", target, this.characterCtrl);
     }
 }

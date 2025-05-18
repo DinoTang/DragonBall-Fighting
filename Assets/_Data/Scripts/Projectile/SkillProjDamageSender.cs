@@ -24,9 +24,8 @@ public class SkillProjDamageSender : DamageSender
     }
     protected override void SendDamage(DamageReceiver damageReceiver)
     {
-        CharacterCtrl owner = damageReceiver.transform.parent.GetComponent<CharacterCtrl>();
-        if (this.skillProjCtrl.SkillProj.Owner == owner) return;
-        Debug.Log(this.skillProjCtrl.SkillProj.Owner + ", " + owner);
+        CharacterCtrl target = damageReceiver.transform.parent.GetComponent<CharacterCtrl>();
+        if (this.skillProjCtrl.SkillProj.Owner == target) return;
         base.SendDamage(damageReceiver);
         this.skillProjCtrl.SkillProjDespawn.DoDespawn();
     }

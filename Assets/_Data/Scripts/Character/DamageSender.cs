@@ -55,9 +55,9 @@ public class DamageSender : DinoBehaviour
     {
 
     }
-    protected ExplosionFX SpawnHitExplosionFX(string efx_name, Transform target)
+    protected ExplosionFX SpawnHitExplosionFX(string efx_name, Transform target, CharacterCtrl owner = null)
     {
-        ExplosionFX efx = ExplosionFXSpawner.Instance.Spawn(efx_name, target.position);
+        ExplosionFX efx = ExplosionFXSpawner.Instance.Spawn(efx_name, target.position, owner);
         return efx;
     }
 }

@@ -18,15 +18,13 @@ public class CharacterAnimEvent : CharacterAbstract
     protected void EnableSpawnBasicProjectile()
     {
         Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
-        BasicProjectile basicProj = BasicProjSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), newPos);
-        basicProj.Init(this.characterCtrl);
+        BasicProjSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), newPos, this.characterCtrl);
     }
 
     protected void EnableSpawnBasicProjectileEffect()
     {
         Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
-        BasicProjectileFX basicProjFX = BasicProjFXSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), newPos);
-        basicProjFX.Init(this.characterCtrl);
+        BasicProjFXSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), newPos, this.characterCtrl);
     }
 
     protected void EnableSpawnSkillProjectileOne()
@@ -39,7 +37,6 @@ public class CharacterAnimEvent : CharacterAbstract
         }
         Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
         newPos.x += 1.5f;
-        SkillProjectile vegetaSkill = SkillProjSpawner.Instance.Spawn(skillProj_Name, newPos);
-        vegetaSkill.Init(this.characterCtrl);
+        SkillProjSpawner.Instance.Spawn(skillProj_Name, newPos, this.characterCtrl);
     }
 }

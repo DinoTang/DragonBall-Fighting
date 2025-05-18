@@ -40,13 +40,13 @@ public class SkillManager : CharacterAbstract
 
         if (cooldowns.ContainsKey(skillName) && Time.time < cooldowns[skillName])
         {
-            Debug.Log("Chiêu chưa hồi!");
+            // Debug.Log("Chiêu chưa hồi!");
             return false;
         }
 
         if (!this.characterCtrl.KiManager.CanUseSkill(skill.kiCost))
         {
-            Debug.Log("No enough ki to use skill");
+            // Debug.Log("No enough ki to use skill");
             return false;
         }
         
