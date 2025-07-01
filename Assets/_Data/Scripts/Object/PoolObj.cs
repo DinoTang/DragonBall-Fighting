@@ -21,13 +21,31 @@ public abstract class PoolObj : DinoBehaviour
 
     public virtual void Init(CharacterCtrl owner)
     {
-        if (owner.transform.localScale.x == -1)
+        if (owner == null || this.model == null) return;
+
+        bool isLeft = false;
+
+        if (owner.transform.localScale.x < 0)
         {
-            this.model.transform.localScale = new Vector3(-1, 1, 1) * this.model.Size;
+            isLeft = true;
         }
-        else
-        {
-            this.model.transform.localScale = new Vector3(1, 1, 1) * this.model.Size;
-        }
+
+        FlipModelX(isLeft);
     }
+
+    protected void FlipModelX(bool isLeft)
+    {
+        if (this.model == null) return;
+
+        Vector3 scale = this.model.transform.localScale;
+        scale.x = Mathf.Abs(scale.x);
+
+        if (isLeft)
+        {
+            scale.x *= -1;
+        }
+
+        this.model.transform.localScale = scale;
+    }
+
 }

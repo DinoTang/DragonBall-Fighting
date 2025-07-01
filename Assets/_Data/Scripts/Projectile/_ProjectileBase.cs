@@ -21,15 +21,17 @@ public class _ProjectileBase : PoolObj
     public override void Init(CharacterCtrl owner)
     {
         this.owner = owner;
-        if (owner.transform.localScale.x == -1)
+
+        if (owner.transform.localScale.x < 0)
         {
             this.direction = Vector2.left;
-            this.model.transform.localScale = new Vector3(-1, 1, 1) * this.model.Size;
+            FlipModelX(true);
         }
         else
         {
             this.direction = Vector2.right;
-            this.model.transform.localScale = new Vector3(1, 1, 1) * this.model.Size;
+            FlipModelX(false);
         }
     }
+
 }

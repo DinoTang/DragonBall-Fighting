@@ -10,6 +10,11 @@ public class BasicProjectile : _ProjectileBase
     {
         return this.characterSelector.GetName();
     }
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        this.LoadCharSelector();
+    }
     protected void LoadCharSelector()
     {
         if (this.characterSelector != null) return;

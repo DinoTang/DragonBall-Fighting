@@ -6,7 +6,7 @@ public class ExplosionFXSpawner : Spawner<ExplosionFX>
 {
     protected static ExplosionFXSpawner instance;
     public static ExplosionFXSpawner Instance => instance;
-    public static string efx_DefaultName = "Default_Explosion";
+    public static string efx_DefaultName = "Default";
     protected override void Awake()
     {
         base.Awake();

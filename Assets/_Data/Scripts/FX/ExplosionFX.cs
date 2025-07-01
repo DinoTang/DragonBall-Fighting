@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ExplosionFX : PoolObj
 {
-    [SerializeField] protected string EFX_Name = "Default_Explosion";
+    [SerializeField] protected ExplosionFXEnum EFX_Name;
     public override string GetName()
     {
-        return this.EFX_Name;
+        return this.EFX_Name.ToString();
     }
 }

@@ -8,7 +8,7 @@ public class SkillProjDamageSender : DamageSender
     {
         base.LoadComponent();
         this.LoadSkillProjCtrl();
-        this.damage = this.skillProjCtrl.ShotSkillData.damage;
+        this.damage = this.skillProjCtrl.SkillData.damage;
     }
     protected void LoadSkillProjCtrl()
     {
@@ -33,7 +33,7 @@ public class SkillProjDamageSender : DamageSender
     protected override void OnHitExplosionFX(Transform target)
     {
         base.OnHitExplosionFX(target);
-        string explosionFXName = this.skillProjCtrl.ShotSkillData.fxName;
+        string explosionFXName = this.skillProjCtrl.SkillData.damageFxName.ToString();
         this.SpawnHitExplosionFX(explosionFXName, target);
     }
 }

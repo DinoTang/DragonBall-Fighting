@@ -10,8 +10,8 @@ public class SkillProjCtrl : DinoBehaviour
     public SkillProjSpawner SkillProjSpawner => skillProjSpawner;
     [SerializeField] protected SkillProjDespawn skillProjDespawn;
     public SkillProjDespawn SkillProjDespawn => skillProjDespawn;
-    [SerializeField] protected SkillDataSO shotSkillData;
-    public SkillDataSO ShotSkillData => shotSkillData;
+    [SerializeField] protected SkillDataSO skillData;
+    public SkillDataSO SkillData => skillData;
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -45,11 +45,11 @@ public class SkillProjCtrl : DinoBehaviour
     }
     protected void LoadSkillProjectileData()
     {
-        if (this.shotSkillData != null) return;
+        if (this.skillData != null) return;
         int index_SkillSlot = (int)this.skillProj.SkillSlot - 1;
         if (index_SkillSlot < 0 || index_SkillSlot >= this.skillProjSpawner.SkillList.Count) return;
 
-        this.shotSkillData = this.skillProjSpawner.SkillList[index_SkillSlot];
+        this.skillData = this.skillProjSpawner.SkillList[index_SkillSlot];
         Debug.Log(transform.name + ": LoadSkillProjectileData", gameObject);
     }
 

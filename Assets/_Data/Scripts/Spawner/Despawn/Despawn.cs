@@ -8,6 +8,7 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
     [SerializeField] protected Spawner<T> spawner;
     [SerializeField] protected float lifeTime = 5f;
     [SerializeField] protected float currentTime;
+    [SerializeField] protected bool isNeedDespawn = true;
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -17,6 +18,7 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
     }
     protected void Update()
     {
+        if (!this.isNeedDespawn) return;
         this.DespawnByTime();
     }
     public void ResetCurrentTime()

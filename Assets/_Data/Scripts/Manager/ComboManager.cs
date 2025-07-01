@@ -7,6 +7,10 @@ public class ComboManager : DinoBehaviour
     [SerializeField] protected InputBuffer inputBuffer;
     [SerializeField] protected string combo = "";
     [SerializeField] protected float distanceTele = 10;
+    [SerializeField] protected SkillSlot skill_1;
+    [SerializeField] protected SkillSlot skill_2;
+    [SerializeField] protected SkillSlot skill_3;
+    [SerializeField] protected string currentSkill = "";
     protected void Update()
     {
         if (InputManager.Instance.GetDownInput()) this.inputBuffer.AddInput(InputKey.Down);
@@ -29,6 +33,7 @@ public class ComboManager : DinoBehaviour
         // }
         this.TeleCombo();
         this.SkillOneCombo();
+        this.SkillTwoCombo();
     }
 
     protected void SpawnEffectWhenTele()
@@ -62,16 +67,31 @@ public class ComboManager : DinoBehaviour
             this.inputBuffer.ClearCombo();
         }
     }
+    protected void PlayingCurrentSkill()
+    {
+        this.characterCtrl.SkillManager.TryUseSkill(this.currentSkill);
+    }
+    protected void HandleSkillCombo(string expectedCombo, int expectedScale, SkillSlot skill)
+    {
+        if (this.combo == expectedCombo && this.characterCtrl.transform.localScale.x == expectedScale)
+        {
+            this.currentSkill = skill.ToString();
+            this.PlayingCurrentSkill();
+            this.inputBuffer.ClearCombo(); // Nếu muốn reset luôn combo
+        }
+    }
 
     protected void SkillOneCombo()
     {
-        if (this.combo == "Right+Skill")
-        {
-            if (this.characterCtrl.transform.localScale.x == 1) this.characterCtrl.SkillManager.TryUseSkill("Big Bang Attack");
-        }
-        else if(this.combo == "Left+Skill")
-        {
-            if (this.characterCtrl.transform.localScale.x == -1) this.characterCtrl.SkillManager.TryUseSkill("Big Bang Attack");
-        }
+        HandleSkillCombo("Right+Skill", 1, this.skill_1);
+        HandleSkillCombo("Left+Skill", -1, this.skill_1);
     }
+
+    protected void SkillTwoCombo()
+    {
+        this.characterCtrl.Animator.SetBool("IsBeaming", true);
+        HandleSkillCombo("Right+Skill", -1, this.skill_2);
+        HandleSkillCombo("Left+Skill", 1, this.skill_2);
+    }
+
 }

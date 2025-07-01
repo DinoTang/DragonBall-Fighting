@@ -7,6 +7,19 @@ public class SkillProjectile : _ProjectileBase
     [Header("Skill Projectile")]
     [SerializeField] protected SkillSlot skillSlot;
     public SkillSlot SkillSlot => skillSlot;
+    [SerializeField] protected SkillProjCtrl skillProjCtrl;
+    // [SerializeField] protected float duration
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        this.LoadSkillProjCtrl();
+    }
+    protected void LoadSkillProjCtrl()
+    {
+        if (this.skillProjCtrl != null) return;
+        this.skillProjCtrl = GetComponent<SkillProjCtrl>();
+        Debug.Log(transform.name + ": LoadSkillProjCtrl");
+    }
     public override string GetName()
     {
         return this.skillSlot.ToString();

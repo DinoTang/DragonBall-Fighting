@@ -12,7 +12,7 @@ public class SkillManager : CharacterAbstract
     protected override void Awake()
     {
         base.Awake();
-        this.skillDict = this.skillList.ToDictionary(s => s.skillName, s => s);
+        this.skillDict = this.skillList.ToDictionary(s => s.skillName.ToString(), s => s);
     }
     protected override void LoadComponent()
     {

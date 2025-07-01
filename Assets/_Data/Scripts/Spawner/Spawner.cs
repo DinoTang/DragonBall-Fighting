@@ -51,13 +51,15 @@ public abstract class Spawner<T> : DinoBehaviour where T : PoolObj
     }
     public virtual T Spawn(T prefab, Vector2 pos, CharacterCtrl owner = null)
     {
-        T new_Obj = Spawn(prefab, owner);
+        T new_Obj = Spawn(prefab);
         new_Obj.transform.position = pos;
-        new_Obj.gameObject.SetActive(true);
         new_Obj.transform.parent = this.poolHolder.transform;
+        new_Obj.gameObject.SetActive(true);
+        if (owner != null) new_Obj.Init(owner);
         return new_Obj;
     }
-    public virtual T Spawn(T prefab, CharacterCtrl owner = null)
+
+    public virtual T Spawn(T prefab)
     {
         T new_Obj = this.GetObjFromPool(prefab);
         if (new_Obj == null)
@@ -66,9 +68,9 @@ public abstract class Spawner<T> : DinoBehaviour where T : PoolObj
             new_Obj = Instantiate(prefab);
             this.UpdateName(prefab.transform, new_Obj.transform);
         }
-        if (owner != null) new_Obj.Init(owner);
         return new_Obj;
     }
+
     protected virtual T GetPrefabByName(string prefabName)
     {
         foreach (T child in this.prefabs)
