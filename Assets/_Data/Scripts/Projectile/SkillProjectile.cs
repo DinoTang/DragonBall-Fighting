@@ -8,7 +8,6 @@ public class SkillProjectile : _ProjectileBase
     [SerializeField] protected SkillSlot skillSlot;
     public SkillSlot SkillSlot => skillSlot;
     [SerializeField] protected SkillProjCtrl skillProjCtrl;
-    // [SerializeField] protected float duration
     protected override void LoadComponent()
     {
         base.LoadComponent();

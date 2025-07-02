@@ -12,11 +12,6 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
     [SerializeField] protected List<SkillDataSO> skillList;
     public List<SkillDataSO> SkillList => skillList;
 
-    [Header("Beam Skill Settings")]
-    [SerializeField] private float beamSpawnInterval = 0.01f;
-    [SerializeField] private int beamMaxParts = 5;
-    [SerializeField] private float beamPartLength = 4.68f;
-
     protected override void Awake()
     {
         base.Awake();
@@ -84,19 +79,19 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         if (beamPrefab.BeamHead != null)
         {
             Spawn(beamPrefab.BeamHead, pos, owner);
-            pos += dir * beamPartLength;
-            yield return new WaitForSeconds(beamSpawnInterval);
+            pos += dir * beamPrefab.BeamPartLength;
+            yield return new WaitForSeconds(beamPrefab.BeamSpawnInterval);
         }
 
         // === BODY ===
         int spawned = 0;
-        while (spawned < beamMaxParts)
+        while (spawned < beamPrefab.BeamMaxParts)
         {
             Spawn(beamPrefab, pos, owner);
-            pos += dir * beamPartLength;
+            pos += dir * beamPrefab.BeamPartLength;
             spawned++;
 
-            yield return new WaitForSeconds(beamSpawnInterval);
+            yield return new WaitForSeconds(beamPrefab.BeamSpawnInterval);
         }
 
         // === TAIL ===

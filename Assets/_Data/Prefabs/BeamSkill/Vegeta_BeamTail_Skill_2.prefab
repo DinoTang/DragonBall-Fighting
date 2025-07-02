@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb172df2cf7758469ba0dc4fc617df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
+  parent: {fileID: 192431593083354022}
   spawner: {fileID: 0}
   lifeTime: 5
   currentTime: 5
@@ -184,7 +184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5043255602212777399
 Transform:
   m_ObjectHideFlags: 0
@@ -222,3 +222,4 @@ MonoBehaviour:
   skillProjCtrl: {fileID: 0}
   beamHead: {fileID: 5637645638635903300, guid: fb7b93b8f6a1d7545980f657ad17d283, type: 3}
   beamTail: {fileID: 192431593083354022}
+  beamDuration: 5

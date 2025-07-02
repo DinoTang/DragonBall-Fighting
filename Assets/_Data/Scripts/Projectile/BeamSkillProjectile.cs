@@ -5,18 +5,30 @@ using UnityEngine;
 
 public class BeamSkillProjectile : SkillProjectile
 {
+    [Header("Beam Skill Settings")]
     [SerializeField] protected BeamSkillProjectile beamHead;
     public BeamSkillProjectile BeamHead => beamHead;
     [SerializeField] protected BeamSkillProjectile beamTail;
     public BeamSkillProjectile BeamTail => beamTail;
+    [SerializeField] private float beamSpawnInterval = 0.01f;
+    [SerializeField] private int beamMaxParts = 5;
+    [SerializeField] private float beamPartLength = 4.68f;
     [SerializeField] protected float beamDuration;
+    public float BeamSpawnInterval => beamSpawnInterval;
+    public int BeamMaxParts => beamMaxParts;
+    public float BeamPartLength => beamPartLength;
     public float BeamDuration => beamDuration;
     protected override void LoadComponent()
     {
         base.LoadComponent();
+        if (!this.skillProjCtrl)
+        {
+            Debug.Log("Đây là obj beam head hoặc tail nên ko cần set skillProjCtrl");
+            return;
+        }
         this.LoadBeamHead();
         this.LoadBeamTail();
-        this.LoadDurantionBeam();
+        this.LoadBeamSettings();
     }
 
     protected new void Update() { }
@@ -34,10 +46,13 @@ public class BeamSkillProjectile : SkillProjectile
         this.beamTail = beamData.beamTail.GetComponent<BeamSkillProjectile>();
         Debug.Log(transform.name + ": LoadBeamTail");
     }
-    protected void LoadDurantionBeam()
+    protected void LoadBeamSettings()
     {
         BeamSkillDataSO beamData = this.skillProjCtrl.SkillData as BeamSkillDataSO;
+        this.beamSpawnInterval = beamData.beamSpawnInterval;
+        this.beamMaxParts = beamData.beamMaxParts;
+        this.beamPartLength = beamData.beamPartLength;
         this.beamDuration = beamData.beamDuration;
-        Debug.Log(transform.name + ": LoadDurantionBeam");
+        Debug.Log(transform.name + ": LoadBeamSettings");
     }
 }

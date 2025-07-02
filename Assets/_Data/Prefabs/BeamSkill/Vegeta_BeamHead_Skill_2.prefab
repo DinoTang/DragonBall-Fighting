@@ -65,7 +65,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4271623868461415811
 Transform:
   m_ObjectHideFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   skillProjCtrl: {fileID: 0}
   beamHead: {fileID: 5637645638635903300}
   beamTail: {fileID: 192431593083354022, guid: 0de20fc0a975d7247bdba607df03b942, type: 3}
+  beamDuration: 5
 --- !u!1 &9103381394256539444
 GameObject:
   m_ObjectHideFlags: 0
