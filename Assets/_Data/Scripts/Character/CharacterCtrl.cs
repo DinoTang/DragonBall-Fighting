@@ -19,19 +19,23 @@ public class CharacterCtrl : DinoBehaviour
     public CharacterIntro CharacterIntro => characterIntro;
     [SerializeField] protected CharacterFlip characterFlip;
     public CharacterFlip CharacterFlip => characterFlip;
+    [SerializeField] protected CharacterAnimEvent characterAnimEvent;
+    public CharacterAnimEvent CharacterAnimEvent => characterAnimEvent;
     [SerializeField] protected CharacterDamageSender characterDamageSender;
     public CharacterDamageSender CharacterDamageSender => characterDamageSender;
     [SerializeField] protected CharacterDamageReceiver characterDamageReceiver;
     public CharacterDamageReceiver CharacterDamageReceiver => characterDamageReceiver;
+    [SerializeField] protected CharacterCombo characterCombo;
+    public CharacterCombo CharacterCombo => characterCombo;
     [SerializeField] protected KiCharge kiCharge;
     [SerializeField] protected FirePoint firePoint;
     public FirePoint FirePoint => firePoint;
 
     [Header("Ki System")]
-    [SerializeField] protected KiManager kiManager;
-    public KiManager KiManager => kiManager;
-    [SerializeField] protected SkillManager skillManager;
-    public SkillManager SkillManager => skillManager;
+    [SerializeField] protected CharacterKiManager characterKiManager;
+    public CharacterKiManager CharacterKiManager => characterKiManager;
+    [SerializeField] protected CharacterSkillManager characterSkillManager;
+    public CharacterSkillManager CharacterSkillManager => characterSkillManager;
     public bool IsGround { get; set; }
     protected override void LoadComponent()
     {
@@ -42,12 +46,14 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadCharacterData();
         this.LoadCharacterIntro();
         this.LoadCharacterFlip();
+        this.LoadCharacterAnimEvent();
+        this.LoadCharacterCombo();
         this.LoadDamageSender();
         this.LoadDamageReceiver();
         this.LoadKiCharge();
         this.LoadFirePoint();
-        this.LoadKiManager();
-        this.LoadSkillManager();
+        this.LoadCharacterKiManager();
+        this.LoadCharacterSkillManager();
     }
     protected void LoadRigidbody()
     {
@@ -85,6 +91,18 @@ public class CharacterCtrl : DinoBehaviour
         this.characterFlip = GetComponentInChildren<CharacterFlip>();
         Debug.Log(transform.name + ": LoadCharacterFlip", gameObject);
     }
+    protected void LoadCharacterAnimEvent()
+    {
+        if (this.characterAnimEvent != null) return;
+        this.characterAnimEvent = GetComponentInChildren<CharacterAnimEvent>();
+        Debug.Log(transform.name + ": LoadCharacterAnimEvent", gameObject);
+    }
+    protected void LoadCharacterCombo()
+    {
+        if (this.characterCombo != null) return;
+        this.characterCombo = GetComponentInChildren<CharacterCombo>();
+        Debug.Log(transform.name + ": LoadCharacterCombo", gameObject);
+    }
     protected void LoadDamageSender()
     {
         if (this.characterDamageSender != null) return;
@@ -111,18 +129,18 @@ public class CharacterCtrl : DinoBehaviour
         Debug.Log(transform.name + ": loadFirePoint", gameObject);
 
     }
-    protected void LoadKiManager()
+    protected void LoadCharacterKiManager()
     {
-        if (this.kiManager != null) return;
-        this.kiManager = GetComponentInChildren<KiManager>();
-        Debug.Log(transform.name + ": LoadKiManager", gameObject);
+        if (this.characterKiManager != null) return;
+        this.characterKiManager = GetComponentInChildren<CharacterKiManager>();
+        Debug.Log(transform.name + ": LoadCharacterKiManager", gameObject);
 
     }
-    protected void LoadSkillManager()
+    protected void LoadCharacterSkillManager()
     {
-        if (this.skillManager != null) return;
-        this.skillManager = GetComponentInChildren<SkillManager>();
-        Debug.Log(transform.name + ": LoadSkillManager", gameObject);
+        if (this.characterSkillManager != null) return;
+        this.characterSkillManager = GetComponentInChildren<CharacterSkillManager>();
+        Debug.Log(transform.name + ": LoadCharacterSkillManager", gameObject);
     }
     protected void OnCollisionEnter2D(Collision2D collision)
     {

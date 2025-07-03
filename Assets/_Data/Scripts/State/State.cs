@@ -17,13 +17,13 @@ public abstract class State
 
     public virtual void OnUpdate()
     {
-        Timed += UnityEngine.Time.deltaTime;
-        // Debug.Log(this.stateManager.CurrentState);
+        this.Timed += UnityEngine.Time.deltaTime;
+        Debug.Log(this.Timed + ": " + this.stateManager.CurrentState);
     }
 
     public virtual void OnFixedUpdate()
     {
-        Fixedtime += UnityEngine.Time.deltaTime;
+        this.Fixedtime += UnityEngine.Time.deltaTime;
     }
     // public virtual void OnLateUpdate()
     // {

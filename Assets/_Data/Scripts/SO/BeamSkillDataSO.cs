@@ -8,5 +8,4 @@ public class BeamSkillDataSO : SkillDataSO
     public float beamSpawnInterval;
     public int beamMaxParts;
     public float beamPartLength;
-    public float beamDuration = 2.0f;
 }

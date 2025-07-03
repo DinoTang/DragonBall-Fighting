@@ -7,6 +7,7 @@ public class IdleCombatState : State
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
+        this.stateManager.mainStateType = new IdleCombatState();
         this.animator.SetBool("IsIdle", true);
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.stateManager.CharacterCtrl.Rgb.velocity.y);
     }

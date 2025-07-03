@@ -6,7 +6,15 @@ public class CharacterAnimEvent : CharacterAbstract
     private readonly float skillSpawnOffsetX = 2.5f;
     protected void EnableHitbox() => this.characterCtrl.CharacterDamageSender.EnableCollider();
     protected void DisableHitbox() => this.characterCtrl.CharacterDamageSender.DisableCollider();
-
+    public void StopCharacterActions()
+    {
+        this.characterCtrl.Rgb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+    public void EnableCharacterActions()
+    {
+        this.characterCtrl.Rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        this.characterCtrl.Rgb.WakeUp();
+    }
     protected void EnableSpawnBasicProjectile()
     {
         Vector2 pos = this.characterCtrl.FirePoint.transform.position;

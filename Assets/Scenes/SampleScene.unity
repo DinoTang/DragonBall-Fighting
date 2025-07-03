@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 70508546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: KiChargeFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 78084096}
   - component: {fileID: 78084097}
   - component: {fileID: 78084099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DamageReceiver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 128252244}
   - component: {fileID: 128252246}
   - component: {fileID: 128252243}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Modal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1160,7 @@ GameObject:
   - component: {fileID: 291911164}
   - component: {fileID: 291911166}
   - component: {fileID: 291911165}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1424,7 +1424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 345241790}
   - component: {fileID: 345241791}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InputBuffer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1523,7 +1523,7 @@ GameObject:
   - component: {fileID: 359469048}
   - component: {fileID: 359469047}
   - component: {fileID: 359469052}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VegetaClone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1729,7 +1729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 389621497}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackPoint_0
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -1964,7 +1964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 441707342}
   - component: {fileID: 441707343}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ComboManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2064,9 +2064,6 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 52d6dd39fe7a5f6409ae45ef92aa3753, type: 2}
   - {fileID: 11400000, guid: 7ea101e55c4299f4fa8bc07a012ad137, type: 2}
-  beamSpawnInterval: 0.01
-  beamMaxParts: 4
-  beamPartLength: 4
 --- !u!114 &452791414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2224,7 +2221,7 @@ GameObject:
   - component: {fileID: 470561085}
   - component: {fileID: 470561084}
   - component: {fileID: 470561086}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DamageSender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2274,9 +2271,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470561082}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.3100004, y: -0.58000004, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 359469051}
@@ -2579,7 +2576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 609928338}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: KiCharge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2613,7 +2610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 614028125}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: KiChargeGroundSmokeFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2751,7 +2748,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 620348536}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackPointsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3383,7 +3380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 930555694}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackPoint_3
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -4498,7 +4495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1242520248}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackPoint_1
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -5125,7 +5122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1551516186}
   - component: {fileID: 1551516187}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flipping
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5509,6 +5506,9 @@ MonoBehaviour:
   skillProjCtrl: {fileID: 1709642216}
   beamHead: {fileID: 5637645638635903300, guid: fb7b93b8f6a1d7545980f657ad17d283, type: 3}
   beamTail: {fileID: 192431593083354022, guid: 0de20fc0a975d7247bdba607df03b942, type: 3}
+  beamSpawnInterval: 0.01
+  beamMaxParts: 4
+  beamPartLength: 4
   beamDuration: 5
 --- !u!1 &1714476828
 GameObject:
@@ -5555,7 +5555,7 @@ GameObject:
   - component: {fileID: 1716261794}
   - component: {fileID: 1716261796}
   - component: {fileID: 1716261795}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5882,7 +5882,7 @@ GameObject:
   - component: {fileID: 1792953782}
   - component: {fileID: 1792953784}
   - component: {fileID: 1792953783}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6361,7 +6361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1820953247}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: KiChargeSmokeFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6942,7 +6942,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973996412}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackPoint_2
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}

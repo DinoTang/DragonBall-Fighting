@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ComboManager : DinoBehaviour
+public class CharacterCombo : DinoBehaviour
 {
     [SerializeField] protected CharacterCtrl characterCtrl;
     [SerializeField] protected InputBuffer inputBuffer;
@@ -35,7 +35,10 @@ public class ComboManager : DinoBehaviour
         this.SkillOneCombo();
         this.SkillTwoCombo();
     }
-
+    public void ClearCurrentSkill()
+    {
+        this.currentSkill = "";
+    }
     protected void SpawnEffectWhenTele()
     {
         TeleFX_Spawner.Instance.Spawn(TeleFX_Spawner.Instance.nameFX, this.characterCtrl.transform.position);
@@ -48,6 +51,7 @@ public class ComboManager : DinoBehaviour
     }
     protected void TeleCombo()
     {
+        if (this.currentSkill != "") return;
         if (this.combo == "Left+Left")
         {
             this.SpawnEffectWhenTele();
@@ -67,28 +71,31 @@ public class ComboManager : DinoBehaviour
             this.inputBuffer.ClearCombo();
         }
     }
-    protected void PlayingCurrentSkill()
+    protected bool PlayingCurrentSkill(SkillSlot skill)
     {
-        this.characterCtrl.SkillManager.TryUseSkill(this.currentSkill);
+        if (!this.characterCtrl.CharacterSkillManager.TryUseSkill(skill.ToString())) return false;
+        this.characterCtrl.StateManager.SetNextState(new SkillState());
+        return true;
     }
     protected void HandleSkillCombo(string expectedCombo, int expectedScale, SkillSlot skill)
     {
         if (this.combo == expectedCombo && this.characterCtrl.transform.localScale.x == expectedScale)
         {
-            this.currentSkill = skill.ToString();
-            this.PlayingCurrentSkill();
-            this.inputBuffer.ClearCombo(); // Nếu muốn reset luôn combo
+            this.currentSkill = this.PlayingCurrentSkill(skill) ? skill.ToString() : "";
+            this.inputBuffer.ClearCombo();
         }
     }
 
     protected void SkillOneCombo()
     {
+        if (this.currentSkill != "") return;
         HandleSkillCombo("Right+Skill", 1, this.skill_1);
         HandleSkillCombo("Left+Skill", -1, this.skill_1);
     }
 
     protected void SkillTwoCombo()
     {
+        if (this.currentSkill != "") return;
         this.characterCtrl.Animator.SetBool("IsBeaming", true);
         HandleSkillCombo("Right+Skill", -1, this.skill_2);
         HandleSkillCombo("Left+Skill", 1, this.skill_2);

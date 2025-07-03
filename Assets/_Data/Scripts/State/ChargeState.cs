@@ -18,7 +18,7 @@ public class ChargeState : State
         // Spawn Smoke Effect 
         this.stateManager.CharacterCtrl.EnableSmokeEffect();
 
-        this.stateManager.CharacterCtrl.KiManager.ChargeKi();
+        this.stateManager.CharacterCtrl.CharacterKiManager.ChargeKi();
     }
     public override void OnExit()
     {

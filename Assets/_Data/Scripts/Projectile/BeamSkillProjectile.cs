@@ -52,7 +52,7 @@ public class BeamSkillProjectile : SkillProjectile
         this.beamSpawnInterval = beamData.beamSpawnInterval;
         this.beamMaxParts = beamData.beamMaxParts;
         this.beamPartLength = beamData.beamPartLength;
-        this.beamDuration = beamData.beamDuration;
+        this.beamDuration = beamData.duration;
         Debug.Log(transform.name + ": LoadBeamSettings");
     }
 }

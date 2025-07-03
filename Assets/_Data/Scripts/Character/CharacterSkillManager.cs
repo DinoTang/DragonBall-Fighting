@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SkillManager : CharacterAbstract
+public class CharacterSkillManager : CharacterAbstract
 {
     [Header("Skill Manager")]
     [SerializeField] protected List<SkillDataSO> skillList;
@@ -44,14 +44,14 @@ public class SkillManager : CharacterAbstract
             return false;
         }
 
-        if (!this.characterCtrl.KiManager.CanUseSkill(skill.kiCost))
+        if (!this.characterCtrl.CharacterKiManager.CanUseSkill(skill.kiCost))
         {
             // Debug.Log("No enough ki to use skill");
             return false;
         }
-        
+
         this.characterCtrl.Animator.Play(skill.animation.name);
-        this.characterCtrl.KiManager.ConsumeKi(skill.kiCost);
+        this.characterCtrl.CharacterKiManager.ConsumeKi(skill.kiCost);
         cooldowns[skillName] = Time.time + skill.cooldown;
         return true;
     }

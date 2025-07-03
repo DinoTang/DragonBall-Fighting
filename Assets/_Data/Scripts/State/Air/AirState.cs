@@ -7,6 +7,7 @@ public class AirState : BaseAirState
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
+        this.stateManager.mainStateType = new AirState();
         this.animator.SetBool("IsJump", true);
     }
     public override void OnUpdate()
