@@ -872,9 +872,6 @@ MonoBehaviour:
   inputBuffer: {fileID: 1224640670}
   combo: 
   distanceTele: 10
-  skill_1: 1
-  skill_2: 2
-  skill_3: 3
   currentSkill: 
 --- !u!4 &188798269
 Transform:
@@ -1549,12 +1546,14 @@ MonoBehaviour:
   characterData: {fileID: 0}
   characterIntro: {fileID: 128252243}
   characterFlip: {fileID: 1551516187}
+  characterAnimEvent: {fileID: 0}
   characterDamageSender: {fileID: 470561086}
   characterDamageReceiver: {fileID: 78084099}
+  characterCombo: {fileID: 0}
   kiCharge: {fileID: 0}
   firePoint: {fileID: 1327183334}
-  kiManager: {fileID: 0}
-  skillManager: {fileID: 0}
+  characterKiManager: {fileID: 0}
+  characterSkillManager: {fileID: 0}
 --- !u!114 &359469048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2002,9 +2001,6 @@ MonoBehaviour:
   inputBuffer: {fileID: 345241791}
   combo: 
   distanceTele: 10
-  skill_1: 0
-  skill_2: 0
-  skill_3: 0
   currentSkill: 
 --- !u!1 &452791411
 GameObject:
@@ -3052,12 +3048,14 @@ MonoBehaviour:
   characterData: {fileID: 1791492195}
   characterIntro: {fileID: 1864161641}
   characterFlip: {fileID: 533628452}
+  characterAnimEvent: {fileID: 0}
   characterDamageSender: {fileID: 986110741}
   characterDamageReceiver: {fileID: 1290374236}
+  characterCombo: {fileID: 0}
   kiCharge: {fileID: 1230360322}
   firePoint: {fileID: 1327183334}
-  kiManager: {fileID: 584261297}
-  skillManager: {fileID: 1221265639}
+  characterKiManager: {fileID: 0}
+  characterSkillManager: {fileID: 0}
 --- !u!114 &751414179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4305,8 +4303,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterCtrl: {fileID: 751414178}
   skillList:
-  - {fileID: 11400000, guid: 52d6dd39fe7a5f6409ae45ef92aa3753, type: 2}
-  - {fileID: 11400000, guid: 7ea101e55c4299f4fa8bc07a012ad137, type: 2}
+  - skillData: {fileID: 11400000, guid: 52d6dd39fe7a5f6409ae45ef92aa3753, type: 2}
+    cooldown: 0
+  - skillData: {fileID: 11400000, guid: 7ea101e55c4299f4fa8bc07a012ad137, type: 2}
+    cooldown: 0
+  currentSkill: {fileID: 0}
 --- !u!4 &1221265640
 Transform:
   m_ObjectHideFlags: 0
@@ -4423,6 +4424,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   skillSlot: 1
   skillProjCtrl: {fileID: 1228031768}
+  skillDuration: 5
 --- !u!114 &1228031768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5063,7 +5065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 1684830731}
-  speed: 20
+  speed: 50
   direction: {x: 0, y: 0}
   owner: {fileID: 0}
   characterSelector: {fileID: 1522682347}
@@ -5504,12 +5506,12 @@ MonoBehaviour:
   owner: {fileID: 0}
   skillSlot: 2
   skillProjCtrl: {fileID: 1709642216}
+  skillDuration: 5
   beamHead: {fileID: 5637645638635903300, guid: fb7b93b8f6a1d7545980f657ad17d283, type: 3}
   beamTail: {fileID: 192431593083354022, guid: 0de20fc0a975d7247bdba607df03b942, type: 3}
   beamSpawnInterval: 0.01
   beamMaxParts: 4
   beamPartLength: 4
-  beamDuration: 5
 --- !u!1 &1714476828
 GameObject:
   m_ObjectHideFlags: 0
@@ -6035,12 +6037,14 @@ MonoBehaviour:
   characterData: {fileID: 0}
   characterIntro: {fileID: 1025743600}
   characterFlip: {fileID: 0}
+  characterAnimEvent: {fileID: 0}
   characterDamageSender: {fileID: 0}
   characterDamageReceiver: {fileID: 0}
+  characterCombo: {fileID: 0}
   kiCharge: {fileID: 0}
   firePoint: {fileID: 1840796997}
-  kiManager: {fileID: 0}
-  skillManager: {fileID: 0}
+  characterKiManager: {fileID: 0}
+  characterSkillManager: {fileID: 0}
 --- !u!50 &1795711759
 Rigidbody2D:
   serializedVersion: 4

@@ -18,7 +18,7 @@ public abstract class State
     public virtual void OnUpdate()
     {
         this.Timed += UnityEngine.Time.deltaTime;
-        Debug.Log(this.Timed + ": " + this.stateManager.CurrentState);
+        // Debug.Log(this.Timed + ": " + this.stateManager.CurrentState);
     }
 
     public virtual void OnFixedUpdate()

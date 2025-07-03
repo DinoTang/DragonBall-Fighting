@@ -101,9 +101,12 @@ MonoBehaviour:
   owner: {fileID: 0}
   skillSlot: 2
   skillProjCtrl: {fileID: 0}
+  skillDuration: 5
   beamHead: {fileID: 5637645638635903300}
   beamTail: {fileID: 192431593083354022, guid: 0de20fc0a975d7247bdba607df03b942, type: 3}
-  beamDuration: 5
+  beamSpawnInterval: 0.01
+  beamMaxParts: 5
+  beamPartLength: 4.68
 --- !u!1 &9103381394256539444
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +136,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 3, z: 3}
+  m_LocalScale: {x: 4, y: 3.1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4271623868461415811}

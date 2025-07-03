@@ -101,7 +101,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         {
             Spawn(beamPrefab.BeamTail, tailPos, owner);
         }
-        yield return new WaitForSeconds(beamPrefab.BeamDuration);
+        yield return new WaitForSeconds(beamPrefab.SKillDuration);
         owner.Animator.SetBool("IsBeaming", false);
     }
 }

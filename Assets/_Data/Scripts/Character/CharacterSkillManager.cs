@@ -1,58 +1,74 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class CharacterSkillManager : CharacterAbstract
 {
-    [Header("Skill Manager")]
-    [SerializeField] protected List<SkillDataSO> skillList;
-    private Dictionary<string, SkillDataSO> skillDict;
-    private Dictionary<string, float> cooldowns = new();
-    protected override void Awake()
-    {
-        base.Awake();
-        this.skillDict = this.skillList.ToDictionary(s => s.skillName.ToString(), s => s);
-    }
+    [SerializeField] protected List<SkillWithCooldown> skillList = new();
+    [SerializeField] protected SkillDataSO currentSkill;
+    public SkillDataSO CurrentSkill { get => currentSkill; set => currentSkill = value; }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.LoadSkillListSO();
+        LoadSkillListSO();
     }
 
     protected void LoadSkillListSO()
     {
-        if (this.skillList.Count > 0) return;
-        SkillDataSO[] skillDataSO = Resources.LoadAll<SkillDataSO>("SkillData/Vegeta");
-        skillList.AddRange(skillDataSO);
-        Debug.Log(transform.name + ": LoadSkillListSO", gameObject);
+        if (skillList.Count > 0) return;
+
+        SkillDataSO[] loadedSkills = Resources.LoadAll<SkillDataSO>("SkillData/Vegeta");
+        foreach (var skillData in loadedSkills)
+        {
+            skillList.Add(new SkillWithCooldown
+            {
+                skillData = skillData,
+                cooldown = 0f
+            });
+        }
+
+        Debug.Log($"{transform.name}: LoadSkillListSO", gameObject);
     }
 
-    public bool TryUseSkill(string skillName)
+    protected SkillWithCooldown GetSkill(SkillSlot slot)
     {
-        if (!skillDict.ContainsKey(skillName))
+        return skillList.Find(s => s.skillData.skillName == slot);
+    }
+
+    public bool TryUseSkill(SkillSlot slot)
+    {
+        SkillWithCooldown skill = GetSkill(slot);
+        if (skill == null || skill.IsOnCooldown)
         {
-            Debug.Log("No have [" + skillName + "] in skillList");
+            Debug.Log($"Skill {slot} đang hồi chiêu");
             return false;
         }
 
-        SkillDataSO skill = skillDict[skillName];
-
-        if (cooldowns.ContainsKey(skillName) && Time.time < cooldowns[skillName])
+        if (!characterCtrl.CharacterKiManager.CanUseSkill(skill.skillData.kiCost))
         {
-            // Debug.Log("Chiêu chưa hồi!");
+            Debug.Log("Không đủ ki");
             return false;
         }
 
-        if (!this.characterCtrl.CharacterKiManager.CanUseSkill(skill.kiCost))
-        {
-            // Debug.Log("No enough ki to use skill");
-            return false;
-        }
+        currentSkill = skill.skillData;
+        characterCtrl.Animator.Play(currentSkill.animationClip.name);
+        characterCtrl.CharacterKiManager.ConsumeKi(currentSkill.kiCost);
 
-        this.characterCtrl.Animator.Play(skill.animation.name);
-        this.characterCtrl.CharacterKiManager.ConsumeKi(skill.kiCost);
-        cooldowns[skillName] = Time.time + skill.cooldown;
         return true;
+    }
+
+    public void StartCooldownFor(SkillSlot slot)
+    {
+        SkillWithCooldown skill = GetSkill(slot);
+        if (skill != null) skill.StartCooldown();
+    }
+
+    protected void Update()
+    {
+        float dt = Time.deltaTime;
+        foreach (var skill in skillList)
+        {
+            skill.UpdateCooldown(dt);
+        }
     }
 }

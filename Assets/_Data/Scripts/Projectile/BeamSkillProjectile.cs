@@ -13,11 +13,9 @@ public class BeamSkillProjectile : SkillProjectile
     [SerializeField] private float beamSpawnInterval = 0.01f;
     [SerializeField] private int beamMaxParts = 5;
     [SerializeField] private float beamPartLength = 4.68f;
-    [SerializeField] protected float beamDuration;
     public float BeamSpawnInterval => beamSpawnInterval;
     public int BeamMaxParts => beamMaxParts;
     public float BeamPartLength => beamPartLength;
-    public float BeamDuration => beamDuration;
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -52,7 +50,6 @@ public class BeamSkillProjectile : SkillProjectile
         this.beamSpawnInterval = beamData.beamSpawnInterval;
         this.beamMaxParts = beamData.beamMaxParts;
         this.beamPartLength = beamData.beamPartLength;
-        this.beamDuration = beamData.duration;
         Debug.Log(transform.name + ": LoadBeamSettings");
     }
 }

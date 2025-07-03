@@ -220,6 +220,9 @@ MonoBehaviour:
   owner: {fileID: 0}
   skillSlot: 2
   skillProjCtrl: {fileID: 0}
+  skillDuration: 5
   beamHead: {fileID: 5637645638635903300, guid: fb7b93b8f6a1d7545980f657ad17d283, type: 3}
   beamTail: {fileID: 192431593083354022}
-  beamDuration: 5
+  beamSpawnInterval: 0.01
+  beamMaxParts: 5
+  beamPartLength: 4.68

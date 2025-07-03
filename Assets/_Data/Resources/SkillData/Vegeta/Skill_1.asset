@@ -15,7 +15,8 @@ MonoBehaviour:
   skillName: 1
   damageFxName: 2
   kiCost: 100
-  cooldown: 3
+  cooldown: 1
   damage: 1
-  animation: {fileID: 7400000, guid: 500e2b088996580418cd42faff037225, type: 2}
+  duration: 0
+  animationClip: {fileID: 7400000, guid: 500e2b088996580418cd42faff037225, type: 2}
   sfx: {fileID: 0}

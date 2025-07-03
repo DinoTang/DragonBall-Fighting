@@ -7,10 +7,8 @@ public class CharacterCombo : DinoBehaviour
     [SerializeField] protected InputBuffer inputBuffer;
     [SerializeField] protected string combo = "";
     [SerializeField] protected float distanceTele = 10;
-    [SerializeField] protected SkillSlot skill_1;
-    [SerializeField] protected SkillSlot skill_2;
-    [SerializeField] protected SkillSlot skill_3;
     [SerializeField] protected string currentSkill = "";
+
     protected void Update()
     {
         if (InputManager.Instance.GetDownInput()) this.inputBuffer.AddInput(InputKey.Down);
@@ -73,7 +71,7 @@ public class CharacterCombo : DinoBehaviour
     }
     protected bool PlayingCurrentSkill(SkillSlot skill)
     {
-        if (!this.characterCtrl.CharacterSkillManager.TryUseSkill(skill.ToString())) return false;
+        if (!this.characterCtrl.CharacterSkillManager.TryUseSkill(skill)) return false;
         this.characterCtrl.StateManager.SetNextState(new SkillState());
         return true;
     }
@@ -89,16 +87,16 @@ public class CharacterCombo : DinoBehaviour
     protected void SkillOneCombo()
     {
         if (this.currentSkill != "") return;
-        HandleSkillCombo("Right+Skill", 1, this.skill_1);
-        HandleSkillCombo("Left+Skill", -1, this.skill_1);
+        HandleSkillCombo("Right+Skill", 1, SkillSlot.Skill_1);
+        HandleSkillCombo("Left+Skill", -1, SkillSlot.Skill_1);
     }
 
     protected void SkillTwoCombo()
     {
         if (this.currentSkill != "") return;
         this.characterCtrl.Animator.SetBool("IsBeaming", true);
-        HandleSkillCombo("Right+Skill", -1, this.skill_2);
-        HandleSkillCombo("Left+Skill", 1, this.skill_2);
+        HandleSkillCombo("Right+Skill", -1, SkillSlot.Skill_2);
+        HandleSkillCombo("Left+Skill", 1, SkillSlot.Skill_2);
     }
 
 }

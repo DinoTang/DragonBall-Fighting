@@ -15,13 +15,13 @@ MonoBehaviour:
   skillName: 2
   damageFxName: 0
   kiCost: 100
-  cooldown: 3
+  cooldown: 1
   damage: 5
-  animation: {fileID: 7400000, guid: 44158a4303de0c2468cea8535b83d32b, type: 2}
+  duration: 5
+  animationClip: {fileID: 7400000, guid: 44158a4303de0c2468cea8535b83d32b, type: 2}
   sfx: {fileID: 0}
   beamHead: {fileID: 5485931767997340297, guid: fb7b93b8f6a1d7545980f657ad17d283, type: 3}
   beamTail: {fileID: 8975544438315976903, guid: 0de20fc0a975d7247bdba607df03b942, type: 3}
   beamSpawnInterval: 0.01
   beamMaxParts: 4
   beamPartLength: 4
-  beamDuration: 5

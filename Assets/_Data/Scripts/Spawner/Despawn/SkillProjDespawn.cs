@@ -14,10 +14,7 @@ public class SkillProjDespawn : Despawn<SkillProjectile>
     protected void LoadDurationTimeToDespawn()
     {
         BeamSkillProjectile beamSkillProjectile = this.parent as BeamSkillProjectile;
-        if (beamSkillProjectile == null)
-        {
-            return;
-        }
-        this.lifeTime = beamSkillProjectile.BeamDuration;
+        if (beamSkillProjectile == null) return;
+        this.lifeTime = beamSkillProjectile.SKillDuration;
     }
 }

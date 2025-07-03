@@ -8,6 +8,6 @@ public class SkillDataSO : ScriptableObject
     public float cooldown;
     public float damage;
     public float duration;
-    public AnimationClip animation;
+    public AnimationClip animationClip;
     public AudioClip sfx;
 }
