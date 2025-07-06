@@ -1,5 +1,5 @@
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+[RequireComponent(typeof(CircleCollider2D))]
 public class SkillProjDamageSender : DamageSender
 {
     [Header("Skill Projectile Damage Sender")]
@@ -19,8 +19,12 @@ public class SkillProjDamageSender : DamageSender
     protected override void LoadCollider()
     {
         base.LoadCollider();
-        this._collider.offset = new Vector2(0.4f, 0);
-        this._collider.radius = 1.5f;
+        if (this._collider is CircleCollider2D circleCollider)
+        {
+            circleCollider.offset = new Vector2(0.4f, 0);
+            circleCollider.radius = 1.5f;
+        }
+
     }
     protected override void SendDamage(DamageReceiver damageReceiver)
     {

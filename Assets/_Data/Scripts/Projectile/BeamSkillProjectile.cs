@@ -28,7 +28,7 @@ public class BeamSkillProjectile : SkillProjectile
         this.LoadBeamTail();
         this.LoadBeamSettings();
     }
-
+    
     protected new void Update() { }
     protected void LoadBeamHead()
     {

@@ -14,7 +14,9 @@ public class SkillState : State
         base.OnUpdate();
         float skillDuration = this.stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill.duration;
         float animationClipDuration = this.stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill.animationClip.length;
-        float totalDuration = skillDuration + animationClipDuration;
+        float endBeamSkillAnimClipDuration = GetEndBeamSKillAnimationLength();
+
+        float totalDuration = skillDuration + animationClipDuration + endBeamSkillAnimClipDuration;
         if (this.Timed > totalDuration) this.stateManager.SetNextStateToMain();
     }
     public override void OnExit()
@@ -31,4 +33,10 @@ public class SkillState : State
         this.stateManager.CharacterCtrl.CharacterAnimEvent.EnableCharacterActions();
     }
 
+    protected float GetEndBeamSKillAnimationLength()
+    {
+        BeamSkillDataSO beamSkillDataSO = this.stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill as BeamSkillDataSO;
+        if (beamSkillDataSO == null) return 0;
+        return beamSkillDataSO.endBeamSkillAnim.length;
+    }
 }

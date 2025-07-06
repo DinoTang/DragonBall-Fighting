@@ -59,6 +59,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4271623868461415811}
   - component: {fileID: 5637645638635903300}
+  - component: {fileID: 122189032923522430}
   m_Layer: 0
   m_Name: Vegeta_BeamHead_Skill_2
   m_TagString: Untagged
@@ -81,6 +82,7 @@ Transform:
   m_Children:
   - {fileID: 8545536211752155228}
   - {fileID: 8571423961102919037}
+  - {fileID: 5712848415417614837}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5637645638635903300
@@ -100,13 +102,124 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   owner: {fileID: 0}
   skillSlot: 2
-  skillProjCtrl: {fileID: 0}
+  skillProjCtrl: {fileID: 122189032923522430}
   skillDuration: 5
   beamHead: {fileID: 5637645638635903300}
   beamTail: {fileID: 192431593083354022, guid: 0de20fc0a975d7247bdba607df03b942, type: 3}
   beamSpawnInterval: 0.01
   beamMaxParts: 5
   beamPartLength: 4.68
+--- !u!114 &122189032923522430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5485931767997340297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986555049563d6941a6e45af39e0420c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillProj: {fileID: 5637645638635903300}
+  skillProjSpawner: {fileID: 0}
+  skillProjDespawn: {fileID: 2019033141825468973}
+  skillData: {fileID: 11400000, guid: 7ea101e55c4299f4fa8bc07a012ad137, type: 2}
+  damageSender: {fileID: 198436570180552134}
+--- !u!1 &8476964071265015723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5712848415417614837}
+  - component: {fileID: 8944648551719090967}
+  - component: {fileID: 198436570180552134}
+  m_Layer: 0
+  m_Name: DamageSender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5712848415417614837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476964071265015723}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4271623868461415811}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &8944648551719090967
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476964071265015723}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.22028017, y: -0.14407563}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.420331, y: 2.4529128}
+  m_EdgeRadius: 0
+--- !u!114 &198436570180552134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476964071265015723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11bf91db319c79b458476742df9b0eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 8944648551719090967}
+  damage: 1
+  isHitting: 0
+  skillProjCtrl: {fileID: 0}
 --- !u!1 &9103381394256539444
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +249,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 3.1, z: 3}
+  m_LocalScale: {x: 5.5, y: 5, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4271623868461415811}
@@ -181,7 +294,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 2001735600, guid: dde668b883372b844b98c4ab20c27a17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkillProjCtrl : DinoBehaviour
 {
+    [Header("Skill Proj Ctrl")]
     [SerializeField] protected SkillProjectile skillProj;
     public SkillProjectile SkillProj => skillProj;
     [SerializeField] protected SkillProjSpawner skillProjSpawner;
@@ -12,6 +13,9 @@ public class SkillProjCtrl : DinoBehaviour
     public SkillProjDespawn SkillProjDespawn => skillProjDespawn;
     [SerializeField] protected SkillDataSO skillData;
     public SkillDataSO SkillData => skillData;
+    [Header("Skill Proj Ctrl")]
+    [SerializeField] protected DamageSender damageSender;
+    public DamageSender DamageSender => damageSender;
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -24,6 +28,7 @@ public class SkillProjCtrl : DinoBehaviour
         this.LoadSkillProjectileSpawner();
         this.LoadSkillProjectileDespawn();
         this.LoadSkillProjectileData();
+        this.LoadDamageSender();
     }
     protected void LoadSkillProjectile()
     {
@@ -52,5 +57,10 @@ public class SkillProjCtrl : DinoBehaviour
         this.skillData = this.skillProjSpawner.SkillList[index_SkillSlot];
         Debug.Log(transform.name + ": LoadSkillProjectileData", gameObject);
     }
-
+    protected void LoadDamageSender()
+    {
+        if (this.damageSender != null) return;
+        this.damageSender = GetComponentInChildren<DamageSender>();
+        Debug.Log(transform.name + ": LoadDamageSender", gameObject);
+    }
 }

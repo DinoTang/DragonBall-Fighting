@@ -1,5 +1,6 @@
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+[RequireComponent(typeof(CircleCollider2D))]
 public class BasicProjDamageSender : DamageSender
 {
     [Header("Basic Projectile Damage Sender")]
@@ -18,9 +19,14 @@ public class BasicProjDamageSender : DamageSender
     protected override void LoadCollider()
     {
         base.LoadCollider();
-        this._collider.offset = new Vector2(0.4f, 0);
-        this._collider.radius = 0.3f;
+        if (this._collider is CircleCollider2D circleCollider)
+        {
+            circleCollider.offset = new Vector2(0.4f, 0);
+            circleCollider.radius = 0.3f;
+        }
+
     }
+
     protected override void SendDamage(DamageReceiver damageReceiver)
     {
         CharacterCtrl owner = damageReceiver.transform.parent.GetComponent<CharacterCtrl>();

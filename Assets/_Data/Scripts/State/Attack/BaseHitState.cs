@@ -24,7 +24,7 @@ public class BaseHitState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        this.isHitSuccessful = this.stateManager.CharacterCtrl.CharacterDamageSender.IsHitSuccessful;
+        this.isHitSuccessful = this.stateManager.CharacterCtrl.CharacterDamageSender.IsHitting;
 
         this.MoveShortDistance();
 

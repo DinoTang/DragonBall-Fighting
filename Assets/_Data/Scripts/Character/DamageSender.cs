@@ -1,26 +1,31 @@
+using System.Collections;
 using UnityEngine;
-[RequireComponent(typeof(CircleCollider2D))]
+
 public class DamageSender : DinoBehaviour
 {
     [Header("Damage Sender")]
-    [SerializeField] protected CircleCollider2D _collider;
+    [SerializeField] protected Collider2D _collider;
     [SerializeField] protected float damage = 1f;
-    [SerializeField] protected bool isHitSuccessful = false;
-    public bool IsHitSuccessful => isHitSuccessful;
-    public void SetIsHitSuccessful(bool isHitSuccessful)
+    [SerializeField] protected bool isHitting = false;
+    public bool IsHitting => isHitting;
+    public void SetIsHitSuccessful(bool isHitting)
     {
-        this.isHitSuccessful = isHitSuccessful;
+        this.isHitting = isHitting;
     }
     protected override void LoadComponent()
     {
         base.LoadComponent();
         this.LoadCollider();
     }
-
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        this.isHitting = false;
+    }
     protected virtual void LoadCollider()
     {
         if (this._collider != null) return;
-        this._collider = GetComponent<CircleCollider2D>();
+        this._collider = GetComponent<Collider2D>();
         this._collider.isTrigger = true;
         Debug.Log(transform.name + ": LoadCollider", gameObject);
     }
@@ -48,7 +53,7 @@ public class DamageSender : DinoBehaviour
     protected virtual void SendDamage(DamageReceiver damageReceiver)
     {
         damageReceiver.DeductHP(this.damage);
-        this.isHitSuccessful = true;
+        this.isHitting = true;
         this.OnHitExplosionFX(damageReceiver.transform);
     }
     protected virtual void OnHitExplosionFX(Transform target)
@@ -60,4 +65,7 @@ public class DamageSender : DinoBehaviour
         ExplosionFX efx = ExplosionFXSpawner.Instance.Spawn(efx_name, target.position, owner);
         return efx;
     }
+
+
+
 }

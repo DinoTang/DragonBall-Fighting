@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CharacterAnimEvent : CharacterAbstract
 {
-    private readonly float skillSpawnOffsetX = 2.5f;
+    private readonly float skillSpawnOffsetX = 3.5f;
     protected void EnableHitbox() => this.characterCtrl.CharacterDamageSender.EnableCollider();
     protected void DisableHitbox() => this.characterCtrl.CharacterDamageSender.DisableCollider();
     public void StopCharacterActions()

@@ -3,6 +3,7 @@ using UnityEngine;
 public class BeamSkillDataSO : SkillDataSO
 {
     [Header("Beam Settings")]
+    public AnimationClip endBeamSkillAnim;
     public GameObject beamHead;
     public GameObject beamTail;
     public float beamSpawnInterval;
