@@ -44,8 +44,9 @@ public class BeamSkillProjDamageSender : DamageSender
         isHitting = true;
         while (_collider.enabled && target != null)
         {
-            target.DeductHP(this.damage);
-            this.OnHitExplosionFX(target.transform);
+            this.SendDamage(target);
+            // target.DeductHP(this.damage);
+            // this.OnHitExplosionFX(target.transform);
             yield return new WaitForSeconds(0.2f);
         }
         isHitting = false;
@@ -53,8 +54,7 @@ public class BeamSkillProjDamageSender : DamageSender
     protected override void OnHitExplosionFX(Transform target)
     {
         base.OnHitExplosionFX(target);
-        string explosionFXName = this.skillProjCtrl.SkillData.damageFxName.ToString();
-        ExplosionFX efx = this.SpawnHitExplosionFX(explosionFXName, target);
+        ExplosionFX efx = this.SpawnHitExplosionFX(this.skillProjCtrl.SkillData.damageFxName, target);
         efx.transform.position = new Vector2(efx.transform.position.x, efx.transform.position.y - 0.5f);
     }
 }

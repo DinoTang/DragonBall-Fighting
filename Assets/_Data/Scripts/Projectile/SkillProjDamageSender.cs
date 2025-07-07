@@ -37,7 +37,6 @@ public class SkillProjDamageSender : DamageSender
     protected override void OnHitExplosionFX(Transform target)
     {
         base.OnHitExplosionFX(target);
-        string explosionFXName = this.skillProjCtrl.SkillData.damageFxName.ToString();
-        this.SpawnHitExplosionFX(explosionFXName, target);
+        this.SpawnHitExplosionFX(this.skillProjCtrl.SkillData.damageFxName, target);
     }
 }

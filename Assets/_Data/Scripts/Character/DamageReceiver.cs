@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
-public class DamageReceiver : DinoBehaviour
+public abstract class DamageReceiver : DinoBehaviour
 {
     [Header("Damage Receiver")]
     [SerializeField] protected CapsuleCollider2D collide;
@@ -10,11 +10,16 @@ public class DamageReceiver : DinoBehaviour
     [SerializeField] protected bool isDead = false;
     [SerializeField] protected bool isHurt = false;
     public bool IsHurt => isHurt;
+    [SerializeField] protected bool isBlock = false;
     [SerializeField] protected float currentHP;
     [SerializeField] protected float maxHP = 5;
     public void SetIsHurt(bool isHurt)
     {
         this.isHurt = isHurt;
+    }
+    public void SetIsBlock(bool isBlock)
+    {
+        this.isBlock = isBlock;
     }
     protected override void OnEnable()
     {
@@ -27,7 +32,7 @@ public class DamageReceiver : DinoBehaviour
         this.LoadCollider();
         this.currentHP = this.maxHP;
     }
-    
+
     protected void LoadCollider()
     {
         if (this.collide != null) return;
@@ -43,6 +48,7 @@ public class DamageReceiver : DinoBehaviour
 
     public void DeductHP(float hp)
     {
+        if (this.isBlock) return;
         this.OnHurt();
         if (this.isImmortal) return;
         if (this.isDead) return;
@@ -64,10 +70,11 @@ public class DamageReceiver : DinoBehaviour
     {
 
     }
+    public abstract bool OnBlock();
 
     protected virtual void OnHurt()
     {
         this.isHurt = true;
-        
+
     }
 }

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class KiCharge : DinoBehaviour
 {
-   
+    protected override void Start()
+    {
+        this.gameObject.SetActive(false);
+    }
 }

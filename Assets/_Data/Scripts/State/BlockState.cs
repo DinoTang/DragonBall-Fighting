@@ -8,12 +8,19 @@ public class BlockState : State
     {
         base.OnEnter(stateManager);
         this.animator.SetBool("IsBlock", true);
+        // this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsBlock(true);
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (InputManager.Instance.ReleaseBlockHitInput()) this.stateManager.SetNextStateToMain();
+
+        if (InputManager.Instance.ReleaseBlockHitInput())
+        {
+            // this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsBlock(false);
+            this.stateManager.SetNextStateToMain();
+        }
     }
+
     public override void OnExit()
     {
         base.OnExit();

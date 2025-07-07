@@ -52,6 +52,7 @@ public class DamageSender : DinoBehaviour
 
     protected virtual void SendDamage(DamageReceiver damageReceiver)
     {
+        if (damageReceiver.OnBlock()) return;
         damageReceiver.DeductHP(this.damage);
         this.isHitting = true;
         this.OnHitExplosionFX(damageReceiver.transform);
@@ -60,9 +61,9 @@ public class DamageSender : DinoBehaviour
     {
 
     }
-    protected ExplosionFX SpawnHitExplosionFX(string efx_name, Transform target, CharacterCtrl owner = null)
+    protected ExplosionFX SpawnHitExplosionFX(ExplosionFXEnum efx_name, Transform target, CharacterCtrl owner = null)
     {
-        ExplosionFX efx = ExplosionFXSpawner.Instance.Spawn(efx_name, target.position, owner);
+        ExplosionFX efx = ExplosionFXSpawner.Instance.Spawn(efx_name.ToString(), target.position, owner);
         return efx;
     }
 

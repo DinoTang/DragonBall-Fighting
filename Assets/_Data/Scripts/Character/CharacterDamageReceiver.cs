@@ -10,6 +10,10 @@ public class CharacterDamageReceiver : DamageReceiver
         base.LoadComponent();
         this.LoadCharacterCtrl();
     }
+    protected void Update()
+    {
+        this.TryEnterBlockState();
+    }
     protected void LoadCharacterCtrl()
     {
         if (this.characterCtrl != null) return;
@@ -22,5 +26,22 @@ public class CharacterDamageReceiver : DamageReceiver
         if (this.characterCtrl.StateManager.CurrentState.GetType() == typeof(Hurt1State) ||
         this.characterCtrl.StateManager.CurrentState.GetType() == typeof(Hurt2State)) return;
         this.characterCtrl.StateManager.SetNextState(new Hurt1State());
+    }
+    protected void TryEnterBlockState()
+    {
+        if (!this.isBlock) return;
+        this.characterCtrl.StateManager.SetNextState(new BlockState());
+    }
+    public override bool OnBlock()
+    {
+        if (!this.isBlock) return false;
+        this.OnParryFX();
+        return true;
+    }
+    protected void OnParryFX()
+    {
+        Vector2 pos = this.characterCtrl.FirePoint.transform.position;
+        pos.x += 0.5f;
+        ExplosionFXSpawner.Instance.Spawn(ExplosionFXEnum.Parry.ToString(), pos, this.characterCtrl);
     }
 }

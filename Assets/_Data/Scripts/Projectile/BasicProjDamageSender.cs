@@ -37,6 +37,6 @@ public class BasicProjDamageSender : DamageSender
     protected override void OnHitExplosionFX(Transform target)
     {
         base.OnHitExplosionFX(target);
-        this.SpawnHitExplosionFX(ExplosionFXSpawner.efx_DefaultName, target);
+        this.SpawnHitExplosionFX(ExplosionFXEnum.Default, target);
     }
 }

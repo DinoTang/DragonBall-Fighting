@@ -4,4 +4,6 @@ public enum ExplosionFXEnum
     Hit_Effect = 1,
     Big_Bang_Attack = 2,
     Galick_Gun = 3,
+    Skill_Cast_Flash = 4,
+    Parry = 5,
 }

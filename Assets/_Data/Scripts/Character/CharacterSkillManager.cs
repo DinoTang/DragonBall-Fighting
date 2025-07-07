@@ -54,6 +54,10 @@ public class CharacterSkillManager : CharacterAbstract
         characterCtrl.Animator.Play(currentSkill.animationClip.name);
         characterCtrl.CharacterKiManager.ConsumeKi(currentSkill.kiCost);
 
+        // Hiệu ứng lóe lên khi dùng skill
+        Vector2 pos = this.characterCtrl.FirePoint.transform.position;
+        pos.x -= 1f;
+        ExplosionFXSpawner.Instance.Spawn(ExplosionFXEnum.Skill_Cast_Flash.ToString(), pos, this.characterCtrl);
         return true;
     }
 
