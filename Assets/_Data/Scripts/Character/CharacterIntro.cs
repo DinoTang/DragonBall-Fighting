@@ -26,7 +26,7 @@ public class CharacterIntro : CharacterAbstract
         animator.Play(transformClip.name);
         yield return new WaitForSeconds(transformClip.length);
 
-        this.characterCtrl.StateManager.SetNextState(new IdleState());
+        // this.characterCtrl.StateManager.SetNextState(new IdleState());
         yield return new WaitForSeconds(2f);
 
         animator.runtimeAnimatorController = ssj2Controller;

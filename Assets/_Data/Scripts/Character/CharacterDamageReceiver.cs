@@ -40,8 +40,10 @@ public class CharacterDamageReceiver : DamageReceiver
     }
     protected void OnParryFX()
     {
-        Vector2 pos = this.characterCtrl.FirePoint.transform.position;
-        pos.x += 0.5f;
+        Vector2 pos = this.characterCtrl.transform.position;
+        pos.y -= 0.5f;
+        if (this.characterCtrl.transform.localScale.x == -1) pos.x -= 0.5f;
+        else pos.x += 0.5f;
         ExplosionFXSpawner.Instance.Spawn(ExplosionFXEnum.Parry.ToString(), pos, this.characterCtrl);
     }
 }

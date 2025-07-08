@@ -8,7 +8,7 @@ public class DamageSender : DinoBehaviour
     [SerializeField] protected float damage = 1f;
     [SerializeField] protected bool isHitting = false;
     public bool IsHitting => isHitting;
-    public void SetIsHitSuccessful(bool isHitting)
+    public void SetIsHitting(bool isHitting)
     {
         this.isHitting = isHitting;
     }
@@ -52,9 +52,9 @@ public class DamageSender : DinoBehaviour
 
     protected virtual void SendDamage(DamageReceiver damageReceiver)
     {
+        this.isHitting = true;
         if (damageReceiver.OnBlock()) return;
         damageReceiver.DeductHP(this.damage);
-        this.isHitting = true;
         this.OnHitExplosionFX(damageReceiver.transform);
     }
     protected virtual void OnHitExplosionFX(Transform target)

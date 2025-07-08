@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_0
+      name: VegetaSSJ_FullKick_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2df018c18a755384c97b75a51bbf3b55
-      internalID: -1706113153
+      spriteID: 510601bffb3482e4dbeb9302c83fa110
+      internalID: 414339043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_1
+      name: VegetaSSJ_FullKick_1
       rect:
         serializedVersion: 2
         x: 144
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df8c74dd312077e439e286c98cacd8cc
-      internalID: 1576365397
+      spriteID: 5f532fbada839e2449527ec4f6cb436c
+      internalID: -1138090569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_2
+      name: VegetaSSJ_FullKick_2
       rect:
         serializedVersion: 2
         x: 288
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c378755da0521c3419c545f950b21a31
-      internalID: -2135903018
+      spriteID: b2c04475ad4dd7d41b3d5078c3061e2e
+      internalID: -1077551620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_3
+      name: VegetaSSJ_FullKick_3
       rect:
         serializedVersion: 2
         x: 432
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 839e67c44e671e54abe769d8bfd33971
-      internalID: -1968545851
+      spriteID: 2820430d589d67d49b720da719006917
+      internalID: 2140522547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_4
+      name: VegetaSSJ_FullKick_4
       rect:
         serializedVersion: 2
         x: 576
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3876f703ea48d9e4bad51454a8db4a99
-      internalID: -955624756
+      spriteID: 7b231263ae1092b44b3ca617fcbd7372
+      internalID: -1426867574
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_5
+      name: VegetaSSJ_FullKick_5
       rect:
         serializedVersion: 2
         x: 720
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 962d597e70fe03141b8d863d2ac97ab0
-      internalID: 1908568445
+      spriteID: efbd7c6ef33cf074e843152f22b297b3
+      internalID: -970093779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_6
+      name: VegetaSSJ_FullKick_6
       rect:
         serializedVersion: 2
         x: 864
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 774166f106a51104fabfc79cdb50b155
-      internalID: 183440253
+      spriteID: 411797cbb99ba1045a520a6560657a31
+      internalID: -1269265480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_7
+      name: VegetaSSJ_FullKick_7
       rect:
         serializedVersion: 2
         x: 1008
@@ -258,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f1f28fe186791044a0b9c7614d8d82f
-      internalID: 940307630
+      spriteID: 6ef703971a1c09847985e181d8f5549e
+      internalID: 576556617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_8
+      name: VegetaSSJ_FullKick_8
       rect:
         serializedVersion: 2
         x: 1152
@@ -279,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e13c64f91d179545945376a6e61651f
-      internalID: 1035271438
+      spriteID: 0bd7b2e3157fa534c8fd809d38f8eba9
+      internalID: -9904978
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_9
+      name: VegetaSSJ_FullKick_9
       rect:
         serializedVersion: 2
         x: 1296
@@ -300,14 +300,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: debbee9af1cdd664492928f3b45d3364
-      internalID: -1282065719
+      spriteID: 05ca1350a325e9e4d8b030349bc097af
+      internalID: 1034656730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VegetaSSJ_Combo_(S_D_K)_10
+      name: VegetaSSJ_FullKick_10
       rect:
         serializedVersion: 2
         x: 1440
@@ -321,8 +321,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6b81921417571144a3adef20d141110
-      internalID: -1116942871
+      spriteID: b04c3adf0af9b034888f4c96a0795d96
+      internalID: 1808705125
       vertices: []
       indices: 
       edges: []
@@ -338,17 +338,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      VegetaSSJ_Combo_(S_D_K)_0: -1706113153
-      VegetaSSJ_Combo_(S_D_K)_1: 1576365397
-      VegetaSSJ_Combo_(S_D_K)_10: -1116942871
-      VegetaSSJ_Combo_(S_D_K)_2: -2135903018
-      VegetaSSJ_Combo_(S_D_K)_3: -1968545851
-      VegetaSSJ_Combo_(S_D_K)_4: -955624756
-      VegetaSSJ_Combo_(S_D_K)_5: 1908568445
-      VegetaSSJ_Combo_(S_D_K)_6: 183440253
-      VegetaSSJ_Combo_(S_D_K)_7: 940307630
-      VegetaSSJ_Combo_(S_D_K)_8: 1035271438
-      VegetaSSJ_Combo_(S_D_K)_9: -1282065719
+      VegetaSSJ_FullKick_0: 414339043
+      VegetaSSJ_FullKick_1: -1138090569
+      VegetaSSJ_FullKick_10: 1808705125
+      VegetaSSJ_FullKick_2: -1077551620
+      VegetaSSJ_FullKick_3: 2140522547
+      VegetaSSJ_FullKick_4: -1426867574
+      VegetaSSJ_FullKick_5: -970093779
+      VegetaSSJ_FullKick_6: -1269265480
+      VegetaSSJ_FullKick_7: 576556617
+      VegetaSSJ_FullKick_8: -9904978
+      VegetaSSJ_FullKick_9: 1034656730
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
