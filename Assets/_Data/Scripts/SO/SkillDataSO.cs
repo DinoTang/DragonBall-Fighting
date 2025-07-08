@@ -1,5 +1,5 @@
 using UnityEngine;
-[CreateAssetMenu(fileName = "SkillData", menuName = "SO/SkillData")]
+[CreateAssetMenu(fileName = "SkillData", menuName = "SO/Skill/SkillData")]
 public class SkillDataSO : ScriptableObject
 {
     public SkillSlot skillName;
@@ -7,7 +7,12 @@ public class SkillDataSO : ScriptableObject
     public float kiCost;
     public float cooldown;
     public float damage;
-    public float duration;
     public AnimationClip animationClip;
     public AudioClip sfx;
+    public virtual State GetSkillState()
+    {
+        return new SkillState();
+    }
+
 }
+

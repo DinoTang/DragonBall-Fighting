@@ -32,6 +32,7 @@ public class CharacterCombo : DinoBehaviour
         this.TeleCombo();
         this.SkillOneCombo();
         this.SkillTwoCombo();
+        this.SkillFourCombo();
     }
     public void ClearCurrentSkill()
     {
@@ -72,7 +73,11 @@ public class CharacterCombo : DinoBehaviour
     protected bool PlayingCurrentSkill(SkillSlot skill)
     {
         if (!this.characterCtrl.CharacterSkillManager.TryUseSkill(skill)) return false;
-        this.characterCtrl.StateManager.SetNextState(new SkillState());
+
+        SkillDataSO skillData = characterCtrl.CharacterSkillManager.CurrentSkill;
+        State skillState = skillData.GetSkillState();
+        characterCtrl.StateManager.SetNextState(skillState);
+
         return true;
     }
     protected void HandleSkillCombo(string expectedCombo, int expectedScale, SkillSlot skill)
@@ -99,4 +104,10 @@ public class CharacterCombo : DinoBehaviour
         HandleSkillCombo("Left+Skill", 1, SkillSlot.Skill_2);
     }
 
+    protected void SkillFourCombo()
+    {
+        if (this.currentSkill != "") return;
+        HandleSkillCombo("Down+Right+Hit", 1, SkillSlot.Skill_4);
+        HandleSkillCombo("Down+Left+Hit", -1, SkillSlot.Skill_4);
+    }
 }

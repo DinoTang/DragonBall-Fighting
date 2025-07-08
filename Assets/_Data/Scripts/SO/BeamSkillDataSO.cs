@@ -6,7 +6,12 @@ public class BeamSkillDataSO : SkillDataSO
     public AnimationClip endBeamSkillAnim;
     public GameObject beamHead;
     public GameObject beamTail;
+    public float duration;
     public float beamSpawnInterval;
     public int beamMaxParts;
     public float beamPartLength;
+    public override State GetSkillState()
+    {
+        return new BeamSkillState();
+    }
 }

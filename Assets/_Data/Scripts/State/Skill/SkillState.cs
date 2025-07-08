@@ -1,24 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// Base class
 public class SkillState : State
 {
+    protected SkillDataSO skill;
+    protected float totalDuration;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
-        this.stateManager.CharacterCtrl.CharacterAnimEvent.StopCharacterActions();
+        skill = stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill;
+        totalDuration = this.GetTotalDuration();
+        stateManager.CharacterCtrl.CharacterAnimEvent.StopCharacterActions();
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
-        float skillDuration = this.stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill.duration;
-        float animationClipDuration = this.stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill.animationClip.length;
-        float endBeamSkillAnimClipDuration = GetEndBeamSKillAnimationLength();
-
-        float totalDuration = skillDuration + animationClipDuration + endBeamSkillAnimClipDuration;
         if (this.Timed > totalDuration) this.stateManager.SetNextStateToMain();
     }
+
     public override void OnExit()
     {
         base.OnExit();
@@ -33,10 +33,11 @@ public class SkillState : State
         this.stateManager.CharacterCtrl.CharacterAnimEvent.EnableCharacterActions();
     }
 
-    protected float GetEndBeamSKillAnimationLength()
+    protected virtual float GetTotalDuration()
     {
-        BeamSkillDataSO beamSkillDataSO = this.stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill as BeamSkillDataSO;
-        if (beamSkillDataSO == null) return 0;
-        return beamSkillDataSO.endBeamSkillAnim.length;
+        return this.skill.animationClip.length;
     }
 }
+
+
+

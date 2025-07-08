@@ -36,6 +36,15 @@ public class CharacterCtrl : DinoBehaviour
     public CharacterKiManager CharacterKiManager => characterKiManager;
     [SerializeField] protected CharacterSkillManager characterSkillManager;
     public CharacterSkillManager CharacterSkillManager => characterSkillManager;
+
+    [Header("Opponent")]
+    protected CharacterCtrl opponent;
+    public CharacterCtrl Opponent => opponent;
+    public void SetOpponent(CharacterCtrl target)
+    {
+        opponent = target;
+    }
+
     public bool IsGround { get; set; }
     protected override void LoadComponent()
     {
