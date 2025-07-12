@@ -38,7 +38,7 @@ public class CharacterCtrl : DinoBehaviour
     public CharacterSkillManager CharacterSkillManager => characterSkillManager;
 
     [Header("Opponent")]
-    protected CharacterCtrl opponent;
+    [SerializeField] protected CharacterCtrl opponent;
     public CharacterCtrl Opponent => opponent;
     public void SetOpponent(CharacterCtrl target)
     {
@@ -157,6 +157,7 @@ public class CharacterCtrl : DinoBehaviour
         if (groundCollider == null) return;
         if (this.stateManager.CurrentState == null) return;
         this.IsGround = true;
+        if (this.stateManager.CurrentState is SuperDashState) return;
         if (this.stateManager.CurrentState.GetType() == typeof(IdleCombatState)) return;
         this.stateManager.SetNextState(new IdleCombatState());
         this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);

@@ -78,4 +78,12 @@ public class InputManager : DinoBehaviour
     {
         return Input.GetKeyDown(KeyCode.O);
     }
+    public bool GetSuperDashInput()
+    {
+        return Input.GetKeyDown(KeyCode.F);
+    }
+    public bool ReleaseSuperDashInput()
+    {
+        return Input.GetKeyUp(KeyCode.F);
+    }
 }

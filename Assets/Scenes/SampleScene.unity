@@ -953,7 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b248717ea6f9b248bde3e87b4e39bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 751414178}
+  characterCtrl: {fileID: 751414181}
   inputBuffer: {fileID: 1224640670}
   combo: 
   distanceTele: 10
@@ -1642,6 +1642,7 @@ MonoBehaviour:
   firePoint: {fileID: 1167227472}
   characterKiManager: {fileID: 0}
   characterSkillManager: {fileID: 0}
+  opponent: {fileID: 751414181}
 --- !u!114 &359469048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1715,7 +1716,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.09871709, y: -0.6440258}
+  m_Offset: {x: 0.09871709, y: -0.7662719}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1726,7 +1727,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2430785, y: 1.6090517}
+  m_Size: {x: 1.2430785, y: 1.8535439}
   m_EdgeRadius: 0
 --- !u!4 &359469051
 Transform:
@@ -2717,7 +2718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e80ec663d967cc418da90b03f664bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 751414178}
+  characterCtrl: {fileID: 751414181}
   enemy: {fileID: 359469052}
   distance: 0
 --- !u!1 &584261296
@@ -2749,7 +2750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e446c8447d22c42a3293368e108dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 751414178}
+  characterCtrl: {fileID: 751414181}
   kiMax: 300
   kiChargeRate: 100
   currentKi: 0
@@ -3296,8 +3297,8 @@ GameObject:
   - component: {fileID: 751414176}
   - component: {fileID: 751414177}
   - component: {fileID: 751414179}
-  - component: {fileID: 751414178}
   - component: {fileID: 751414180}
+  - component: {fileID: 751414181}
   m_Layer: 0
   m_Name: Vegeta
   m_TagString: Untagged
@@ -3364,7 +3365,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.09871709, y: -0.6440258}
+  m_Offset: {x: 0.09871709, y: -0.7541375}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3375,7 +3376,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2430785, y: 1.6090517}
+  m_Size: {x: 1.2430785, y: 1.8292749}
   m_EdgeRadius: 0
 --- !u!50 &751414177
 Rigidbody2D:
@@ -3404,7 +3405,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &751414178
+--- !u!114 &751414179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751414174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad4e6cb66d8efa459db7c81da652a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCtrl: {fileID: 751414181}
+  isClone: 0
+--- !u!114 &751414180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751414174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c60a75f4dbde46949ac089ea455d968a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &751414181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3431,32 +3458,7 @@ MonoBehaviour:
   firePoint: {fileID: 1327183334}
   characterKiManager: {fileID: 584261297}
   characterSkillManager: {fileID: 1221265639}
---- !u!114 &751414179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751414174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad4e6cb66d8efa459db7c81da652a89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 751414178}
-  isClone: 0
---- !u!114 &751414180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751414174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c60a75f4dbde46949ac089ea455d968a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  opponent: {fileID: 359469047}
 --- !u!1 &771113318
 GameObject:
   m_ObjectHideFlags: 0
@@ -4009,7 +4011,7 @@ MonoBehaviour:
   _collider: {fileID: 986110739}
   damage: 1
   isHitting: 0
-  characterCtrl: {fileID: 751414178}
+  characterCtrl: {fileID: 751414181}
 --- !u!1 &993110625
 GameObject:
   m_ObjectHideFlags: 0
@@ -4892,11 +4894,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34c0e32bab23ab49a89097c688540f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 751414178}
+  characterCtrl: {fileID: 751414181}
   skillList:
   - skillData: {fileID: 11400000, guid: 52d6dd39fe7a5f6409ae45ef92aa3753, type: 2}
     cooldown: 0
   - skillData: {fileID: 11400000, guid: 7ea101e55c4299f4fa8bc07a012ad137, type: 2}
+    cooldown: 0
+  - skillData: {fileID: 11400000, guid: 8bfca4645434a084e90688be4b708e9c, type: 2}
     cooldown: 0
   currentSkill: {fileID: 0}
 --- !u!4 &1221265640
@@ -5015,7 +5019,6 @@ MonoBehaviour:
   owner: {fileID: 0}
   skillSlot: 1
   skillProjCtrl: {fileID: 1228031768}
-  skillDuration: 5
 --- !u!114 &1228031768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5049,7 +5052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1230360321
 Transform:
   m_ObjectHideFlags: 0
@@ -5328,7 +5331,7 @@ MonoBehaviour:
   isBlock: 0
   currentHP: 5
   maxHP: 5
-  characterCtrl: {fileID: 751414178}
+  characterCtrl: {fileID: 751414181}
 --- !u!1 &1302598003
 GameObject:
   m_ObjectHideFlags: 0
@@ -6435,9 +6438,9 @@ MonoBehaviour:
   owner: {fileID: 0}
   skillSlot: 2
   skillProjCtrl: {fileID: 1709642216}
-  skillDuration: 5
   beamHead: {fileID: 5637645638635903300, guid: fb7b93b8f6a1d7545980f657ad17d283, type: 3}
   beamTail: {fileID: 192431593083354022, guid: 0de20fc0a975d7247bdba607df03b942, type: 3}
+  skillDuration: 5
   beamSpawnInterval: 0.01
   beamMaxParts: 4
   beamPartLength: 4
@@ -6581,6 +6584,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1738959948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738959950}
+  - component: {fileID: 1738959949}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1738959949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738959948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20463e8c6fe6f0946b9ff16a391420da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 751414181}
+  player2: {fileID: 359469047}
+--- !u!4 &1738959950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738959948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1748555447
 GameObject:
   m_ObjectHideFlags: 0
@@ -6785,8 +6834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3c9e0697becc745b52e313a3e692ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 751414178}
-  skillDataSO: {fileID: 11400000, guid: 52d6dd39fe7a5f6409ae45ef92aa3753, type: 2}
+  characterCtrl: {fileID: 751414181}
+  skillDataSO: {fileID: 0}
 --- !u!4 &1791492196
 Transform:
   m_ObjectHideFlags: 0
@@ -6974,6 +7023,7 @@ MonoBehaviour:
   firePoint: {fileID: 1840796997}
   characterKiManager: {fileID: 0}
   characterSkillManager: {fileID: 0}
+  opponent: {fileID: 0}
 --- !u!50 &1795711759
 Rigidbody2D:
   serializedVersion: 4
@@ -7530,7 +7580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27444a0653e3dc479d3ef709a5c516f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 751414178}
+  characterCtrl: {fileID: 751414181}
   animator: {fileID: 1025743598}
   normalController: {fileID: 9100000, guid: fe0686d766d696d4089d5338394d8863, type: 2}
   ssj2Controller: {fileID: 9100000, guid: e5d2746f578db2b45aff0bb5340034a1, type: 2}
@@ -7548,7 +7598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367e6c9af455e3040934f5eabfcacbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCtrl: {fileID: 751414178}
+  characterCtrl: {fileID: 0}
 --- !u!1 &1888056408
 GameObject:
   m_ObjectHideFlags: 0
@@ -67480,6 +67530,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1150609331}
   - {fileID: 1795711755}
+  - {fileID: 1738959950}
   - {fileID: 230089326}
   - {fileID: 751414175}
   - {fileID: 359469051}

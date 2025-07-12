@@ -5,10 +5,10 @@ using UnityEngine;
 public class TeleportPunchSkillSO : SkillDataSO
 {
     [Header("Teleport Punch Skill")]
-    public float offset = 1.7f;
+    public float offset = 2f;
     public AnimationClip firstHitAnim;
     public AnimationClip secondHitAnim;
-    public float waitBetween = 5f;
+    public float waitBetween = 2f;
     public override State GetSkillState()
     {
         return new TeleportPunchSkillState();

@@ -23,7 +23,7 @@ public class IdleCombatState : State
         if (InputManager.Instance.GetChargeInput()) this.stateManager.SetNextState(new ChargeState());
         if (InputManager.Instance.GetLauncherInput()) this.stateManager.SetNextState(new LauncherState());
         if (InputManager.Instance.GetPowerFiredInput()) this.stateManager.SetNextState(new PowerFiredState());
-
+        if (InputManager.Instance.GetSuperDashInput()) this.stateManager.SetNextState(new SuperDashState());
     }
     public override void OnExit()
     {

@@ -15,7 +15,7 @@ public class AirState : BaseAirState
         base.OnUpdate();
         if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new AirHitState());
         if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new AirKickState());
-        // if (InputManager.Instance.GetStrongHitInput()) this.stateManager.SetNextState(new AirStrongHitState());
+        if (InputManager.Instance.GetSuperDashInput()) this.stateManager.SetNextState(new SuperDashState());
         if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new AirBlockState());
 
         if (this.stateManager.CharacterCtrl.Rgb.velocity.y < 0)

@@ -1,14 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterCombo : DinoBehaviour
+public class CharacterCombo : CharacterAbstract
 {
-    [SerializeField] protected CharacterCtrl characterCtrl;
     [SerializeField] protected InputBuffer inputBuffer;
     [SerializeField] protected string combo = "";
     [SerializeField] protected float distanceTele = 10;
     [SerializeField] protected string currentSkill = "";
-
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        this.LoadInputBuffer();
+    }
+    protected void LoadInputBuffer()
+    {
+        if (this.inputBuffer != null) return;
+        this.inputBuffer = transform.parent.GetComponentInChildren<InputBuffer>();
+        Debug.Log(transform.name + ": LoadInputBuffer", gameObject);
+    }
     protected void Update()
     {
         if (InputManager.Instance.GetDownInput()) this.inputBuffer.AddInput(InputKey.Down);
