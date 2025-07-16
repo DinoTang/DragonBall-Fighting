@@ -61,7 +61,7 @@ public class MoveState : State
         if (TrySwitchState(new GroundHit1State(), InputManager.Instance.GetHitInput())) return true;
         if (TrySwitchState(new KickState(), InputManager.Instance.GetKickInput())) return true;
         if (TrySwitchState(new BlockState(), InputManager.Instance.GetBlockHitInput())) return true;
-        if (TrySwitchState(new SuperDashState(), InputManager.Instance.GetSuperDashInput())) return true;
+        // if (TrySwitchState(new SuperDashState(), InputManager.Instance.GetSuperDashInput())) return true;
         return false;
     }
 
@@ -86,12 +86,14 @@ public class MoveState : State
         {
             this.ResetAnimMove();
         }
-        if ((this.movement.x < 0 && stateManager.transform.localScale.x == 1) || (this.movement.x > 0 && stateManager.transform.localScale.x == -1))
+        if ((this.movement.x < 0 && this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight)
+            || (this.movement.x > 0 && !this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight))
         {
             this.animator.SetBool("IsForwardMove", false);
             this.animator.SetBool("IsBackMove", true);
         }
-        else if (this.movement.x > 0 && stateManager.transform.localScale.x == 1 || (this.movement.x < 0 && stateManager.transform.localScale.x == -1))
+        else if (this.movement.x > 0 && this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight
+                || (this.movement.x < 0 && !this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight))
         {
             this.animator.SetBool("IsForwardMove", true);
             this.animator.SetBool("IsBackMove", false);

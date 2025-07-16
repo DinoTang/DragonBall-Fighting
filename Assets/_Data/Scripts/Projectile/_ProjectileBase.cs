@@ -22,7 +22,7 @@ public class _ProjectileBase : PoolObj
     {
         this.owner = owner;
 
-        if (owner.transform.localScale.x < 0)
+        if (!owner.CharacterFlip.IsFacingRight)
         {
             this.direction = Vector2.left;
             FlipModelX(true);

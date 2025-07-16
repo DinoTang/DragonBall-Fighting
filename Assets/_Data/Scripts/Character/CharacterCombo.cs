@@ -63,7 +63,7 @@ public class CharacterCombo : CharacterAbstract
         if (this.combo == "Left+Left")
         {
             this.SpawnEffectWhenTele();
-            if (this.characterCtrl.transform.localScale.x == 1)
+            if (this.characterCtrl.CharacterFlip.IsFacingRight)
                 this.characterCtrl.StateManager.SetNextState(new Tele2());
             else this.characterCtrl.StateManager.SetNextState(new Tele1());
             this.Teleing(-this.distanceTele);
@@ -72,7 +72,7 @@ public class CharacterCombo : CharacterAbstract
         if (this.combo == "Right+Right")
         {
             this.SpawnEffectWhenTele();
-            if (this.characterCtrl.transform.localScale.x == 1)
+            if (this.characterCtrl.CharacterFlip.IsFacingRight)
                 this.characterCtrl.StateManager.SetNextState(new Tele1());
             else this.characterCtrl.StateManager.SetNextState(new Tele2());
             this.Teleing(this.distanceTele);

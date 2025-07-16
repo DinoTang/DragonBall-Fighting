@@ -18,7 +18,7 @@ public abstract class State
     public virtual void OnUpdate()
     {
         this.Timed += UnityEngine.Time.deltaTime;
-        Debug.Log(this.stateManager.transform.name + " " +this.Timed + ": " + this.stateManager.CurrentState);
+        // Debug.Log(this.stateManager.transform.name + " " +this.Timed + ": " + this.stateManager.CurrentState);
     }
 
     public virtual void OnFixedUpdate()
@@ -30,6 +30,6 @@ public abstract class State
     //     Latetime += UnityEngine.Time.deltaTime;
     // }
 
-    public virtual void OnExit() { }
+    public virtual void OnExit() { this.stateManager.previousState = this; }
 
 }

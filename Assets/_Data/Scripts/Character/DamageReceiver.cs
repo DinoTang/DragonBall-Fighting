@@ -11,6 +11,7 @@ public abstract class DamageReceiver : DinoBehaviour
     [SerializeField] protected bool isHurt = false;
     public bool IsHurt => isHurt;
     [SerializeField] protected bool isBlock = false;
+    public bool IsBlock => isBlock;
     [SerializeField] protected float currentHP;
     [SerializeField] protected float maxHP = 5;
     public void SetIsHurt(bool isHurt)

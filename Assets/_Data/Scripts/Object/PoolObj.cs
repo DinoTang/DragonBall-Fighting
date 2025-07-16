@@ -25,7 +25,7 @@ public abstract class PoolObj : DinoBehaviour
 
         bool isLeft = false;
 
-        if (owner.transform.localScale.x < 0)
+        if (!owner.CharacterFlip.IsFacingRight)
         {
             isLeft = true;
         }

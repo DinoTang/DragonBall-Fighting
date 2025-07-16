@@ -42,7 +42,7 @@ public class CharacterDamageReceiver : DamageReceiver
     {
         Vector2 pos = this.characterCtrl.transform.position;
         pos.y -= 0.5f;
-        if (this.characterCtrl.transform.localScale.x == -1) pos.x -= 0.5f;
+        if (!this.characterCtrl.CharacterFlip.IsFacingRight) pos.x -= 0.5f;
         else pos.x += 0.5f;
         ExplosionFXSpawner.Instance.Spawn(ExplosionFXEnum.Parry.ToString(), pos, this.characterCtrl);
     }

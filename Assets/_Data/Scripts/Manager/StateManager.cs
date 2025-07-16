@@ -7,7 +7,7 @@ public class StateManager : DinoBehaviour
     public bool IsClone => isClone;
     public CharacterCtrl CharacterCtrl => characterCtrl;
     public State mainStateType;
-
+    public State previousState;
     public State CurrentState { get; set; }
     public State nextState;
     protected override void Start()

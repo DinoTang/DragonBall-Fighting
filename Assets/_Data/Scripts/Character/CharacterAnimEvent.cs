@@ -37,7 +37,7 @@ public class CharacterAnimEvent : CharacterAbstract
         }
 
         Vector2 pos = this.characterCtrl.FirePoint.transform.position;
-        pos.x += this.characterCtrl.transform.localScale.x > 0 ? this.skillSpawnOffsetX : -this.skillSpawnOffsetX;
+        pos.x += this.characterCtrl.CharacterFlip.IsFacingRight ? this.skillSpawnOffsetX : -this.skillSpawnOffsetX;
 
         SkillProjSpawner.Instance.Spawn(prefab, pos, this.characterCtrl);
     }
@@ -45,8 +45,8 @@ public class CharacterAnimEvent : CharacterAbstract
     protected void EnableSpawnBeamSkillProj(SkillSlot slot)
     {
         Vector2 pos = this.characterCtrl.FirePoint.transform.position;
-        pos.x += this.characterCtrl.transform.localScale.x > 0 ? this.skillSpawnOffsetX : -this.skillSpawnOffsetX;
-        Vector2 dir = this.characterCtrl.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        pos.x += this.characterCtrl.CharacterFlip.IsFacingRight ? this.skillSpawnOffsetX : -this.skillSpawnOffsetX;
+        Vector2 dir = this.characterCtrl.CharacterFlip.IsFacingRight ? Vector2.right : Vector2.left;
 
         SkillProjSpawner.Instance.StartBeamSkill(slot, pos, dir, this.characterCtrl);
     }
