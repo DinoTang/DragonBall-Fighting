@@ -12,7 +12,7 @@ public class LauncherState : BaseHitState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (Fixedtime >= 0.25)
+        if (fixedTime >= 0.25)
         {
             this.BackMainState();
         }

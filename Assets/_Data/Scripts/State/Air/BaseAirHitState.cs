@@ -5,6 +5,9 @@ using UnityEngine;
 public class BaseAirHitState : BaseAirState
 {
     protected int attackCounter;
+    protected bool shouldCombo = false;
+    protected bool isHitting;
+
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
@@ -13,20 +16,28 @@ public class BaseAirHitState : BaseAirState
         this.animator.SetBool("IsAttack", true);
         this.animator.SetInteger("AttackCounter", attackCounter);
         Debug.Log("Player Attack " + attackCounter + " Fired!");
+
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (Fixedtime >= duration)
+        this.isHitting = this.stateManager.CharacterCtrl.CharacterDamageSender.IsHitting;
+        if (this.isHitting)
         {
-            this.BackMainState();
+            this.stateManager.CharacterCtrl.Rgb.velocity = Vector2.zero;
+            this.stateManager.CharacterCtrl.Rgb.gravityScale = 0;
+        }
+        if (fixedTime > duration * 0.5f && InputManager.Instance.GetHitInput())
+        {
+            shouldCombo = true;
         }
     }
     public override void OnExit()
     {
         base.OnExit();
         this.animator.SetBool("IsAttack", false);
+        this.stateManager.CharacterCtrl.Rgb.gravityScale = 15;
     }
-    
+
 
 }

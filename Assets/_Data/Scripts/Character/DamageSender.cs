@@ -8,9 +8,15 @@ public class DamageSender : DinoBehaviour
     [SerializeField] protected float damage = 1f;
     [SerializeField] protected bool isHitting = false;
     public bool IsHitting => isHitting;
+    [SerializeField] protected bool isKnockdown = false;
+    public bool IsKnockdown => isKnockdown;
     public void SetIsHitting(bool isHitting)
     {
         this.isHitting = isHitting;
+    }
+    public void SetIsKnockdown(bool isKnockdown)
+    {
+        this.isKnockdown = isKnockdown;
     }
     protected override void LoadComponent()
     {
@@ -46,11 +52,13 @@ public class DamageSender : DinoBehaviour
     {
         DamageReceiver damageReceiver = other.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;
-        this.SendDamage(damageReceiver);
+        if (this.isKnockdown) this.SendKnockdownDamage(damageReceiver);
+        else this.SendDamage(damageReceiver);
+        this.DisableCollider();
         Debug.Log("OnTriggerEnter2D: " + other.gameObject.name);
     }
 
-    protected virtual void SendDamage(DamageReceiver damageReceiver)
+    public virtual void SendDamage(DamageReceiver damageReceiver)
     {
         this.isHitting = true;
         if (damageReceiver.OnBlock()) return;
@@ -68,5 +76,10 @@ public class DamageSender : DinoBehaviour
     }
 
 
+    public virtual void SendKnockdownDamage(DamageReceiver damageReceiver)
+    {
+        this.SendDamage(damageReceiver);
+        // Override ở CharacterDamSender;
+    }
 
 }

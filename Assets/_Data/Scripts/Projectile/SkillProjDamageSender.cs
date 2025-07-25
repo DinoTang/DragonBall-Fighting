@@ -26,7 +26,7 @@ public class SkillProjDamageSender : DamageSender
         }
 
     }
-    protected override void SendDamage(DamageReceiver damageReceiver)
+    public override void SendDamage(DamageReceiver damageReceiver)
     {
         CharacterCtrl target = damageReceiver.transform.parent.GetComponent<CharacterCtrl>();
         if (this.skillProjCtrl.SkillProj.Owner == target) return;

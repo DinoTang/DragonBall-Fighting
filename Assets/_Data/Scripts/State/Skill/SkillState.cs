@@ -16,7 +16,7 @@ public class SkillState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.Timed > totalDuration) this.stateManager.SetNextStateToMain();
+        if (this.timed > totalDuration) this.stateManager.SetNextStateToMain();
     }
 
     public override void OnExit()

@@ -14,7 +14,7 @@ public class GroundStrongHitState : BaseHitState
     {
         base.OnUpdate();
 
-        if (Fixedtime >= duration)
+        if (fixedTime >= duration)
         {
 
             this.BackMainState();

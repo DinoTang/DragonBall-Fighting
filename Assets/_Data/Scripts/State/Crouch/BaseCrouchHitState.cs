@@ -23,7 +23,7 @@ public class BaseCrouchHitState : State
             this.animator.SetBool("IsCrouch", false);
             this.stateManager.SetNextState(new IdleCombatState());
         }
-        if (Fixedtime >= duration)
+        if (fixedTime >= duration)
         {
             this.BackMainState();
         }

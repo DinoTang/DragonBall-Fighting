@@ -8,8 +8,9 @@ public class SuperDashState : State
     protected float speed = 70f;
     protected Vector2 targetLiftPos;
     protected float originalGravity;
-    protected float knockbackForceX = 20;
-    protected float knockbackForceY = 40;
+    protected float knockbackForceX = 5;
+    protected float knockbackForceY = 20;
+    protected float hitKnockbackForceY = 40;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
@@ -23,7 +24,7 @@ public class SuperDashState : State
         base.OnUpdate();
         if (InputManager.Instance.ReleaseSuperDashInput()) this.stateManager.SetNextStateToMain();
 
-        if (this.Timed < 0.35f)
+        if (this.timed < 0.35f)
         {
             this.HandleLift();
             return;
@@ -69,6 +70,7 @@ public class SuperDashState : State
     }
     protected void DashToOpponent()
     {
+        this.stateManager.CharacterCtrl.IsGround = false;
         CharacterCtrl opponent = this.stateManager.CharacterCtrl.Opponent;
         CharacterCtrl self = this.stateManager.CharacterCtrl;
 
@@ -79,24 +81,32 @@ public class SuperDashState : State
             return;
         }
 
+        if (!this.TryHandleDashHit(self, opponent)) return;
+        this.Dashing(self, opponent);
+    }
+
+    protected bool TryHandleDashHit(CharacterCtrl self, CharacterCtrl opponent)
+    {
         float distance = Vector2.Distance(self.transform.position, opponent.transform.position);
-        if (distance <= 2f)
+        if (distance <= 1f)
         {
+            float dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? 1 : -1;
             if (opponent.CharacterDamageReceiver.IsBlock)
             {
-                float dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? 1 : -1;
                 this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(-dir * this.knockbackForceX, this.knockbackForceY);
-                Debug.Log(this.stateManager.CharacterCtrl.Rgb.velocity);
             }
-
-
-            // this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, 40f);
-            // opponent.Rgb.velocity = new Vector2(0, 40f);
+            else
+            {
+                this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.hitKnockbackForceY);
+                opponent.Rgb.velocity = new Vector2(0, this.hitKnockbackForceY + 5);
+                opponent.StateManager.SetNextState(new KnockUpState());
+            }
+            this.stateManager.CanSuperDash = false;
+            // self.CharacterDamageSender.SendDamage(opponent.CharacterDamageReceiver);
             this.stateManager.SetNextState(new AirState());
-            return;
+            return false;
         }
-
-        this.Dashing(self, opponent);
+        return true;
     }
 
     protected void Dashing(CharacterCtrl self, CharacterCtrl opponent)

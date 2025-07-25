@@ -3,9 +3,11 @@ using UnityEngine;
 public class StateManager : DinoBehaviour
 {
     [SerializeField] protected CharacterCtrl characterCtrl;
+    public CharacterCtrl CharacterCtrl => characterCtrl;
     [SerializeField] protected bool isClone = false;
     public bool IsClone => isClone;
-    public CharacterCtrl CharacterCtrl => characterCtrl;
+    [SerializeField] protected bool canSuperDash = false;
+    public bool CanSuperDash { get => canSuperDash; set => canSuperDash = value; }
     public State mainStateType;
     public State previousState;
     public State CurrentState { get; set; }
@@ -29,6 +31,7 @@ public class StateManager : DinoBehaviour
     }
     protected void Update()
     {
+        if (this.characterCtrl.IsGround) this.canSuperDash = true;
         if (nextState != null)
         {
             SetState(nextState);
@@ -69,5 +72,5 @@ public class StateManager : DinoBehaviour
     {
         nextState = mainStateType;
     }
-    
+
 }

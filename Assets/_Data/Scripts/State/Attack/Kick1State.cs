@@ -14,7 +14,7 @@ public class KickState : BaseKickState
     {
         base.OnUpdate();
 
-        if (Fixedtime >= duration)
+        if (fixedTime >= duration)
         {
             if (this.shouldCombo && this.isHitting)
             {

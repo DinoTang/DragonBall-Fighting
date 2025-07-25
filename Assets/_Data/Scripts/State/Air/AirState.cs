@@ -13,15 +13,17 @@ public class AirState : BaseAirState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new AirHitState());
-        if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new AirKickState());
-        if (InputManager.Instance.GetSuperDashInput()) this.stateManager.SetNextState(new SuperDashState());
-        if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new AirBlockState());
-
         if (this.stateManager.CharacterCtrl.Rgb.velocity.y < 0)
         {
             this.animator.SetBool("IsFall", true);
         }
+        if (this.stateManager.IsClone) return;
+        if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new AirHit1State());
+        // if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new AirKickState());
+        if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new AirBlockState());
+        if (InputManager.Instance.GetSuperDashInput() && this.stateManager.CanSuperDash)
+            this.stateManager.SetNextState(new SuperDashState());
+
     }
     public override void OnExit()
     {

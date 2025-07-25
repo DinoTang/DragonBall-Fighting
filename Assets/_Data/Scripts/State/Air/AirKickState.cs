@@ -9,4 +9,13 @@ public class AirKickState : BaseAirHitState
         this.attackCounter = 2;
         base.OnEnter(stateManager);
     }
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+        if (this.fixedTime >= this.duration)
+        {
+            this.BackMainState();
+            this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsHitting(false);
+        }
+    }
 }

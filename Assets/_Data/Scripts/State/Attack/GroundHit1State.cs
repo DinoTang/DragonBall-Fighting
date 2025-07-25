@@ -14,7 +14,7 @@ public class GroundHit1State : BaseHitState
     {
         base.OnUpdate();
 
-        if (Fixedtime >= duration)
+        if (fixedTime >= duration)
         {
             if (this.shouldCombo && this.isHitting)
             {

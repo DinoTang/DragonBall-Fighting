@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class CharacterIntro : CharacterAbstract
 {
+    [Header("Character Intro")]
     public Animator animator;
     public AnimatorController normalController;
     public AnimatorController ssj2Controller;
     public AnimationClip transformClip;
     [SerializeField] protected bool isReady;
     public bool IsReady => isReady;
+
     protected override void Start()
     {
         // animator.runtimeAnimatorController = normalController;

@@ -8,12 +8,12 @@ public class Tele1 : State
     {
         base.OnEnter(stateManager);
         this.animator.SetBool("Tele1", true);
-        
+
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.Fixedtime >= 0.1f)
+        if (this.fixedTime >= 0.1f)
         {
             this.stateManager.SetNextStateToMain();
         }

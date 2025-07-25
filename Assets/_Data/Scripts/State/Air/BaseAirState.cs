@@ -12,6 +12,7 @@ public class BaseAirState : State
     }
     protected void MoveOnAir()
     {
+        if (this.stateManager.IsClone) return;
         float xInput = InputManager.Instance.GetHorizontal();
         if (xInput != 0)
         {

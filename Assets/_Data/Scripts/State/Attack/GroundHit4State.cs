@@ -15,7 +15,7 @@ public class GroundHit4State : BaseHitState
     {
         base.OnUpdate();
 
-        if (Fixedtime >= duration)
+        if (fixedTime >= duration)
         {
             this.BackMainState();
             this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsHitting(false);

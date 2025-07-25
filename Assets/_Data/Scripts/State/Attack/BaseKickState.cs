@@ -8,7 +8,7 @@ public class BaseKickState : BaseAttackState
     {
         base.OnUpdate();
 
-        if (Fixedtime > duration * 0.5f && InputManager.Instance.GetKickInput())
+        if (fixedTime > duration * 0.5f && InputManager.Instance.GetKickInput())
         {
             shouldCombo = true;
         }

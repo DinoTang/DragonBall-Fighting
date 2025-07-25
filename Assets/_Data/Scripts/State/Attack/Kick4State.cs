@@ -14,7 +14,7 @@ public class Kick4State : BaseKickState
     {
         base.OnUpdate();
 
-        if (Fixedtime >= duration)
+        if (fixedTime >= duration)
         {
             this.BackMainState();
             this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsHitting(false);

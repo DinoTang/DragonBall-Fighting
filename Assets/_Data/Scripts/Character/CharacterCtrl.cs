@@ -45,7 +45,8 @@ public class CharacterCtrl : DinoBehaviour
         opponent = target;
     }
 
-    public bool IsGround { get; set; }
+    [SerializeField] protected bool isGround;
+    public bool IsGround { get => isGround; set => isGround = value; }
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -157,11 +158,14 @@ public class CharacterCtrl : DinoBehaviour
         if (groundCollider == null) return;
         if (this.stateManager.CurrentState == null) return;
         this.IsGround = true;
+        if (this.stateManager.CurrentState is KnockDownState) return;
         if (this.stateManager.CurrentState is SuperDashState) return;
         if (this.stateManager.CurrentState.GetType() == typeof(IdleCombatState)) return;
         this.stateManager.SetNextState(new IdleCombatState());
         this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
         SmokeLandedFXSpawner.Instance.Spawn(SmokeLandedFXSpawner.Instance.nameFX, transform.position);
+        this.stateManager.CanSuperDash = true;
+        this.characterDamageSender.SetIsKnockdown(false);
     }
 
     public void EnableSmokeEffect()

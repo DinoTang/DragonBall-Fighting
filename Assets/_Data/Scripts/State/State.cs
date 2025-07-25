@@ -2,9 +2,9 @@ using UnityEngine;
 
 public abstract class State
 {
-    protected float Timed { get; set; }
-    protected float Fixedtime { get; set; }
-    protected float Latetime { get; set; }
+    protected float timed;
+    protected float fixedTime;
+    protected float lateTime;
     protected float duration = 0.3f;
     protected StateManager stateManager;
     protected Animator animator;
@@ -17,13 +17,13 @@ public abstract class State
 
     public virtual void OnUpdate()
     {
-        this.Timed += UnityEngine.Time.deltaTime;
-        // Debug.Log(this.stateManager.transform.name + " " +this.Timed + ": " + this.stateManager.CurrentState);
+        this.timed += UnityEngine.Time.deltaTime;
+        // Debug.Log(this.stateManager.transform.name + " " + this.timed + ": " + this.stateManager.CurrentState);
     }
 
     public virtual void OnFixedUpdate()
     {
-        this.Fixedtime += UnityEngine.Time.deltaTime;
+        this.fixedTime += UnityEngine.Time.deltaTime;
     }
     // public virtual void OnLateUpdate()
     // {

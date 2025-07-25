@@ -8,12 +8,12 @@ public class PowerFiredState : State
     {
         base.OnEnter(stateManager);
         this.animator.SetBool("IsPowerFired", true);
-        
+
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.Fixedtime >= 0.3f)
+        if (this.fixedTime >= 0.3f)
         {
             this.stateManager.SetNextStateToMain();
         }

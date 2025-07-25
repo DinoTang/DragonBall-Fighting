@@ -8,7 +8,7 @@ public class BaseHitState : BaseAttackState
     {
         base.OnUpdate();
 
-        if (Fixedtime > duration * 0.5f && InputManager.Instance.GetHitInput())
+        if (fixedTime > duration * 0.5f && InputManager.Instance.GetHitInput())
         {
             shouldCombo = true;
         }

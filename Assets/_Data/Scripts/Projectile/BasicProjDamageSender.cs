@@ -27,7 +27,7 @@ public class BasicProjDamageSender : DamageSender
 
     }
 
-    protected override void SendDamage(DamageReceiver damageReceiver)
+    public override void SendDamage(DamageReceiver damageReceiver)
     {
         CharacterCtrl owner = damageReceiver.transform.parent.GetComponent<CharacterCtrl>();
         if (this.basicProjCtrl.BasicProj.Owner == owner) return;

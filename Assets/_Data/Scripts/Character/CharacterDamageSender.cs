@@ -25,4 +25,10 @@ public class CharacterDamageSender : DamageSender
         base.OnHitExplosionFX(target);
         this.SpawnHitExplosionFX(ExplosionFXEnum.Hit_Effect, target, this.characterCtrl);
     }
+    public override void SendKnockdownDamage(DamageReceiver damageReceiver)
+    {
+        base.SendKnockdownDamage(damageReceiver);
+        this.characterCtrl.Opponent.StateManager.SetNextState(new KnockDownState());
+        this.isKnockdown = false;
+    }
 }
