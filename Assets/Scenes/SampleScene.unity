@@ -205,8 +205,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.046601772, y: -0.33726013}
-  m_Size: {x: 0.9282961, y: 1.7913306}
+  m_Offset: {x: 0.10393143, y: -0.4293275}
+  m_Size: {x: 0.91366816, y: 1.9754653}
   m_Direction: 0
 --- !u!114 &78084097
 MonoBehaviour:
@@ -248,12 +248,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collide: {fileID: 78084096}
-  isImmortal: 1
+  isImmortal: 0
   isDead: 0
   isHurt: 0
   isBlock: 0
-  currentHP: 5
-  maxHP: 5
+  currentHP: 10000
+  maxHP: 10000
   characterCtrl: {fileID: 359469047}
 --- !u!1 &79326638
 GameObject:
@@ -598,6 +598,7 @@ GameObject:
   - component: {fileID: 128252244}
   - component: {fileID: 128252246}
   - component: {fileID: 128252243}
+  - component: {fileID: 128252247}
   m_Layer: 6
   m_Name: Modal
   m_TagString: Untagged
@@ -711,6 +712,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &128252247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128252242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367e6c9af455e3040934f5eabfcacbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCtrl: {fileID: 359469047}
 --- !u!1 &142526360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,11 +1617,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 359469051}
-  - component: {fileID: 359469050}
   - component: {fileID: 359469049}
   - component: {fileID: 359469048}
   - component: {fileID: 359469047}
-  - component: {fileID: 359469052}
+  - component: {fileID: 359469053}
   m_Layer: 6
   m_Name: VegetaClone
   m_TagString: Untagged
@@ -1627,23 +1640,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ccc9fbe12049a458d059748e2fa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: 0
+  characterName: 1
   rgb: {fileID: 359469049}
   animator: {fileID: 128252246}
   stateManager: {fileID: 359469048}
-  characterData: {fileID: 0}
+  characterGroundCollision: {fileID: 359469053}
   characterIntro: {fileID: 128252243}
   characterFlip: {fileID: 1551516187}
-  characterAnimEvent: {fileID: 0}
+  characterAnimEvent: {fileID: 128252247}
   characterDamageSender: {fileID: 470561086}
   characterDamageReceiver: {fileID: 78084099}
-  characterCombo: {fileID: 0}
+  characterCombo: {fileID: 441707343}
   kiCharge: {fileID: 0}
   firePoint: {fileID: 1167227472}
   characterKiManager: {fileID: 0}
   characterSkillManager: {fileID: 0}
-  opponent: {fileID: 751414181}
-  isGround: 0
+  opponent: {fileID: 0}
 --- !u!114 &359469048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,51 +1698,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &359469050
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359469046}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 059c7cc318e52a74296ef519d9e7243a, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.1, y: -0.75}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.01, y: 1.8}
-  m_EdgeRadius: 0
 --- !u!4 &359469051
 Transform:
   m_ObjectHideFlags: 0
@@ -1744,8 +1711,8 @@ Transform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1167227471}
   - {fileID: 128252245}
+  - {fileID: 1167227471}
   - {fileID: 1551516186}
   - {fileID: 78084098}
   - {fileID: 470561085}
@@ -1755,7 +1722,7 @@ Transform:
   - {fileID: 620348536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &359469052
+--- !u!114 &359469053
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1764,9 +1731,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 359469046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c60a75f4dbde46949ac089ea455d968a, type: 3}
+  m_Script: {fileID: 11500000, guid: ad83ea747d8386f4d9b47b91596687e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterCtrl: {fileID: 359469047}
+  isGround: 0
 --- !u!1 &364214751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2626,7 +2595,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterCtrl: {fileID: 751414181}
-  enemy: {fileID: 359469052}
   distance: 0
   isFacingRight: 1
 --- !u!1 &584261296
@@ -3153,10 +3121,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 751414175}
-  - component: {fileID: 751414176}
   - component: {fileID: 751414177}
   - component: {fileID: 751414179}
   - component: {fileID: 751414180}
+  - component: {fileID: 751414182}
   - component: {fileID: 751414181}
   m_Layer: 0
   m_Name: Vegeta
@@ -3192,51 +3160,6 @@ Transform:
   - {fileID: 1221265640}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &751414176
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751414174}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 059c7cc318e52a74296ef519d9e7243a, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.1, y: -0.75}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.01, y: 1.8}
-  m_EdgeRadius: 0
 --- !u!50 &751414177
 Rigidbody2D:
   serializedVersion: 4
@@ -3307,7 +3230,7 @@ MonoBehaviour:
   rgb: {fileID: 751414177}
   animator: {fileID: 1864161640}
   stateManager: {fileID: 751414179}
-  characterData: {fileID: 1791492195}
+  characterGroundCollision: {fileID: 0}
   characterIntro: {fileID: 1864161641}
   characterFlip: {fileID: 533628452}
   characterAnimEvent: {fileID: 1864161642}
@@ -3319,6 +3242,19 @@ MonoBehaviour:
   characterKiManager: {fileID: 584261297}
   characterSkillManager: {fileID: 1221265639}
   opponent: {fileID: 359469047}
+--- !u!114 &751414182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751414174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad83ea747d8386f4d9b47b91596687e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCtrl: {fileID: 751414181}
   isGround: 0
 --- !u!1 &771113318
 GameObject:
@@ -5826,7 +5762,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterCtrl: {fileID: 359469047}
-  enemy: {fileID: 751414180}
   distance: 0
   isFacingRight: 1
 --- !u!1 &1555896072
@@ -6882,7 +6817,7 @@ MonoBehaviour:
   rgb: {fileID: 1795711759}
   animator: {fileID: 1025743598}
   stateManager: {fileID: 1795711760}
-  characterData: {fileID: 0}
+  characterGroundCollision: {fileID: 0}
   characterIntro: {fileID: 1025743600}
   characterFlip: {fileID: 0}
   characterAnimEvent: {fileID: 0}
@@ -6894,7 +6829,6 @@ MonoBehaviour:
   characterKiManager: {fileID: 0}
   characterSkillManager: {fileID: 0}
   opponent: {fileID: 0}
-  isGround: 0
 --- !u!50 &1795711759
 Rigidbody2D:
   serializedVersion: 4

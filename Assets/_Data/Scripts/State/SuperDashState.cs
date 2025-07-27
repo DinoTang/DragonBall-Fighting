@@ -59,7 +59,7 @@ public class SuperDashState : State
     }
     protected void HandleLift()
     {
-        if (!this.stateManager.CharacterCtrl.IsGround) return;
+        if (!this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround) return;
 
         Transform self = this.stateManager.transform;
         self.position = Vector2.MoveTowards(
@@ -70,7 +70,7 @@ public class SuperDashState : State
     }
     protected void DashToOpponent()
     {
-        this.stateManager.CharacterCtrl.IsGround = false;
+        this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround = false;
         CharacterCtrl opponent = this.stateManager.CharacterCtrl.Opponent;
         CharacterCtrl self = this.stateManager.CharacterCtrl;
 
@@ -98,7 +98,13 @@ public class SuperDashState : State
             else
             {
                 this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.hitKnockbackForceY);
-                opponent.Rgb.velocity = new Vector2(0, this.hitKnockbackForceY + 5);
+                float heightOffset = self.transform.position.y - opponent.transform.position.y;
+                float finalKnockbackY = this.hitKnockbackForceY + heightOffset * 1.2f; // nhân nhẹ để tạo lực bật cao hơn nếu chênh
+
+                bool bonusForceCondition = this.stateManager.mainStateType.GetType() == typeof(IdleCombatState);
+                float bonusForce = bonusForceCondition ? 0 : 3;
+                opponent.Rgb.velocity = new Vector2(0, finalKnockbackY + bonusForce);
+
                 opponent.StateManager.SetNextState(new KnockUpState());
             }
             this.stateManager.CanSuperDash = false;

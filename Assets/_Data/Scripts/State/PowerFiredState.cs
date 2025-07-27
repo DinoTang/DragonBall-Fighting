@@ -13,7 +13,7 @@ public class PowerFiredState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.fixedTime >= 0.3f)
+        if (this.timed >= 0.3f)
         {
             this.stateManager.SetNextStateToMain();
         }

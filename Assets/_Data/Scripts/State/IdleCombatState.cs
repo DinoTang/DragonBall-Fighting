@@ -13,6 +13,7 @@ public class IdleCombatState : State
     }
     public override void OnUpdate()
     {
+        base.OnUpdate();
         if (this.stateManager.IsClone) return;
         this.stateManager.CharacterCtrl.CharacterFlip.Flipping();
         if (InputManager.Instance.GetHorizontal() != 0) this.stateManager.SetNextState(new MoveState());

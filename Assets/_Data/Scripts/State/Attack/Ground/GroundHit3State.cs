@@ -1,29 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AirHit2State : BaseAirHitState
+public class GroundHit3State : BaseGroundHitState
 {
     public override void OnEnter(StateManager stateManager)
     {
-        this.attackCounter = 2;
+        this.attackCounter = 3;
         base.OnEnter(stateManager);
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.fixedTime >= this.duration)
+
+        if (this.timed >= this.duration)
         {
-            if (this.shouldCombo && this.isHitting)
+            if (shouldCombo && this.isHitting)
             {
-                this.stateManager.SetNextState(new AirHit3State());
+                this.stateManager.SetNextState(new GroundHit4State());
             }
             else
             {
+                this.BackMainState();
                 this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsHitting(false);
-                this.stateManager.SetNextStateToMain();
             }
         }
     }
+
+
+
 }

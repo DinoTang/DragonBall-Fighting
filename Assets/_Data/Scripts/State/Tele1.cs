@@ -13,7 +13,7 @@ public class Tele1 : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.fixedTime >= 0.1f)
+        if (this.timed >= 0.1f)
         {
             this.stateManager.SetNextStateToMain();
         }

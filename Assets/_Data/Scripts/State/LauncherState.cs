@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LauncherState : BaseHitState
+public class LauncherState : BaseGroundHitState
 {
     public override void OnEnter(StateManager stateManager)
     {
@@ -12,7 +12,7 @@ public class LauncherState : BaseHitState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (fixedTime >= 0.25)
+        if (this.timed >= 0.25)
         {
             this.BackMainState();
         }

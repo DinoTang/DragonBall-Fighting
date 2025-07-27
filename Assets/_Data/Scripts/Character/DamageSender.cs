@@ -39,6 +39,7 @@ public class DamageSender : DinoBehaviour
     public void EnableCollider()
     {
         // Debug.Log("Collider enabled at: " + Time.time);
+        this.isHitting = false;
         this._collider.enabled = true;
     }
 
@@ -56,13 +57,13 @@ public class DamageSender : DinoBehaviour
         else this.SendDamage(damageReceiver);
         this.DisableCollider();
         Debug.Log("OnTriggerEnter2D: " + other.gameObject.name);
+
     }
 
     public virtual void SendDamage(DamageReceiver damageReceiver)
     {
-        this.isHitting = true;
         if (damageReceiver.OnBlock()) return;
-        damageReceiver.DeductHP(this.damage);
+        if (damageReceiver.DeductHP(this.damage)) this.isHitting = true;
         this.OnHitExplosionFX(damageReceiver.transform);
     }
     protected virtual void OnHitExplosionFX(Transform target)

@@ -14,7 +14,7 @@ public class BaseCombo : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (fixedTime >= this.duration) this.stateManager.SetNextStateToMain();
+        if (this.timed >= this.duration) this.stateManager.SetNextStateToMain();
     }
     public override void OnExit()
     {

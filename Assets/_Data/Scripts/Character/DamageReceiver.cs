@@ -13,7 +13,7 @@ public abstract class DamageReceiver : DinoBehaviour
     [SerializeField] protected bool isBlock = false;
     public bool IsBlock => isBlock;
     [SerializeField] protected float currentHP;
-    [SerializeField] protected float maxHP = 5;
+    [SerializeField] protected float maxHP = 10000;
     public void SetIsHurt(bool isHurt)
     {
         this.isHurt = isHurt;
@@ -47,15 +47,17 @@ public abstract class DamageReceiver : DinoBehaviour
         this.currentHP += hp;
     }
 
-    public void DeductHP(float hp)
+    public virtual bool DeductHP(float hp)
     {
-        if (this.isBlock) return;
+        if (this.isBlock) return false;
         this.OnHurt();
-        if (this.isImmortal) return;
-        if (this.isDead) return;
+        if (this.isImmortal || this.isDead) return false;
+
         this.currentHP -= hp;
         this.IsDead();
+        return true;
     }
+
     public bool CheckDead()
     {
         return this.currentHP <= 0;

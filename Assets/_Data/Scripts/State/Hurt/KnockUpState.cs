@@ -9,7 +9,7 @@ public class KnockUpState : State
     {
         base.OnEnter(stateManager);
         this.animator.SetBool("IsKnockUp", true);
-        this.stateManager.CharacterCtrl.IsGround = false;
+        this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround = false;
     }
 
     public override void OnUpdate()
@@ -18,6 +18,7 @@ public class KnockUpState : State
 
         if (this.timed >= this.knockDuration)
         {
+            if (this.stateManager.CharacterCtrl.CharacterDamageReceiver.IsHurt && this.stateManager.CharacterCtrl.Opponent.CharacterDamageSender.IsHitting) return;
             float dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
             this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(dir * 10f, 30f);
             this.stateManager.SetNextState(new AirState());

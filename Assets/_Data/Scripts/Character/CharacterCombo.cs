@@ -38,7 +38,7 @@ public class CharacterCombo : CharacterAbstract
         //     this.characterCtrl.StateManager.SetNextState(new Combo2());
         //     this.inputBuffer.ClearCombo();
         // }
-        this.TeleCombo();
+        // this.TeleCombo();
         this.SkillOneCombo();
         this.SkillTwoCombo();
         this.SkillFourCombo();
@@ -47,15 +47,15 @@ public class CharacterCombo : CharacterAbstract
     {
         this.currentSkill = "";
     }
-    protected void SpawnEffectWhenTele()
+    public void SpawnEffectWhenTele()
     {
         TeleFX_Spawner.Instance.Spawn(TeleFX_Spawner.Instance.nameFX, this.characterCtrl.transform.position);
         SmokeLandedFXSpawner.Instance.Spawn(SmokeLandedFXSpawner.Instance.nameFX, this.characterCtrl.transform.position);
     }
-    protected void Teleing(float distanceTele)
+    protected void Teleing(float dirTele)
     {
         Vector3 char_Pos = this.characterCtrl.transform.position;
-        this.characterCtrl.transform.position = new Vector3(char_Pos.x + distanceTele, char_Pos.y, char_Pos.z);
+        this.characterCtrl.transform.position = new Vector3(char_Pos.x + this.distanceTele * dirTele, char_Pos.y, char_Pos.z);
     }
     protected void TeleCombo()
     {
@@ -66,7 +66,7 @@ public class CharacterCombo : CharacterAbstract
             if (this.characterCtrl.CharacterFlip.IsFacingRight)
                 this.characterCtrl.StateManager.SetNextState(new Tele2());
             else this.characterCtrl.StateManager.SetNextState(new Tele1());
-            this.Teleing(-this.distanceTele);
+            this.Teleing(-1);
             this.inputBuffer.ClearCombo();
         }
         if (this.combo == "Right+Right")
@@ -75,7 +75,7 @@ public class CharacterCombo : CharacterAbstract
             if (this.characterCtrl.CharacterFlip.IsFacingRight)
                 this.characterCtrl.StateManager.SetNextState(new Tele1());
             else this.characterCtrl.StateManager.SetNextState(new Tele2());
-            this.Teleing(this.distanceTele);
+            this.Teleing(1);
             this.inputBuffer.ClearCombo();
         }
     }

@@ -11,6 +11,8 @@ public class BaseAirHitState : BaseAirState
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
+        // this.duration = 0.5f;
+
         //Attack
         this.animator.SetBool("IsJump", true);
         this.animator.SetBool("IsAttack", true);
@@ -27,7 +29,7 @@ public class BaseAirHitState : BaseAirState
             this.stateManager.CharacterCtrl.Rgb.velocity = Vector2.zero;
             this.stateManager.CharacterCtrl.Rgb.gravityScale = 0;
         }
-        if (fixedTime > duration * 0.5f && InputManager.Instance.GetHitInput())
+        if (this.timed > duration * 0.5f && InputManager.Instance.GetHitInput())
         {
             shouldCombo = true;
         }

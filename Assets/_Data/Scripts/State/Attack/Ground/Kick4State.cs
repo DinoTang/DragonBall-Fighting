@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundStrongHitState : BaseHitState
+public class Kick4State : BaseGroundKickState
 {
     public override void OnEnter(StateManager stateManager)
     {
-        this.attackCounter = 4;
+        this.attackCounter = 8;
         base.OnEnter(stateManager);
     }
 
@@ -14,10 +14,10 @@ public class GroundStrongHitState : BaseHitState
     {
         base.OnUpdate();
 
-        if (fixedTime >= duration)
+        if (this.timed >= this.duration)
         {
-
             this.BackMainState();
+            this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsHitting(false);
         }
     }
 }

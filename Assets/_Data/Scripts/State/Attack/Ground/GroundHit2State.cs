@@ -1,13 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundHit3State : BaseHitState
+public class GroundHit2State : BaseGroundHitState
 {
     public override void OnEnter(StateManager stateManager)
     {
-        this.attackCounter = 3;
+        this.attackCounter = 2;
         base.OnEnter(stateManager);
     }
 
@@ -15,11 +14,11 @@ public class GroundHit3State : BaseHitState
     {
         base.OnUpdate();
 
-        if (fixedTime >= duration)
+        if (this.timed >= this.duration)
         {
             if (shouldCombo && this.isHitting)
             {
-                this.stateManager.SetNextState(new GroundHit4State());
+                this.stateManager.SetNextState(new GroundHit3State());
             }
             else
             {
@@ -28,7 +27,4 @@ public class GroundHit3State : BaseHitState
             }
         }
     }
-
-
-
 }

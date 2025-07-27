@@ -9,7 +9,6 @@ public class StateManager : DinoBehaviour
     [SerializeField] protected bool canSuperDash = false;
     public bool CanSuperDash { get => canSuperDash; set => canSuperDash = value; }
     public State mainStateType;
-    public State previousState;
     public State CurrentState { get; set; }
     public State nextState;
     protected override void Start()
@@ -31,7 +30,7 @@ public class StateManager : DinoBehaviour
     }
     protected void Update()
     {
-        if (this.characterCtrl.IsGround) this.canSuperDash = true;
+        if (this.characterCtrl.CharacterGroundCollision.IsGround) this.canSuperDash = true;
         if (nextState != null)
         {
             SetState(nextState);

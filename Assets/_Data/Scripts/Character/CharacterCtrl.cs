@@ -13,8 +13,10 @@ public class CharacterCtrl : DinoBehaviour
     public Animator Animator => animator;
     [SerializeField] protected StateManager stateManager;
     public StateManager StateManager => stateManager;
-    [SerializeField] protected CharacterData characterData;
-    public CharacterData CharacterData => characterData;
+    [SerializeField] protected CharacterGroundCollision characterGroundCollision;
+    public CharacterGroundCollision CharacterGroundCollision => characterGroundCollision;
+    // [SerializeField] protected CharacterData characterData;
+    // public CharacterData CharacterData => characterData;
     [SerializeField] protected CharacterIntro characterIntro;
     public CharacterIntro CharacterIntro => characterIntro;
     [SerializeField] protected CharacterFlip characterFlip;
@@ -45,15 +47,15 @@ public class CharacterCtrl : DinoBehaviour
         opponent = target;
     }
 
-    [SerializeField] protected bool isGround;
-    public bool IsGround { get => isGround; set => isGround = value; }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
         this.LoadRigidbody();
         this.LoadAnimator();
         this.LoadStateManager();
-        this.LoadCharacterData();
+        this.LoadCharacterGroundCollision();
+        // this.LoadCharacterData();
         this.LoadCharacterIntro();
         this.LoadCharacterFlip();
         this.LoadCharacterAnimEvent();
@@ -83,12 +85,18 @@ public class CharacterCtrl : DinoBehaviour
         this.stateManager = GetComponent<StateManager>();
         Debug.Log(transform.name + ": LoadStateManager", gameObject);
     }
-    protected void LoadCharacterData()
+    protected void LoadCharacterGroundCollision()
     {
-        if (this.characterData != null) return;
-        this.characterData = GetComponentInChildren<CharacterData>();
-        Debug.Log(transform.name + ": LoadCharacterData", gameObject);
+        if (this.characterGroundCollision != null) return;
+        this.characterGroundCollision = GetComponentInChildren<CharacterGroundCollision>();
+        Debug.Log(transform.name + ": LoadCharacterGroundCollision", gameObject);
     }
+    // protected void LoadCharacterData()
+    // {
+    //     if (this.characterData != null) return;
+    //     this.characterData = GetComponentInChildren<CharacterData>();
+    //     Debug.Log(transform.name + ": LoadCharacterData", gameObject);
+    // }
     protected void LoadCharacterIntro()
     {
         if (this.characterIntro != null) return;
@@ -152,22 +160,6 @@ public class CharacterCtrl : DinoBehaviour
         this.characterSkillManager = GetComponentInChildren<CharacterSkillManager>();
         Debug.Log(transform.name + ": LoadCharacterSkillManager", gameObject);
     }
-    protected void OnCollisionEnter2D(Collision2D collision)
-    {
-        Ground groundCollider = collision.transform.GetComponent<Ground>();
-        if (groundCollider == null) return;
-        if (this.stateManager.CurrentState == null) return;
-        this.IsGround = true;
-        if (this.stateManager.CurrentState is KnockDownState) return;
-        if (this.stateManager.CurrentState is SuperDashState) return;
-        if (this.stateManager.CurrentState.GetType() == typeof(IdleCombatState)) return;
-        this.stateManager.SetNextState(new IdleCombatState());
-        this.stateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
-        SmokeLandedFXSpawner.Instance.Spawn(SmokeLandedFXSpawner.Instance.nameFX, transform.position);
-        this.stateManager.CanSuperDash = true;
-        this.characterDamageSender.SetIsKnockdown(false);
-    }
-
     public void EnableSmokeEffect()
     {
         this.kiCharge.gameObject.SetActive(true);

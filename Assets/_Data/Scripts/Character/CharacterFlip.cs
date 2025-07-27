@@ -4,29 +4,14 @@ using UnityEngine;
 
 public class CharacterFlip : CharacterAbstract
 {
-    [SerializeField] protected Enemy enemy;
     [SerializeField] protected float distance;
     [SerializeField] protected bool isFacingRight = true;
     public bool IsFacingRight => isFacingRight;
-    protected override void LoadComponent()
-    {
-        base.LoadComponent();
-        this.LoadEnemy();
-    }
-    protected override void Start()
-    {
-        base.Start();
-        this.Flipping();
-    }
-    protected void LoadEnemy()
-    {
-        if (this.enemy != null) return;
-        this.enemy = FindAnyObjectByType<Enemy>();
-        Debug.Log(transform.name + ": LoadEnemy", gameObject);
-    }
+
     public void Flipping()
     {
-        this.distance = this.enemy.transform.position.x - this.transform.position.x;
+        if (this.characterCtrl.StateManager.CurrentState is KnockdownIdleState) return;
+        this.distance = this.characterCtrl.Opponent.transform.position.x - this.transform.position.x;
         if (this.distance < 0)
         {
             this.isFacingRight = false;
