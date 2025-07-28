@@ -37,7 +37,7 @@ public class CharacterDamageReceiver : DamageReceiver
         this.OnParryFX();
         return true;
     }
-    protected void OnParryFX()
+    public void OnParryFX()
     {
         Vector2 pos = this.characterCtrl.transform.position;
         pos.y -= 0.5f;
@@ -45,4 +45,13 @@ public class CharacterDamageReceiver : DamageReceiver
         else pos.x += 0.5f;
         ExplosionFXSpawner.Instance.Spawn(ExplosionFXEnum.Parry.ToString(), pos, this.characterCtrl);
     }
+
+    public void ToggleIgnoreEnemy(bool ignore)
+    {
+        Collider2D playerCol = this.collide;
+        Collider2D enemyCol = this.characterCtrl.Opponent.CharacterDamageReceiver.collide;
+
+        Physics2D.IgnoreCollision(playerCol, enemyCol, ignore);
+    }
+
 }

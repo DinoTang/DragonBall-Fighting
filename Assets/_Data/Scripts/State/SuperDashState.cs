@@ -8,7 +8,7 @@ public class SuperDashState : State
     protected float speed = 70f;
     protected Vector2 targetLiftPos;
     protected float originalGravity;
-    protected float knockbackForceX = 5;
+    protected float knockbackForceX = 15;
     protected float knockbackForceY = 20;
     protected float hitKnockbackForceY = 40;
     public override void OnEnter(StateManager stateManager)
@@ -90,29 +90,39 @@ public class SuperDashState : State
         float distance = Vector2.Distance(self.transform.position, opponent.transform.position);
         if (distance <= 1f)
         {
-            float dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? 1 : -1;
-            if (opponent.CharacterDamageReceiver.IsBlock)
+            int dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? 1 : -1;
+            if (opponent.CharacterDamageReceiver.IsBlock || opponent.StateManager.CurrentState is KnockdownIdleState)
             {
-                this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(-dir * this.knockbackForceX, this.knockbackForceY);
+                this.HandleBlockedDashHit(dir);
             }
             else
             {
-                this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.hitKnockbackForceY);
-                float heightOffset = self.transform.position.y - opponent.transform.position.y;
-                float finalKnockbackY = this.hitKnockbackForceY + heightOffset * 1.2f; // nhân nhẹ để tạo lực bật cao hơn nếu chênh
-
-                bool bonusForceCondition = this.stateManager.mainStateType.GetType() == typeof(IdleCombatState);
-                float bonusForce = bonusForceCondition ? 0 : 3;
-                opponent.Rgb.velocity = new Vector2(0, finalKnockbackY + bonusForce);
-
-                opponent.StateManager.SetNextState(new KnockUpState());
+                this.HandleSuccessfulDashHit(self, opponent);
             }
             this.stateManager.CanSuperDash = false;
-            // self.CharacterDamageSender.SendDamage(opponent.CharacterDamageReceiver);
             this.stateManager.SetNextState(new AirState());
             return false;
         }
         return true;
+    }
+
+    protected void HandleBlockedDashHit(int dir)
+    {
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.OnParryFX();
+        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(-dir * this.knockbackForceX, this.knockbackForceY);
+    }
+
+    protected void HandleSuccessfulDashHit(CharacterCtrl self, CharacterCtrl opponent)
+    {
+        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.hitKnockbackForceY);
+        float heightOffset = self.transform.position.y - opponent.transform.position.y;
+        float finalKnockbackY = this.hitKnockbackForceY + heightOffset * 1.2f; // nhân nhẹ để tạo lực bật cao hơn nếu chênh
+
+        bool bonusForceCondition = this.stateManager.mainStateType.GetType() == typeof(IdleCombatState);
+        float bonusForce = bonusForceCondition ? 0 : 3;
+        opponent.Rgb.velocity = new Vector2(0, finalKnockbackY + bonusForce);
+
+        opponent.StateManager.SetNextState(new KnockUpState());
     }
 
     protected void Dashing(CharacterCtrl self, CharacterCtrl opponent)

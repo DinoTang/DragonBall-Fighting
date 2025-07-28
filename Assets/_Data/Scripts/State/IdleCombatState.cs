@@ -10,6 +10,7 @@ public class IdleCombatState : State
         this.stateManager.mainStateType = new IdleCombatState();
         this.animator.SetBool("IsIdle", true);
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.stateManager.CharacterCtrl.Rgb.velocity.y);
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.ToggleIgnoreEnemy(false);
     }
     public override void OnUpdate()
     {

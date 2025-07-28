@@ -1619,8 +1619,8 @@ GameObject:
   - component: {fileID: 359469051}
   - component: {fileID: 359469049}
   - component: {fileID: 359469048}
-  - component: {fileID: 359469047}
   - component: {fileID: 359469053}
+  - component: {fileID: 359469047}
   m_Layer: 6
   m_Name: VegetaClone
   m_TagString: Untagged
@@ -3123,7 +3123,6 @@ GameObject:
   - component: {fileID: 751414175}
   - component: {fileID: 751414177}
   - component: {fileID: 751414179}
-  - component: {fileID: 751414180}
   - component: {fileID: 751414182}
   - component: {fileID: 751414181}
   m_Layer: 0
@@ -3202,18 +3201,6 @@ MonoBehaviour:
   characterCtrl: {fileID: 751414181}
   isClone: 0
   canSuperDash: 1
---- !u!114 &751414180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751414174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c60a75f4dbde46949ac089ea455d968a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &751414181
 MonoBehaviour:
   m_ObjectHideFlags: 0

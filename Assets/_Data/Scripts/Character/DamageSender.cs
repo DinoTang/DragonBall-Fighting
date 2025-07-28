@@ -64,6 +64,7 @@ public class DamageSender : DinoBehaviour
     {
         if (damageReceiver.OnBlock()) return;
         if (damageReceiver.DeductHP(this.damage)) this.isHitting = true;
+        else return;
         this.OnHitExplosionFX(damageReceiver.transform);
     }
     protected virtual void OnHitExplosionFX(Transform target)

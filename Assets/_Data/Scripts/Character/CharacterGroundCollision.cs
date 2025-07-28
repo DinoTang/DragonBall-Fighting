@@ -11,9 +11,14 @@ public class CharacterGroundCollision : CharacterAbstract
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         this.HandleGroundCollision(collision);
-        // this.PreventStandingOnEnemy(collision);
+        this.PreventStandingOnEnemy(collision);
     }
-
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Ground groundCollider = collision.transform.GetComponent<Ground>();
+        if (groundCollider == null || this.characterCtrl.StateManager.CurrentState == null) return;
+        isGround = false;
+    }
     protected void HandleGroundCollision(Collision2D collision)
     {
         Ground groundCollider = collision.transform.GetComponent<Ground>();
@@ -25,7 +30,6 @@ public class CharacterGroundCollision : CharacterAbstract
         if (!this.CanEnterIdleState()) return;
 
         this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
-        // this.characterCtrl.StateManager.mainStateType = new IdleCombatState();
 
         this.characterCtrl.StateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
         this.characterCtrl.StateManager.CanSuperDash = true;
@@ -42,12 +46,12 @@ public class CharacterGroundCollision : CharacterAbstract
         Vector2 selfPos = this.characterCtrl.transform.position;
         Vector2 opponentPos = opponent.transform.position;
 
-        // if (selfPos.y > opponentPos.y)
-        // {
-        //     float dir = this.characterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
-        //     this.characterCtrl.Rgb.velocity = new Vector2(10f * dir, 5f);
-        //     Debug.LogWarning("Bật ra khỏi enemy!");
-        // }
+        if (selfPos.y > opponentPos.y)
+        {
+            float dir = this.characterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
+            this.characterCtrl.Rgb.velocity = new Vector2(10f * dir, 5f);
+            Debug.LogWarning("Bật ra khỏi enemy!");
+        }
     }
 
     protected bool CanEnterIdleState()

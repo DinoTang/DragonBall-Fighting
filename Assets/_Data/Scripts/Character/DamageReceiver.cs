@@ -22,6 +22,10 @@ public abstract class DamageReceiver : DinoBehaviour
     {
         this.isBlock = isBlock;
     }
+    public void SetIsImmortal(bool isImmortal)
+    {
+        this.isImmortal = isImmortal;
+    }
     protected override void OnEnable()
     {
         this.isDead = false;
@@ -49,9 +53,8 @@ public abstract class DamageReceiver : DinoBehaviour
 
     public virtual bool DeductHP(float hp)
     {
-        if (this.isBlock) return false;
+        if (this.isImmortal || this.isDead || this.isBlock) return false;
         this.OnHurt();
-        if (this.isImmortal || this.isDead) return false;
 
         this.currentHP -= hp;
         this.IsDead();

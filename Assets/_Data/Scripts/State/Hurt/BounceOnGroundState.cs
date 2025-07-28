@@ -13,9 +13,10 @@ public class BounceOnGroundState : State
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsImmortal(true);
+
         this.animator.SetBool("IsKnockUp", true);
-        this.bounceCount = 0;
-        this.stateManager.CharacterCtrl.Rgb.gravityScale = 15f;
+        // this.stateManager.CharacterCtrl.Rgb.gravityScale = 15f;
         this.BounceUp();
     }
 
@@ -30,7 +31,6 @@ public class BounceOnGroundState : State
             {
                 this.BounceUp();
                 waitingForNextBounce = true;
-                this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround = false;
             }
             else
             {

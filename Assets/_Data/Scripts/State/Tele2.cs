@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Tele2 : State
 {
-    protected float distanceTele = 10f;
+    protected float distanceTele = 5f;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
