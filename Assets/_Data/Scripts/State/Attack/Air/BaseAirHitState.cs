@@ -7,7 +7,7 @@ public class BaseAirHitState : BaseAirState
     protected int attackCounter;
     protected bool shouldCombo = false;
     protected bool isHitting;
-
+    protected bool otherAttack;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
@@ -29,7 +29,7 @@ public class BaseAirHitState : BaseAirState
             this.stateManager.CharacterCtrl.Rgb.velocity = Vector2.zero;
             this.stateManager.CharacterCtrl.Rgb.gravityScale = 0;
         }
-        if (this.timed > duration * 0.5f && InputManager.Instance.GetHitInput())
+        if (this.timed > duration * 0.3f && InputManager.Instance.GetHitInput())
         {
             shouldCombo = true;
         }

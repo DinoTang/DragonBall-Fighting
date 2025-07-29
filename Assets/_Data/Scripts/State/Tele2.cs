@@ -15,7 +15,7 @@ public class Tele2 : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.timed >= 0.1f)
+        if (this.timed >= 0.01f)
         {
             this.Teleing();
             this.stateManager.SetNextStateToMain();

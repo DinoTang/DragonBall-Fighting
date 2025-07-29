@@ -21,7 +21,7 @@ public class KnockUpState : State
             if (this.stateManager.CharacterCtrl.CharacterDamageReceiver.IsHurt && this.stateManager.CharacterCtrl.Opponent.CharacterDamageSender.IsHitting) return;
             float dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
             this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(dir * 10f, 30f);
-            this.stateManager.SetNextState(new AirState());
+            this.stateManager.SetNextStateToMain();
         }
     }
 

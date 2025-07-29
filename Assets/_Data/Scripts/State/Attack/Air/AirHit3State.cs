@@ -14,10 +14,9 @@ public class AirHit3State : BaseAirHitState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.timed >= this.duration)
-        {
-            this.BackMainState();
-            this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsHitting(false);
-        }
+        if (this.timed < this.duration) return;
+
+        this.BackMainState();
+        this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsHitting(false);
     }
 }

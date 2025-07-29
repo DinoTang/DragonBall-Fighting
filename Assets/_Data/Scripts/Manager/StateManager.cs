@@ -30,7 +30,13 @@ public class StateManager : DinoBehaviour
     }
     protected void Update()
     {
-        if (this.characterCtrl.CharacterGroundCollision.IsGround) this.canSuperDash = true;
+        if (this.characterCtrl.CharacterGroundCollision.IsGround)
+        {
+            this.canSuperDash = true;
+            this.mainStateType = new IdleCombatState();
+        }
+        else this.mainStateType = new AirState();
+
         if (nextState != null)
         {
             SetState(nextState);

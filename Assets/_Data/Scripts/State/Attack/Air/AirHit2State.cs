@@ -13,17 +13,15 @@ public class AirHit2State : BaseAirHitState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.timed >= this.duration)
+        if (this.timed < this.duration) return;
+        if (this.shouldCombo && this.isHitting)
         {
-            if (this.shouldCombo && this.isHitting)
-            {
-                this.stateManager.SetNextState(new AirHit3State());
-            }
-            else
-            {
-                this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsHitting(false);
-                this.stateManager.SetNextStateToMain();
-            }
+            this.stateManager.SetNextState(new AirHit3State());
+        }
+        else
+        {
+            this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsHitting(false);
+            this.stateManager.SetNextStateToMain();
         }
     }
 }

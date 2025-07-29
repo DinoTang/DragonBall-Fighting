@@ -23,8 +23,10 @@ public class CharacterDamageReceiver : DamageReceiver
     protected override void OnHurt()
     {
         base.OnHurt();
-        if (this.characterCtrl.StateManager.CurrentState.GetType() == typeof(HurtState)) return;
-        this.characterCtrl.StateManager.SetNextState(new HurtState());
+        if (this.characterCtrl.StateManager.mainStateType is AirState)
+            this.characterCtrl.StateManager.SetNextState(new AirHurtState());
+        else this.characterCtrl.StateManager.SetNextState(new HurtState());
+
     }
     protected void TryEnterBlockState()
     {

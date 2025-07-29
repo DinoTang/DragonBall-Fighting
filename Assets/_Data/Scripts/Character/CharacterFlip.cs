@@ -10,7 +10,8 @@ public class CharacterFlip : CharacterAbstract
 
     public void Flipping()
     {
-        if (this.characterCtrl.StateManager.CurrentState is KnockdownIdleState) return;
+        if (this.characterCtrl.StateManager.CurrentState is KnockdownIdleState
+            || this.characterCtrl.StateManager.CurrentState is BounceOnGroundState) return;
         this.distance = this.characterCtrl.Opponent.transform.position.x - this.transform.position.x;
         if (this.distance < 0)
         {

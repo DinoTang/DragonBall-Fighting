@@ -88,7 +88,7 @@ public class SuperDashState : State
     protected bool TryHandleDashHit(CharacterCtrl self, CharacterCtrl opponent)
     {
         float distance = Vector2.Distance(self.transform.position, opponent.transform.position);
-        if (distance <= 1f)
+        if (distance <= 1.5f)
         {
             int dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? 1 : -1;
             if (opponent.CharacterDamageReceiver.IsBlock || opponent.StateManager.CurrentState is KnockdownIdleState)

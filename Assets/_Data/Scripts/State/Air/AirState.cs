@@ -17,6 +17,7 @@ public class AirState : BaseAirState
         if (this.stateManager.CharacterCtrl.Rgb.velocity.y < 0)
         {
             this.animator.SetBool("IsFall", true);
+            // this.animator.SetBool("IsJump", false);
         }
         if (this.stateManager.IsClone) return;
         if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new AirHit1State());

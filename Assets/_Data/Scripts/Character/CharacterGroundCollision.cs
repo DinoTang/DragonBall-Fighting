@@ -40,19 +40,26 @@ public class CharacterGroundCollision : CharacterAbstract
     {
         CharacterCtrl opponent = collision.transform.GetComponent<CharacterCtrl>();
         if (opponent != this.characterCtrl.Opponent) return;
-        if (opponent.StateManager.CurrentState.GetType() == typeof(KnockDownState)
-            || opponent.StateManager.CurrentState.GetType() == typeof(KnockUpState)
-            || this.characterCtrl.StateManager.CurrentState.GetType() == typeof(SuperDashState)) return;
+
+        if (opponent.StateManager.CurrentState is KnockDownState
+            || opponent.StateManager.CurrentState is KnockUpState
+            || opponent.StateManager.CurrentState is AirHurtState
+            || opponent.StateManager.CurrentState is BounceOnGroundState
+            || opponent.StateManager.CurrentState is KnockdownIdleState) return;
+
+        if (this.characterCtrl.StateManager.CurrentState is SuperDashState) return;
+
         Vector2 selfPos = this.characterCtrl.transform.position;
         Vector2 opponentPos = opponent.transform.position;
 
-        if (selfPos.y > opponentPos.y)
+        if (selfPos.y > opponentPos.y + 0.3f)
         {
             float dir = this.characterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
             this.characterCtrl.Rgb.velocity = new Vector2(10f * dir, 5f);
             Debug.LogWarning("Bật ra khỏi enemy!");
         }
     }
+
 
     protected bool CanEnterIdleState()
     {
