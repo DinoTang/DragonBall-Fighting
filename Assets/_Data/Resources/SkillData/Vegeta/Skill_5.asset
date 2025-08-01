@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a3d221115ad3345a4d8ecb9fa4ca47, type: 3}
+  m_Name: Skill_5
+  m_EditorClassIdentifier: 
+  skillName: 5
+  damageFxName: 0
+  kiCost: 0
+  cooldown: 0
+  damage: 0
+  animationClip: {fileID: 7400000, guid: c04f8d3fadbb3e94cb0ca19cc4c0134f, type: 2}
+  sfx: {fileID: 0}
+  Rush_Combo: {fileID: 7400000, guid: fa8985ba669035449a0c4c85050a37a0, type: 2}
+  Rush_KnockUp: {fileID: 7400000, guid: c847d76dbbae26d41b971f1fcabcb2a1, type: 2}
+  Rush_KnockDown: {fileID: 7400000, guid: ffe3ae5dca0616241a54ddb3990a8bfa, type: 2}
+  Rush_AirFollow: {fileID: 7400000, guid: d2421fa53e85c7848ad97202a41cc0c4, type: 2}

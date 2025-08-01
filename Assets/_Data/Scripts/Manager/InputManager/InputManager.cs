@@ -30,7 +30,7 @@ public class InputManager : DinoBehaviour
     {
         return Input.GetKeyDown(KeyCode.J);
     }
-    public bool GetStrongHitInput()
+    public bool GetUInput()
     {
         return Input.GetKeyDown(KeyCode.U);
     }

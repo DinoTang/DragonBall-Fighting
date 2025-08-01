@@ -68,7 +68,9 @@ public class CharacterGroundCollision : CharacterAbstract
                 || currentState is SuperDashState
                 || currentState is KnockDownState
                 || currentState is BounceOnGroundState
-                || currentState is KnockdownIdleState);
+                || currentState is KnockdownIdleState
+                || currentState is RushAttackWasKnockUpState
+                || currentState is RushAttackSkillState);
     }
 }
 

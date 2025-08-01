@@ -35,7 +35,11 @@ public class StateManager : DinoBehaviour
             this.canSuperDash = true;
             this.mainStateType = new IdleCombatState();
         }
-        else this.mainStateType = new AirState();
+        else if (this.CurrentState.GetType() != typeof(SuperDashState))
+        {
+            this.mainStateType = new AirState();
+        }
+
 
         if (nextState != null)
         {

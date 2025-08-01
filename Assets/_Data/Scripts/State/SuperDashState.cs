@@ -59,9 +59,9 @@ public class SuperDashState : State
     }
     protected void HandleLift()
     {
-        if (!this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround) return;
-
+        if (this.stateManager.mainStateType is AirState) return;
         Transform self = this.stateManager.transform;
+
         self.position = Vector2.MoveTowards(
             self.position,
             this.targetLiftPos,
@@ -119,7 +119,7 @@ public class SuperDashState : State
         float finalKnockbackY = this.hitKnockbackForceY + heightOffset * 1.2f; // nhân nhẹ để tạo lực bật cao hơn nếu chênh
 
         bool bonusForceCondition = this.stateManager.mainStateType.GetType() == typeof(IdleCombatState);
-        float bonusForce = bonusForceCondition ? 0 : 3;
+        float bonusForce = bonusForceCondition ? 1 : 3;
         opponent.Rgb.velocity = new Vector2(0, finalKnockbackY + bonusForce);
 
         opponent.StateManager.SetNextState(new KnockUpState());

@@ -1,4 +1,5 @@
-public enum InputKey{
+public enum InputKey
+{
     Up,
     Down,
     Left,
@@ -7,4 +8,5 @@ public enum InputKey{
     Kick,
     Special,
     Skill,
+    U,
 }

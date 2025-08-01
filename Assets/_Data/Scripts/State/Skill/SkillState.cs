@@ -9,14 +9,16 @@ public class SkillState : State
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
+        this.stateManager.CharacterCtrl.Animator.SetBool("IsSkill", true);
         skill = stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill;
-        totalDuration = this.GetTotalDuration();
-        stateManager.CharacterCtrl.CharacterAnimEvent.StopCharacterActions();
+        this.totalDuration = this.GetTotalDuration();
+
+        // stateManager.CharacterCtrl.CharacterAnimEvent.StopCharacterActions();
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.timed > totalDuration) this.stateManager.SetNextStateToMain();
+        // if (this.timed > this.totalDuration) this.stateManager.SetNextStateToMain();
     }
 
     public override void OnExit()
@@ -31,6 +33,7 @@ public class SkillState : State
 
         this.stateManager.CharacterCtrl.CharacterCombo.ClearCurrentSkill();
         this.stateManager.CharacterCtrl.CharacterAnimEvent.EnableCharacterActions();
+        this.stateManager.CharacterCtrl.Animator.SetBool("IsSkill", false);
     }
 
     protected virtual float GetTotalDuration()

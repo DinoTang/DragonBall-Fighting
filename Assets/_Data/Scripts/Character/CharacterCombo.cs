@@ -26,6 +26,7 @@ public class CharacterCombo : CharacterAbstract
         if (InputManager.Instance.GetHitInput()) this.inputBuffer.AddInput(InputKey.Hit);
         if (InputManager.Instance.GetKickInput()) this.inputBuffer.AddInput(InputKey.Kick);
         if (InputManager.Instance.GetPowerFiredInput()) this.inputBuffer.AddInput(InputKey.Skill);
+        if (InputManager.Instance.GetUInput()) this.inputBuffer.AddInput(InputKey.U);
         this.combo = this.inputBuffer.GetComboString();
 
         // if (this.combo == "Down+Left+Hit" || this.combo == "Down+Right+Hit")
@@ -42,6 +43,7 @@ public class CharacterCombo : CharacterAbstract
         this.SkillOneCombo();
         this.SkillTwoCombo();
         this.SkillFourCombo();
+        this.SkillFiveCombo();
     }
     public void ClearCurrentSkill()
     {
@@ -57,28 +59,28 @@ public class CharacterCombo : CharacterAbstract
         Vector3 char_Pos = this.characterCtrl.transform.position;
         this.characterCtrl.transform.position = new Vector3(char_Pos.x + this.distanceTele * dirTele, char_Pos.y, char_Pos.z);
     }
-    protected void TeleCombo()
-    {
-        if (this.currentSkill != "") return;
-        if (this.combo == "Left+Left")
-        {
-            this.SpawnEffectWhenTele();
-            if (this.characterCtrl.CharacterFlip.IsFacingRight)
-                this.characterCtrl.StateManager.SetNextState(new Tele2());
-            else this.characterCtrl.StateManager.SetNextState(new Tele1());
-            this.Teleing(-1);
-            this.inputBuffer.ClearCombo();
-        }
-        if (this.combo == "Right+Right")
-        {
-            this.SpawnEffectWhenTele();
-            if (this.characterCtrl.CharacterFlip.IsFacingRight)
-                this.characterCtrl.StateManager.SetNextState(new Tele1());
-            else this.characterCtrl.StateManager.SetNextState(new Tele2());
-            this.Teleing(1);
-            this.inputBuffer.ClearCombo();
-        }
-    }
+    // protected void TeleCombo()
+    // {
+    //     if (this.currentSkill != "") return;
+    //     if (this.combo == "Left+Left")
+    //     {
+    //         this.SpawnEffectWhenTele();
+    //         if (this.characterCtrl.CharacterFlip.IsFacingRight)
+    //             this.characterCtrl.StateManager.SetNextState(new Tele2());
+    //         else this.characterCtrl.StateManager.SetNextState(new Tele1());
+    //         this.Teleing(-1);
+    //         this.inputBuffer.ClearCombo();
+    //     }
+    //     if (this.combo == "Right+Right")
+    //     {
+    //         this.SpawnEffectWhenTele();
+    //         if (this.characterCtrl.CharacterFlip.IsFacingRight)
+    //             this.characterCtrl.StateManager.SetNextState(new Tele1());
+    //         else this.characterCtrl.StateManager.SetNextState(new Tele2());
+    //         this.Teleing(1);
+    //         this.inputBuffer.ClearCombo();
+    //     }
+    // }
     protected bool PlayingCurrentSkill(SkillSlot skill)
     {
         if (!this.characterCtrl.CharacterSkillManager.TryUseSkill(skill)) return false;
@@ -118,5 +120,12 @@ public class CharacterCombo : CharacterAbstract
         if (this.currentSkill != "") return;
         HandleSkillCombo("Down+Right+Hit", 1, SkillSlot.Skill_4);
         HandleSkillCombo("Down+Left+Hit", -1, SkillSlot.Skill_4);
+    }
+
+    protected void SkillFiveCombo()  //Rush Attack
+    {
+        if (this.currentSkill != "") return;
+        HandleSkillCombo("U", 1, SkillSlot.Skill_5);
+        HandleSkillCombo("U", -1, SkillSlot.Skill_5);
     }
 }

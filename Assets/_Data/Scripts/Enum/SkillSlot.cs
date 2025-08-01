@@ -5,4 +5,5 @@ public enum SkillSlot
     Skill_2 = 2,
     Skill_3 = 3,
     Skill_4 = 4,
+    Skill_5 = 5,
 }

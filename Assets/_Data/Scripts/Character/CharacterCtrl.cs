@@ -11,6 +11,7 @@ public class CharacterCtrl : DinoBehaviour
     public Rigidbody2D Rgb => rgb;
     [SerializeField] protected Animator animator;
     public Animator Animator => animator;
+
     [SerializeField] protected StateManager stateManager;
     public StateManager StateManager => stateManager;
     [SerializeField] protected CharacterGroundCollision characterGroundCollision;
@@ -42,6 +43,12 @@ public class CharacterCtrl : DinoBehaviour
     [Header("Opponent")]
     [SerializeField] protected CharacterCtrl opponent;
     public CharacterCtrl Opponent => opponent;
+
+    [Header("Trail")]
+    [SerializeField] protected Trail trail;
+    public Trail Trail => trail;
+    [SerializeField] protected Animator trailAnimator;
+    public Animator TrailAnimator => trailAnimator;
     public void SetOpponent(CharacterCtrl target)
     {
         opponent = target;
@@ -66,6 +73,7 @@ public class CharacterCtrl : DinoBehaviour
         this.LoadFirePoint();
         this.LoadCharacterKiManager();
         this.LoadCharacterSkillManager();
+        this.LoadTrail();
     }
     protected void LoadRigidbody()
     {
@@ -137,6 +145,7 @@ public class CharacterCtrl : DinoBehaviour
     {
         if (this.kiCharge != null) return;
         this.kiCharge = GetComponentInChildren<KiCharge>();
+        this.kiCharge.gameObject.SetActive(false);
         Debug.Log(transform.name + ": LoadKiCharge", gameObject);
 
     }
@@ -158,6 +167,14 @@ public class CharacterCtrl : DinoBehaviour
     {
         if (this.characterSkillManager != null) return;
         this.characterSkillManager = GetComponentInChildren<CharacterSkillManager>();
+        Debug.Log(transform.name + ": LoadCharacterSkillManager", gameObject);
+    }
+    protected void LoadTrail()
+    {
+        if (this.trail != null) return;
+        this.trail = FindAnyObjectByType<Trail>();
+        if (this.trailAnimator != null) return;
+        this.trailAnimator = this.trail.GetComponentInChildren<Animator>();
         Debug.Log(transform.name + ": LoadCharacterSkillManager", gameObject);
     }
     public void EnableSmokeEffect()

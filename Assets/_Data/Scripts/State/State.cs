@@ -19,7 +19,7 @@ public abstract class State
     {
         this.timed += UnityEngine.Time.deltaTime;
         // Debug.Log(this.stateManager.transform.name + " " + this.timed + ": " + this.stateManager.CurrentState);
-        // Debug.Log(this.stateManager.transform.name + ": " + this.stateManager.mainStateType);
+        Debug.Log(this.stateManager.transform.name + ": " + this.stateManager.mainStateType);
     }
 
     public virtual void OnFixedUpdate()
