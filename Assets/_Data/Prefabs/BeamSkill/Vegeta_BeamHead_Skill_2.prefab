@@ -103,9 +103,9 @@ MonoBehaviour:
   owner: {fileID: 0}
   skillSlot: 2
   skillProjCtrl: {fileID: 122189032923522430}
-  skillDuration: 5
   beamHead: {fileID: 5637645638635903300}
   beamTail: {fileID: 192431593083354022, guid: 0de20fc0a975d7247bdba607df03b942, type: 3}
+  skillDuration: 5
   beamSpawnInterval: 0.01
   beamMaxParts: 5
   beamPartLength: 4.68
@@ -219,6 +219,8 @@ MonoBehaviour:
   _collider: {fileID: 8944648551719090967}
   damage: 1
   isHitting: 0
+  isKnockDown: 0
+  isKnockUp: 0
   skillProjCtrl: {fileID: 0}
 --- !u!1 &9103381394256539444
 GameObject:

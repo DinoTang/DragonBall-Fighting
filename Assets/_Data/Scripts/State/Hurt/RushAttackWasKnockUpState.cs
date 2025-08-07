@@ -14,7 +14,7 @@ public class RushAttackWasKnockUpState : State
 
         // Đẩy nhân vật lên bằng velocity
         int dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(10 * dir, 20);
+        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(10 * dir, 30);
 
         // Không freeze ở đây nữa
         this.stateManager.CharacterCtrl.Rgb.constraints = RigidbodyConstraints2D.FreezeRotation;

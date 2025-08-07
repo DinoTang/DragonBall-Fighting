@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "SkillData", menuName = "SO/Skill/RushAttackSkill")]
 public class RushAttackSkillSO : SkillDataSO
 {
@@ -10,57 +10,51 @@ public class RushAttackSkillSO : SkillDataSO
     public AnimationClip RushAttack_KnockDown;
     public AnimationClip RushAttack_AirFollow;
     public AnimationClip RushAttack_Trail;
+
+    [Header("Curve Settings")]
+    public AnimationCurve followCurve; // Giá trị Y theo thời gian T (0 → 1)
+
+    [Header("Debug")]
+    public Color gizmoColor = Color.yellow;
+    public int gizmoResolution = 20;
+    public float gizmoHeightScale = 3f;
+
     public override State GetSkillState()
     {
         return new RushAttackSkillState();
     }
 
-    public void Execute(CharacterCtrl user, Transform obj, Vector3 p0, Vector3 p1, Vector3 p2, float duration)
+    public void Execute(CharacterCtrl user, Vector3 start, Vector3 end, float duration)
     {
-        user.StartCoroutine(BezierMove(obj, p0, p1, p2, duration));
+        user.StartCoroutine(CurveMove(user, start, end, duration));
     }
-    IEnumerator BezierMove(Transform obj, Vector3 p0, Vector3 p1, Vector3 p2, float duration)
+
+    IEnumerator CurveMove(CharacterCtrl obj, Vector3 start, Vector3 end, float duration)
     {
-        float time = 0f;
+        obj.Rgb.isKinematic = true;
+        // obj.Rgb.velocity = Vector2.zero;
 
-        while (time < duration)
+        float timer = 0f;
+        Vector3 dir = end - start;
+        Vector3 flatDir = new Vector3(dir.x, 0, dir.z);
+
+        while (timer < duration)
         {
-            float t = time / duration;
+            if (Vector3.Distance(obj.transform.position, end) <= 1f)
+                break;
+            float t = timer / duration;
+            float heightOffset = followCurve.Evaluate(t) * gizmoHeightScale;
+            Vector3 pos = Vector3.Lerp(start, end, t);
+            pos.y += heightOffset;
+            obj.transform.position = pos;
 
-            // Bezier interpolation
-            Vector3 pos = Mathf.Pow(1 - t, 2) * p0 +
-                          2 * (1 - t) * t * p1 +
-                          Mathf.Pow(t, 2) * p2;
-
-            // Bezier tangent (hướng chuyển động)
-            Vector3 tangent = 2 * (1 - t) * (p1 - p0) + 2 * t * (p2 - p1);
-
-            // Set vị trí
-            obj.position = pos;
-
-            // Tính khoảng cách tới đích
-            float distanceToTarget = Vector3.Distance(pos, p2);
-
-            if (distanceToTarget > 2f) // chưa tới, còn xa thì xoay theo hướng bay
-            {
-                // float angle = Mathf.Atan2(tangent.y, tangent.x) * Mathf.Rad2Deg;
-                // obj.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            }
-            else // gần tới -> reset xoay luôn
-            {
-                obj.rotation = Quaternion.Euler(0f, 0f, 0f);
-            }
-
-            time += Time.deltaTime;
+            timer += Time.deltaTime;
             yield return null;
         }
 
-        // Kết thúc, đảm bảo đúng đích và xoay đúng
-        obj.position = p2;
-        obj.rotation = Quaternion.Euler(0f, 0f, 0f);
+        obj.transform.position = end;
+
+        obj.Rgb.isKinematic = false;
+        // obj.Rgb.velocity = Vector2.zero;
     }
-
-
-
-
 }

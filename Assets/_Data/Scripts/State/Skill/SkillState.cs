@@ -13,12 +13,6 @@ public class SkillState : State
         skill = stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill;
         this.totalDuration = this.GetTotalDuration();
 
-        // stateManager.CharacterCtrl.CharacterAnimEvent.StopCharacterActions();
-    }
-    public override void OnUpdate()
-    {
-        base.OnUpdate();
-        // if (this.timed > this.totalDuration) this.stateManager.SetNextStateToMain();
     }
 
     public override void OnExit()
@@ -32,7 +26,6 @@ public class SkillState : State
         }
 
         this.stateManager.CharacterCtrl.CharacterCombo.ClearCurrentSkill();
-        this.stateManager.CharacterCtrl.CharacterAnimEvent.EnableCharacterActions();
         this.stateManager.CharacterCtrl.Animator.SetBool("IsSkill", false);
     }
 

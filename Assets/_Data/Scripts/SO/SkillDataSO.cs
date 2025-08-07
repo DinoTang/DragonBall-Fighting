@@ -11,7 +11,7 @@ public class SkillDataSO : ScriptableObject
     public AudioClip sfx;
     public virtual State GetSkillState()
     {
-        return new SkillState();
+        return new EnergyProjectileSkillState();
     }
 
 }

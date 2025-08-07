@@ -29,6 +29,6 @@ public class CharacterDamageSender : DamageSender
     {
         base.SendKnockdownDamage(damageReceiver);
         this.characterCtrl.Opponent.StateManager.SetNextState(new KnockDownState());
-        this.isKnockdown = false;
+        this.isKnockDown = false;
     }
 }

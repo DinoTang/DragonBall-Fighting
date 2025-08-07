@@ -5,7 +5,9 @@ public class CharacterAnimEvent : CharacterAbstract
 {
     private readonly float skillSpawnOffsetX = 3.5f;
     protected void EnableHitbox() => this.characterCtrl.CharacterDamageSender.EnableCollider();
-    protected void DisableHitbox() => this.characterCtrl.CharacterDamageSender.DisableCollider();
+    public void DisableHitbox() => this.characterCtrl.CharacterDamageSender.DisableCollider();
+    protected void EnableKnockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockUp(true);
+    protected void DisablenockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockUp(false);
     public void StopCharacterActions()
     {
         this.characterCtrl.Rgb.constraints = RigidbodyConstraints2D.FreezeAll;

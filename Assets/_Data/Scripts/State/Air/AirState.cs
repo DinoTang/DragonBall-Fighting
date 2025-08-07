@@ -9,7 +9,7 @@ public class AirState : BaseAirState
         base.OnEnter(stateManager);
         this.stateManager.mainStateType = new AirState();
         this.animator.SetBool("IsJump", true);
-        // this.stateManager.CharacterCtrl.CharacterDamageReceiver.ToggleIgnoreEnemy(true);
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.ToggleIgnoreEnemy(true);
     }
     public override void OnUpdate()
     {

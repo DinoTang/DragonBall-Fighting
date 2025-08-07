@@ -119,7 +119,7 @@ public class SuperDashState : State
         float finalKnockbackY = this.hitKnockbackForceY + heightOffset * 1.2f; // nhân nhẹ để tạo lực bật cao hơn nếu chênh
 
         bool bonusForceCondition = this.stateManager.mainStateType.GetType() == typeof(IdleCombatState);
-        float bonusForce = bonusForceCondition ? 1 : 3;
+        float bonusForce = bonusForceCondition ? 2 : 4;
         opponent.Rgb.velocity = new Vector2(0, finalKnockbackY + bonusForce);
 
         opponent.StateManager.SetNextState(new KnockUpState());
