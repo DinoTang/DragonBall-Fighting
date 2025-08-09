@@ -5,11 +5,15 @@ using UnityEngine;
 public class CharacterFlip : CharacterAbstract
 {
     [SerializeField] protected float distance;
+    [SerializeField] protected int direct;
+    public int Direct => direct;
     [SerializeField] protected bool isFacingRight = true;
     public bool IsFacingRight => isFacingRight;
 
     public void Flipping()
     {
+        this.direct = this.isFacingRight ? 1 : -1;
+
         if (this.characterCtrl.StateManager.CurrentState is KnockdownIdleState
             || this.characterCtrl.StateManager.CurrentState is BounceOnGroundState
             || this.characterCtrl.StateManager.CurrentState is SkillState) return;

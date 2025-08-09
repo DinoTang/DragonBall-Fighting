@@ -4,10 +4,10 @@ using UnityEngine;
 public class CharacterAnimEvent : CharacterAbstract
 {
     private readonly float skillSpawnOffsetX = 3.5f;
-    protected void EnableHitbox() => this.characterCtrl.CharacterDamageSender.EnableCollider();
+    public void EnableHitbox() => this.characterCtrl.CharacterDamageSender.EnableCollider();
     public void DisableHitbox() => this.characterCtrl.CharacterDamageSender.DisableCollider();
-    protected void EnableKnockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockUp(true);
-    protected void DisablenockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockUp(false);
+    protected void EnableKnockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockingUp(true);
+    protected void DisablenockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockingUp(false);
     public void StopCharacterActions()
     {
         this.characterCtrl.Rgb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -19,14 +19,12 @@ public class CharacterAnimEvent : CharacterAbstract
     }
     protected void EnableSpawnBasicProjectile()
     {
-        Vector2 pos = this.characterCtrl.FirePoint.transform.position;
-        BasicProjSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), pos, this.characterCtrl);
+        BasicProjSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), this.GetPosToSpawn(), this.characterCtrl);
     }
 
     protected void EnableSpawnBasicProjectileEffect()
     {
-        Vector2 pos = this.characterCtrl.FirePoint.transform.position;
-        BasicProjFXSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), pos, this.characterCtrl);
+        BasicProjFXSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), this.GetPosToSpawn(), this.characterCtrl);
     }
 
     protected void EnableSpawnSkillProj(SkillSlot slot)
@@ -38,16 +36,12 @@ public class CharacterAnimEvent : CharacterAbstract
             return;
         }
 
-        Vector2 pos = this.characterCtrl.FirePoint.transform.position;
-        pos.x += this.characterCtrl.CharacterFlip.IsFacingRight ? this.skillSpawnOffsetX : -this.skillSpawnOffsetX;
-
-        SkillProjSpawner.Instance.Spawn(prefab, pos, this.characterCtrl);
+        SkillProjSpawner.Instance.Spawn(prefab, this.GetPosToSpawn(this.skillSpawnOffsetX), this.characterCtrl);
     }
 
     protected void EnableSpawnBeamSkillProj(SkillSlot slot)
     {
-        Vector2 pos = this.characterCtrl.FirePoint.transform.position;
-        pos.x += this.characterCtrl.CharacterFlip.IsFacingRight ? this.skillSpawnOffsetX : -this.skillSpawnOffsetX;
+        Vector2 pos = this.GetPosToSpawn(this.skillSpawnOffsetX);
         Vector2 dir = this.characterCtrl.CharacterFlip.IsFacingRight ? Vector2.right : Vector2.left;
 
         SkillProjSpawner.Instance.StartBeamSkill(slot, pos, dir, this.characterCtrl);
@@ -55,4 +49,12 @@ public class CharacterAnimEvent : CharacterAbstract
 
     protected void EnableSkillOne() => EnableSpawnSkillProj(SkillSlot.Skill_1);
     protected void EnableSkillTwo() => EnableSpawnBeamSkillProj(SkillSlot.Skill_2);
+
+    protected Vector2 GetPosToSpawn(float posX = 0, float posY = 0)
+    {
+        Vector2 newPos = this.characterCtrl.FirePoint.transform.position;
+        newPos.x += this.characterCtrl.CharacterFlip.Direct * posX;
+        newPos.y += this.characterCtrl.CharacterFlip.Direct * posY;
+        return newPos;
+    }
 }

@@ -13,7 +13,7 @@ public class RushAttackWasKnockUpState : State
         this.animator.SetBool("IsKnockUp", true);
 
         // Đẩy nhân vật lên bằng velocity
-        int dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
+        int dir = this.stateManager.CharacterCtrl.CharacterFlip.Direct * -1;
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(10 * dir, 30);
 
         // Không freeze ở đây nữa
@@ -41,6 +41,7 @@ public class RushAttackWasKnockUpState : State
         base.OnExit();
         this.animator.SetBool("IsKnockUp", false);
         this.stateManager.CharacterCtrl.Rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, 30);
         this.stateManager.CharacterCtrl.Rgb.gravityScale = 15;
     }
 }

@@ -8,7 +8,7 @@ public class AirHit3State : BaseAirHitState
     {
         this.attackCounter = 3;
         base.OnEnter(stateManager);
-        this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsKnockdown(true);
+        this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsKnockingDown(true);
     }
 
     public override void OnUpdate()

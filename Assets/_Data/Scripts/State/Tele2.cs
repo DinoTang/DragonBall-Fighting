@@ -11,6 +11,7 @@ public class Tele2 : State
         base.OnEnter(stateManager);
         this.animator.SetBool("Tele2", true);
         this.stateManager.CharacterCtrl.CharacterCombo.SpawnEffectWhenTele();
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsImmortal(true);
     }
     public override void OnUpdate()
     {
@@ -33,5 +34,6 @@ public class Tele2 : State
         Vector3 currentPos = this.stateManager.transform.position;
         this.stateManager.transform.position = new Vector3(currentPos.x + dir * this.distanceTele, currentPos.y, currentPos.z);
         this.stateManager.CharacterCtrl.CharacterCombo.SpawnEffectWhenTele();
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsImmortal(false);
     }
 }

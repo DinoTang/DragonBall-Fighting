@@ -90,7 +90,7 @@ public class SuperDashState : State
         float distance = Vector2.Distance(self.transform.position, opponent.transform.position);
         if (distance <= 1.5f)
         {
-            int dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? 1 : -1;
+            int dir = this.stateManager.CharacterCtrl.CharacterFlip.Direct;
             if (opponent.CharacterDamageReceiver.IsBlock || opponent.StateManager.CurrentState is KnockdownIdleState)
             {
                 this.HandleBlockedDashHit(dir);
@@ -119,7 +119,7 @@ public class SuperDashState : State
         float finalKnockbackY = this.hitKnockbackForceY + heightOffset * 1.2f; // nhân nhẹ để tạo lực bật cao hơn nếu chênh
 
         bool bonusForceCondition = this.stateManager.mainStateType.GetType() == typeof(IdleCombatState);
-        float bonusForce = bonusForceCondition ? 2 : 4;
+        float bonusForce = bonusForceCondition ? 2 : 3;
         opponent.Rgb.velocity = new Vector2(0, finalKnockbackY + bonusForce);
 
         opponent.StateManager.SetNextState(new KnockUpState());

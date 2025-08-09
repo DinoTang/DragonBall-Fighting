@@ -42,9 +42,8 @@ public class CharacterDamageReceiver : DamageReceiver
     public void OnParryFX()
     {
         Vector2 pos = this.characterCtrl.transform.position;
+        pos.x += this.characterCtrl.CharacterFlip.Direct * 0.5f;
         pos.y -= 0.5f;
-        if (!this.characterCtrl.CharacterFlip.IsFacingRight) pos.x -= 0.5f;
-        else pos.x += 0.5f;
         ExplosionFXSpawner.Instance.Spawn(ExplosionFXEnum.Parry.ToString(), pos, this.characterCtrl);
     }
 

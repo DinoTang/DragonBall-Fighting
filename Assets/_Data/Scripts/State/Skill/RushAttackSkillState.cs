@@ -6,10 +6,9 @@ public class RushAttackSkillState : SkillState
 {
     protected enum RushAttack_Type { Start, Combo, KnockUp, KnockDown, Follow }
     protected CharacterCtrl self;
-    protected float dashRushAttackSpeed = 50f;
-    protected Vector2 direction;
+    protected float dashRushAttackSpeed = 45f;
     protected RushAttack_Type currentRushAttackType;
-
+    protected int dir;
 
     protected Animator selfAnimator;
     protected Animator trailAnimator;
@@ -18,18 +17,17 @@ public class RushAttackSkillState : SkillState
     {
         base.OnEnter(stateManager);
         this.self = this.stateManager.CharacterCtrl;
-        this.self.CharacterDamageReceiver.ToggleIgnoreEnemy(false);
         this.currentRushAttackType = RushAttack_Type.Start;
-        this.direction = (this.self.Opponent.transform.position - this.stateManager.transform.position).normalized;
-
         this.self.Rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        this.dir = this.self.CharacterFlip.Direct;
+        if (this.stateManager.mainStateType is AirState)
+            this.self.Rgb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.timed < 0.2f) return;
-
+        if (this.timed < 0.1f) return;
         switch (this.currentRushAttackType)
         {
             case RushAttack_Type.Start:
@@ -54,7 +52,7 @@ public class RushAttackSkillState : SkillState
     {
         base.OnExit();
         this.self.CharacterDamageSender.SetIsHitting(false);
-        this.self.Rgb.isKinematic = false;
+
         this.self.Rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
@@ -65,22 +63,42 @@ public class RushAttackSkillState : SkillState
 
     protected void PlayRushAttackStart()
     {
-        if (this.stateManager.mainStateType is AirState) this.self.Rgb.constraints = RigidbodyConstraints2D.FreezePositionY;
-        if (this.timed >= this.totalDuration)
+        if (this.timed >= this.totalDuration || this.stateManager.CharacterCtrl.Opponent.CharacterDamageReceiver.IsKnockDown)
         {
+            this.self.Rgb.velocity = new Vector2(0, this.self.Rgb.velocity.y);
             this.self.CharacterAnimEvent.DisableHitbox();
             this.stateManager.SetNextStateToMain();
             return;
         }
 
-        this.self.Rgb.velocity = this.direction * this.dashRushAttackSpeed;
-        Debug.LogWarning(this.self.Rgb.velocity);
-        if (this.self.CharacterDamageSender.IsHitting)
+        this.self.Rgb.velocity = new Vector2(1 * this.dir, 0) * this.dashRushAttackSpeed;
+        float distanceToAttack = Vector2.Distance(this.self.transform.position, this.self.Opponent.transform.position);
+
+
+        if (distanceToAttack <= 1.5)
         {
+            this.self.CharacterAnimEvent.EnableHitbox();
+            if (this.self.Opponent.CharacterDamageReceiver.IsKnockDown) return;
+
+            bool selfGrounded = this.self.CharacterGroundCollision.IsGround;
+            bool opponentGrounded = this.self.Opponent.CharacterGroundCollision.IsGround;
+            if (!selfGrounded && !opponentGrounded)
+            {
+                Vector2 isHitPos = this.stateManager.CharacterCtrl.Opponent.transform.position;
+                isHitPos.y = this.stateManager.CharacterCtrl.transform.position.y;
+                this.stateManager.CharacterCtrl.Opponent.transform.position = isHitPos;
+            }
+            else if (!selfGrounded && opponentGrounded || selfGrounded && !opponentGrounded)
+            {
+                Vector2 isHittingPos = this.stateManager.CharacterCtrl.transform.position;
+                isHittingPos.y = this.stateManager.CharacterCtrl.Opponent.transform.position.y;
+                this.stateManager.CharacterCtrl.transform.position = isHittingPos;
+            }
+
+            this.stateManager.CharacterCtrl.Rgb.velocity = Vector2.zero;
+            this.stateManager.CharacterCtrl.Opponent.Rgb.velocity = Vector2.zero;
             this.timed = 0;
-            this.self.CharacterDamageSender.SetIsHitting(false);
             this.currentRushAttackType = RushAttack_Type.Combo;
-            Debug.LogWarning("Vô RushAttack_Combo");
         }
     }
 
@@ -95,10 +113,26 @@ public class RushAttackSkillState : SkillState
         float animTime = rushAttackSkill.RushAttack_Combo.length;
         if (this.timed >= animTime)
         {
-            if (this.self.CharacterGroundCollision.IsGround)
+            bool selfGrounded = this.self.CharacterGroundCollision.IsGround;
+            bool opponentGrounded = this.self.Opponent.CharacterGroundCollision.IsGround;
+
+            if (selfGrounded && !opponentGrounded)
+            {
                 this.currentRushAttackType = RushAttack_Type.KnockUp;
-            else
+            }
+            else if (!selfGrounded && opponentGrounded)
+            {
+                this.currentRushAttackType = RushAttack_Type.KnockUp;
+            }
+            else if (!selfGrounded && !opponentGrounded)
+            {
                 this.currentRushAttackType = RushAttack_Type.KnockDown;
+            }
+            else // Cả 2 đều grounded
+            {
+                this.currentRushAttackType = RushAttack_Type.KnockUp;
+            }
+
 
             this.timed = 0;
         }
@@ -111,10 +145,10 @@ public class RushAttackSkillState : SkillState
         var animator = this.self.Animator;
         animator.Play(animName);
 
-        if (this.self.CharacterDamageSender.IsKnockUp)
+        if (this.self.CharacterDamageSender.IsKnockingUp)
         {
             this.self.Opponent.StateManager.SetNextState(new RushAttackWasKnockUpState());
-            this.self.Rgb.velocity = new Vector2(this.direction.x * -1 * 10, 20);
+            this.self.Rgb.velocity = new Vector2(this.dir * -1 * 10, 20);
         }
 
 
@@ -126,7 +160,7 @@ public class RushAttackSkillState : SkillState
             Vector2 newTrailPos = this.stateManager.transform.position;
             newTrailPos.y -= 1.32f;
             this.self.Trail.transform.position = newTrailPos;
-            this.self.Trail.transform.localScale = new Vector3(this.direction.x, 1, 1);
+            this.self.Trail.transform.localScale = new Vector3(this.dir, 1, 1);
 
 
             this.selfAnimator = this.self.Animator;
@@ -141,7 +175,18 @@ public class RushAttackSkillState : SkillState
 
     protected void PlayRushAttackKnockDown()
     {
-        // Có thể thêm hiệu ứng rơi, hoặc combo tiếp
+        this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsKnockingDown(true);
+        var rushAttackSkill = this.skill as RushAttackSkillSO;
+        string animName = rushAttackSkill.RushAttack_KnockDown.name;
+        var animator = this.self.Animator;
+        animator.Play(animName);
+
+        float animTime = rushAttackSkill.RushAttack_KnockDown.length;
+        if (this.timed >= animTime)
+        {
+            this.self.CharacterAnimEvent.DisableHitbox();
+            this.stateManager.SetNextStateToMain();
+        }
     }
 
     protected void PlayRushAttackFollow()
@@ -149,10 +194,10 @@ public class RushAttackSkillState : SkillState
         var rushAttackSkill = this.skill as RushAttackSkillSO;
 
         Vector3 start = this.stateManager.transform.position;
-        start.x -= 0.5f * this.direction.x; // Lùi nhẹ về phía sau tùy theo hướng
+        start.x -= 0.5f * this.dir; // Lùi nhẹ về phía sau tùy theo hướng
 
         Vector3 end = this.self.Opponent.transform.position;
-        end.x -= this.direction.x * 1f; // Bay lệch nhẹ ra phía sau đối thủ (giống offsetEnd)
+        end.x -= this.dir * 1f; // Bay lệch nhẹ ra phía sau đối thủ (giống offsetEnd)
 
         if (this.timed >= 0.1f)
         {
@@ -163,6 +208,9 @@ public class RushAttackSkillState : SkillState
         float distance = Vector3.Distance(this.stateManager.transform.position, end);
         if (distance <= 1f)
         {
+            this.self.Rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            this.self.Rgb.velocity  = new Vector2(0, 30);
+
             // this.self.Opponent.StateManager.SetNextState(new AirHurtState());
             this.self.Opponent.StateManager.SetNextStateToMain();
             this.stateManager.SetNextStateToMain();

@@ -8,21 +8,21 @@ public class DamageSender : DinoBehaviour
     [SerializeField] protected float damage = 1f;
     [SerializeField] protected bool isHitting = false;
     public bool IsHitting => isHitting;
-    [SerializeField] protected bool isKnockDown = false;
-    public bool IsKnockDown => isKnockDown;
-    [SerializeField] protected bool isKnockUp = false;
-    public bool IsKnockUp => isKnockUp;
+    [SerializeField] protected bool isKnockingDown = false;
+    public bool IsKnockingDown => isKnockingDown;
+    [SerializeField] protected bool isKnockingUp = false;
+    public bool IsKnockingUp => isKnockingUp;
     public void SetIsHitting(bool isHitting)
     {
         this.isHitting = isHitting;
     }
-    public void SetIsKnockdown(bool isKnockdown)
+    public void SetIsKnockingDown(bool isKnockingdown)
     {
-        this.isKnockDown = isKnockdown;
+        this.isKnockingDown = isKnockingdown;
     }
-    public void SetIsKnockUp(bool isKnockUp)
+    public void SetIsKnockingUp(bool isKnockingUp)
     {
-        this.isKnockUp = isKnockUp;
+        this.isKnockingUp = isKnockingUp;
     }
     protected override void LoadComponent()
     {
@@ -59,7 +59,7 @@ public class DamageSender : DinoBehaviour
     {
         DamageReceiver damageReceiver = other.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;
-        if (this.isKnockDown) this.SendKnockdownDamage(damageReceiver);
+        if (this.isKnockingDown) this.SendKnockdownDamage(damageReceiver);
         else this.SendDamage(damageReceiver);
         this.DisableCollider();
         Debug.Log("OnTriggerEnter2D: " + other.gameObject.name);

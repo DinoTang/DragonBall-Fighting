@@ -12,6 +12,10 @@ public abstract class DamageReceiver : DinoBehaviour
     public bool IsHurt => isHurt;
     [SerializeField] protected bool isBlock = false;
     public bool IsBlock => isBlock;
+    [SerializeField] protected bool isKnockDown = false;
+    public bool IsKnockDown => isKnockDown;
+    [SerializeField] protected bool isKnockUp = false;
+    public bool IsKnockUp => isKnockUp;
     [SerializeField] protected float currentHP;
     [SerializeField] protected float maxHP = 10000;
     public void SetIsHurt(bool isHurt)
@@ -25,6 +29,14 @@ public abstract class DamageReceiver : DinoBehaviour
     public void SetIsImmortal(bool isImmortal)
     {
         this.isImmortal = isImmortal;
+    }
+    public void SetIsKnockDown(bool isKnockDown)
+    {
+        this.isKnockDown = isKnockDown;
+    }
+    public void SetIsKnockUp(bool isKnockUp)
+    {
+        this.isKnockUp = isKnockUp;
     }
     protected override void OnEnable()
     {

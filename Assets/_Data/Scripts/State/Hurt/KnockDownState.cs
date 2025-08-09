@@ -9,13 +9,14 @@ public class KnockDownState : State
     {
         base.OnEnter(stateManager);
         this.animator.SetBool("IsKnockDown", true);
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsKnockDown(true);
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-        float dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(dir * 10f, -40f);
+        float dir = this.stateManager.CharacterCtrl.CharacterFlip.Direct * -1;
+        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(dir * 20f, -40f);
         if (!this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround) return;
         this.stateManager.SetNextState(new BounceOnGroundState());
         // if (this.timed < this.knockDuration) return;
@@ -26,5 +27,6 @@ public class KnockDownState : State
     {
         base.OnExit();
         this.animator.SetBool("IsKnockDown", false);
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsKnockDown(false);
     }
 }

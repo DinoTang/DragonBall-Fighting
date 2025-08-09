@@ -33,7 +33,7 @@ public class CharacterGroundCollision : CharacterAbstract
 
         this.characterCtrl.StateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
         this.characterCtrl.StateManager.CanSuperDash = true;
-        this.characterCtrl.CharacterDamageSender.SetIsKnockdown(false);
+        this.characterCtrl.CharacterDamageSender.SetIsKnockingDown(false);
     }
 
     protected void PreventStandingOnEnemy(Collision2D collision)
@@ -45,6 +45,7 @@ public class CharacterGroundCollision : CharacterAbstract
             || opponent.StateManager.CurrentState is KnockUpState
             || opponent.StateManager.CurrentState is AirHurtState
             || opponent.StateManager.CurrentState is BounceOnGroundState
+            || opponent.StateManager.CurrentState is RushAttackSkillState
             || opponent.StateManager.CurrentState is KnockdownIdleState) return;
 
         if (this.characterCtrl.StateManager.CurrentState is SuperDashState) return;
@@ -54,8 +55,7 @@ public class CharacterGroundCollision : CharacterAbstract
 
         if (selfPos.y > opponentPos.y + 0.3f)
         {
-            float dir = this.characterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
-            this.characterCtrl.Rgb.velocity = new Vector2(10f * dir, 5f);
+            this.characterCtrl.Rgb.velocity = new Vector2(10f * this.characterCtrl.CharacterFlip.Direct, 5f);
             Debug.LogWarning("Bật ra khỏi enemy!");
         }
     }
