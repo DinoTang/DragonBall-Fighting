@@ -31,4 +31,9 @@ public class CharacterDamageSender : DamageSender
         this.characterCtrl.Opponent.StateManager.SetNextState(new KnockDownState());
         this.isKnockingDown = false;
     }
+    protected override void OnTriggerEnter2D(Collider2D other)
+    {
+        base.OnTriggerEnter2D(other);
+        this.DisableCollider();
+    }
 }

@@ -252,6 +252,8 @@ MonoBehaviour:
   isDead: 0
   isHurt: 0
   isBlock: 0
+  isKnockDown: 0
+  isKnockUp: 0
   currentHP: 10000
   maxHP: 10000
   characterCtrl: {fileID: 359469047}
@@ -581,7 +583,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 147909795}
@@ -913,7 +915,7 @@ Transform:
   m_GameObject: {fileID: 147909794}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2018,8 +2020,8 @@ MonoBehaviour:
   _collider: {fileID: 426902221}
   damage: 1
   isHitting: 0
-  isKnockDown: 0
-  isKnockUp: 0
+  isKnockingDown: 0
+  isKnockingUp: 0
   basicProjCtrl: {fileID: 1522682346}
 --- !u!58 &426902221
 CircleCollider2D:
@@ -2053,7 +2055,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.4, y: 0}
+  m_Offset: {x: 0.3, y: -0.15}
   serializedVersion: 2
   m_Radius: 0.3
 --- !u!1 &439296132
@@ -2343,8 +2345,8 @@ MonoBehaviour:
   _collider: {fileID: 455978322}
   damage: 1
   isHitting: 0
-  isKnockDown: 0
-  isKnockUp: 0
+  isKnockingDown: 0
+  isKnockingUp: 0
   skillProjCtrl: {fileID: 1709642216}
 --- !u!61 &455978322
 BoxCollider2D:
@@ -2523,8 +2525,8 @@ MonoBehaviour:
   _collider: {fileID: 470561084}
   damage: 1
   isHitting: 0
-  isKnockDown: 0
-  isKnockUp: 0
+  isKnockingDown: 0
+  isKnockingUp: 0
   characterCtrl: {fileID: 0}
 --- !u!1 &503139198
 GameObject:
@@ -2758,6 +2760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterCtrl: {fileID: 751414181}
   distance: 0
+  direct: 0
   isFacingRight: 1
 --- !u!1 &584261296
 GameObject:
@@ -3965,8 +3968,8 @@ MonoBehaviour:
   _collider: {fileID: 986110739}
   damage: 1
   isHitting: 0
-  isKnockDown: 0
-  isKnockUp: 0
+  isKnockingDown: 0
+  isKnockingUp: 0
   characterCtrl: {fileID: 751414181}
 --- !u!1 &993110625
 GameObject:
@@ -4439,8 +4442,8 @@ MonoBehaviour:
   _collider: {fileID: 1109754339}
   damage: 1
   isHitting: 0
-  isKnockDown: 0
-  isKnockUp: 0
+  isKnockingDown: 0
+  isKnockingUp: 0
   skillProjCtrl: {fileID: 1228031768}
 --- !u!58 &1109754339
 CircleCollider2D:
@@ -4733,7 +4736,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 347017987}
@@ -4862,6 +4865,10 @@ MonoBehaviour:
     cooldown: 0
   - skillData: {fileID: 11400000, guid: 76522b50af93f3548b899117c5cbce29, type: 2}
     cooldown: 0
+  - skillData: {fileID: 11400000, guid: c9df1e8bc7f9ed5419f20e560b7485fc, type: 2}
+    cooldown: 0
+  - skillData: {fileID: 11400000, guid: e5a6f68a7395a3a4e8856bdff821f8bc, type: 2}
+    cooldown: 0
   currentSkill: {fileID: 0}
 --- !u!4 &1221265640
 Transform:
@@ -4908,7 +4915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputKeys: 
-  bufferTime: 0.2
+  bufferTime: 0.1
   inputTimes: []
 --- !u!4 &1224640671
 Transform:
@@ -4977,7 +4984,7 @@ MonoBehaviour:
   speed: 50
   direction: {x: 0, y: 0}
   owner: {fileID: 0}
-  skillSlot: 1
+  skillSlot: 3
   skillProjCtrl: {fileID: 1228031768}
 --- !u!114 &1228031768
 MonoBehaviour:
@@ -5289,6 +5296,8 @@ MonoBehaviour:
   isDead: 0
   isHurt: 0
   isBlock: 0
+  isKnockDown: 0
+  isKnockUp: 0
   currentHP: 5
   maxHP: 5
   characterCtrl: {fileID: 751414181}
@@ -5924,6 +5933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterCtrl: {fileID: 359469047}
   distance: 0
+  direct: 0
   isFacingRight: 1
 --- !u!1 &1555896072
 GameObject:
@@ -6116,8 +6126,8 @@ MonoBehaviour:
   _collider: {fileID: 1629058468}
   damage: 1
   isHitting: 0
-  isKnockDown: 0
-  isKnockUp: 0
+  isKnockingDown: 0
+  isKnockingUp: 0
 --- !u!58 &1629058468
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6265,7 +6275,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1522682345}
@@ -6403,7 +6413,7 @@ MonoBehaviour:
   speed: 20
   direction: {x: 0, y: 0}
   owner: {fileID: 0}
-  skillSlot: 2
+  skillSlot: 4
   skillProjCtrl: {fileID: 1709642216}
   beamHead: {fileID: 5637645638635903300, guid: fb7b93b8f6a1d7545980f657ad17d283, type: 3}
   beamTail: {fileID: 192431593083354022, guid: 0de20fc0a975d7247bdba607df03b942, type: 3}

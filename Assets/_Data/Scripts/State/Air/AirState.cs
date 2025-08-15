@@ -21,7 +21,7 @@ public class AirState : BaseAirState
         }
         if (this.stateManager.IsClone) return;
         if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new AirHit1State());
-        // if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new AirKickState());
+        if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new AirKickState());
         if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new AirBlockState());
         if (InputManager.Instance.GetSuperDashInput() && this.stateManager.CanSuperDash)
             this.stateManager.SetNextState(new SuperDashState());

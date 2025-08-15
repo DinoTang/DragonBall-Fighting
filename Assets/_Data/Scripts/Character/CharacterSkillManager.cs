@@ -50,9 +50,6 @@ public class CharacterSkillManager : CharacterAbstract
             return false;
         }
 
-        // Hiệu ứng lóe lên khi dùng skill
-        Vector2 pos = this.characterCtrl.transform.position;
-        ExplosionFXSpawner.Instance.Spawn(ExplosionFXEnum.Skill_Cast_Flash.ToString(), pos, this.characterCtrl);
 
         this.currentSkill = skill.skillData;
         if (this.currentSkill.animationClip != null) characterCtrl.Animator.Play(this.currentSkill.animationClip.name);

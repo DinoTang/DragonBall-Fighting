@@ -11,7 +11,7 @@ public class CharacterGroundCollision : CharacterAbstract
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         this.HandleGroundCollision(collision);
-        this.PreventStandingOnEnemy(collision);
+        // this.PreventStandingOnEnemy(collision);
     }
     private void OnCollisionExit2D(Collision2D collision)
     {

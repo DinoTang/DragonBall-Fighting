@@ -1,9 +1,11 @@
 public enum SkillSlot
 {
     none = 0,
-    Skill_1 = 1,
-    Skill_2 = 2,
-    Skill_3 = 3,
-    Skill_4 = 4,
-    Skill_5 = 5,
+    Skill_BasicProjectile_Ground = 1,
+    Skill_BasicProjectile_Air = 2,
+    Skill_1 = 3,
+    Skill_2 = 4,
+    Skill_3 = 5,
+    Skill_4 = 6,
+    Skill_5 = 7,
 }

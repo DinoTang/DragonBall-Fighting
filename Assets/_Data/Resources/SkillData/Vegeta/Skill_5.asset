@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a3d221115ad3345a4d8ecb9fa4ca47, type: 3}
   m_Name: Skill_5
   m_EditorClassIdentifier: 
-  skillName: 5
+  skillName: 7
   damageFxName: 0
   kiCost: 0
   cooldown: 0.5

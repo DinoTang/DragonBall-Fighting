@@ -82,13 +82,13 @@ public class RushAttackSkillState : SkillState
 
             bool selfGrounded = this.self.CharacterGroundCollision.IsGround;
             bool opponentGrounded = this.self.Opponent.CharacterGroundCollision.IsGround;
-            if (!selfGrounded && !opponentGrounded)
+            if (!selfGrounded && !opponentGrounded || selfGrounded && !opponentGrounded)
             {
                 Vector2 isHitPos = this.stateManager.CharacterCtrl.Opponent.transform.position;
                 isHitPos.y = this.stateManager.CharacterCtrl.transform.position.y;
                 this.stateManager.CharacterCtrl.Opponent.transform.position = isHitPos;
             }
-            else if (!selfGrounded && opponentGrounded || selfGrounded && !opponentGrounded)
+            else if (!selfGrounded && opponentGrounded)
             {
                 Vector2 isHittingPos = this.stateManager.CharacterCtrl.transform.position;
                 isHittingPos.y = this.stateManager.CharacterCtrl.Opponent.transform.position.y;
@@ -209,7 +209,7 @@ public class RushAttackSkillState : SkillState
         if (distance <= 1f)
         {
             this.self.Rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            this.self.Rgb.velocity  = new Vector2(0, 30);
+            this.self.Rgb.velocity = new Vector2(0, 30);
 
             // this.self.Opponent.StateManager.SetNextState(new AirHurtState());
             this.self.Opponent.StateManager.SetNextStateToMain();

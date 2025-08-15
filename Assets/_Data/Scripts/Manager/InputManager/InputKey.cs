@@ -9,4 +9,6 @@ public enum InputKey
     Special,
     Skill,
     U,
+    I,
+    
 }

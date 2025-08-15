@@ -40,6 +40,13 @@ public class CharacterCombo : CharacterAbstract
         //     this.inputBuffer.ClearCombo();
         // }
         // this.TeleCombo();
+        this.PlaySkill();
+
+    }
+    protected void PlaySkill()
+    {
+        this.SkillShootBaseKiAirCombo();
+        this.SkillShootBaseKiGroundCombo();
         this.SkillOneCombo();
         this.SkillTwoCombo();
         this.SkillFourCombo();
@@ -86,6 +93,11 @@ public class CharacterCombo : CharacterAbstract
         if (!this.characterCtrl.CharacterSkillManager.TryUseSkill(skill)) return false;
 
         SkillDataSO skillData = characterCtrl.CharacterSkillManager.CurrentSkill;
+        if (skillData.skillName != SkillSlot.Skill_BasicProjectile_Ground &&
+        skillData.skillName != SkillSlot.Skill_BasicProjectile_Air)
+        {
+            this.SpawnHitFlash();
+        }
         State skillState = skillData.GetSkillState();
         characterCtrl.StateManager.SetNextState(skillState);
 
@@ -100,6 +112,27 @@ public class CharacterCombo : CharacterAbstract
         }
     }
 
+    protected void SpawnHitFlash()
+    {
+        // Hiệu ứng lóe lên khi dùng skill
+        Vector2 pos = this.characterCtrl.transform.position;
+        ExplosionFXSpawner.Instance.Spawn(ExplosionFXEnum.Skill_Cast_Flash.ToString(), pos, this.characterCtrl);
+    }
+
+    protected void SkillShootBaseKiGroundCombo()
+    {
+        if (this.currentSkill != "") return;
+        if (this.characterCtrl.StateManager.mainStateType is AirState) return;
+        HandleSkillCombo("Skill", 1, SkillSlot.Skill_BasicProjectile_Ground);
+        HandleSkillCombo("Skill", -1, SkillSlot.Skill_BasicProjectile_Ground);
+    }
+    protected void SkillShootBaseKiAirCombo()
+    {
+        if (this.currentSkill != "") return;
+        if (this.characterCtrl.StateManager.mainStateType is IdleCombatState) return;
+        HandleSkillCombo("Skill", 1, SkillSlot.Skill_BasicProjectile_Air);
+        HandleSkillCombo("Skill", -1, SkillSlot.Skill_BasicProjectile_Air);
+    }
     protected void SkillOneCombo()
     {
         if (this.currentSkill != "") return;

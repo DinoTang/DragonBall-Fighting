@@ -33,6 +33,7 @@ public class DamageSender : DinoBehaviour
     {
         base.OnEnable();
         this.isHitting = false;
+        this.EnableCollider();
     }
     protected virtual void LoadCollider()
     {
@@ -61,7 +62,7 @@ public class DamageSender : DinoBehaviour
         if (damageReceiver == null) return;
         if (this.isKnockingDown) this.SendKnockdownDamage(damageReceiver);
         else this.SendDamage(damageReceiver);
-        this.DisableCollider();
+        // this.DisableCollider();
         Debug.Log("OnTriggerEnter2D: " + other.gameObject.name);
 
     }
