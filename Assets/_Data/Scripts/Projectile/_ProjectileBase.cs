@@ -15,6 +15,15 @@ public class _ProjectileBase : PoolObj
     }
     protected void Update()
     {
+        this.OnUpdate();
+    }
+    protected virtual void OnUpdate()
+    {
+        this.Move();
+    }
+    // Tách phần di chuyển
+    protected virtual void Move()
+    {
         this.transform.Translate(this.speed * Time.deltaTime * this.direction);
     }
 
@@ -24,14 +33,18 @@ public class _ProjectileBase : PoolObj
 
         if (!owner.CharacterFlip.IsFacingRight)
         {
-            this.direction = Vector2.left;
-            FlipModelX(true);
+            this.SettingDirect(-1, true);
         }
         else
         {
-            this.direction = Vector2.right;
-            FlipModelX(false);
+            this.SettingDirect(1, false);
         }
     }
 
+
+    protected virtual void SettingDirect(int side, bool boolean)
+    {
+        this.direction = Vector2.right * side;
+        this.FlipModelX(boolean);
+    }
 }

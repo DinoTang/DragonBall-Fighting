@@ -21,7 +21,10 @@ public class CharacterAnimEvent : CharacterAbstract
     {
         BasicProjSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), this.GetPosToSpawn(), this.characterCtrl);
     }
-
+    protected void EnableSpawnDiagonalProjectile()
+    {
+        DiagonalProjectile diagonalProjectile = DiagonalProjSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), this.GetPosToSpawn(), this.characterCtrl);
+    }
     protected void EnableSpawnBasicProjectileEffect()
     {
         BasicProjFXSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), this.GetPosToSpawn(), this.characterCtrl);
