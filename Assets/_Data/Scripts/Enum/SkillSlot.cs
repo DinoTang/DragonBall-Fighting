@@ -8,4 +8,5 @@ public enum SkillSlot
     Skill_3 = 5,
     Skill_4 = 6,
     Skill_5 = 7,
+    Skill_Burst = 8,
 }

@@ -25,7 +25,7 @@ public class BounceOnGroundState : State
         base.OnUpdate();
         this.stateManager.CharacterCtrl.CharacterDamageReceiver.ToggleIgnoreEnemy(true);
 
-        if (this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround && !waitingForNextBounce)
+        if (this.stateManager.CharacterCtrl.CharacterCollision.IsGround && !waitingForNextBounce)
         {
             if (this.bounceCount < this.maxBounce)
             {
@@ -39,7 +39,7 @@ public class BounceOnGroundState : State
         }
 
         // Khi đang ở trên không, cho phép bounce lại khi lần sau chạm đất
-        if (!this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround)
+        if (!this.stateManager.CharacterCtrl.CharacterCollision.IsGround)
         {
             waitingForNextBounce = false;
         }

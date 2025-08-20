@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : DinoBehaviour
+public class InputManager : BaseBehaviour
 {
     protected static InputManager instance;
     public static InputManager Instance => instance;
@@ -13,10 +13,13 @@ public class InputManager : DinoBehaviour
         if (InputManager.instance != null) Debug.LogWarning("Only 1 InputManager allows to exist");
         instance = this;
     }
-
     public float GetHorizontal()
     {
         return Input.GetAxisRaw("Horizontal");
+    }
+    public bool GetInputToResetPosition()
+    {
+        return Input.GetKeyDown(KeyCode.Space);
     }
     public bool GetLeftInput()
     {

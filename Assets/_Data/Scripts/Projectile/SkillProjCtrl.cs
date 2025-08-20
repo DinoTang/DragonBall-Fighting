@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillProjCtrl : DinoBehaviour
+public class SkillProjCtrl : BaseBehaviour
 {
     [Header("Skill Proj Ctrl")]
     [SerializeField] protected SkillProjectile skillProj;

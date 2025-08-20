@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSelector : DinoBehaviour
+public class CharacterSelector : BaseBehaviour
 {
     [SerializeField] protected CharacterEnum selectedCharacter;
 

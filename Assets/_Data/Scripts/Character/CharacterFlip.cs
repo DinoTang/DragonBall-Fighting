@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class CharacterFlip : CharacterAbstract
 {
+    [Header("Character Flip")]
     [SerializeField] protected float distance;
+    public float Distance => distance;
+    [SerializeField] protected float distanceOther;
+    public float DistanceOther => distanceOther;
     [SerializeField] protected int direct;
     public int Direct => direct;
     [SerializeField] protected bool isFacingRight = true;
@@ -32,7 +36,13 @@ public class CharacterFlip : CharacterAbstract
     }
     protected void Update()
     {
+        if (InputManager.Instance.GetInputToResetPosition())
+        {
+            this.characterCtrl.transform.position = new Vector2(-2, -1);
+            this.characterCtrl.Opponent.transform.position = new Vector2(2, -1);
+        }
         this.Flipping();
+        this.distanceOther = Vector2.Distance(this.transform.position, this.characterCtrl.Opponent.transform.position);
     }
 
 }

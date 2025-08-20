@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 [RequireComponent(typeof(StateManager))]
-public class CharacterCtrl : DinoBehaviour
+public class CharacterCtrl : BaseBehaviour
 {
     [SerializeField] protected CharacterEnum characterName;
     public CharacterEnum CharacterName => characterName;
@@ -14,8 +14,8 @@ public class CharacterCtrl : DinoBehaviour
 
     [SerializeField] protected StateManager stateManager;
     public StateManager StateManager => stateManager;
-    [SerializeField] protected CharacterGroundCollision characterGroundCollision;
-    public CharacterGroundCollision CharacterGroundCollision => characterGroundCollision;
+    [SerializeField] protected CharacterCollision characterCollision;
+    public CharacterCollision CharacterCollision => characterCollision;
     // [SerializeField] protected CharacterData characterData;
     // public CharacterData CharacterData => characterData;
     [SerializeField] protected CharacterIntro characterIntro;
@@ -95,8 +95,8 @@ public class CharacterCtrl : DinoBehaviour
     }
     protected void LoadCharacterGroundCollision()
     {
-        if (this.characterGroundCollision != null) return;
-        this.characterGroundCollision = GetComponentInChildren<CharacterGroundCollision>();
+        if (this.characterCollision != null) return;
+        this.characterCollision = GetComponentInChildren<CharacterCollision>();
         Debug.Log(transform.name + ": LoadCharacterGroundCollision", gameObject);
     }
     // protected void LoadCharacterData()

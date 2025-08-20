@@ -17,7 +17,7 @@ public class KnockDownState : State
         base.OnUpdate();
         float dir = this.stateManager.CharacterCtrl.CharacterFlip.Direct * -1;
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(dir * 20f, -40f);
-        if (!this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround) return;
+        if (!this.stateManager.CharacterCtrl.CharacterCollision.IsGround) return;
         this.stateManager.SetNextState(new BounceOnGroundState());
         // if (this.timed < this.knockDuration) return;
         // this.stateManager.SetNextStateToMain();

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class DamageSender : DinoBehaviour
+public class DamageSender : BaseBehaviour
 {
     [Header("Damage Sender")]
     [SerializeField] protected Collider2D _collider;

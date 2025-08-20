@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : DinoBehaviour
+public class GameManager : BaseBehaviour
 {
     public CharacterCtrl player1;
     public CharacterCtrl player2;

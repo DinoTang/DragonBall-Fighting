@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class DinoBehaviour : MonoBehaviour
+public abstract class BaseBehaviour : MonoBehaviour
 {
     protected virtual void Start()
     {

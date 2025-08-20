@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 [RequireComponent(typeof(StateManager))]
-public class CharacterGroundCollision : CharacterAbstract
+public class CharacterCollision : CharacterAbstract
 {
-    [Header("Character Ground Collision")]
+    [Header("Character Collision")]
     [SerializeField] protected bool isGround;
     public bool IsGround { get => isGround; set => isGround = value; }
+    [SerializeField] protected bool isWall;
+    public bool IsWall { get => isWall; }
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         this.HandleGroundCollision(collision);
+        this.HandleWallCollision(collision);
         // this.PreventStandingOnEnemy(collision);
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Ground groundCollider = collision.transform.GetComponent<Ground>();
-        if (groundCollider == null || this.characterCtrl.StateManager.CurrentState == null) return;
-        isGround = false;
+        this.HandleGroundCollisionExit(collision);
+        this.HandleWallCollisionExit(collision);
     }
     protected void HandleGroundCollision(Collision2D collision)
     {
@@ -36,6 +38,28 @@ public class CharacterGroundCollision : CharacterAbstract
         this.characterCtrl.CharacterDamageSender.SetIsKnockingDown(false);
     }
 
+    protected void HandleGroundCollisionExit(Collision2D collision)
+    {
+        Ground groundCollider = collision.transform.GetComponent<Ground>();
+        if (groundCollider == null || this.characterCtrl.StateManager.CurrentState == null) return;
+        isGround = false;
+    }
+
+    protected void HandleWallCollision(Collision2D collision)
+    {
+        Wall wallCollider = collision.transform.GetComponent<Wall>();
+        if (wallCollider == null) return;
+
+        this.isWall = true;
+
+    }
+    protected void HandleWallCollisionExit(Collision2D collision)
+    {
+        Wall wallCollider = collision.transform.GetComponent<Wall>();
+        if (wallCollider == null) return;
+
+        isWall = false;
+    }
     protected void PreventStandingOnEnemy(Collision2D collision)
     {
         CharacterCtrl opponent = collision.transform.GetComponent<CharacterCtrl>();
@@ -70,7 +94,8 @@ public class CharacterGroundCollision : CharacterAbstract
                 || currentState is BounceOnGroundState
                 || currentState is KnockdownIdleState
                 || currentState is RushAttackWasKnockUpState
-                || currentState is RushAttackSkillState);
+                || currentState is RushAttackSkillState
+                || currentState is FallKnockBackState);
     }
 }
 

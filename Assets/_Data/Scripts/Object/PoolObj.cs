@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class PoolObj : DinoBehaviour
+public abstract class PoolObj : BaseBehaviour
 {
     [SerializeField] protected Model model;
     public abstract string GetName();

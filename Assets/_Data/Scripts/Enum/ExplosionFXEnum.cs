@@ -7,4 +7,5 @@ public enum ExplosionFXEnum
     Skill_Cast_Flash = 4,
     Parry = 5,
     Big_Explosion = 6,
+    Burst_Explosion = 7,
 }

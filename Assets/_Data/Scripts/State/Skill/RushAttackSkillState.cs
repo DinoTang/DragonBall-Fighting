@@ -80,8 +80,8 @@ public class RushAttackSkillState : SkillState
             this.self.CharacterAnimEvent.EnableHitbox();
             if (this.self.Opponent.CharacterDamageReceiver.IsKnockDown) return;
 
-            bool selfGrounded = this.self.CharacterGroundCollision.IsGround;
-            bool opponentGrounded = this.self.Opponent.CharacterGroundCollision.IsGround;
+            bool selfGrounded = this.self.CharacterCollision.IsGround;
+            bool opponentGrounded = this.self.Opponent.CharacterCollision.IsGround;
             if (!selfGrounded && !opponentGrounded || selfGrounded && !opponentGrounded)
             {
                 Vector2 isHitPos = this.stateManager.CharacterCtrl.Opponent.transform.position;
@@ -113,8 +113,8 @@ public class RushAttackSkillState : SkillState
         float animTime = rushAttackSkill.RushAttack_Combo.length;
         if (this.timed >= animTime)
         {
-            bool selfGrounded = this.self.CharacterGroundCollision.IsGround;
-            bool opponentGrounded = this.self.Opponent.CharacterGroundCollision.IsGround;
+            bool selfGrounded = this.self.CharacterCollision.IsGround;
+            bool opponentGrounded = this.self.Opponent.CharacterCollision.IsGround;
 
             if (selfGrounded && !opponentGrounded)
             {
@@ -156,7 +156,7 @@ public class RushAttackSkillState : SkillState
         if (this.timed >= animTime)
         {
             this.self.Rgb.velocity = new Vector2(0, -10);
-            if (!this.self.CharacterGroundCollision.IsGround) return;
+            if (!this.self.CharacterCollision.IsGround) return;
             Vector2 newTrailPos = this.stateManager.transform.position;
             newTrailPos.y -= 1.32f;
             this.self.Trail.transform.position = newTrailPos;

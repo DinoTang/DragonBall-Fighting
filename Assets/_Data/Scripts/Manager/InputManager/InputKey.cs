@@ -6,9 +6,10 @@ public enum InputKey
     Right,
     Hit,
     Kick,
+    ChargeKi,
     Special,
     Skill,
     U,
     I,
-    
+    O,
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
-public abstract class DamageReceiver : DinoBehaviour
+public abstract class DamageReceiver : BaseBehaviour
 {
     [Header("Damage Receiver")]
     [SerializeField] protected CapsuleCollider2D collide;

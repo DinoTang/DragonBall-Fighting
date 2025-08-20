@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class CharacterAbstract : DinoBehaviour
+public class CharacterAbstract : BaseBehaviour
 {
     [Header("Character Abstract")]
     [SerializeField] protected CharacterCtrl characterCtrl;

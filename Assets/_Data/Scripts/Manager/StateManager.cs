@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StateManager : DinoBehaviour
+public class StateManager : BaseBehaviour
 {
     [Header("State Manager")]
     [SerializeField] protected CharacterCtrl characterCtrl;
@@ -12,9 +12,7 @@ public class StateManager : DinoBehaviour
     public State mainStateType;
     public State CurrentState { get; set; }
     public State nextState;
-    [Header("Rush Attack State")]
-    [SerializeField] protected AnimationCurve animationCurve;
-    public AnimationCurve AnimationCurve => animationCurve;
+
     protected override void Start()
     {
         base.Start();
@@ -34,7 +32,7 @@ public class StateManager : DinoBehaviour
     }
     protected void Update()
     {
-        if (this.characterCtrl.CharacterGroundCollision.IsGround)
+        if (this.characterCtrl.CharacterCollision.IsGround)
         {
             this.canSuperDash = true;
             this.mainStateType = new IdleCombatState();

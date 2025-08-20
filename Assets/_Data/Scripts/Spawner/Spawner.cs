@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Spawner<T> : DinoBehaviour where T : PoolObj
+public abstract class Spawner<T> : BaseBehaviour where T : PoolObj
 {
     [Header("Spawner")]
     [SerializeField] protected int spawnCount = 0;

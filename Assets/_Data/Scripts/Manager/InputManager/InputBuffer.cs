@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 [Serializable]
-public class InputBuffer : DinoBehaviour
+public class InputBuffer : BaseBehaviour
 {
     [SerializeField] protected List<InputKey> inputKeys = new();
     [SerializeField] protected float bufferTime = 0.5f;

@@ -25,8 +25,10 @@ public class CharacterCombo : CharacterAbstract
         if (InputManager.Instance.GetRightInput()) this.inputBuffer.AddInput(InputKey.Right);
         if (InputManager.Instance.GetHitInput()) this.inputBuffer.AddInput(InputKey.Hit);
         if (InputManager.Instance.GetKickInput()) this.inputBuffer.AddInput(InputKey.Kick);
+        if (InputManager.Instance.GetChargeInput()) this.inputBuffer.AddInput(InputKey.ChargeKi);
         if (InputManager.Instance.GetPowerFiredInput()) this.inputBuffer.AddInput(InputKey.Skill);
         if (InputManager.Instance.GetUInput()) this.inputBuffer.AddInput(InputKey.U);
+        if (InputManager.Instance.GetLauncherInput()) this.inputBuffer.AddInput(InputKey.O);
         this.combo = this.inputBuffer.GetComboString();
 
         // if (this.combo == "Down+Left+Hit" || this.combo == "Down+Right+Hit")
@@ -51,6 +53,7 @@ public class CharacterCombo : CharacterAbstract
         this.SkillTwoCombo();
         this.SkillFourCombo();
         this.SkillFiveCombo();
+        this.SkillBurstCombo();
     }
     public void ClearCurrentSkill()
     {
@@ -94,7 +97,8 @@ public class CharacterCombo : CharacterAbstract
 
         SkillDataSO skillData = characterCtrl.CharacterSkillManager.CurrentSkill;
         if (skillData.skillName != SkillSlot.Skill_BasicProjectile_Ground &&
-        skillData.skillName != SkillSlot.Skill_BasicProjectile_Air)
+        skillData.skillName != SkillSlot.Skill_BasicProjectile_Air &&
+        skillData.skillName != SkillSlot.Skill_Burst)
         {
             this.SpawnHitFlash();
         }
@@ -111,7 +115,14 @@ public class CharacterCombo : CharacterAbstract
             this.inputBuffer.ClearCombo();
         }
     }
-
+    protected void HandleSkillBurstCombo(string expectedCombo, SkillSlot skill)
+    {
+        if (this.combo.Contains(expectedCombo))
+        {
+            this.currentSkill = this.PlayingCurrentSkill(skill) ? skill.ToString() : "";
+            this.inputBuffer.ClearCombo();
+        }
+    }
     protected void SpawnHitFlash()
     {
         // Hiệu ứng lóe lên khi dùng skill
@@ -162,5 +173,11 @@ public class CharacterCombo : CharacterAbstract
         if (this.currentSkill != "") return;
         HandleSkillCombo("U", 1, SkillSlot.Skill_5);
         HandleSkillCombo("U", -1, SkillSlot.Skill_5);
+    }
+
+    protected void SkillBurstCombo() 
+    {
+        if (this.currentSkill != "") return;
+        HandleSkillBurstCombo("O", SkillSlot.Skill_Burst);
     }
 }

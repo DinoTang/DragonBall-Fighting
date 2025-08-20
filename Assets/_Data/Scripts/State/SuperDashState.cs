@@ -70,7 +70,7 @@ public class SuperDashState : State
     }
     protected void DashToOpponent()
     {
-        this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround = false;
+        this.stateManager.CharacterCtrl.CharacterCollision.IsGround = false;
         CharacterCtrl opponent = this.stateManager.CharacterCtrl.Opponent;
         CharacterCtrl self = this.stateManager.CharacterCtrl;
 

@@ -18,7 +18,7 @@ public class CharacterIntro : CharacterAbstract
         // animator.runtimeAnimatorController = normalController;
         // StartCoroutine(TransformToSSJ2());
         this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
-        this.characterCtrl.CharacterGroundCollision.IsGround = true;
+        this.characterCtrl.CharacterCollision.IsGround = true;
         this.isReady = true;
     }
     IEnumerator TransformToSSJ2()
@@ -33,7 +33,7 @@ public class CharacterIntro : CharacterAbstract
 
         animator.runtimeAnimatorController = ssj2Controller;
         this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
-        this.characterCtrl.CharacterGroundCollision.IsGround = true;
+        this.characterCtrl.CharacterCollision.IsGround = true;
         this.isReady = true;
     }
 }
