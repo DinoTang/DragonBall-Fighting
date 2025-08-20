@@ -51,10 +51,12 @@ public class SkillProjCtrl : DinoBehaviour
     protected void LoadSkillProjectileData()
     {
         if (this.skillData != null) return;
-        int index_SkillSlot = (int)this.skillProj.SkillSlot - 1;
-        if (index_SkillSlot < 0 || index_SkillSlot >= this.skillProjSpawner.SkillList.Count) return;
-
-        this.skillData = this.skillProjSpawner.SkillList[index_SkillSlot];
+        foreach (SkillDataSO child in this.skillProjSpawner.SkillList)
+        {
+            if (child.skillName != this.skillProj.SkillName) continue;
+            this.skillData = child;
+            break;
+        }
         Debug.Log(transform.name + ": LoadSkillProjectileData", gameObject);
     }
     protected void LoadDamageSender()

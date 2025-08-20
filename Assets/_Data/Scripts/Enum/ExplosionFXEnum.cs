@@ -6,4 +6,5 @@ public enum ExplosionFXEnum
     Galick_Gun = 3,
     Skill_Cast_Flash = 4,
     Parry = 5,
+    Big_Explosion = 6,
 }

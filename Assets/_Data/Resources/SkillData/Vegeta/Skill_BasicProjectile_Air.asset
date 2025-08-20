@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skill_BasicProjectile_Air
   m_EditorClassIdentifier: 
   skillName: 2
-  damageFxName: 2
+  damageFxName: 6
   kiCost: 10
   cooldown: 0.5
   damage: 1

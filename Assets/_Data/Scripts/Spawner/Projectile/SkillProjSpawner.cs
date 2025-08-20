@@ -45,7 +45,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
     {
         foreach (SkillProjectile skillProj in this.prefabs)
         {
-            if (skillProj.SkillSlot == skillSlot)
+            if (skillProj.SkillName == skillSlot)
                 return skillProj;
         }
         return null;
@@ -55,7 +55,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         foreach (var proj in this.prefabs)
         {
             BeamSkillProjectile beamProj = proj as BeamSkillProjectile;
-            if (beamProj != null && beamProj.SkillSlot == skillSlot)
+            if (beamProj != null && beamProj.SkillName == skillSlot)
                 return beamProj;
         }
         return null;
