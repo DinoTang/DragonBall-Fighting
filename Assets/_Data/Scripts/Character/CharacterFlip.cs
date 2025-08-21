@@ -20,7 +20,9 @@ public class CharacterFlip : CharacterAbstract
 
         if (this.characterCtrl.StateManager.CurrentState is KnockdownIdleState
             || this.characterCtrl.StateManager.CurrentState is BounceOnGroundState
-            || this.characterCtrl.StateManager.CurrentState is SkillState) return;
+            || this.characterCtrl.StateManager.CurrentState is BeamSkillState
+            || this.characterCtrl.StateManager.CurrentState is BurstSkillState
+            || this.characterCtrl.StateManager.CurrentState is RushAttackSkillState) return;
         this.distance = this.characterCtrl.Opponent.transform.position.x - this.transform.position.x;
         if (this.distance < 0)
         {

@@ -76,7 +76,7 @@ Transform:
   m_GameObject: {fileID: 5485931767997340297}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.714, y: -8.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -101,7 +101,7 @@ MonoBehaviour:
   speed: 20
   direction: {x: 0, y: 0}
   owner: {fileID: 0}
-  skillSlot: 2
+  skillName: 4
   skillProjCtrl: {fileID: 122189032923522430}
   beamHead: {fileID: 5637645638635903300}
   beamTail: {fileID: 192431593083354022, guid: 0de20fc0a975d7247bdba607df03b942, type: 3}
@@ -219,8 +219,8 @@ MonoBehaviour:
   _collider: {fileID: 8944648551719090967}
   damage: 1
   isHitting: 0
-  isKnockDown: 0
-  isKnockUp: 0
+  isKnockingDown: 0
+  isKnockingUp: 0
   skillProjCtrl: {fileID: 0}
 --- !u!1 &9103381394256539444
 GameObject:
@@ -318,7 +318,7 @@ Animator:
   m_GameObject: {fileID: 9103381394256539444}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b3745e6034036f443bc4238ec70a086e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 092723db7b5f5534fa4581904495fdf7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

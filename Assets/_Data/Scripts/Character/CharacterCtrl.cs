@@ -33,6 +33,8 @@ public class CharacterCtrl : BaseBehaviour
     [SerializeField] protected KiCharge kiCharge;
     [SerializeField] protected FirePoint firePoint;
     public FirePoint FirePoint => firePoint;
+    [SerializeField] protected FirePoint firePointDiagonal;
+    public FirePoint FirePointDiagonal => firePointDiagonal;
 
     [Header("Ki System")]
     [SerializeField] protected CharacterKiManager characterKiManager;

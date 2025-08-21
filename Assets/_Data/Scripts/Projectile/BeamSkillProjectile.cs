@@ -33,7 +33,10 @@ public class BeamSkillProjectile : SkillProjectile
         this.LoadBeamSettings();
     }
 
-    protected new void Update() { }
+    protected override void OnUpdate()
+    {
+
+    }
     protected void LoadSkillDuration()
     {
         var beamSkillDataSO = this.skillProjCtrl.SkillData as BeamSkillDataSO;

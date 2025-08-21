@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a40b57107fd9a04781000a415695ef1, type: 3}
+  m_Name: Skill_Ultimate
+  m_EditorClassIdentifier: 
+  skillName: 9
+  damageFxName: 0
+  kiCost: 1
+  cooldown: 1
+  damage: 1
+  animationClip: {fileID: 7400000, guid: 58f12fce7b5c0ab44968aa60dcb5b349, type: 2}
+  sfx: {fileID: 0}
+  endBeamSkillAnim: {fileID: 7400000, guid: 2b6ab778e160cff47b2671f846f0ab88, type: 2}
+  beamHead: {fileID: 2173844217182431480, guid: 1dbc223e8d233ec45bcb9ed84bf1359f, type: 3}
+  beamTail: {fileID: 7145446670710651124, guid: 5fc8f459b79574c46bb345f3f0021fa3, type: 3}
+  duration: 5
+  beamSpawnInterval: 0
+  beamMaxParts: 1
+  beamPartLength: 1
+  rushAttackUltimateAnim: {fileID: 7400000, guid: 23d995a3daaba3141b632d66b4511c94, type: 2}
+  readyUltimateAnim: {fileID: 7400000, guid: 94cd38861c2b99c4c9720252b09772a3, type: 2}
+  startUltimateAnim: {fileID: 7400000, guid: 94cd38861c2b99c4c9720252b09772a3, type: 2}

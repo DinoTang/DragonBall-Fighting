@@ -142,6 +142,8 @@ MonoBehaviour:
   _collider: {fileID: 7237787143375683156}
   damage: 1
   isHitting: 0
+  isKnockingDown: 0
+  isKnockingUp: 0
   skillProjCtrl: {fileID: 0}
 --- !u!1 &8735725357315977405
 GameObject:
@@ -289,7 +291,7 @@ Transform:
   m_GameObject: {fileID: 8975544438315976903}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.422, y: -8.714, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -314,11 +316,11 @@ MonoBehaviour:
   speed: 20
   direction: {x: 0, y: 0}
   owner: {fileID: 0}
-  skillSlot: 2
+  skillName: 4
   skillProjCtrl: {fileID: 6515411500161591878}
-  skillDuration: 5
   beamHead: {fileID: 5637645638635903300, guid: fb7b93b8f6a1d7545980f657ad17d283, type: 3}
   beamTail: {fileID: 192431593083354022}
+  skillDuration: 5
   beamSpawnInterval: 0.01
   beamMaxParts: 5
   beamPartLength: 4.68

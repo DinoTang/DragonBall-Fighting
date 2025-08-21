@@ -2,7 +2,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkillData", menuName = "SO/Skill/SkillData")]
 public class SkillDataSO : ScriptableObject
 {
-    public SkillSlot skillName;
+    [Header("Base SkillDataSO")]
+    public SkillName skillName;
     public ExplosionFXEnum damageFxName;
     public float kiCost;
     public float cooldown;

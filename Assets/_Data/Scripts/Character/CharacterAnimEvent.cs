@@ -23,7 +23,7 @@ public class CharacterAnimEvent : CharacterAbstract
         BasicProjFXSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), this.GetPosToSpawn(), this.characterCtrl);
     }
 
-    protected SkillProjectile EnableSpawnSkillProj(SkillSlot skillName)
+    protected SkillProjectile EnableSpawnSkillProj(SkillName skillName)
     {
         SkillProjectile skill = SkillProjSpawner.Instance.GetSkill(skillName);
         if (skill == null)
@@ -35,24 +35,31 @@ public class CharacterAnimEvent : CharacterAbstract
         return SkillProjSpawner.Instance.Spawn(skill, this.GetPosToSpawn(this.skillSpawnOffsetX), this.characterCtrl);
     }
 
-    protected void EnableSpawnBeamSkillProj(SkillSlot skillName)
+    protected void EnableSpawnStraightBeamSkillProj(SkillName skillName)
     {
         Vector2 pos = this.GetPosToSpawn(this.skillSpawnOffsetX);
         Vector2 dir = this.characterCtrl.CharacterFlip.IsFacingRight ? Vector2.right : Vector2.left;
 
-        SkillProjSpawner.Instance.StartBeamSkill(skillName, pos, dir, this.characterCtrl);
+        SkillProjSpawner.Instance.StartStraightBeamSkill(skillName, pos, dir, this.characterCtrl);
     }
+    protected void EnableSpawnDiagonalBeamSkillProj(SkillName skillName)
+    {
+        Vector2 dir = this.characterCtrl.CharacterFlip.IsFacingRight ? Vector2.right : Vector2.left;
+        Vector2 pos = this.characterCtrl.FirePointDiagonal.transform.position;
 
-    protected void EnableSkillOne() => EnableSpawnSkillProj(SkillSlot.Skill_1);
-    protected void EnableSkillTwo() => EnableSpawnBeamSkillProj(SkillSlot.Skill_2);
+        SkillProjSpawner.Instance.StartDiagonalBeamSkill(skillName, pos, dir, this.characterCtrl);
+    }
+    protected void EnableSkillOne() => EnableSpawnSkillProj(SkillName.Skill_1);
+    protected void EnableSkillTwo() => EnableSpawnStraightBeamSkillProj(SkillName.Skill_2);
+    protected void EnableSkillUltimate() => EnableSpawnDiagonalBeamSkillProj(SkillName.Skill_Ultimate);
     protected void EnableSpawnSkillBPAir()
     {
-        SkillProjectile skillProjectile = EnableSpawnSkillProj(SkillSlot.Skill_BasicProjectile_Air);
+        SkillProjectile skillProjectile = EnableSpawnSkillProj(SkillName.Skill_BasicProjectile_Air);
         skillProjectile.transform.position = this.transform.position;
     }
     protected void EnableSpawnSkillBPGround()
     {
-        SkillProjectile skillProjectile = EnableSpawnSkillProj(SkillSlot.Skill_BasicProjectile_Ground);
+        SkillProjectile skillProjectile = EnableSpawnSkillProj(SkillName.Skill_BasicProjectile_Ground);
         skillProjectile.transform.position = this.characterCtrl.FirePoint.transform.position;
     }
     protected Vector2 GetPosToSpawn(float posX = 0, float posY = 0)

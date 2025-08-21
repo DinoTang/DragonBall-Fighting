@@ -1,4 +1,4 @@
-public enum SkillSlot
+public enum SkillName
 {
     none = 0,
     Skill_BasicProjectile_Ground = 1,
@@ -9,4 +9,5 @@ public enum SkillSlot
     Skill_4 = 6,
     Skill_5 = 7,
     Skill_Burst = 8,
+    Skill_Ultimate = 9,
 }

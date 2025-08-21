@@ -41,7 +41,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         Debug.Log(transform.name + ": LoadSkillList", gameObject);
     }
 
-    public SkillProjectile GetSkill(SkillSlot skillSlot)
+    public SkillProjectile GetSkill(SkillName skillSlot)
     {
         foreach (SkillProjectile skillProj in this.prefabs)
         {
@@ -50,7 +50,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         }
         return null;
     }
-    public BeamSkillProjectile GetBeamSkill(SkillSlot skillSlot)
+    public BeamSkillProjectile GetBeamSkill(SkillName skillSlot)
     {
         foreach (var proj in this.prefabs)
         {
@@ -61,7 +61,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         return null;
     }
 
-    public void StartBeamSkill(SkillSlot slot, Vector2 startPos, Vector2 direction, CharacterCtrl owner)
+    public void StartStraightBeamSkill(SkillName slot, Vector2 startPos, Vector2 direction, CharacterCtrl owner)
     {
         BeamSkillProjectile beamPrefab = GetBeamSkill(slot);
         if (beamPrefab == null)
@@ -69,8 +69,26 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
             Debug.LogWarning("No beam skill found for slot: " + slot);
             return;
         }
-
         StartCoroutine(SpawnBeamCoroutine(beamPrefab, startPos, direction.normalized, owner));
+    }
+    public void StartDiagonalBeamSkill(SkillName slot, Vector2 startPos, Vector2 direction, CharacterCtrl owner)
+    {
+        BeamSkillProjectile beamPrefab = GetBeamSkill(slot);
+        if (beamPrefab == null)
+        {
+            Debug.LogWarning("No beam skill found for slot: " + slot);
+            return;
+        }
+        // Góc bắn = -45 độ
+        float angle = -45f * Mathf.Deg2Rad;
+
+        // Hướng bắn theo góc -45
+        Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
+
+        // Nếu nhân vật quay trái thì lật X
+        dir.x *= direction.x;
+
+        StartCoroutine(SpawnBeamCoroutine(beamPrefab, startPos, dir, owner));
     }
 
     private IEnumerator SpawnBeamCoroutine(BeamSkillProjectile beamPrefab, Vector2 pos, Vector2 dir, CharacterCtrl owner)
@@ -82,7 +100,6 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
             pos += dir * beamPrefab.BeamPartLength;
             yield return new WaitForSeconds(beamPrefab.BeamSpawnInterval);
         }
-
         // === BODY ===
         int spawned = 0;
         while (spawned < beamPrefab.BeamMaxParts)
@@ -93,10 +110,9 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
 
             yield return new WaitForSeconds(beamPrefab.BeamSpawnInterval);
         }
-
         // === TAIL ===
         Vector2 tailPos = pos;
-        tailPos.x += owner.transform.localScale.x < 0 ? (+1.5f) : (-1.5f);
+        // tailPos.x += owner.transform.localScale.x < 0 ? (+1.5f) : (-1.5f);
         if (beamPrefab.BeamTail != null)
         {
             Spawn(beamPrefab.BeamTail, tailPos, owner);
