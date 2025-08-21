@@ -28,4 +28,4 @@ MonoBehaviour:
   beamPartLength: 1
   rushAttackUltimateAnim: {fileID: 7400000, guid: 23d995a3daaba3141b632d66b4511c94, type: 2}
   readyUltimateAnim: {fileID: 7400000, guid: 94cd38861c2b99c4c9720252b09772a3, type: 2}
-  startUltimateAnim: {fileID: 7400000, guid: 94cd38861c2b99c4c9720252b09772a3, type: 2}
+  startUltimateAnim: {fileID: 7400000, guid: bcc2030a2af8a2e4cbec4c54e20b9751, type: 2}
