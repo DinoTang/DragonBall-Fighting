@@ -69,7 +69,8 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
             Debug.LogWarning("No beam skill found for slot: " + slot);
             return;
         }
-        StartCoroutine(SpawnBeamCoroutine(beamPrefab, startPos, direction.normalized, owner));
+        // StartCoroutine(SpawnBeamCoroutine(beamPrefab, startPos, direction.normalized, owner));
+        SpawnBeamInstant(beamPrefab, startPos, direction.normalized, owner);
     }
     public void StartDiagonalBeamSkill(SkillName slot, Vector2 startPos, Vector2 direction, CharacterCtrl owner)
     {
@@ -88,36 +89,48 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         // Nếu nhân vật quay trái thì lật X
         dir.x *= direction.x;
 
-        StartCoroutine(SpawnBeamCoroutine(beamPrefab, startPos, dir, owner));
+        // StartCoroutine(SpawnBeamCoroutine(beamPrefab, startPos, dir, owner));
+        SpawnBeamInstant(beamPrefab, startPos, dir, owner);
     }
 
-    private IEnumerator SpawnBeamCoroutine(BeamSkillProjectile beamPrefab, Vector2 pos, Vector2 dir, CharacterCtrl owner)
+    private void SpawnBeamInstant(BeamSkillProjectile beamPrefab, Vector2 pos, Vector2 dir, CharacterCtrl owner)
     {
         // === HEAD ===
         if (beamPrefab.BeamHead != null)
         {
-            Spawn(beamPrefab.BeamHead, pos, owner);
+            var head = this.Spawn(beamPrefab.BeamHead, pos, owner);
+            head.SkillProjCtrl.Owner = owner;
             pos += dir * beamPrefab.BeamPartLength;
-            yield return new WaitForSeconds(beamPrefab.BeamSpawnInterval);
         }
-        // === BODY ===
-        int spawned = 0;
-        while (spawned < beamPrefab.BeamMaxParts)
-        {
-            Spawn(beamPrefab, pos, owner);
-            pos += dir * beamPrefab.BeamPartLength;
-            spawned++;
 
-            yield return new WaitForSeconds(beamPrefab.BeamSpawnInterval);
+        // === BODY ===
+        for (int i = 0; i < beamPrefab.BeamMaxParts; i++)
+        {
+            var body = this.Spawn(beamPrefab, pos, owner);
+            body.SkillProjCtrl.Owner = owner;
+            if (i == beamPrefab.BeamMaxParts - 1)
+            {
+                pos += dir * beamPrefab.BeamTailLength;
+                break;
+            }
+            pos += dir * beamPrefab.BeamBodyLength;
         }
+
         // === TAIL ===
-        Vector2 tailPos = pos;
-        // tailPos.x += owner.transform.localScale.x < 0 ? (+1.5f) : (-1.5f);
         if (beamPrefab.BeamTail != null)
         {
-            Spawn(beamPrefab.BeamTail, tailPos, owner);
+            var tail = this.Spawn(beamPrefab.BeamTail, pos, owner);
+            tail.SkillProjCtrl.Owner = owner;
         }
-        yield return new WaitForSeconds(beamPrefab.SKillDuration);
+
+        // reset animation sau khi duration xong
+        owner.StartCoroutine(DisableBeamAnim(owner, beamPrefab.SKillDuration));
+    }
+
+    private IEnumerator DisableBeamAnim(CharacterCtrl owner, float delay)
+    {
+        yield return new WaitForSeconds(delay);
         owner.Animator.SetBool("IsBeaming", false);
     }
+
 }

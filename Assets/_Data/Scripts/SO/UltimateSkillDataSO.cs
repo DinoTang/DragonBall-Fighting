@@ -3,9 +3,10 @@ using UnityEngine;
 public class UltimateSkillDataSO : BeamSkillDataSO
 {
     [Header("Ultimate SkillDataSO")]
-    public AnimationClip rushAttackUltimateAnim;
     public AnimationClip readyUltimateAnim;
-    public AnimationClip startUltimateAnim;
+    public AnimationClip cutSceneReadyUltimateAnim;
+    public AnimationClip performUltimateAnim;
+    public AnimationClip cutScenePerformUltimateAnim;
     public override State GetSkillState()
     {
         return new UltimateSkillState();

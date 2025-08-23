@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3534117313592453183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -20
-  m_Sprite: {fileID: -1028723919, guid: 7b84232012c7f8842bf544c186e7ce03, type: 3}
+  m_Sprite: {fileID: 380982173, guid: 954207905cbfd1645ba8ab2b288c24fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -179,6 +179,8 @@ MonoBehaviour:
   beamSpawnInterval: 0.01
   beamMaxParts: 1
   beamPartLength: 0
+  beamBodyLength: 1
+  beamTailLength: 1
 --- !u!114 &3560942546222508515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +198,7 @@ MonoBehaviour:
   skillProjDespawn: {fileID: 4154596472835204567}
   skillData: {fileID: 11400000, guid: 82aa368da079e0942bf573e55d44cd3a, type: 2}
   damageSender: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!1 &8603373199253539370
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,13 +225,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8603373199253539370}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0.37, y: -0.37, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3534117313592453183}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2633583963308641992
 BoxCollider2D:
   m_ObjectHideFlags: 0

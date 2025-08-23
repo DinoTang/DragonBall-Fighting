@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -1630707970, guid: 8c200f5dd757f094c836e5956d75c580, type: 3}
+  m_Sprite: {fileID: 1842723845, guid: 954207905cbfd1645ba8ab2b288c24fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -196,6 +196,7 @@ MonoBehaviour:
   skillProjDespawn: {fileID: 1405393767651191713}
   skillData: {fileID: 11400000, guid: 82aa368da079e0942bf573e55d44cd3a, type: 2}
   damageSender: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!1 &5953497172829269771
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,13 +223,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5953497172829269771}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2100605486554760892}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3229579845602957540
 BoxCollider2D:
   m_ObjectHideFlags: 0

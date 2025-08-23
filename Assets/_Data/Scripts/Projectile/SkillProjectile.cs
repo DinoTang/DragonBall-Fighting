@@ -9,7 +9,7 @@ public class SkillProjectile : _ProjectileBase
     [SerializeField] protected SkillName skillName;
     public SkillName SkillName => skillName;
     [SerializeField] protected SkillProjCtrl skillProjCtrl;
-
+    public SkillProjCtrl SkillProjCtrl => skillProjCtrl;
     protected override void LoadComponent()
     {
         base.LoadComponent();

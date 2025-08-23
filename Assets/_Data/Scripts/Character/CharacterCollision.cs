@@ -95,7 +95,8 @@ public class CharacterCollision : CharacterAbstract
                 || currentState is KnockdownIdleState
                 || currentState is RushAttackWasKnockUpState
                 || currentState is RushAttackSkillState
-                || currentState is FallKnockBackState);
+                || currentState is FallKnockBackState
+                || currentState is UltimateSkillState);
     }
 }
 

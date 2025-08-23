@@ -62,7 +62,7 @@ public class CharacterCombo : CharacterAbstract
     }
     public void SpawnEffectWhenTele()
     {
-        TeleFX_Spawner.Instance.Spawn(TeleFX_Spawner.Instance.nameFX, this.characterCtrl.transform.position);
+        TeleFX_Spawner.Instance.Spawn(TeleFXNameEnum.Vegeta.ToString(), this.characterCtrl.transform.position);
         SmokeLandedFXSpawner.Instance.Spawn(SmokeLandedFXSpawner.Instance.nameFX, this.characterCtrl.transform.position);
     }
     protected void Teleing(float dirTele)
@@ -184,7 +184,7 @@ public class CharacterCombo : CharacterAbstract
     protected void SkillUltimateCombo()
     {
         if (this.currentSkill != "") return;
-        HandleSkillCombo("Down+Right+Skill", 1, SkillName.Skill_Ultimate);
-        HandleSkillCombo("Down+Left+Skill", -1, SkillName.Skill_Ultimate);
+        HandleSkillCombo("Down+Skill", 1, SkillName.Skill_Ultimate);
+        HandleSkillCombo("Down+Skill", -1, SkillName.Skill_Ultimate);
     }
 }

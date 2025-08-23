@@ -35,9 +35,9 @@ public class CharacterAnimEvent : CharacterAbstract
         return SkillProjSpawner.Instance.Spawn(skill, this.GetPosToSpawn(this.skillSpawnOffsetX), this.characterCtrl);
     }
 
-    protected void EnableSpawnStraightBeamSkillProj(SkillName skillName)
+    protected void EnableSpawnStraightBeamSkillProj(SkillName skillName, float offsetX = 0, float offsetY = 0)
     {
-        Vector2 pos = this.GetPosToSpawn(this.skillSpawnOffsetX);
+        Vector2 pos = this.GetPosToSpawn(offsetX, offsetY);
         Vector2 dir = this.characterCtrl.CharacterFlip.IsFacingRight ? Vector2.right : Vector2.left;
 
         SkillProjSpawner.Instance.StartStraightBeamSkill(skillName, pos, dir, this.characterCtrl);
@@ -49,9 +49,16 @@ public class CharacterAnimEvent : CharacterAbstract
 
         SkillProjSpawner.Instance.StartDiagonalBeamSkill(skillName, pos, dir, this.characterCtrl);
     }
+    protected void EnableSpawnBeamFadeFXProj(BeamSkillNameEnum beamSkillName, float offsetX = 0, float offsetY = 0)
+    {
+        Vector2 pos = this.GetPosToSpawn(offsetX, offsetY);
+        BeamFadeFXSpawner.Instance.Spawn(beamSkillName.ToString(), pos, this.characterCtrl);
+    }
+
     protected void EnableSkillOne() => EnableSpawnSkillProj(SkillName.Skill_1);
-    protected void EnableSkillTwo() => EnableSpawnStraightBeamSkillProj(SkillName.Skill_2);
-    protected void EnableSkillUltimate() => EnableSpawnDiagonalBeamSkillProj(SkillName.Skill_Ultimate);
+    protected void EnableSkillTwo() => EnableSpawnStraightBeamSkillProj(SkillName.Skill_2, this.skillSpawnOffsetX);
+    protected void EnableSkillUltimate() => EnableSpawnStraightBeamSkillProj(SkillName.Skill_Ultimate, 1.95f);
+    protected void EnableBeamFadeFXProj() => EnableSpawnBeamFadeFXProj(BeamSkillNameEnum.Final_Flash, 7.35f);
     protected void EnableSpawnSkillBPAir()
     {
         SkillProjectile skillProjectile = EnableSpawnSkillProj(SkillName.Skill_BasicProjectile_Air);
@@ -68,5 +75,12 @@ public class CharacterAnimEvent : CharacterAbstract
         newPos.x += this.characterCtrl.CharacterFlip.Direct * posX;
         newPos.y += this.characterCtrl.CharacterFlip.Direct * posY;
         return newPos;
+    }
+
+
+
+    protected void PlayCutScene()
+    {
+
     }
 }

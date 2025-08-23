@@ -13,9 +13,11 @@ public class SkillProjCtrl : BaseBehaviour
     public SkillProjDespawn SkillProjDespawn => skillProjDespawn;
     [SerializeField] protected SkillDataSO skillData;
     public SkillDataSO SkillData => skillData;
-    [Header("Skill Proj Ctrl")]
     [SerializeField] protected DamageSender damageSender;
     public DamageSender DamageSender => damageSender;
+    [Header("Owner")]
+    [SerializeField] protected CharacterCtrl owner;
+    public CharacterCtrl Owner { get => owner; set => owner = value; }
     protected override void OnEnable()
     {
         base.OnEnable();

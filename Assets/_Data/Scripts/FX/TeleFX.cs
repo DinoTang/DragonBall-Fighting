@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class TeleFX : PoolObj
 {
+    [SerializeField] protected TeleFXNameEnum teleFXName;
     public override string GetName()
     {
-        return "TeleFX";
+        return this.teleFXName.ToString();
     }
 }

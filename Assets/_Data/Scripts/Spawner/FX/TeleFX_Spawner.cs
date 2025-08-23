@@ -6,7 +6,6 @@ public class TeleFX_Spawner : Spawner<TeleFX>
 {
     protected static TeleFX_Spawner instance;
     public static TeleFX_Spawner Instance => instance;
-    public string nameFX = "TeleFX";
     protected override void Awake()
     {
         base.Awake();

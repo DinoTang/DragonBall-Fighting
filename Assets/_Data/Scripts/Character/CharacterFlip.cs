@@ -19,6 +19,7 @@ public class CharacterFlip : CharacterAbstract
         this.direct = this.isFacingRight ? 1 : -1;
 
         if (this.characterCtrl.StateManager.CurrentState is KnockdownIdleState
+            || this.characterCtrl.Opponent.StateManager.CurrentState is UltimateSkillState
             || this.characterCtrl.StateManager.CurrentState is BounceOnGroundState
             || this.characterCtrl.StateManager.CurrentState is BeamSkillState
             || this.characterCtrl.StateManager.CurrentState is BurstSkillState

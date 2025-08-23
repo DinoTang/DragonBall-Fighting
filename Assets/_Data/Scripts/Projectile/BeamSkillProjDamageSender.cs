@@ -33,7 +33,11 @@ public class BeamSkillProjDamageSender : DamageSender
     {
         DamageReceiver damageReceiver = other.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;
+        CharacterCtrl opponent = damageReceiver.GetComponentInParent<CharacterCtrl>();
 
+        CharacterCtrl owner = this.skillProjCtrl.Owner;
+
+        if (opponent == owner) return;
         // Gây damage theo tick
         if (!isHitting)
             StartCoroutine(DamageTick(damageReceiver));

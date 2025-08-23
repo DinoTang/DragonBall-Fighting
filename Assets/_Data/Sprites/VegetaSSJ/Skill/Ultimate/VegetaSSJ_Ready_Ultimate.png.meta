@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -319,6 +319,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: VegetaSSJ_Ready_Ultimate_10
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 192
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23749b99bdb962b4b96c5003bdd8dffc
+      internalID: 1199111829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VegetaSSJ_Ready_Ultimate_11
+      rect:
+        serializedVersion: 2
+        x: 2112
+        y: 0
+        width: 192
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc2462b4f4f5df47b108c3d59e6e4ab
+      internalID: 1132970707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VegetaSSJ_Ready_Ultimate_12
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 192
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa6a7af001e19f747b86a2f0acf0fcb5
+      internalID: 366868394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -332,6 +395,9 @@ TextureImporter:
     nameFileIdTable:
       VegetaSSJ_Ready_Ultimate_0: -656558463
       VegetaSSJ_Ready_Ultimate_1: -1507818661
+      VegetaSSJ_Ready_Ultimate_10: 1199111829
+      VegetaSSJ_Ready_Ultimate_11: 1132970707
+      VegetaSSJ_Ready_Ultimate_12: 366868394
       VegetaSSJ_Ready_Ultimate_2: 1142919537
       VegetaSSJ_Ready_Ultimate_3: -804338026
       VegetaSSJ_Ready_Ultimate_4: 164597427
