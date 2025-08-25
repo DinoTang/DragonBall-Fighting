@@ -41,7 +41,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         Debug.Log(transform.name + ": LoadSkillList", gameObject);
     }
 
-    public SkillProjectile GetSkill(SkillName skillSlot)
+    public SkillProjectile GetSkill(SkillNameEnum skillSlot)
     {
         foreach (SkillProjectile skillProj in this.prefabs)
         {
@@ -50,7 +50,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         }
         return null;
     }
-    public BeamSkillProjectile GetBeamSkill(SkillName skillSlot)
+    public BeamSkillProjectile GetBeamSkill(SkillNameEnum skillSlot)
     {
         foreach (var proj in this.prefabs)
         {
@@ -61,7 +61,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         return null;
     }
 
-    public void StartStraightBeamSkill(SkillName slot, Vector2 startPos, Vector2 direction, CharacterCtrl owner)
+    public void StartStraightBeamSkill(SkillNameEnum slot, Vector2 startPos, Vector2 direction, CharacterCtrl owner)
     {
         BeamSkillProjectile beamPrefab = GetBeamSkill(slot);
         if (beamPrefab == null)
@@ -72,7 +72,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         // StartCoroutine(SpawnBeamCoroutine(beamPrefab, startPos, direction.normalized, owner));
         SpawnBeamInstant(beamPrefab, startPos, direction.normalized, owner);
     }
-    public void StartDiagonalBeamSkill(SkillName slot, Vector2 startPos, Vector2 direction, CharacterCtrl owner)
+    public void StartDiagonalBeamSkill(SkillNameEnum slot, Vector2 startPos, Vector2 direction, CharacterCtrl owner)
     {
         BeamSkillProjectile beamPrefab = GetBeamSkill(slot);
         if (beamPrefab == null)
@@ -100,7 +100,7 @@ public class SkillProjSpawner : Spawner<SkillProjectile>
         {
             var head = this.Spawn(beamPrefab.BeamHead, pos, owner);
             head.SkillProjCtrl.Owner = owner;
-            pos += dir * beamPrefab.BeamPartLength;
+            pos += dir * beamPrefab.BeamHeadLength;
         }
 
         // === BODY ===

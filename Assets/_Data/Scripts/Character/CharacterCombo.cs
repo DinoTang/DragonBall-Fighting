@@ -92,14 +92,14 @@ public class CharacterCombo : CharacterAbstract
     //         this.inputBuffer.ClearCombo();
     //     }
     // }
-    protected bool PlayingCurrentSkill(SkillName skill)
+    protected bool PlayingCurrentSkill(SkillNameEnum skill)
     {
         if (!this.characterCtrl.CharacterSkillManager.TryUseSkill(skill)) return false;
 
         SkillDataSO skillData = characterCtrl.CharacterSkillManager.CurrentSkill;
-        if (skillData.skillName != SkillName.Skill_BasicProjectile_Ground &&
-        skillData.skillName != SkillName.Skill_BasicProjectile_Air &&
-        skillData.skillName != SkillName.Skill_Burst)
+        if (skillData.skillName != SkillNameEnum.Skill_BasicProjectile_Ground &&
+        skillData.skillName != SkillNameEnum.Skill_BasicProjectile_Air &&
+        skillData.skillName != SkillNameEnum.Skill_Burst)
         {
             this.SpawnHitFlash();
         }
@@ -108,7 +108,7 @@ public class CharacterCombo : CharacterAbstract
 
         return true;
     }
-    protected void HandleSkillCombo(string expectedCombo, int expectedScale, SkillName skill)
+    protected void HandleSkillCombo(string expectedCombo, int expectedScale, SkillNameEnum skill)
     {
         if (this.combo == expectedCombo && this.characterCtrl.transform.localScale.x == expectedScale)
         {
@@ -116,7 +116,7 @@ public class CharacterCombo : CharacterAbstract
             this.inputBuffer.ClearCombo();
         }
     }
-    protected void HandleSkillBurstCombo(string expectedCombo, SkillName skill)
+    protected void HandleSkillBurstCombo(string expectedCombo, SkillNameEnum skill)
     {
         if (this.combo.Contains(expectedCombo))
         {
@@ -135,36 +135,36 @@ public class CharacterCombo : CharacterAbstract
     {
         if (this.currentSkill != "") return;
         if (this.characterCtrl.StateManager.mainStateType is AirState) return;
-        HandleSkillCombo("Skill", 1, SkillName.Skill_BasicProjectile_Ground);
-        HandleSkillCombo("Skill", -1, SkillName.Skill_BasicProjectile_Ground);
+        HandleSkillCombo("Skill", 1, SkillNameEnum.Skill_BasicProjectile_Ground);
+        HandleSkillCombo("Skill", -1, SkillNameEnum.Skill_BasicProjectile_Ground);
     }
     protected void SkillShootBaseKiAirCombo()
     {
         if (this.currentSkill != "") return;
         if (this.characterCtrl.StateManager.mainStateType is IdleCombatState) return;
-        HandleSkillCombo("Skill", 1, SkillName.Skill_BasicProjectile_Air);
-        HandleSkillCombo("Skill", -1, SkillName.Skill_BasicProjectile_Air);
+        HandleSkillCombo("Skill", 1, SkillNameEnum.Skill_BasicProjectile_Air);
+        HandleSkillCombo("Skill", -1, SkillNameEnum.Skill_BasicProjectile_Air);
     }
     protected void SkillOneCombo()
     {
         if (this.currentSkill != "") return;
-        HandleSkillCombo("Right+Skill", 1, SkillName.Skill_1);
-        HandleSkillCombo("Left+Skill", -1, SkillName.Skill_1);
+        HandleSkillCombo("Right+Skill", 1, SkillNameEnum.Skill_1);
+        HandleSkillCombo("Left+Skill", -1, SkillNameEnum.Skill_1);
     }
 
     protected void SkillTwoCombo()
     {
         if (this.currentSkill != "") return;
         this.characterCtrl.Animator.SetBool("IsBeaming", true);
-        HandleSkillCombo("Right+Skill", -1, SkillName.Skill_2);
-        HandleSkillCombo("Left+Skill", 1, SkillName.Skill_2);
+        HandleSkillCombo("Right+Skill", -1, SkillNameEnum.Skill_2);
+        HandleSkillCombo("Left+Skill", 1, SkillNameEnum.Skill_2);
     }
 
     protected void SkillFourCombo()
     {
         if (this.currentSkill != "") return;
-        HandleSkillCombo("Down+Right+Hit", 1, SkillName.Skill_4);
-        HandleSkillCombo("Down+Left+Hit", -1, SkillName.Skill_4);
+        HandleSkillCombo("Down+Right+Hit", 1, SkillNameEnum.Skill_4);
+        HandleSkillCombo("Down+Left+Hit", -1, SkillNameEnum.Skill_4);
     }
 
     protected void SkillFiveCombo()  //Rush Attack
@@ -172,19 +172,19 @@ public class CharacterCombo : CharacterAbstract
         if (this.characterCtrl.StateManager.CurrentState is AirHit3State
         || this.characterCtrl.Opponent.StateManager.CurrentState is KnockdownIdleState) return;
         if (this.currentSkill != "") return;
-        HandleSkillCombo("U", 1, SkillName.Skill_5);
-        HandleSkillCombo("U", -1, SkillName.Skill_5);
+        HandleSkillCombo("U", 1, SkillNameEnum.Skill_5);
+        HandleSkillCombo("U", -1, SkillNameEnum.Skill_5);
     }
 
     protected void SkillBurstCombo()
     {
         if (this.currentSkill != "") return;
-        HandleSkillBurstCombo("O", SkillName.Skill_Burst);
+        HandleSkillBurstCombo("O", SkillNameEnum.Skill_Burst);
     }
     protected void SkillUltimateCombo()
     {
         if (this.currentSkill != "") return;
-        HandleSkillCombo("Down+Skill", 1, SkillName.Skill_Ultimate);
-        HandleSkillCombo("Down+Skill", -1, SkillName.Skill_Ultimate);
+        HandleSkillCombo("Down+Skill", 1, SkillNameEnum.Skill_Ultimate);
+        HandleSkillCombo("Down+Skill", -1, SkillNameEnum.Skill_Ultimate);
     }
 }

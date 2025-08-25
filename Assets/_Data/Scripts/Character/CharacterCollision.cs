@@ -79,7 +79,7 @@ public class CharacterCollision : CharacterAbstract
 
         if (selfPos.y > opponentPos.y + 0.3f)
         {
-            this.characterCtrl.Rgb.velocity = new Vector2(10f * this.characterCtrl.CharacterFlip.Direct, 5f);
+            this.characterCtrl.Rgb.velocity = new Vector2(10f * this.characterCtrl.transform.localScale.x, 0);
             Debug.LogWarning("Bật ra khỏi enemy!");
         }
     }

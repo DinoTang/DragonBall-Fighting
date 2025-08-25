@@ -60,13 +60,9 @@ public class DamageSender : BaseBehaviour
     {
         DamageReceiver damageReceiver = other.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;
-        CharacterCtrl self = damageReceiver.GetComponentInParent<CharacterCtrl>();
-        CharacterCtrl opponent = damageReceiver.GetComponentInParent<CharacterCtrl>();
-        if (self.Opponent == opponent) return;
 
         if (this.isKnockingDown) this.SendKnockdownDamage(damageReceiver);
         else this.SendDamage(damageReceiver);
-        // this.DisableCollider();
         Debug.Log("OnTriggerEnter2D: " + other.gameObject.name);
 
     }

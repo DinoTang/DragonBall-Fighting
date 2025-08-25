@@ -22,7 +22,6 @@ public class BaseAirState : State
     }
     protected void BackMainState()
     {
-        if (this.stateManager.CharacterCtrl.CharacterCollision.IsGround) this.stateManager.SetNextState(new IdleCombatState());
-        else this.stateManager.SetNextState(new AirState());
+        this.stateManager.SetNextStateToMain();
     }
 }

@@ -9,7 +9,9 @@ public class BeamSkillDataSO : SkillDataSO
     public float duration;
     public float beamSpawnInterval;
     public int beamMaxParts;
-    public float beamPartLength;
+    public float beamHeadLength;
+    public float beamBodyLength;
+    public float beamTailLength;
     public override State GetSkillState()
     {
         return new BeamSkillState();

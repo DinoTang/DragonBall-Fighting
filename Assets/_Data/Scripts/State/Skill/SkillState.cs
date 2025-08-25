@@ -11,7 +11,6 @@ public class SkillState : State
         this.stateManager.CharacterCtrl.Animator.SetBool("IsSkill", true);
         skill = stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill;
         this.totalDuration = this.GetTotalDuration();
-        Debug.LogWarning(this.totalDuration);
     }
 
     public override void OnExit()

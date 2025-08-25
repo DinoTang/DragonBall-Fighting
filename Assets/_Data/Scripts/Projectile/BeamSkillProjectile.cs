@@ -13,13 +13,13 @@ public class BeamSkillProjectile : SkillProjectile
     [SerializeField] protected float skillDuration;
     public float SKillDuration => skillDuration;
     [SerializeField] private float beamSpawnInterval = 0.01f;
-    [SerializeField] private int beamMaxParts = 5;
-    [SerializeField] private float beamPartLength = 4.68f;
-    [SerializeField] private float beamBodyLength = 1f;
-    [SerializeField] private float beamTailLength = 1f;
+    [SerializeField] private int beamMaxParts = 1;
+    [SerializeField] private float beamHeadLength = 1;
+    [SerializeField] private float beamBodyLength = 1;
+    [SerializeField] private float beamTailLength = 1;
     public float BeamSpawnInterval => beamSpawnInterval;
     public int BeamMaxParts => beamMaxParts;
-    public float BeamPartLength => beamPartLength;
+    public float BeamHeadLength => beamHeadLength;
     public float BeamBodyLength => beamBodyLength;
     public float BeamTailLength => beamTailLength;
     protected override void LoadComponent()
@@ -65,7 +65,9 @@ public class BeamSkillProjectile : SkillProjectile
         BeamSkillDataSO beamData = this.skillProjCtrl.SkillData as BeamSkillDataSO;
         this.beamSpawnInterval = beamData.beamSpawnInterval;
         this.beamMaxParts = beamData.beamMaxParts;
-        this.beamPartLength = beamData.beamPartLength;
+        this.beamHeadLength = beamData.beamHeadLength;
+        this.beamBodyLength = beamData.beamBodyLength;
+        this.beamTailLength = beamData.beamTailLength;
         Debug.Log(transform.name + ": LoadBeamSettings");
     }
 }

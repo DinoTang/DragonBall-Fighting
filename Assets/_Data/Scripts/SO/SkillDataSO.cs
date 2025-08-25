@@ -3,7 +3,7 @@ using UnityEngine;
 public class SkillDataSO : ScriptableObject
 {
     [Header("Base SkillDataSO")]
-    public SkillName skillName;
+    public SkillNameEnum skillName;
     public ExplosionFXEnum damageFxName;
     public float kiCost;
     public float cooldown;

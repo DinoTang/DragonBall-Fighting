@@ -6,8 +6,8 @@ using UnityEngine;
 public class SkillProjectile : _ProjectileBase
 {
     [Header("Skill Projectile")]
-    [SerializeField] protected SkillName skillName;
-    public SkillName SkillName => skillName;
+    [SerializeField] protected SkillNameEnum skillName;
+    public SkillNameEnum SkillName => skillName;
     [SerializeField] protected SkillProjCtrl skillProjCtrl;
     public SkillProjCtrl SkillProjCtrl => skillProjCtrl;
     protected override void LoadComponent()

@@ -24,12 +24,13 @@ public class SkillProjDamageSender : DamageSender
             circleCollider.offset = new Vector2(0.4f, 0);
             circleCollider.radius = 1.5f;
         }
-
     }
     public override void SendDamage(DamageReceiver damageReceiver)
     {
-        CharacterCtrl target = damageReceiver.transform.parent.GetComponent<CharacterCtrl>();
-        if (this.skillProjCtrl.SkillProj.Owner == target) return;
+        CharacterCtrl opponent = damageReceiver.transform.GetComponentInParent<CharacterCtrl>();
+        CharacterCtrl owner = this.skillProjCtrl.Owner;
+        if (owner == opponent) return;
+        if (opponent.StateManager.CurrentState is KnockdownIdleState) return;
         base.SendDamage(damageReceiver);
         this.skillProjCtrl.SkillProjDespawn.DoDespawn();
     }

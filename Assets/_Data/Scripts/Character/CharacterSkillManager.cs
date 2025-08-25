@@ -30,12 +30,12 @@ public class CharacterSkillManager : CharacterAbstract
         Debug.Log($"{transform.name}: LoadSkillListSO", gameObject);
     }
 
-    protected SkillWithCooldown GetSkill(SkillName slot)
+    protected SkillWithCooldown GetSkill(SkillNameEnum slot)
     {
         return skillList.Find(s => s.skillData.skillName == slot);
     }
 
-    public bool TryUseSkill(SkillName slot)
+    public bool TryUseSkill(SkillNameEnum slot)
     {
         SkillWithCooldown skill = GetSkill(slot);
         if (skill == null || skill.IsOnCooldown)
@@ -58,7 +58,7 @@ public class CharacterSkillManager : CharacterAbstract
         return true;
     }
 
-    public void StartCooldownFor(SkillName slot)
+    public void StartCooldownFor(SkillNameEnum slot)
     {
         SkillWithCooldown skill = GetSkill(slot);
         if (skill != null) skill.StartCooldown();

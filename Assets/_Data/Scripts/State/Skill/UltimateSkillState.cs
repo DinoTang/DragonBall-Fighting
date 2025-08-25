@@ -69,7 +69,7 @@ public class UltimateSkillState : EnergyProjectileSkillState
         {
             TeleFX_Spawner.Instance.Spawn(TeleFXNameEnum.Vegeta.ToString(), this.stateManager.transform.position, this.stateManager.CharacterCtrl);
             Vector2 newPos = new Vector2(this.stateManager.transform.position.x - this.offset * this.stateManager.transform.localScale.x,
-            this.stateManager.transform.position.y + this.offset);
+            this.stateManager.transform.position.y);
             this.stateManager.transform.position = newPos;
             TeleFX_Spawner.Instance.Spawn(TeleFXNameEnum.Vegeta.ToString(), this.stateManager.transform.position, this.stateManager.CharacterCtrl);
         }
@@ -96,12 +96,12 @@ public class UltimateSkillState : EnergyProjectileSkillState
 
     protected void PlayCutScenePerform()
     {
+        CameraManager.Instance.ZoomCameraCutScene(this.stateManager.transform.position, 2f);
         this.animator.Play(this.ultimateSkillDataSO.cutScenePerformUltimateAnim.name);
         if (this.ultimateTime >= this.cutScenePerformEnd) this.currentPhase = UltimatePhase.Perform;
     }
     protected void PlayPerform()
     {
-        CameraManager.Instance.ResetCamPosition();
         this.animator.Play(this.ultimateSkillDataSO.performUltimateAnim.name);
         if (this.ultimateTime >= this.performEnd) this.currentPhase = UltimatePhase.Finish;
     }

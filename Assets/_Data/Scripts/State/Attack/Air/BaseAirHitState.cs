@@ -17,7 +17,6 @@ public class BaseAirHitState : BaseAirState
         this.animator.SetBool("IsAttack", true);
         this.animator.SetInteger("AttackCounter", attackCounter);
         Debug.Log("Player Attack " + attackCounter + " Fired!");
-
     }
     public override void OnUpdate()
     {
@@ -38,7 +37,6 @@ public class BaseAirHitState : BaseAirState
         base.OnExit();
         this.animator.SetBool("IsAttack", false);
         this.stateManager.CharacterCtrl.Rgb.gravityScale = 15;
+        this.stateManager.CharacterCtrl.CharacterDamageSender.DisableCollider();
     }
-
-
 }

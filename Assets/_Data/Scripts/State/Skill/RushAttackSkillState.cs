@@ -101,10 +101,18 @@ public class RushAttackSkillState : SkillState
             this.currentRushAttackType = RushAttack_Type.Combo;
         }
     }
-
+    protected void SetUpIsHitPos()
+    {
+        Vector2 isHitPos = this.stateManager.CharacterCtrl.Opponent.transform.position;
+        isHitPos.x -= this.stateManager.CharacterCtrl.CharacterFlip.Direct * 1.5f;
+        this.stateManager.transform.position = isHitPos;
+    }
     protected void PlayRushAttackCombo()
     {
-
+        this.SetUpIsHitPos();
+        Vector2 pos = this.stateManager.CharacterCtrl.FirePoint.transform.position;
+        pos.y += 0.5f;
+        CameraManager.Instance.ZoomCameraCutScene(pos, 2.5f);
         var rushAttackSkill = this.skill as RushAttackSkillSO;
         string animName = rushAttackSkill.RushAttack_Combo.name;
         var animator = this.self.Animator;
@@ -140,6 +148,7 @@ public class RushAttackSkillState : SkillState
 
     protected void PlayRushAttackKnockUp()
     {
+        CameraManager.Instance.ZoomCameraCutScene(this.stateManager.transform.position, 2.5f);
         var rushAttackSkill = this.skill as RushAttackSkillSO;
         string animName = rushAttackSkill.RushAttack_KnockUp.name;
         var animator = this.self.Animator;
@@ -152,7 +161,7 @@ public class RushAttackSkillState : SkillState
         }
 
 
-        float animTime = rushAttackSkill.RushAttack_Combo.length;
+        float animTime = rushAttackSkill.RushAttack_KnockUp.length;
         if (this.timed >= animTime)
         {
             this.self.Rgb.velocity = new Vector2(0, -10);
@@ -165,6 +174,7 @@ public class RushAttackSkillState : SkillState
 
             this.selfAnimator = this.self.Animator;
             this.trailAnimator = this.self.TrailAnimator;
+
 
             this.selfAnimator.Play(rushAttackSkill.RushAttack_AirFollow.name);
             this.trailAnimator.Play(rushAttackSkill.RushAttack_Trail.name);

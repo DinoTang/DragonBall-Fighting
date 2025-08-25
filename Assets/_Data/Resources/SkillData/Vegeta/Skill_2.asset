@@ -25,4 +25,6 @@ MonoBehaviour:
   duration: 5
   beamSpawnInterval: 0.01
   beamMaxParts: 4
-  beamPartLength: 4.5
+  beamHeadLength: 4.6
+  beamBodyLength: 4.2
+  beamTailLength: 4

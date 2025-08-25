@@ -23,5 +23,6 @@ public class HurtState : State
     {
         base.OnExit();
         this.animator.SetBool("IsHurt", false);
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsHurt(false);
     }
 }

@@ -30,9 +30,9 @@ public class Tele2 : State
 
     protected void Teleing()
     {
-        int dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
-        Vector3 currentPos = this.stateManager.transform.position;
-        this.stateManager.transform.position = new Vector3(currentPos.x + dir * this.distanceTele, currentPos.y, currentPos.z);
+        // int dir = this.stateManager.CharacterCtrl.CharacterFlip.IsFacingRight ? -1 : 1;
+        // Vector3 currentPos = this.stateManager.transform.position;
+        // this.stateManager.transform.position = new Vector3(currentPos.x + dir * this.distanceTele, currentPos.y, currentPos.z);
         this.stateManager.CharacterCtrl.CharacterCombo.SpawnEffectWhenTele();
         this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsImmortal(false);
     }
