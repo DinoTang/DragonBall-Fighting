@@ -10,6 +10,7 @@ public class HurtState : State
         this.animator.SetBool("IsHurt", true);
         int indexRand = Random.Range(0, 3);
         this.animator.SetInteger("HurtCounter", indexRand);
+        CameraManager.Instance.Shake(0.05f, 0.05f);
     }
     public override void OnUpdate()
     {

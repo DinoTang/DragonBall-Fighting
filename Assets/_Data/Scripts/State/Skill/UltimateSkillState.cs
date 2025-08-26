@@ -102,6 +102,7 @@ public class UltimateSkillState : EnergyProjectileSkillState
     }
     protected void PlayPerform()
     {
+        CameraManager.Instance.ResetDefaultCamera();
         this.animator.Play(this.ultimateSkillDataSO.performUltimateAnim.name);
         if (this.ultimateTime >= this.performEnd) this.currentPhase = UltimatePhase.Finish;
     }

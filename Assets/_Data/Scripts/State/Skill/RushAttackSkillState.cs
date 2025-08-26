@@ -77,6 +77,13 @@ public class RushAttackSkillState : SkillState
 
         if (distanceToAttack <= 1.5)
         {
+            if (this.stateManager.CharacterCtrl.Opponent.StateManager.CurrentState is KnockdownIdleState)
+            {
+                this.self.Rgb.velocity = new Vector2(0, this.self.Rgb.velocity.y);
+                this.self.CharacterAnimEvent.DisableHitbox();
+                this.stateManager.SetNextStateToMain();
+                return;
+            }
             this.self.CharacterAnimEvent.EnableHitbox();
             if (this.self.Opponent.CharacterDamageReceiver.IsKnockDown) return;
 
@@ -112,7 +119,7 @@ public class RushAttackSkillState : SkillState
         this.SetUpIsHitPos();
         Vector2 pos = this.stateManager.CharacterCtrl.FirePoint.transform.position;
         pos.y += 0.5f;
-        CameraManager.Instance.ZoomCameraCutScene(pos, 2.5f);
+        CameraManager.Instance.ZoomCameraCutScene(pos, 3f);
         var rushAttackSkill = this.skill as RushAttackSkillSO;
         string animName = rushAttackSkill.RushAttack_Combo.name;
         var animator = this.self.Animator;
@@ -148,7 +155,7 @@ public class RushAttackSkillState : SkillState
 
     protected void PlayRushAttackKnockUp()
     {
-        CameraManager.Instance.ZoomCameraCutScene(this.stateManager.transform.position, 2.5f);
+        CameraManager.Instance.ZoomCameraCutScene(this.stateManager.transform.position, 3f);
         var rushAttackSkill = this.skill as RushAttackSkillSO;
         string animName = rushAttackSkill.RushAttack_KnockUp.name;
         var animator = this.self.Animator;
@@ -185,6 +192,7 @@ public class RushAttackSkillState : SkillState
 
     protected void PlayRushAttackKnockDown()
     {
+        CameraManager.Instance.ResetDefaultCamera();
         this.stateManager.CharacterCtrl.CharacterDamageSender.SetIsKnockingDown(true);
         var rushAttackSkill = this.skill as RushAttackSkillSO;
         string animName = rushAttackSkill.RushAttack_KnockDown.name;
@@ -201,6 +209,7 @@ public class RushAttackSkillState : SkillState
 
     protected void PlayRushAttackFollow()
     {
+        CameraManager.Instance.ResetDefaultCamera();
         var rushAttackSkill = this.skill as RushAttackSkillSO;
 
         Vector3 start = this.stateManager.transform.position;

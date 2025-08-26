@@ -19,6 +19,7 @@ public class ChargeState : State
         this.stateManager.CharacterCtrl.EnableSmokeEffect();
 
         this.stateManager.CharacterCtrl.CharacterKiManager.ChargeKi();
+        CameraManager.Instance.Shake(0.05f, 0.03f);
     }
     public override void OnExit()
     {
