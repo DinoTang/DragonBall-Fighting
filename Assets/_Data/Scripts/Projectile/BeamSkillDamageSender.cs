@@ -2,15 +2,8 @@ using System.Collections;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
-public class BeamSkillProjDamageSender : DamageSender
+public class BeamSkillDamageSender : BaseSkillDamageSender
 {
-    [Header("Beam Skill Projectile Damage Sender")]
-    [SerializeField] protected SkillProjCtrl skillProjCtrl;
-    protected override void LoadComponent()
-    {
-        base.LoadComponent();
-        this.LoadSkillProjCtrl();
-    }
     protected override void LoadCollider()
     {
         base.LoadCollider();
@@ -19,12 +12,7 @@ public class BeamSkillProjDamageSender : DamageSender
             boxCollider.size = new Vector2(4.3f, 1.7f);
         }
     }
-    protected void LoadSkillProjCtrl()
-    {
-        if (this.skillProjCtrl != null) return;
-        this.skillProjCtrl = GetComponentInParent<SkillProjCtrl>();
-        Debug.Log(transform.name + ": LoadSkillProjCtrl", gameObject);
-    }
+    
     protected override void OnTriggerEnter2D(Collider2D other)
     {
 

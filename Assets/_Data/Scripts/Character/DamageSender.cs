@@ -35,6 +35,10 @@ public class DamageSender : BaseBehaviour
         this.isHitting = false;
         this.EnableCollider();
     }
+    public void OnLoadComponent()
+    {
+        this.LoadComponent();
+    }
     protected virtual void LoadCollider()
     {
         if (this._collider != null) return;

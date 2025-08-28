@@ -1,30 +1,17 @@
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-[RequireComponent(typeof(CircleCollider2D))]
-public class SkillProjDamageSender : DamageSender
+public class BlastSkillDamageSender : BaseSkillDamageSender
 {
-    [Header("Skill Projectile Damage Sender")]
-    [SerializeField] protected SkillProjCtrl skillProjCtrl;
-    protected override void LoadComponent()
-    {
-        base.LoadComponent();
-        this.LoadSkillProjCtrl();
-        this.damage = this.skillProjCtrl.SkillData.damage;
-    }
-    protected void LoadSkillProjCtrl()
-    {
-        if (this.skillProjCtrl != null) return;
-        this.skillProjCtrl = GetComponentInParent<SkillProjCtrl>();
-        Debug.Log(transform.name + ": LoadSkillProjCtrl", gameObject);
-    }
     protected override void LoadCollider()
     {
         base.LoadCollider();
         if (this._collider is CircleCollider2D circleCollider)
         {
             circleCollider.offset = new Vector2(0.4f, 0);
-            circleCollider.radius = 1.5f;
+            circleCollider.radius = 0.3f;
         }
     }
+
     public override void SendDamage(DamageReceiver damageReceiver)
     {
         CharacterCtrl opponent = damageReceiver.transform.GetComponentInParent<CharacterCtrl>();

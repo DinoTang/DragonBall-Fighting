@@ -1,6 +1,6 @@
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-public class BasicSkillProjDamageSender : SkillProjDamageSender
+[RequireComponent(typeof(CircleCollider2D))]
+public class BigBangAttackDamageSender : BlastSkillDamageSender
 {
     protected override void LoadCollider()
     {
@@ -8,7 +8,7 @@ public class BasicSkillProjDamageSender : SkillProjDamageSender
         if (this._collider is CircleCollider2D circleCollider)
         {
             circleCollider.offset = new Vector2(0.4f, 0);
-            circleCollider.radius = 0.3f;
+            circleCollider.radius = 1.5f;
         }
     }
 }

@@ -1,6 +1,6 @@
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-public class DiagonalSkillProjDamageSender : SkillProjDamageSender
+public class DiagonalSkillProjDamageSender : BigBangAttackDamageSender
 {
     protected override void LoadCollider()
     {

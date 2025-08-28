@@ -1,7 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-public class DiagonalBeamSkillProjDamageSender : BeamSkillProjDamageSender
+public class DiagonalBeamSkillProjDamageSender : BeamSkillDamageSender
 {
     protected override void LoadCollider()
     {

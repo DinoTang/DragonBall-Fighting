@@ -13,8 +13,8 @@ public class SkillProjCtrl : BaseBehaviour
     public SkillProjDespawn SkillProjDespawn => skillProjDespawn;
     [SerializeField] protected SkillDataSO skillData;
     public SkillDataSO SkillData => skillData;
-    [SerializeField] protected DamageSender damageSender;
-    public DamageSender DamageSender => damageSender;
+    [SerializeField] protected BaseSkillDamageSender baseSkillDamageSender;
+    public BaseSkillDamageSender BaseSkillDamageSender => baseSkillDamageSender;
     [Header("Owner")]
     [SerializeField] protected CharacterCtrl owner;
     public CharacterCtrl Owner { get => owner; set => owner = value; }
@@ -63,8 +63,8 @@ public class SkillProjCtrl : BaseBehaviour
     }
     protected void LoadDamageSender()
     {
-        if (this.damageSender != null) return;
-        this.damageSender = GetComponentInChildren<DamageSender>();
+        if (this.baseSkillDamageSender != null) return;
+        this.baseSkillDamageSender = GetComponentInChildren<BaseSkillDamageSender>();
         Debug.Log(transform.name + ": LoadDamageSender", gameObject);
     }
 }

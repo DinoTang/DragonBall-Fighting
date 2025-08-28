@@ -17,7 +17,9 @@ public abstract class DamageReceiver : BaseBehaviour
     [SerializeField] protected bool isKnockUp = false;
     public bool IsKnockUp => isKnockUp;
     [SerializeField] protected float currentHP;
-    [SerializeField] protected float maxHP = 10000;
+    public float CurrentHP => currentHP;
+    [SerializeField] protected float hpMax = 10000;
+    public float HpMax => hpMax;
     public void SetIsHurt(bool isHurt)
     {
         this.isHurt = isHurt;
@@ -47,7 +49,7 @@ public abstract class DamageReceiver : BaseBehaviour
     {
         base.LoadComponent();
         this.LoadCollider();
-        this.currentHP = this.maxHP;
+        this.currentHP = this.hpMax;
     }
 
     protected void LoadCollider()
@@ -59,7 +61,7 @@ public abstract class DamageReceiver : BaseBehaviour
     protected void AddHP(int hp)
     {
         if (this.isDead) return;
-        if (this.currentHP >= this.maxHP) return;
+        if (this.currentHP >= this.hpMax) return;
         this.currentHP += hp;
     }
 

@@ -16,7 +16,7 @@ MonoBehaviour:
   damageFxName: 0
   kiCost: 1
   cooldown: 1
-  damage: 1
+  damage: 50
   animationClip: {fileID: 7400000, guid: bcc2030a2af8a2e4cbec4c54e20b9751, type: 2}
   sfx: {fileID: 0}
   endBeamSkillAnim: {fileID: 7400000, guid: 2b6ab778e160cff47b2671f846f0ab88, type: 2}
@@ -25,7 +25,9 @@ MonoBehaviour:
   duration: 5
   beamSpawnInterval: 0.01
   beamMaxParts: 5
-  beamPartLength: 5
+  beamHeadLength: 0
+  beamBodyLength: 0
+  beamTailLength: 0
   readyUltimateAnim: {fileID: 7400000, guid: 3128b77be50668e4c9df5be2e02733aa, type: 2}
   cutSceneReadyUltimateAnim: {fileID: 7400000, guid: 7b4b72826d3bc814e8d8ac39b3bcd6b4, type: 2}
   performUltimateAnim: {fileID: 7400000, guid: 8ee019786214d0c45ae9fa3e4553c9a4, type: 2}

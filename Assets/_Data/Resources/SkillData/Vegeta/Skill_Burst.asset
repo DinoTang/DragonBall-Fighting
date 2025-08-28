@@ -16,6 +16,6 @@ MonoBehaviour:
   damageFxName: 7
   kiCost: 0
   cooldown: 0.5
-  damage: 1
+  damage: 50
   animationClip: {fileID: 7400000, guid: 6dfe41e4627c1b24a82193005bb8c6af, type: 2}
   sfx: {fileID: 0}

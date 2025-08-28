@@ -98,13 +98,20 @@ public class CameraManager : BaseBehaviour
     }
     public void ZoomCameraCutScene(Vector3 position, float targetSize)
     {
-        this.mainCam.enabled = false;
-        this.cutSceneCam.enabled = true;
+        // this.mainCam.enabled = false;
+        // this.cutSceneCam.enabled = true;
+
+        // Vector3 newCutSceneCamPos = position;
+        // newCutSceneCamPos.z = -10;
+        // this.cutSceneCam.transform.position = newCutSceneCamPos;
+        // this.cutSceneCam.orthographicSize = targetSize;
+
+
 
         Vector3 newCutSceneCamPos = position;
         newCutSceneCamPos.z = -10;
-        this.cutSceneCam.transform.position = newCutSceneCamPos;
-        this.cutSceneCam.orthographicSize = targetSize;
+        this.mainCam.transform.position = newCutSceneCamPos;
+        this.mainCam.orthographicSize = targetSize;
     }
     public void ResetDefaultCamera()
     {

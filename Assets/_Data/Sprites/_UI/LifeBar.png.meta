@@ -118,7 +118,7 @@ TextureImporter:
         width: 225
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -134,12 +134,12 @@ TextureImporter:
       name: LifeBar_1
       rect:
         serializedVersion: 2
-        x: 27
-        y: 158
-        width: 161
-        height: 12
+        x: 11
+        y: 166
+        width: 221
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: LifeBar_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 20
         y: 149
-        width: 156
-        height: 8
+        width: 209
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,12 +176,12 @@ TextureImporter:
       name: LifeBar_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 140
-        width: 158
-        height: 8
+        x: 20
+        y: 134
+        width: 209
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,12 +197,12 @@ TextureImporter:
       name: LifeBar_4
       rect:
         serializedVersion: 2
-        x: 32
-        y: 124
-        width: 158
-        height: 8
+        x: 38
+        y: 119
+        width: 161
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,12 +218,12 @@ TextureImporter:
       name: LifeBar_5
       rect:
         serializedVersion: 2
-        x: 32
-        y: 99
-        width: 158
+        x: 43
+        y: 110
+        width: 156
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,12 +239,12 @@ TextureImporter:
       name: LifeBar_6
       rect:
         serializedVersion: 2
-        x: 32
-        y: 81
-        width: 160
+        x: 43
+        y: 101
+        width: 158
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -260,12 +260,12 @@ TextureImporter:
       name: LifeBar_7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 160
+        x: 43
+        y: 90
+        width: 158
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -281,12 +281,12 @@ TextureImporter:
       name: LifeBar_8
       rect:
         serializedVersion: 2
-        x: 32
-        y: 39
-        width: 160
+        x: 43
+        y: 79
+        width: 158
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -302,12 +302,12 @@ TextureImporter:
       name: LifeBar_9
       rect:
         serializedVersion: 2
-        x: 31
-        y: 16
+        x: 43
+        y: 61
         width: 160
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -315,6 +315,69 @@ TextureImporter:
       bones: []
       spriteID: 5b14cf154f0197f4ea6daedbeed9a502
       internalID: -652768115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeBar_10
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 44
+        width: 160
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6cd6b9ed4a7e0c4b9f32df6521f4646
+      internalID: 1270349835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeBar_11
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 30
+        width: 160
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2560dac2e440b33408b94109fd2b1cc1
+      internalID: 1942029915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeBar_12
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 7
+        width: 160
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a272253d7cf940749b072a05be17a50a
+      internalID: 101944403
       vertices: []
       indices: 
       edges: []
@@ -332,6 +395,9 @@ TextureImporter:
     nameFileIdTable:
       LifeBar_0: -1597596406
       LifeBar_1: 541709722
+      LifeBar_10: 1270349835
+      LifeBar_11: 1942029915
+      LifeBar_12: 101944403
       LifeBar_2: -1562681510
       LifeBar_3: 607140111
       LifeBar_4: 2122787307
