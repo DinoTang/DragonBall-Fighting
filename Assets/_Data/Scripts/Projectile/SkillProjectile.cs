@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class SkillProjectile : _ProjectileBase
+public class SkillProjectile : PoolObj
 {
-    [Header("Skill Projectile")]
     [SerializeField] protected SkillNameEnum skillName;
     public SkillNameEnum SkillName => skillName;
     [SerializeField] protected SkillProjCtrl skillProjCtrl;
@@ -26,4 +24,10 @@ public class SkillProjectile : _ProjectileBase
     {
         return this.skillName.ToString();
     }
+
+
+
+
+
+
 }

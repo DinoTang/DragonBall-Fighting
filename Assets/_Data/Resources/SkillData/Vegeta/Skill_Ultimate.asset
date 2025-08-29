@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 9
   damageFxName: 0
-  kiCost: 1
+  kiCost: 300
   cooldown: 1
   damage: 50
   animationClip: {fileID: 7400000, guid: bcc2030a2af8a2e4cbec4c54e20b9751, type: 2}

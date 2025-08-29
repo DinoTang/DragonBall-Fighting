@@ -6,12 +6,14 @@ public class CharacterKiManager : CharacterAbstract
 {
     [Header("Ki Manager")]
     [SerializeField] protected float kiMax = 300f;
+    public float KiMax => kiMax;
     [SerializeField] protected float kiChargeRate = 20f;
     [SerializeField] protected float currentKi;
+    public float CurrentKi => currentKi;
     protected override void Start()
     {
-        base.Start();
-        this.currentKi = kiMax;
+        // base.Start();
+        // this.currentKi = kiMax;
     }
     public void ChargeKi()
     {
@@ -28,7 +30,14 @@ public class CharacterKiManager : CharacterAbstract
         if (this.currentKi - kiCost >= 0) return true;
         return false;
     }
-
+    public void GainKi(float kiCost)
+    {
+        this.currentKi += kiCost;
+        if (this.currentKi >= this.kiMax)
+        {
+            this.currentKi = this.kiMax;
+        }
+    }
     public void ConsumeKi(float kiCost)
     {
         this.currentKi -= kiCost;

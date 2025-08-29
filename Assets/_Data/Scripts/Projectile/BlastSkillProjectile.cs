@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class _ProjectileBase : PoolObj
+public class BlastSkillProjectile : SkillProjectile
 {
-    [Header("Projectile Base")]
+    [Header("Skill Projectile")]
     [SerializeField] protected float speed = 20f;
     [SerializeField] protected Vector2 direction;
     [SerializeField] protected CharacterCtrl owner;
     public CharacterCtrl Owner => owner;
-    public override string GetName()
-    {
-        return "";
-    }
+
     protected void Update()
     {
         this.OnUpdate();
@@ -26,7 +24,6 @@ public class _ProjectileBase : PoolObj
     {
         this.transform.Translate(this.speed * Time.deltaTime * this.direction);
     }
-
     public override void Init(CharacterCtrl owner)
     {
         this.owner = owner;
@@ -40,7 +37,6 @@ public class _ProjectileBase : PoolObj
             this.SettingDirect(1, false);
         }
     }
-
 
     protected virtual void SettingDirect(int side, bool boolean)
     {

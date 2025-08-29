@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiagonalSkillProjectile : SkillProjectile
+public class DiagonalSkillProjectile : BlastSkillProjectile
 {
     protected override void SettingDirect(int side, bool boolean)
     {

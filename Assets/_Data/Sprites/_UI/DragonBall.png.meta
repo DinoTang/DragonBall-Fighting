@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image Aug 27, 2025, 12_57_52 PM_0
+      name: DragonBall_0
       rect:
         serializedVersion: 2
-        x: 80
-        y: 30
-        width: 872
-        height: 962
+        x: 0
+        y: 8
+        width: 1024
+        height: 742
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa59e9eaafcf7e54991ead8a7619e3e4
-      internalID: 627080267
+      spriteID: 52003cdca0ab2ea4da9f3ec94c140ab2
+      internalID: -581577058
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ChatGPT Image Aug 27, 2025, 12_57_52 PM_0: 627080267
+      DragonBall_0: -581577058
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

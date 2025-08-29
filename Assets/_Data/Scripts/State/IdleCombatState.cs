@@ -22,8 +22,14 @@ public class IdleCombatState : State
         if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new BlockState());
         if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new GroundHit1State());
         if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new KickState());
-        if (InputManager.Instance.GetChargeInput()) this.stateManager.SetNextState(new ChargeState());
         if (InputManager.Instance.GetSuperDashInput()) this.stateManager.SetNextState(new SuperDashState());
+        if (InputManager.Instance.GetChargeInput())
+        {
+            if (this.stateManager.CharacterCtrl.CharacterKiManager.CurrentKi ==
+        this.stateManager.CharacterCtrl.CharacterKiManager.KiMax) return;
+            this.stateManager.SetNextState(new ChargeState());
+        }
+
     }
     public override void OnExit()
     {

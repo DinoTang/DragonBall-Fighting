@@ -14,6 +14,13 @@ public class ChargeState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
+        if (this.stateManager.CharacterCtrl.CharacterKiManager.CurrentKi ==
+        this.stateManager.CharacterCtrl.CharacterKiManager.KiMax)
+        {
+            // ExplosionFXSpawner.Instance.Spawn(ExplosionFXEnum.Parry.ToString(), this.stateManager.transform.position);
+            this.stateManager.SetNextStateToMain();
+            return;
+        }
         if (InputManager.Instance.ReleaseChargeInput()) this.stateManager.SetNextState(new IdleCombatState());
         // Spawn Smoke Effect 
         this.stateManager.CharacterCtrl.EnableSmokeEffect();

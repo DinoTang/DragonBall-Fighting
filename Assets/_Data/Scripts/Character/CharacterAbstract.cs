@@ -5,7 +5,7 @@ public class CharacterAbstract : BaseBehaviour
 {
     [Header("Character Abstract")]
     [SerializeField] protected CharacterCtrl characterCtrl;
-
+    public CharacterCtrl CharacterCtrl => characterCtrl;
     protected override void LoadComponent()
     {
         base.LoadComponent();

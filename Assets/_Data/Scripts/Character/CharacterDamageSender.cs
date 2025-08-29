@@ -33,7 +33,14 @@ public class CharacterDamageSender : DamageSender
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
+        CharacterCtrl opponent = other.GetComponentInParent<CharacterCtrl>();
+        if (this.characterCtrl.Opponent != opponent) return;
         base.OnTriggerEnter2D(other);
         this.DisableCollider();
+    }
+    public override void SendDamage(DamageReceiver damageReceiver)
+    {
+        base.SendDamage(damageReceiver);
+        this.characterCtrl.CharacterKiManager.GainKi(2);
     }
 }

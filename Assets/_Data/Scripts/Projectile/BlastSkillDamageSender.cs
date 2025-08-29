@@ -1,5 +1,6 @@
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+[RequireComponent(typeof(CircleCollider2D))]
 public class BlastSkillDamageSender : BaseSkillDamageSender
 {
     protected override void LoadCollider()
