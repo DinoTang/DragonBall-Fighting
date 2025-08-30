@@ -7,7 +7,7 @@ public abstract class DamageReceiver : BaseBehaviour
     [Header("Damage Receiver")]
     [SerializeField] protected CapsuleCollider2D collide;
     [SerializeField] protected bool isImmortal = false;
-    [SerializeField] protected bool isDead = false;
+    [SerializeField] public bool isDead = false;
     [SerializeField] protected bool isHurt = false;
     public bool IsHurt => isHurt;
     [SerializeField] protected bool isBlock = false;

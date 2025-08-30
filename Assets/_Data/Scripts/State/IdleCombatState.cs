@@ -15,6 +15,9 @@ public class IdleCombatState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
+        if (this.stateManager.CharacterCtrl.CharacterCollision.IsGround && this.stateManager.CharacterCtrl.CharacterDamageReceiver.isDead)
+            this.stateManager.SetNextState(new DeadState());
+        if (GameManager.Instance.IsGameOver) return;
         if (this.stateManager.IsClone) return;
         this.stateManager.CharacterCtrl.CharacterFlip.Flipping();
         if (InputManager.Instance.GetHorizontal() != 0) this.stateManager.SetNextState(new MoveState());

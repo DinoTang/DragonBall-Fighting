@@ -10,6 +10,7 @@ public class CharacterIntro : CharacterAbstract
     public AnimatorController normalController;
     public AnimatorController ssj2Controller;
     public AnimationClip transformClip;
+    public AnimationClip winPoseClip;
     [SerializeField] protected bool isReady;
     public bool IsReady => isReady;
 
@@ -35,5 +36,13 @@ public class CharacterIntro : CharacterAbstract
         this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
         this.characterCtrl.CharacterCollision.IsGround = true;
         this.isReady = true;
+    }
+
+    protected void Update()
+    {
+        if (GameManager.Instance.CanShowResult() && this.characterCtrl == GameManager.Instance.Winner)
+        {
+            this.characterCtrl.StateManager.SetNextState(new WinState());
+        }
     }
 }

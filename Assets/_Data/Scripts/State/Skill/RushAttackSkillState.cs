@@ -119,7 +119,7 @@ public class RushAttackSkillState : SkillState
         this.SetUpIsHitPos();
         Vector2 pos = this.stateManager.CharacterCtrl.FirePoint.transform.position;
         pos.y += 0.5f;
-        CameraManager.Instance.ZoomCameraCutScene(pos, 3f);
+        CameraManager.Instance.Focus(pos, 3f);
         var rushAttackSkill = this.skill as RushAttackSkillSO;
         string animName = rushAttackSkill.RushAttack_Combo.name;
         var animator = this.self.Animator;
@@ -155,7 +155,7 @@ public class RushAttackSkillState : SkillState
 
     protected void PlayRushAttackKnockUp()
     {
-        CameraManager.Instance.ZoomCameraCutScene(this.stateManager.transform.position, 3f);
+        CameraManager.Instance.Focus(this.stateManager.transform.position, 3f);
         var rushAttackSkill = this.skill as RushAttackSkillSO;
         string animName = rushAttackSkill.RushAttack_KnockUp.name;
         var animator = this.self.Animator;

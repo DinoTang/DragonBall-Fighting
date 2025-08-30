@@ -15,6 +15,7 @@ public class KnockDownState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
+        Debug.LogError(this.stateManager.CharacterCtrl.CharacterCollision.IsGround);
         float dir = this.stateManager.CharacterCtrl.CharacterFlip.Direct * -1;
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(dir * 20f, -40f);
         if (!this.stateManager.CharacterCtrl.CharacterCollision.IsGround) return;

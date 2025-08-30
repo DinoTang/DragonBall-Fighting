@@ -6,7 +6,7 @@ public class BurstDamageSender : BaseSkillDamageSender
     protected override void LoadCollider()
     {
         base.LoadCollider();
-        if (this._collider is CircleCollider2D circleCollider) circleCollider.radius = 0.3f;
+        if (this._collider is CircleCollider2D circleCollider) circleCollider.radius = 3f;
     }
 
     public override void SendDamage(DamageReceiver damageReceiver)
@@ -17,11 +17,18 @@ public class BurstDamageSender : BaseSkillDamageSender
         if (opponent.StateManager.CurrentState is KnockdownIdleState) return;
         base.SendDamage(damageReceiver);
         this.skillProjCtrl.SkillProjDespawn.DoDespawn();
+
+        this.KnockBackOpponent();
     }
 
     protected override void OnHitExplosionFX(Transform target)
     {
         base.OnHitExplosionFX(target);
         this.SpawnHitExplosionFX(this.skillProjCtrl.SkillData.damageFxName, target);
+    }
+
+    protected void KnockBackOpponent()
+    {
+        this.skillProjCtrl.Owner.Opponent.StateManager.SetNextState(new KnockBackState());
     }
 }

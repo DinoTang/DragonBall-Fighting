@@ -19,6 +19,7 @@ public class HurtState : State
         {
             this.stateManager.SetNextStateToMain();
         }
+        if (this.stateManager.CharacterCtrl.CharacterDamageReceiver.isDead) this.stateManager.SetNextState(new HurtDeadState());
     }
     public override void OnExit()
     {

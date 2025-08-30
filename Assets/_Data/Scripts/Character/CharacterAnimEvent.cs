@@ -8,7 +8,7 @@ public class CharacterAnimEvent : CharacterAbstract
     public void DisableHitbox() => this.characterCtrl.CharacterDamageSender.DisableCollider();
     protected void EnableKnockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockingUp(true);
     protected void DisablenockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockingUp(false);
-    public void EnableZoomCamera() => CameraManager.Instance.ZoomCameraCutScene(this.transform.position, 2.5f);
+    public void EnableZoomCamera() => CameraManager.Instance.Focus(this.transform.position, 2.5f);
     public void StopCharacterActions()
     {
         this.characterCtrl.Rgb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -71,6 +71,13 @@ public class CharacterAnimEvent : CharacterAbstract
         SkillProjectile skillProjectile = EnableSpawnSkillProj(SkillNameEnum.Skill_BasicProjectile_Ground);
         skillProjectile.transform.position = this.characterCtrl.FirePoint.transform.position;
     }
+
+    protected void EnableBurstSkill()
+    {
+        SkillProjectile skillProjectile = EnableSpawnSkillProj(SkillNameEnum.Skill_Burst);
+        skillProjectile.transform.position = this.characterCtrl.transform.position;
+    }
+
     protected Vector2 GetPosToSpawn(float posX = 0, float posY = 0)
     {
         Vector2 newPos = this.characterCtrl.FirePoint.transform.position;

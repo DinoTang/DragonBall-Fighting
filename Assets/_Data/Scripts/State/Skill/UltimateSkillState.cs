@@ -80,7 +80,7 @@ public class UltimateSkillState : EnergyProjectileSkillState
 
     protected void PlayCutSceneReady()
     {
-        CameraManager.Instance.ZoomCameraCutScene(this.stateManager.transform.position, 2f);
+        CameraManager.Instance.Focus(this.stateManager.transform.position, 2f);
         this.animator.Play(this.ultimateSkillDataSO.cutSceneReadyUltimateAnim.name);
         Vector2 newOpponentPos = this.stateManager.CharacterCtrl.Opponent.transform.position;
         newOpponentPos.y = this.stateManager.transform.position.y;
@@ -96,7 +96,7 @@ public class UltimateSkillState : EnergyProjectileSkillState
 
     protected void PlayCutScenePerform()
     {
-        CameraManager.Instance.ZoomCameraCutScene(this.stateManager.transform.position, 2f);
+        CameraManager.Instance.Focus(this.stateManager.transform.position, 2f);
         this.animator.Play(this.ultimateSkillDataSO.cutScenePerformUltimateAnim.name);
         if (this.ultimateTime >= this.cutScenePerformEnd) this.currentPhase = UltimatePhase.Perform;
     }

@@ -75,8 +75,8 @@ public class CameraManager : BaseBehaviour
     }
     protected void Following()
     {
-        CharacterCtrl player1 = GameManager.Instance.Player1;
-        CharacterCtrl player2 = GameManager.Instance.Player2;
+        CharacterCtrl player1 = GameManager.Instance.RedPlayer;
+        CharacterCtrl player2 = GameManager.Instance.BluePlayer;
         Vector3 midPoint = (player1.transform.position + player2.transform.position) / 2f;
         midPoint.z = -10;
         this.mainCam.transform.position = Vector3.Lerp(this.mainCam.transform.position, midPoint, this.followSpeed * Time.deltaTime);
@@ -84,8 +84,8 @@ public class CameraManager : BaseBehaviour
 
     protected void Zooming()
     {
-        CharacterCtrl player1 = GameManager.Instance.Player1;
-        CharacterCtrl player2 = GameManager.Instance.Player2;
+        CharacterCtrl player1 = GameManager.Instance.RedPlayer;
+        CharacterCtrl player2 = GameManager.Instance.BluePlayer;
         float distance = Vector3.Distance(player1.transform.position, player2.transform.position);
         this.mainCam.orthographicSize = Mathf.Lerp(this.zoomSettings.minZoom, this.zoomSettings.maxZoom, distance / this.zoomSettings.maxDistance);
     }
@@ -96,7 +96,7 @@ public class CameraManager : BaseBehaviour
         camPos.y = Mathf.Clamp(camPos.y, this.bounds.minY, this.bounds.maxY);
         this.mainCam.transform.position = camPos;
     }
-    public void ZoomCameraCutScene(Vector3 position, float targetSize)
+    public void Focus(Vector3 position, float targetSize)
     {
         // this.mainCam.enabled = false;
         // this.cutSceneCam.enabled = true;

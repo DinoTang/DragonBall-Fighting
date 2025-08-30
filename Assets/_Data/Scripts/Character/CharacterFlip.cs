@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterFlip : CharacterAbstract
 {
@@ -22,8 +23,9 @@ public class CharacterFlip : CharacterAbstract
             || this.characterCtrl.Opponent.StateManager.CurrentState is UltimateSkillState
             || this.characterCtrl.StateManager.CurrentState is BounceOnGroundState
             || this.characterCtrl.StateManager.CurrentState is BeamSkillState
-            || this.characterCtrl.StateManager.CurrentState is BurstSkillState
-            || this.characterCtrl.StateManager.CurrentState is RushAttackSkillState) return;
+            || this.characterCtrl.StateManager.CurrentState is SkillState
+            || this.characterCtrl.StateManager.CurrentState is RushAttackSkillState
+            || this.characterCtrl.StateManager.CurrentState is DeadState) return;
         this.distance = this.characterCtrl.Opponent.transform.position.x - this.transform.position.x;
         if (this.distance < 0)
         {
@@ -43,6 +45,7 @@ public class CharacterFlip : CharacterAbstract
         {
             this.characterCtrl.transform.position = new Vector2(-2, -1);
             this.characterCtrl.Opponent.transform.position = new Vector2(2, -1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         this.Flipping();
         this.distanceOther = Vector2.Distance(this.transform.position, this.characterCtrl.Opponent.transform.position);
