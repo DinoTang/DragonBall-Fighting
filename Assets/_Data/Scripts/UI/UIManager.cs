@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class UIManager : BaseBehaviour
 {
+    protected static UIManager instance;
+    public static UIManager Instance => instance;
     [SerializeField] protected List<RectTransform> uiChilds = new();
-    public float kOSymboltimeOff = 3;
+    public List<RectTransform> UIChilds => uiChilds;
+    public float kOUiTimeOff = 3;
+    public float timeOverUiTimeOff = 3;
     public float timer;
 
     public bool hasShowKOUI;
+    public bool hasShowWinnerUI;
+    public bool hasShowTimeOverUI;
+    protected override void Awake()
+    {
+        base.Awake();
+        if (UIManager.instance != null) Debug.LogWarning("Only 1 UIManager allows to exist");
+        instance = this;
+    }
     protected override void LoadComponent()
     {
         base.LoadComponent();
         this.LoadUIChilds();
     }
-
+    protected override void Start()
+    {
+        base.Start();
+        this.HideAll();
+    }
     protected void LoadUIChilds()
     {
         if (this.uiChilds.Count > 0) return;
@@ -30,26 +46,36 @@ public class UIManager : BaseBehaviour
     {
         this.ShowKOUI();
         this.ShowWinnerUI();
+        this.ShowTimeOverUI();
     }
 
     protected void ShowKOUI()
     {
-        if (this.hasShowKOUI) return;
-        this.timer = GameManager.Instance.GameOverTimer;
-        if (this.timer >= this.kOSymboltimeOff) uiChilds[3].gameObject.SetActive(false);
-        else if (GameManager.Instance.IsGameOver && !this.hasShowKOUI)
+        if (GameManager.Instance.IsTimeOver) return;
+        if (!GameManager.Instance.IsGameOver) return;
+        this.timer += Time.deltaTime;
+        if (this.timer >= this.kOUiTimeOff)
+        {
+            this.uiChilds[2].gameObject.SetActive(false);
+        }
+        else if (!this.hasShowKOUI)
         {
             this.hasShowKOUI = true;
-            this.uiChilds[3].gameObject.SetActive(true);
+            this.uiChilds[2].gameObject.SetActive(true);
         }
     }
-
-    protected void ShowWinnerUI()
+    protected void ShowTimeOverUI()
     {
-        if (GameManager.Instance.CanShowResult())
+        if (!GameManager.Instance.IsTimeOver) return;
+        this.timer += Time.deltaTime;
+        if (this.timer >= this.timeOverUiTimeOff)
         {
-            this.HideAll();
-            this.uiChilds[4].gameObject.SetActive(true);
+            this.uiChilds[5].gameObject.SetActive(false);
+        }
+        else if (!this.hasShowTimeOverUI)
+        {
+            this.hasShowTimeOverUI = true;
+            this.uiChilds[5].gameObject.SetActive(true);
         }
     }
 
@@ -59,5 +85,25 @@ public class UIManager : BaseBehaviour
         {
             child.gameObject.SetActive(false);
         }
+    }
+    protected void ShowWinnerUI()
+    {
+        if (GameManager.Instance.GameOverTimer < GameManager.Instance.GameOverDelay) return;
+        if (GameManager.Instance.Winner.StateManager.CurrentState is not IdleCombatState) return;
+        if (!this.hasShowWinnerUI)
+        {
+            this.hasShowWinnerUI = true;
+            StartCoroutine(ShowWinnerAfterDelay(1f));
+        }
+    }
+
+    private IEnumerator ShowWinnerAfterDelay(float delay)
+    {
+        this.HideAll();
+        yield return new WaitForSeconds(delay);
+        this.uiChilds[4].gameObject.SetActive(true);
+        if (GameManager.Instance.Winner == GameManager.Instance.RedPlayer)
+            this.uiChilds[4].anchoredPosition = new Vector2(-560, 165);
+        else this.uiChilds[4].anchoredPosition = new Vector2(560, 165);
     }
 }

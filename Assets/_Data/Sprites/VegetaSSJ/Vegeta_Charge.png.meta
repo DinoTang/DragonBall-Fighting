@@ -93,6 +93,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -237,7 +250,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4806459eeb95fb49b8a084a82e9b08f
+      spriteID: 778050904c893f24297d7e76c5c59ba2
       internalID: 1795568940
       vertices: []
       indices: 
@@ -258,71 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0a052d5fc6a9d749940e8ac013fbcd0
+      spriteID: 7aad78c344d171b4b8c5eef39ac10786
       internalID: -701282991
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vegeta_Charge_8
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 144
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed9a6ece1e053da4b8ad2e89beec30f7
-      internalID: -2104773541
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vegeta_Charge_9
-      rect:
-        serializedVersion: 2
-        x: 1296
-        y: 0
-        width: 144
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f1693afe77e5cd41b684e61303b23ff
-      internalID: -1993632803
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vegeta_Charge_10
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 0
-        width: 144
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bdff11aedefe25c4b8b2bbb37d68edbd
-      internalID: -92242918
       vertices: []
       indices: 
       edges: []
@@ -340,15 +290,12 @@ TextureImporter:
     nameFileIdTable:
       Vegeta_Charge_0: 695007878
       Vegeta_Charge_1: -803698157
-      Vegeta_Charge_10: -92242918
       Vegeta_Charge_2: 2137625799
       Vegeta_Charge_3: -1631245562
       Vegeta_Charge_4: -1435484265
       Vegeta_Charge_5: 2009395279
       Vegeta_Charge_6: 1795568940
       Vegeta_Charge_7: -701282991
-      Vegeta_Charge_8: -2104773541
-      Vegeta_Charge_9: -1993632803
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

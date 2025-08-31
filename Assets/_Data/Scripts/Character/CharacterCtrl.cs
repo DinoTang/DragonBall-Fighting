@@ -147,7 +147,7 @@ public class CharacterCtrl : BaseBehaviour
     {
         if (this.kiCharge != null) return;
         this.kiCharge = GetComponentInChildren<KiCharge>();
-        this.kiCharge.gameObject.SetActive(false);
+        // this.kiCharge.gameObject.SetActive(false);
         Debug.Log(transform.name + ": LoadKiCharge", gameObject);
 
     }

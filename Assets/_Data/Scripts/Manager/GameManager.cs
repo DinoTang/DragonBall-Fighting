@@ -6,6 +6,9 @@ public class GameManager : BaseBehaviour
 {
     protected static GameManager instance;
     public static GameManager Instance => instance;
+    public enum MatchStateEnum { Intro, Ready, Fight, GameOver }
+    [SerializeField] private MatchStateEnum matchState = MatchStateEnum.Intro;
+    public MatchStateEnum MatchState => matchState;
     [SerializeField] protected CharacterCtrl winner;
     public CharacterCtrl Winner => winner;
     [SerializeField] protected CharacterCtrl redPlayer;
@@ -15,14 +18,19 @@ public class GameManager : BaseBehaviour
     public CharacterCtrl BluePlayer => bluePlayer;
     [SerializeField] protected bool isGameOver;
     public bool IsGameOver => isGameOver;
-    [SerializeField] protected bool isRedWin;
-    public bool IsRedWin => isRedWin;
-
-
+    [SerializeField] protected bool isCanShowResult;
+    [SerializeField] protected bool isTimeOver;
+    public bool IsTimeOver => isTimeOver;
     [SerializeField] private float gameOverTimer = 0f;
     [SerializeField] private float gameOverDelay = 2.5f;   // khoảng chờ sau khi game over
 
     public float GameOverTimer => gameOverTimer;
+    public float GameOverDelay => gameOverDelay;
+
+    [SerializeField] protected float timerMatch = 0f;
+    [SerializeField] protected float delayMatch = 90f;
+
+    private bool canStartReadyFight = false;
     protected override void Awake()
     {
         base.Awake();
@@ -50,19 +58,86 @@ public class GameManager : BaseBehaviour
     }
     protected void Update()
     {
-        this.GameOver();
-        this.CheckTeamWin();
+        switch (this.matchState)
+        {
+            case MatchStateEnum.Intro:
+                this.PlayIntro();
+                break;
+            case MatchStateEnum.Ready:
+                this.PlayReadyFight();
+                break;
+            case MatchStateEnum.Fight:
+                this.PlayFight();
+                break;
+            case MatchStateEnum.GameOver:
+                this.GameOver();
+                this.CanShowResult();
+                break;
+        }
+    }
+    protected void PlayIntro()
+    {
+        if (!this.redPlayer.CharacterIntro.IsReady)
+        {
+            this.redPlayer.CharacterIntro.StartIntroCharacter();
+            return;
+        }
+        if (!this.bluePlayer.CharacterIntro.IsReady)
+        {
+            this.bluePlayer.CharacterIntro.StartIntroCharacter();
+            return;
+        }
+
+        if (this.redPlayer.CharacterIntro.IsReady && this.bluePlayer.CharacterIntro.IsReady)
+        {
+            this.matchState = MatchStateEnum.Ready;
+        }
+    }
+    protected void PlayFight()
+    {
+        if (!this.isGameOver) this.timerMatch += Time.deltaTime;
+        if (this.timerMatch >= this.delayMatch)
+        {
+            this.timerMatch = this.delayMatch;
+        }
+
+        if ((this.timerMatch == this.delayMatch)
+        || this.redPlayer.CharacterDamageReceiver.isDead || this.bluePlayer.CharacterDamageReceiver.isDead)
+            this.matchState = MatchStateEnum.GameOver;
+
     }
     protected void GameOver()
     {
-        if (!this.redPlayer.CharacterDamageReceiver.isDead && !this.bluePlayer.CharacterDamageReceiver.isDead) return;
-        if (!this.isGameOver)
+        // nếu cả 2 chưa chết và chưa hết giờ -> chưa game over
+        if (!this.redPlayer.CharacterDamageReceiver.isDead
+            && !this.bluePlayer.CharacterDamageReceiver.isDead
+            && this.timerMatch < this.delayMatch) return;
+
+        if (this.isGameOver) return; // tránh gọi nhiều lần
+        this.isGameOver = true;
+
+        // --- Trường hợp hết giờ ---
+        if (this.timerMatch == this.delayMatch)
         {
-            this.isGameOver = true;
-            this.winner = this.redPlayer.CharacterDamageReceiver.isDead ? this.BluePlayer : redPlayer;
+            float redHp = this.redPlayer.CharacterDamageReceiver.CurrentHP;
+            float blueHp = this.bluePlayer.CharacterDamageReceiver.CurrentHP;
+
+            this.winner = (redHp > blueHp) ? this.redPlayer : this.bluePlayer;
+
+            this.isCanShowResult = true; // hiển thị kết quả luôn
+            this.isTimeOver = true;
+            return;
+        }
+
+        // --- Trường hợp chết máu ---
+        if (this.redPlayer.CharacterDamageReceiver.isDead || this.bluePlayer.CharacterDamageReceiver.isDead)
+        {
+            this.winner = this.redPlayer.CharacterDamageReceiver.isDead ? this.bluePlayer : this.redPlayer;
+            this.isCanShowResult = true;
             StartCoroutine(this.SlowMotionGameOver());
         }
     }
+
     private IEnumerator SlowMotionGameOver()
     {
         // làm chậm lại
@@ -72,31 +147,48 @@ public class GameManager : BaseBehaviour
         // chờ 1.5s trong thời gian thật (không phụ thuộc timeScale)
         yield return new WaitForSecondsRealtime(1.5f);
 
-        // TODO: hiện chữ KO ở đây nếu cần
 
         // trở lại bình thường
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
     }
 
-    protected void CheckTeamWin()
+    public void CanShowResult()
     {
-        if (this.bluePlayer.CharacterDamageReceiver.isDead) this.isRedWin = true;
-        else if (this.redPlayer.CharacterDamageReceiver.isDead) this.isRedWin = false;
+        if (!this.isCanShowResult) return;
+        this.gameOverTimer += Time.deltaTime;
+        if (this.gameOverTimer < this.gameOverDelay) return;
+
+        this.gameOverTimer = this.gameOverDelay;
     }
 
-    public bool CanShowResult()
+    protected void PlayReadyFight()
     {
-        if (!this.isGameOver) return false;
-        if (this.gameOverTimer < this.gameOverDelay)
+        if (!this.canStartReadyFight)
         {
-            this.gameOverTimer += Time.deltaTime;
-            return false;
+            this.canStartReadyFight = true;
+            StartCoroutine(StartReadyFight());
         }
-
-        if (this.winner.StateManager.CurrentState is IdleCombatState && this.winner.Opponent.StateManager.CurrentState is DeadState)
-            return true;
-
-        return false;
     }
+    private IEnumerator StartReadyFight()
+    {
+        UIManager.Instance.UIChilds[0].gameObject.SetActive(true);
+        UIManager.Instance.UIChilds[1].gameObject.SetActive(true);
+
+        // hiện chữ "Ready" trên UI
+        UIManager.Instance.UIChilds[6].gameObject.SetActive(true);
+        AudioManager.Instance.PlayReadySound();
+        yield return new WaitForSeconds(1.5f);
+
+        // hiện chữ "Fight"
+        UIManager.Instance.UIChilds[6].gameObject.SetActive(false);
+        UIManager.Instance.UIChilds[7].gameObject.SetActive(true);
+        AudioManager.Instance.PlayFightSound();
+        yield return new WaitForSeconds(0.5f);
+        UIManager.Instance.UIChilds[7].gameObject.SetActive(false);
+        // bắt đầu trận đấu
+        matchState = MatchStateEnum.Fight;
+        timerMatch = 0f; // bắt đầu đếm giờ
+    }
+
 }

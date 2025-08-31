@@ -6,43 +6,31 @@ using UnityEngine;
 public class CharacterIntro : CharacterAbstract
 {
     [Header("Character Intro")]
-    public Animator animator;
-    public AnimatorController normalController;
-    public AnimatorController ssj2Controller;
     public AnimationClip transformClip;
-    public AnimationClip winPoseClip;
-    [SerializeField] protected bool isReady;
+    [SerializeField] protected bool isReady = false;
     public bool IsReady => isReady;
+    [SerializeField] private bool isIntroPlaying = false;
 
-    protected override void Start()
+
+    public void StartIntroCharacter()
     {
-        // animator.runtimeAnimatorController = normalController;
-        // StartCoroutine(TransformToSSJ2());
-        this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
-        this.characterCtrl.CharacterCollision.IsGround = true;
-        this.isReady = true;
+        if (isIntroPlaying) return; // tránh gọi nhiều lần
+        isIntroPlaying = true;
+        StartCoroutine(this.StartIntroSequence());
     }
-    IEnumerator TransformToSSJ2()
+    IEnumerator StartIntroSequence()
     {
+        this.characterCtrl.StateManager.SetNextState(new IntroState());
+        CameraManager.Instance.Focus(this.transform.position, 3f);
         yield return new WaitForSeconds(1f);
 
-        animator.Play(transformClip.name);
-        yield return new WaitForSeconds(transformClip.length);
+        this.characterCtrl.Animator.SetInteger("PoseCounter", 3);
+        yield return new WaitForSeconds(transformClip.length + 0.5f);
 
-        // this.characterCtrl.StateManager.SetNextState(new IdleState());
-        yield return new WaitForSeconds(2f);
-
-        animator.runtimeAnimatorController = ssj2Controller;
         this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
-        this.characterCtrl.CharacterCollision.IsGround = true;
+        yield return new WaitForSeconds(1f);
+
         this.isReady = true;
     }
 
-    protected void Update()
-    {
-        if (GameManager.Instance.CanShowResult() && this.characterCtrl == GameManager.Instance.Winner)
-        {
-            this.characterCtrl.StateManager.SetNextState(new WinState());
-        }
-    }
 }

@@ -8,13 +8,19 @@ public class AudioManager : BaseBehaviour
     public static AudioManager Instance => instance;
     [SerializeField] protected Camera mainCam;
     [SerializeField] protected AudioSource audioSource;
-    [SerializeField] protected AudioClip koClip;
-    public AudioClip KoClip => koClip;
-    [SerializeField] protected AudioClip redWinClip;
-    [SerializeField] protected AudioClip blueWinClip;
-    public bool hasKoClip;
-    public bool hasRedWinClip;
-    public bool hasBlueWinClip;
+    [SerializeField] protected AudioClip koSound;
+    public AudioClip KoSound => koSound;
+    [SerializeField] protected AudioClip redWinSound;
+    [SerializeField] protected AudioClip blueWinSound;
+    [SerializeField] protected AudioClip timeOverSound;
+    [SerializeField] protected AudioClip readySound;
+    [SerializeField] protected AudioClip fightSound;
+    public bool hasKoSound;
+    public bool hasTimeOverSound;
+    public bool hasRedWinSound;
+    public bool hasBlueWinSound;
+    public bool hasReadySound;
+    public bool hasFightSound;
     protected override void Awake()
     {
         base.Awake();
@@ -24,30 +30,63 @@ public class AudioManager : BaseBehaviour
     protected void Update()
     {
         this.transform.position = this.mainCam.transform.position;
-        if (GameManager.Instance.IsGameOver) this.PlayKOSound();
-        if (GameManager.Instance.CanShowResult()) this.PlayTeamWinSound();
+        this.PlayKOSound();
+        this.PlayTeamWinSound();
+        this.PlayTimeOverSound();
+    }
+    public void PlayTimeOverSound()
+    {
+        if (!GameManager.Instance.IsTimeOver) return;
+        if (!this.hasTimeOverSound)
+        {
+            this.hasTimeOverSound = true;
+            this.audioSource.PlayOneShot(this.timeOverSound);
+        }
     }
     public void PlayKOSound()
     {
-        if (!this.hasKoClip)
+        if (GameManager.Instance.IsGameOver)
         {
-            this.hasKoClip = true;
-            this.audioSource.PlayOneShot(koClip);
+            if (GameManager.Instance.IsTimeOver) return;
+            if (!this.hasKoSound)
+            {
+                this.hasKoSound = true;
+                this.audioSource.PlayOneShot(this.koSound);
+            }
+        }
+    }
+    protected void PlayTeamWinSound()
+    {
+        if (GameManager.Instance.GameOverTimer != GameManager.Instance.GameOverDelay) return;
+        if (GameManager.Instance.Winner.StateManager.CurrentState is not IdleCombatState) return;
+        if (GameManager.Instance.Winner == GameManager.Instance.RedPlayer && !this.hasRedWinSound)
+        {
+            this.hasRedWinSound = true;
+            this.audioSource.PlayOneShot(this.redWinSound);
+        }
+        else if (GameManager.Instance.Winner == GameManager.Instance.BluePlayer && !this.hasBlueWinSound)
+        {
+            this.hasBlueWinSound = true;
+            this.audioSource.PlayOneShot(this.blueWinSound);
+        }
+
+    }
+
+    public void PlayReadySound()
+    {
+        if (!this.hasReadySound)
+        {
+            this.hasReadySound = true;
+            this.audioSource.PlayOneShot(this.readySound);
         }
     }
 
-    protected void PlayTeamWinSound()
+    public void PlayFightSound()
     {
-        if (GameManager.Instance.IsRedWin && !this.hasRedWinClip)
+        if (!this.hasFightSound)
         {
-            this.hasRedWinClip = true;
-            this.audioSource.PlayOneShot(this.redWinClip);
+            this.hasFightSound = true;
+            this.audioSource.PlayOneShot(this.fightSound);
         }
-        else if (GameManager.Instance.IsRedWin && !this.hasBlueWinClip)
-        {
-            this.hasBlueWinClip = true;
-            this.audioSource.PlayOneShot(this.blueWinClip);
-        }
-
     }
 }

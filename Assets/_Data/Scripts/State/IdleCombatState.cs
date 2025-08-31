@@ -15,24 +15,40 @@ public class IdleCombatState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.stateManager.CharacterCtrl.CharacterCollision.IsGround && this.stateManager.CharacterCtrl.CharacterDamageReceiver.isDead)
-            this.stateManager.SetNextState(new DeadState());
-        if (GameManager.Instance.IsGameOver) return;
-        if (this.stateManager.IsClone) return;
-        this.stateManager.CharacterCtrl.CharacterFlip.Flipping();
-        if (InputManager.Instance.GetHorizontal() != 0) this.stateManager.SetNextState(new MoveState());
-        if (InputManager.Instance.GetUpInput()) this.stateManager.SetNextState(new JumpState());
-        if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new BlockState());
-        if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new GroundHit1State());
-        if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new KickState());
-        if (InputManager.Instance.GetSuperDashInput()) this.stateManager.SetNextState(new SuperDashState());
-        if (InputManager.Instance.GetChargeInput())
+        if (GameManager.Instance.GameOverTimer == GameManager.Instance.GameOverDelay
+        && this.stateManager.CharacterCtrl == GameManager.Instance.Winner)
         {
-            if (this.stateManager.CharacterCtrl.CharacterKiManager.CurrentKi ==
-        this.stateManager.CharacterCtrl.CharacterKiManager.KiMax) return;
-            this.stateManager.SetNextState(new ChargeState());
+            this.stateManager.CharacterCtrl.StateManager.SetNextState(new WinState());
         }
 
+        if (GameManager.Instance.GameOverTimer == GameManager.Instance.GameOverDelay
+        && this.stateManager.CharacterCtrl != GameManager.Instance.Winner && GameManager.Instance.IsTimeOver)
+        {
+            this.stateManager.CharacterCtrl.StateManager.SetNextState(new LoseState());
+        }
+
+        if (this.stateManager.CharacterCtrl.CharacterCollision.IsGround && this.stateManager.CharacterCtrl.CharacterDamageReceiver.isDead)
+            this.stateManager.SetNextState(new DeadState());
+
+        if (GameManager.Instance.IsGameOver) return;
+        if (this.stateManager.IsClone) return;
+        if (GameManager.Instance.MatchState == GameManager.MatchStateEnum.Fight)
+        {
+
+            this.stateManager.CharacterCtrl.CharacterFlip.Flipping();
+            if (InputManager.Instance.GetHorizontal() != 0) this.stateManager.SetNextState(new MoveState());
+            if (InputManager.Instance.GetUpInput()) this.stateManager.SetNextState(new JumpState());
+            if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new BlockState());
+            if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new GroundHit1State());
+            if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new KickState());
+            if (InputManager.Instance.GetSuperDashInput()) this.stateManager.SetNextState(new SuperDashState());
+            if (InputManager.Instance.GetChargeInput())
+            {
+                if (this.stateManager.CharacterCtrl.CharacterKiManager.CurrentKi ==
+            this.stateManager.CharacterCtrl.CharacterKiManager.KiMax) return;
+                this.stateManager.SetNextState(new ChargeState());
+            }
+        }
     }
     public override void OnExit()
     {

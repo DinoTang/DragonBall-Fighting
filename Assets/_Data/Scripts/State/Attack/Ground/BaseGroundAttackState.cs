@@ -20,7 +20,7 @@ public class BaseGroundAttackState : State
         this.animator.SetBool("IsAttack", true);
         this.animator.SetInteger("AttackCounter", attackCounter);
         Debug.Log("Player Attack " + attackCounter + " Fired!");
-        this.stateManager.CharacterCtrl.CharacterDamageSender.EnableCollider();
+        // this.stateManager.CharacterCtrl.CharacterDamageSender.EnableCollider();
     }
     public override void OnUpdate()
     {

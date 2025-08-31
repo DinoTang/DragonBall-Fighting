@@ -15,7 +15,7 @@ public class ChargeState : State
     {
         base.OnUpdate();
         if (this.stateManager.CharacterCtrl.CharacterKiManager.CurrentKi ==
-        this.stateManager.CharacterCtrl.CharacterKiManager.KiMax)
+        this.stateManager.CharacterCtrl.CharacterKiManager.KiMax || GameManager.Instance.IsGameOver)
         {
             // ExplosionFXSpawner.Instance.Spawn(ExplosionFXEnum.Parry.ToString(), this.stateManager.transform.position);
             this.stateManager.SetNextStateToMain();

@@ -47,6 +47,7 @@ public class CameraManager : BaseBehaviour
     }
     protected void Update()
     {
+        if (GameManager.Instance.MatchState == GameManager.MatchStateEnum.Intro) return;
         this.Zooming();
         this.Following();
         this.ClampCameraBounds();
