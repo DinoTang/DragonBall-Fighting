@@ -26,9 +26,9 @@ public class GameManager : BaseBehaviour
 
     public float GameOverTimer => gameOverTimer;
     public float GameOverDelay => gameOverDelay;
-
-    [SerializeField] protected float timerMatch = 0f;
-    [SerializeField] protected float delayMatch = 90f;
+    [SerializeField] protected float timerMatchMax = 90f;
+    [SerializeField] protected float timerMatchCurrent;
+    public float TimerMatch => timerMatchCurrent;
 
     private bool canStartReadyFight = false;
     protected override void Awake()
@@ -95,13 +95,9 @@ public class GameManager : BaseBehaviour
     }
     protected void PlayFight()
     {
-        if (!this.isGameOver) this.timerMatch += Time.deltaTime;
-        if (this.timerMatch >= this.delayMatch)
-        {
-            this.timerMatch = this.delayMatch;
-        }
-
-        if ((this.timerMatch == this.delayMatch)
+        if (!this.isGameOver) this.timerMatchCurrent -= Time.deltaTime;
+        if (this.timerMatchCurrent <= 0) this.timerMatchCurrent = 0;
+        if ((this.timerMatchCurrent == 0)
         || this.redPlayer.CharacterDamageReceiver.isDead || this.bluePlayer.CharacterDamageReceiver.isDead)
             this.matchState = MatchStateEnum.GameOver;
 
@@ -111,13 +107,13 @@ public class GameManager : BaseBehaviour
         // nếu cả 2 chưa chết và chưa hết giờ -> chưa game over
         if (!this.redPlayer.CharacterDamageReceiver.isDead
             && !this.bluePlayer.CharacterDamageReceiver.isDead
-            && this.timerMatch < this.delayMatch) return;
+            && this.timerMatchCurrent > 0) return;
 
         if (this.isGameOver) return; // tránh gọi nhiều lần
         this.isGameOver = true;
 
         // --- Trường hợp hết giờ ---
-        if (this.timerMatch == this.delayMatch)
+        if (this.timerMatchCurrent == 0)
         {
             float redHp = this.redPlayer.CharacterDamageReceiver.CurrentHP;
             float blueHp = this.bluePlayer.CharacterDamageReceiver.CurrentHP;
@@ -172,23 +168,23 @@ public class GameManager : BaseBehaviour
     }
     private IEnumerator StartReadyFight()
     {
-        UIManager.Instance.UIChilds[0].gameObject.SetActive(true);
-        UIManager.Instance.UIChilds[1].gameObject.SetActive(true);
-
+        UIManager.Instance.GetUIType(UIType.RedInfoBar).gameObject.SetActive(true);
+        UIManager.Instance.GetUIType(UIType.BlueInfoBar).gameObject.SetActive(true);
+        UIManager.Instance.GetUIType(UIType.Clock).gameObject.SetActive(true);
         // hiện chữ "Ready" trên UI
-        UIManager.Instance.UIChilds[6].gameObject.SetActive(true);
+        UIManager.Instance.GetUIType(UIType.Ready).gameObject.SetActive(true);
         AudioManager.Instance.PlayReadySound();
         yield return new WaitForSeconds(1.5f);
 
         // hiện chữ "Fight"
-        UIManager.Instance.UIChilds[6].gameObject.SetActive(false);
-        UIManager.Instance.UIChilds[7].gameObject.SetActive(true);
+        UIManager.Instance.GetUIType(UIType.Ready).gameObject.SetActive(false);
+        UIManager.Instance.GetUIType(UIType.Fight).gameObject.SetActive(true);
         AudioManager.Instance.PlayFightSound();
         yield return new WaitForSeconds(0.5f);
-        UIManager.Instance.UIChilds[7].gameObject.SetActive(false);
+        UIManager.Instance.GetUIType(UIType.Fight).gameObject.SetActive(false);
         // bắt đầu trận đấu
         matchState = MatchStateEnum.Fight;
-        timerMatch = 0f; // bắt đầu đếm giờ
+        timerMatchCurrent = this.timerMatchMax; // bắt đầu đếm giờ
     }
 
 }

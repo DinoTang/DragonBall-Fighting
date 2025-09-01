@@ -6,8 +6,8 @@ public class UIManager : BaseBehaviour
 {
     protected static UIManager instance;
     public static UIManager Instance => instance;
-    [SerializeField] protected List<RectTransform> uiChilds = new();
-    public List<RectTransform> UIChilds => uiChilds;
+    [SerializeField] protected List<UICtrl> uiChilds = new();
+    public List<UICtrl> UIChilds => uiChilds;
     public float kOUiTimeOff = 3;
     public float timeOverUiTimeOff = 3;
     public float timer;
@@ -37,7 +37,8 @@ public class UIManager : BaseBehaviour
 
         foreach (RectTransform child in this.transform)
         {
-            this.uiChilds.Add(child);
+            UICtrl uiCtrlChild = child.GetComponent<UICtrl>();
+            this.uiChilds.Add(uiCtrlChild);
         }
         Debug.Log(transform.name + ": LoadUIChilds");
     }
@@ -47,6 +48,7 @@ public class UIManager : BaseBehaviour
         this.ShowKOUI();
         this.ShowWinnerUI();
         this.ShowTimeOverUI();
+        this.ShowTimeUI();
     }
 
     protected void ShowKOUI()
@@ -56,12 +58,12 @@ public class UIManager : BaseBehaviour
         this.timer += Time.deltaTime;
         if (this.timer >= this.kOUiTimeOff)
         {
-            this.uiChilds[2].gameObject.SetActive(false);
+            this.GetUIType(UIType.KO).gameObject.SetActive(false);
         }
         else if (!this.hasShowKOUI)
         {
             this.hasShowKOUI = true;
-            this.uiChilds[2].gameObject.SetActive(true);
+            this.GetUIType(UIType.KO).gameObject.SetActive(true);
         }
     }
     protected void ShowTimeOverUI()
@@ -70,12 +72,12 @@ public class UIManager : BaseBehaviour
         this.timer += Time.deltaTime;
         if (this.timer >= this.timeOverUiTimeOff)
         {
-            this.uiChilds[5].gameObject.SetActive(false);
+            this.GetUIType(UIType.TimeOver).gameObject.SetActive(false);
         }
         else if (!this.hasShowTimeOverUI)
         {
             this.hasShowTimeOverUI = true;
-            this.uiChilds[5].gameObject.SetActive(true);
+            this.GetUIType(UIType.TimeOver).gameObject.SetActive(true);
         }
     }
 
@@ -103,7 +105,19 @@ public class UIManager : BaseBehaviour
         yield return new WaitForSeconds(delay);
         this.uiChilds[4].gameObject.SetActive(true);
         if (GameManager.Instance.Winner == GameManager.Instance.RedPlayer)
-            this.uiChilds[4].anchoredPosition = new Vector2(-560, 165);
-        else this.uiChilds[4].anchoredPosition = new Vector2(560, 165);
+            this.GetUIType(UIType.Winner).RectTransform.anchoredPosition = new Vector2(-560, 165);
+        else this.GetUIType(UIType.Winner).RectTransform.anchoredPosition = new Vector2(560, 165);
+    }
+
+    public UICtrl GetUIType(UIType uIType)
+    {
+        return this.uiChilds.Find(e => e.UIType == uIType);
+    }
+
+    protected void ShowTimeUI()
+    {
+        int timeMatch = Mathf.CeilToInt(GameManager.Instance.TimerMatch);
+        var clockUI = this.GetUIType(UIType.Clock) as UIClock;
+        clockUI.SetNumber(timeMatch);
     }
 }
