@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f159c937bd3ae2446b221497fec94695, type: 3}
   m_Name: Vegeta
   m_EditorClassIdentifier: 
-  startChargeClip: {fileID: 0}
-  chargingClip: {fileID: 0}
+  moveClip: {fileID: 8300000, guid: 7b274da60768cdd4f93e4d69920c3c6a, type: 3}
+  jumpClip: {fileID: 8300000, guid: 4ba7785973c3fe945a63134d08ab011f, type: 3}
+  GroundHitClip: {fileID: 8300000, guid: d34085f3c2490fb49a4747a40c198aec, type: 3}
+  BounceGroundHitClip: {fileID: 8300000, guid: c0ba1e8175c182740afacb964228a2be, type: 3}
+  landingClip: {fileID: 8300000, guid: 45e3459a13b284c44a81df362a60c8f5, type: 3}
+  startChargeClip: {fileID: 8300000, guid: 121138840406ae249bd88d66df2e1670, type: 3}
+  chargingClip: {fileID: 8300000, guid: b4f1c04804e15ce48b21540db8a8d16a, type: 3}

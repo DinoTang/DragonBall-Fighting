@@ -8,6 +8,8 @@ public class JumpState : State
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
+        AudioManager.Instance.AudioSource.PlayOneShot(
+                    this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.jumpClip);
         // this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround = false;
         this.animator.SetBool("IsJump", true);
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.jumpForce);

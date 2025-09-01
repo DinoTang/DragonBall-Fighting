@@ -10,7 +10,6 @@ public class ChargeState : State
         this.animator.SetBool("IsCharge", true);
         ReadyKiChargeFXSpawner.Instance.Spawn(ReadyKiChargeFXSpawner.Instance.nameFX,
         this.stateManager.transform.position);
-        AudioManager.Instance.AudioSource.PlayOneShot(this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.startChargeClip);
     }
     public override void OnUpdate()
     {

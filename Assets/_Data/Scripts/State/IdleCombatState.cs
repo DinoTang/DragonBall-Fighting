@@ -37,7 +37,11 @@ public class IdleCombatState : State
 
             this.stateManager.CharacterCtrl.CharacterFlip.Flipping();
             if (InputManager.Instance.GetHorizontal() != 0) this.stateManager.SetNextState(new MoveState());
-            if (InputManager.Instance.GetUpInput()) this.stateManager.SetNextState(new JumpState());
+            if (InputManager.Instance.GetUpInput())
+            {
+                
+                this.stateManager.SetNextState(new JumpState());
+            }
             if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new BlockState());
             if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new GroundHit1State());
             if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new KickState());
@@ -46,6 +50,7 @@ public class IdleCombatState : State
             {
                 if (this.stateManager.CharacterCtrl.CharacterKiManager.CurrentKi ==
             this.stateManager.CharacterCtrl.CharacterKiManager.KiMax) return;
+                AudioManager.Instance.AudioSource.PlayOneShot(this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.startChargeClip);
                 this.stateManager.SetNextState(new ChargeState());
             }
         }
