@@ -7,7 +7,7 @@ public class GameManager : BaseBehaviour
     protected static GameManager instance;
     public static GameManager Instance => instance;
     public enum MatchStateEnum { Intro, Ready, Fight, GameOver }
-    [SerializeField] private MatchStateEnum matchState = MatchStateEnum.Intro;
+    [SerializeField] private MatchStateEnum matchState = MatchStateEnum.Ready;
     public MatchStateEnum MatchState => matchState;
     [SerializeField] protected CharacterCtrl winner;
     public CharacterCtrl Winner => winner;
@@ -16,6 +16,8 @@ public class GameManager : BaseBehaviour
 
     public CharacterCtrl RedPlayer => redPlayer;
     public CharacterCtrl BluePlayer => bluePlayer;
+    [SerializeField] protected CharacterCtrl playerIsHit;
+    public CharacterCtrl PlayerIsHit { get => playerIsHit; set => playerIsHit = value; }
     [SerializeField] protected bool isGameOver;
     public bool IsGameOver => isGameOver;
     [SerializeField] protected bool isCanShowResult;
@@ -36,6 +38,11 @@ public class GameManager : BaseBehaviour
         base.Awake();
         if (GameManager.instance != null) Debug.LogWarning("Only 1 GameManager allows to exist");
         instance = this;
+    }
+    protected override void Start()
+    {
+        base.Start();
+        this.timerMatchCurrent = this.timerMatchMax;
     }
     protected override void LoadComponent()
     {
@@ -79,12 +86,12 @@ public class GameManager : BaseBehaviour
     {
         if (!this.redPlayer.CharacterIntro.IsReady)
         {
-            this.redPlayer.CharacterIntro.StartIntroCharacter();
+            this.redPlayer.CharacterIntro.StartIntroCharacter(2);
             return;
         }
         if (!this.bluePlayer.CharacterIntro.IsReady)
         {
-            this.bluePlayer.CharacterIntro.StartIntroCharacter();
+            this.bluePlayer.CharacterIntro.StartIntroCharacter(1);
             return;
         }
 

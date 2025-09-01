@@ -16,8 +16,8 @@ public class CharacterCtrl : BaseBehaviour
     public StateManager StateManager => stateManager;
     [SerializeField] protected CharacterCollision characterCollision;
     public CharacterCollision CharacterCollision => characterCollision;
-    // [SerializeField] protected CharacterData characterData;
-    // public CharacterData CharacterData => characterData;
+    [SerializeField] protected CharacterData characterData;
+    public CharacterData CharacterData => characterData;
     [SerializeField] protected CharacterIntro characterIntro;
     public CharacterIntro CharacterIntro => characterIntro;
     [SerializeField] protected CharacterFlip characterFlip;
@@ -64,7 +64,7 @@ public class CharacterCtrl : BaseBehaviour
         this.LoadAnimator();
         this.LoadStateManager();
         this.LoadCharacterGroundCollision();
-        // this.LoadCharacterData();
+        this.LoadCharacterData();
         this.LoadCharacterIntro();
         this.LoadCharacterFlip();
         this.LoadCharacterAnimEvent();
@@ -101,12 +101,12 @@ public class CharacterCtrl : BaseBehaviour
         this.characterCollision = GetComponentInChildren<CharacterCollision>();
         Debug.Log(transform.name + ": LoadCharacterGroundCollision", gameObject);
     }
-    // protected void LoadCharacterData()
-    // {
-    //     if (this.characterData != null) return;
-    //     this.characterData = GetComponentInChildren<CharacterData>();
-    //     Debug.Log(transform.name + ": LoadCharacterData", gameObject);
-    // }
+    protected void LoadCharacterData()
+    {
+        if (this.characterData != null) return;
+        this.characterData = GetComponentInChildren<CharacterData>();
+        Debug.Log(transform.name + ": LoadCharacterData", gameObject);
+    }
     protected void LoadCharacterIntro()
     {
         if (this.characterIntro != null) return;

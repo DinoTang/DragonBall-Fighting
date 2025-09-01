@@ -4,20 +4,19 @@ using UnityEngine;
 public class CharacterData : CharacterAbstract
 {
     [Header("Character Data")]
-    [SerializeField] protected SkillDataSO skillDataSO;
-
+    [SerializeField] protected CharacterDataSO characterData;
+    public CharacterDataSO CharacterDataSO => characterData;
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.LoadSkillDataSO();
+        this.LoadCharacterDataSO();
     }
 
-    protected void LoadSkillDataSO()
+    protected void LoadCharacterDataSO()
     {
-        if (this.skillDataSO != null) return;
-        this.skillDataSO = Resources.Load<SkillDataSO>("SkillData/" + this.characterCtrl.CharacterName.ToString());
-        Debug.Log(transform.name + ": LoadSkillDataSO", gameObject);
-        Debug.Log(transform.name + ": " + "SkillData/" + this.characterCtrl.CharacterName.ToString(), gameObject);
+        if (this.characterData != null) return;
+        this.characterData = Resources.Load<CharacterDataSO>("CharacterData/" + this.characterCtrl.CharacterName.ToString());
+        Debug.Log(transform.name + ": LoadCharacterDataSO", gameObject);
     }
 }
 

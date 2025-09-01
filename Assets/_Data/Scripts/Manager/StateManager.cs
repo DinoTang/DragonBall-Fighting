@@ -6,7 +6,7 @@ public class StateManager : BaseBehaviour
     [SerializeField] protected CharacterCtrl characterCtrl;
     public CharacterCtrl CharacterCtrl => characterCtrl;
     [SerializeField] protected bool isClone = false;
-    public bool IsClone => isClone;
+    public bool IsClone { get => isClone; set => isClone = value; }
     [SerializeField] protected bool canSuperDash = false;
     public bool CanSuperDash { get => canSuperDash; set => canSuperDash = value; }
     public State mainStateType;

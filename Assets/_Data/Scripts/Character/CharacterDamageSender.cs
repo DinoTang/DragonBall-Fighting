@@ -3,11 +3,25 @@ using UnityEngine;
 public class CharacterDamageSender : DamageSender
 {
     [Header("Character Damage Sender")]
-    [SerializeField] CharacterCtrl characterCtrl;
+    [SerializeField] protected CharacterCtrl characterCtrl;
+    [SerializeField] protected int hitCounts;
+    public int HitCount => hitCounts;
+    [SerializeField] protected float comboResetOriginTime = 1;
+    [SerializeField] protected float comboResetTime;
+    public float ComboResetTime => comboResetTime;
     protected override void LoadComponent()
     {
         base.LoadComponent();
         this.LoadPlayerCtrl();
+    }
+    protected void Update()
+    {
+        this.comboResetTime -= Time.deltaTime;
+        if (this.comboResetTime <= 0)
+        {
+            this.comboResetTime = 0;
+            this.hitCounts = 0;
+        }
     }
     protected void LoadPlayerCtrl()
     {
@@ -36,6 +50,8 @@ public class CharacterDamageSender : DamageSender
         CharacterCtrl opponent = other.GetComponentInParent<CharacterCtrl>();
         if (this.characterCtrl.Opponent != opponent) return;
         base.OnTriggerEnter2D(other);
+        this.hitCounts += 1;
+        this.comboResetTime = this.comboResetOriginTime;
         this.DisableCollider();
     }
     public override void SendDamage(DamageReceiver damageReceiver)

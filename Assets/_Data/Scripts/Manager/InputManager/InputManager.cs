@@ -13,6 +13,32 @@ public class InputManager : BaseBehaviour
         if (InputManager.instance != null) Debug.LogWarning("Only 1 InputManager allows to exist");
         instance = this;
     }
+    protected void Update()
+    {
+        if (this.GetInputChangePlayer1())
+        {
+            GameManager.Instance.RedPlayer.StateManager.IsClone = false;
+            GameManager.Instance.BluePlayer.StateManager.IsClone = true;
+            Debug.LogWarning("Player1");
+        }
+        if (this.GetInputChangePlayer2())
+        {
+            GameManager.Instance.BluePlayer.StateManager.IsClone = false;
+            GameManager.Instance.RedPlayer.StateManager.IsClone = true;
+            Debug.LogWarning("Player2");
+        }
+    }
+
+    public bool GetInputChangePlayer1()
+    {
+        return Input.GetKeyDown(KeyCode.Alpha1);
+    }
+    public bool GetInputChangePlayer2()
+    {
+        return Input.GetKeyDown(KeyCode.Alpha2);
+    }
+
+
     public float GetHorizontal()
     {
         return Input.GetAxisRaw("Horizontal");

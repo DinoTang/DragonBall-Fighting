@@ -39,7 +39,6 @@ public class UltimateSkillState : EnergyProjectileSkillState
     {
         base.OnUpdate();
         this.ultimateTime = this.timed;
-        Debug.LogWarning(this.ultimateTime);
         switch (this.currentPhase)
         {
             case UltimatePhase.StartUp:

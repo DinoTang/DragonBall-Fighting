@@ -30,6 +30,7 @@ public class UIManager : BaseBehaviour
     {
         base.Start();
         this.HideAll();
+        this.ShowTimeUI();
     }
     protected void LoadUIChilds()
     {
@@ -38,6 +39,7 @@ public class UIManager : BaseBehaviour
         foreach (RectTransform child in this.transform)
         {
             UICtrl uiCtrlChild = child.GetComponent<UICtrl>();
+            if (uiCtrlChild as UIFade) continue;
             this.uiChilds.Add(uiCtrlChild);
         }
         Debug.Log(transform.name + ": LoadUIChilds");
@@ -49,6 +51,7 @@ public class UIManager : BaseBehaviour
         this.ShowWinnerUI();
         this.ShowTimeOverUI();
         this.ShowTimeUI();
+        this.ShowHitCountUI();
     }
 
     protected void ShowKOUI()
@@ -119,5 +122,21 @@ public class UIManager : BaseBehaviour
         int timeMatch = Mathf.CeilToInt(GameManager.Instance.TimerMatch);
         var clockUI = this.GetUIType(UIType.Clock) as UIClock;
         clockUI.SetNumber(timeMatch);
+    }
+    protected void ShowHitCountUI()
+    {
+        if (GameManager.Instance.PlayerIsHit == null) return;
+        var hitCountUI = this.GetUIType(UIType.HitCount) as UIHitCount;
+        int hitCount = GameManager.Instance.PlayerIsHit.Opponent.CharacterDamageSender.HitCount;
+        float comboResetTime = GameManager.Instance.PlayerIsHit.Opponent.CharacterDamageSender.ComboResetTime;
+        if (comboResetTime <= 0) hitCountUI.gameObject.SetActive(false);
+        else
+        {
+            if (GameManager.Instance.PlayerIsHit.Opponent == GameManager.Instance.RedPlayer)
+                hitCountUI.RectTransform.anchoredPosition = new Vector2(-550, 200);
+            else hitCountUI.RectTransform.anchoredPosition = new Vector2(780, 200);
+            hitCountUI.SetNumber(hitCount);
+            hitCountUI.gameObject.SetActive(true);
+        }
     }
 }

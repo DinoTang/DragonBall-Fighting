@@ -10,6 +10,7 @@ public class ChargeState : State
         this.animator.SetBool("IsCharge", true);
         ReadyKiChargeFXSpawner.Instance.Spawn(ReadyKiChargeFXSpawner.Instance.nameFX,
         this.stateManager.transform.position);
+        AudioManager.Instance.AudioSource.PlayOneShot(this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.startChargeClip);
     }
     public override void OnUpdate()
     {
@@ -26,6 +27,19 @@ public class ChargeState : State
         this.stateManager.CharacterCtrl.EnableSmokeEffect();
 
         this.stateManager.CharacterCtrl.CharacterKiManager.ChargeKi();
+
+        AudioSource audio = AudioManager.Instance.AudioSource;
+        AudioClip clip = this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.chargingClip;
+
+        if (!audio.isPlaying)  // chỉ phát lại khi nó đã chạy hết
+        {
+            audio.clip = clip;
+            audio.loop = false;   // không cho tự động loop
+            audio.Play();
+        }
+
+
+
         CameraManager.Instance.Shake(0.05f, 0.03f);
     }
     public override void OnExit()
@@ -33,6 +47,8 @@ public class ChargeState : State
         base.OnExit();
         this.animator.SetBool("IsCharge", false);
         this.stateManager.CharacterCtrl.DisableSmokeEffect();
+        AudioManager.Instance.AudioSource.Stop();
+        AudioManager.Instance.AudioSource.loop = false;
     }
 
 }

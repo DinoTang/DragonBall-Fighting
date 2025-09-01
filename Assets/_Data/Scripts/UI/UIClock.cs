@@ -4,14 +4,12 @@ using System.Collections.Generic;
 
 public class UIClock : UICtrl
 {
-    [SerializeField] private List<Sprite> numberSprites; // 0-9
-    [SerializeField] private Image tens;
-    [SerializeField] private Image ones;
+    [SerializeField] protected List<Sprite> numberSprites; // 0-9
+    [SerializeField] protected Image tens;
+    [SerializeField] protected Image ones;
 
-    public void SetNumber(int number)
+    public virtual void SetNumber(int number)
     {
-        number = Mathf.Clamp(number, 0, 999);
-
         int t = number / 10 % 10;
         int o = number % 10;
         // Gán sprite

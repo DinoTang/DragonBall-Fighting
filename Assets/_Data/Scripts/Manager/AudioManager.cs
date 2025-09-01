@@ -8,6 +8,7 @@ public class AudioManager : BaseBehaviour
     public static AudioManager Instance => instance;
     [SerializeField] protected Camera mainCam;
     [SerializeField] protected AudioSource audioSource;
+    public AudioSource AudioSource => audioSource;
     [SerializeField] protected AudioClip koSound;
     public AudioClip KoSound => koSound;
     [SerializeField] protected AudioClip redWinSound;

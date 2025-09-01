@@ -1,2 +1,2 @@
 public enum UIType
-{ RedInfoBar, BlueInfoBar, Clock, KO, Ready, Fight, TimeOver, Winner }
+{ None, RedInfoBar, BlueInfoBar, Clock, KO, Ready, Fight, TimeOver, Winner, HitCount }
