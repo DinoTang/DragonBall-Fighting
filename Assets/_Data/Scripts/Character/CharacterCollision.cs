@@ -32,7 +32,7 @@ public class CharacterCollision : CharacterAbstract
         if (this.characterCtrl.StateManager.CurrentState is BounceOnGroundState)
         {
             AudioManager.Instance.AudioSource.PlayOneShot(
-                   this.characterCtrl.CharacterData.CharacterDataSO.BounceGroundHitClip);
+                   this.characterCtrl.CharacterData.CharacterDataSO.bounceGroundHitClip);
         }
         else
         {

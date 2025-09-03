@@ -61,7 +61,7 @@ public class MoveState : State
     {
         if (TrySwitchState(new JumpState(), InputManager.Instance.GetUpInput())) return true;
         if (TrySwitchState(new GroundHit1State(), InputManager.Instance.GetHitInput())) return true;
-        if (TrySwitchState(new KickState(), InputManager.Instance.GetKickInput())) return true;
+        if (TrySwitchState(new GroundKick1State(), InputManager.Instance.GetKickInput())) return true;
         if (TrySwitchState(new BlockState(), InputManager.Instance.GetBlockHitInput())) return true;
         // if (TrySwitchState(new SuperDashState(), InputManager.Instance.GetSuperDashInput())) return true;
         return false;

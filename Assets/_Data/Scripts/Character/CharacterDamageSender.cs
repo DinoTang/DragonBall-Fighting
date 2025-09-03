@@ -44,6 +44,8 @@ public class CharacterDamageSender : DamageSender
         base.SendKnockdownDamage(damageReceiver);
         this.characterCtrl.Opponent.StateManager.SetNextState(new KnockDownState());
         this.isKnockingDown = false;
+        AudioManager.Instance.AudioSource.PlayOneShot(
+                 this.characterCtrl.CharacterData.CharacterDataSO.strongHitClip);
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
@@ -52,11 +54,26 @@ public class CharacterDamageSender : DamageSender
         base.OnTriggerEnter2D(other);
         this.hitCounts += 1;
         this.comboResetTime = this.comboResetOriginTime;
-        this.DisableCollider();
+
     }
     public override void SendDamage(DamageReceiver damageReceiver)
     {
         base.SendDamage(damageReceiver);
         this.characterCtrl.CharacterKiManager.GainKi(2);
+        this.DisableCollider();
     }
+
+    protected override void OnSendDamage()
+    {
+        base.OnSendDamage();
+        AudioManager.Instance.AudioSource.PlayOneShot(
+               this.characterCtrl.CharacterData.CharacterDataSO.weakHitClip);
+    }
+
+    // protected override void OnNoSendDamage()
+    // {
+    //     base.OnNoSendDamage();
+    //     AudioManager.Instance.AudioSource.PlayOneShot(
+    //               this.characterCtrl.CharacterData.CharacterDataSO.weakHitClip);
+    // }
 }

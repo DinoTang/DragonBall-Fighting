@@ -4306,7 +4306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterCtrl: {fileID: 751414181}
   kiMax: 300
-  kiChargeRate: 30
+  kiChargeRate: 20
   currentKi: 0
 --- !u!4 &584261298
 Transform:

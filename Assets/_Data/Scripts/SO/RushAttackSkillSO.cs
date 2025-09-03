@@ -24,10 +24,26 @@ public class RushAttackSkillSO : SkillDataSO
         return new RushAttackSkillState();
     }
 
+
+    private bool hasPlayedSound = false;
+
     public void Execute(CharacterCtrl user, Vector3 start, Vector3 end, float duration)
     {
+        if (!hasPlayedSound) // chỉ phát lần đầu
+        {
+            AudioManager.Instance.AudioSource.PlayOneShot(
+                user.CharacterData.CharacterDataSO.groundHitClip);
+            hasPlayedSound = true;
+        }
+
         user.StartCoroutine(CurveMove(user, start, end, duration));
     }
+
+    public void ResetSkill()
+    {
+        hasPlayedSound = false; // reset khi bắt đầu skill mới
+    }
+
 
     IEnumerator CurveMove(CharacterCtrl obj, Vector3 start, Vector3 end, float duration)
     {

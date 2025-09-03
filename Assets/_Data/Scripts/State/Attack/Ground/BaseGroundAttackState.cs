@@ -11,6 +11,8 @@ public class BaseGroundAttackState : State
     protected float attackMoveDuration = 0.1f;
     protected float attackMoveTime;
     protected bool isMovingDuringAttack = false;
+
+    protected bool hasPlayDodgeClip;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
@@ -29,7 +31,10 @@ public class BaseGroundAttackState : State
 
         this.MoveShortDistance();
 
-
+        if (!this.isHitting && this.hasPlayDodgeClip)
+        {
+            this.PlayDodgeClip();
+        }
     }
     public override void OnExit()
     {
@@ -53,5 +58,10 @@ public class BaseGroundAttackState : State
         {
             this.isMovingDuringAttack = false;
         }
+    }
+
+    protected virtual void PlayDodgeClip()
+    {
+
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kick4State : BaseGroundKickState
+public class GroundKick4State : BaseGroundKickState
 {
     public override void OnEnter(StateManager stateManager)
     {

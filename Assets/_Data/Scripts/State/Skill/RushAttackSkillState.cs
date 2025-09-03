@@ -231,6 +231,7 @@ public class RushAttackSkillState : SkillState
             this.self.Rgb.velocity = new Vector2(0, 30);
 
             // this.self.Opponent.StateManager.SetNextState(new AirHurtState());
+            this.stateManager.CharacterCtrl.CharacterDamageSender.SendDamage(this.stateManager.CharacterCtrl.Opponent.CharacterDamageReceiver);
             this.self.Opponent.StateManager.SetNextStateToMain();
             this.stateManager.SetNextStateToMain();
         }

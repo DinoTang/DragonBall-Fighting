@@ -26,10 +26,10 @@ public abstract class State
     {
         this.fixedTime += UnityEngine.Time.fixedDeltaTime;
     }
-    // public virtual void OnLateUpdate()
-    // {
-    //     Latetime += UnityEngine.Time.deltaTime;
-    // }
+    public virtual void OnLateUpdate()
+    {
+        this.lateTime += UnityEngine.Time.deltaTime;
+    }
 
     public virtual void OnExit() { }
 

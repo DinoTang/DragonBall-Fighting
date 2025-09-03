@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kick3State : BaseGroundKickState
+public class GroundKick1State : BaseGroundKickState
 {
     public override void OnEnter(StateManager stateManager)
     {
-        this.attackCounter = 7;
+        this.attackCounter = 5;
         base.OnEnter(stateManager);
     }
 
@@ -18,7 +18,7 @@ public class Kick3State : BaseGroundKickState
         {
             if (this.shouldCombo && this.isHitting)
             {
-                this.stateManager.SetNextState(new Kick4State());
+                this.stateManager.SetNextState(new GroundKick2State());
             }
             else
             {

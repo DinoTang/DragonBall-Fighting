@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveClip: {fileID: 8300000, guid: 7b274da60768cdd4f93e4d69920c3c6a, type: 3}
   jumpClip: {fileID: 8300000, guid: 4ba7785973c3fe945a63134d08ab011f, type: 3}
-  GroundHitClip: {fileID: 8300000, guid: d34085f3c2490fb49a4747a40c198aec, type: 3}
-  BounceGroundHitClip: {fileID: 8300000, guid: c0ba1e8175c182740afacb964228a2be, type: 3}
+  dodgeHitClip: {fileID: 8300000, guid: 5dba65c4b4d2e65479c39fdaaeaa5d3a, type: 3}
+  dodgeKickClip: {fileID: 8300000, guid: d5c97853fc72ab44cb89b07316b035d1, type: 3}
+  weakHitClip: {fileID: 8300000, guid: 0dae6cafae6ce65489149f2a3821baaf, type: 3}
+  strongHitClip: {fileID: 8300000, guid: 5cfdf3b02095f0f4d8d69ad42d80b657, type: 3}
+  groundHitClip: {fileID: 8300000, guid: d34085f3c2490fb49a4747a40c198aec, type: 3}
+  bounceGroundHitClip: {fileID: 8300000, guid: c0ba1e8175c182740afacb964228a2be, type: 3}
   landingClip: {fileID: 8300000, guid: 45e3459a13b284c44a81df362a60c8f5, type: 3}
-  startChargeClip: {fileID: 8300000, guid: 121138840406ae249bd88d66df2e1670, type: 3}
-  chargingClip: {fileID: 8300000, guid: b4f1c04804e15ce48b21540db8a8d16a, type: 3}
+  startChargeClip: {fileID: 8300000, guid: c16c5dcedc9640742815041d197f3b9f, type: 3}
+  chargingClip: {fileID: 8300000, guid: 69377411ba033e841ab2a2a8393cfb8b, type: 3}

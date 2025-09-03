@@ -18,7 +18,7 @@ MonoBehaviour:
   cooldown: 0.5
   damage: 50
   animationClip: {fileID: 7400000, guid: c04f8d3fadbb3e94cb0ca19cc4c0134f, type: 2}
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: f469975625f77584ca55489b72a44eda, type: 3}
   RushAttack_Combo: {fileID: 7400000, guid: fa8985ba669035449a0c4c85050a37a0, type: 2}
   RushAttack_KnockUp: {fileID: 7400000, guid: c847d76dbbae26d41b971f1fcabcb2a1, type: 2}
   RushAttack_KnockDown: {fileID: 7400000, guid: ffe3ae5dca0616241a54ddb3990a8bfa, type: 2}

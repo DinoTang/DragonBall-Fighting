@@ -39,12 +39,12 @@ public class IdleCombatState : State
             if (InputManager.Instance.GetHorizontal() != 0) this.stateManager.SetNextState(new MoveState());
             if (InputManager.Instance.GetUpInput())
             {
-                
+
                 this.stateManager.SetNextState(new JumpState());
             }
             if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new BlockState());
             if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new GroundHit1State());
-            if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new KickState());
+            if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new GroundKick1State());
             if (InputManager.Instance.GetSuperDashInput()) this.stateManager.SetNextState(new SuperDashState());
             if (InputManager.Instance.GetChargeInput())
             {

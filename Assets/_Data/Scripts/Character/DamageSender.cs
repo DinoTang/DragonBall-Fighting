@@ -73,10 +73,26 @@ public class DamageSender : BaseBehaviour
 
     public virtual void SendDamage(DamageReceiver damageReceiver)
     {
-        if (damageReceiver.OnBlock()) return;
-        if (damageReceiver.DeductHP(this.damage)) this.isHitting = true;
-        else return;
-        this.OnHitExplosionFX(damageReceiver.transform);
+        if (damageReceiver.OnBlock())
+        {
+            this.OnNoSendDamage();
+            return;
+        }
+        if (damageReceiver.DeductHP(this.damage))
+        {
+            this.isHitting = true;
+            this.OnSendDamage();
+            this.OnHitExplosionFX(damageReceiver.transform);
+
+        }
+    }
+    protected virtual void OnSendDamage()
+    {
+
+    }
+    protected virtual void OnNoSendDamage()
+    {
+
     }
     protected virtual void OnHitExplosionFX(Transform target)
     {

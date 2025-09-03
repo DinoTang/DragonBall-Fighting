@@ -10,6 +10,8 @@ public class ChargeState : State
         this.animator.SetBool("IsCharge", true);
         ReadyKiChargeFXSpawner.Instance.Spawn(ReadyKiChargeFXSpawner.Instance.nameFX,
         this.stateManager.transform.position);
+
+        AudioManager.Instance.AudioSource.PlayOneShot(this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.chargingClip);
     }
     public override void OnUpdate()
     {
@@ -30,10 +32,10 @@ public class ChargeState : State
         AudioSource audio = AudioManager.Instance.AudioSource;
         AudioClip clip = this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.chargingClip;
 
-        if (!audio.isPlaying)  // chỉ phát lại khi nó đã chạy hết
+        audio.clip = clip;
+        audio.loop = true;  // Cho phép loop
+        if (!audio.isPlaying)
         {
-            audio.clip = clip;
-            audio.loop = false;   // không cho tự động loop
             audio.Play();
         }
 
