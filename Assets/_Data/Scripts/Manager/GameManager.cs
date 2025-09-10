@@ -33,6 +33,9 @@ public class GameManager : BaseBehaviour
     public float TimerMatch => timerMatchCurrent;
 
     private bool canStartReadyFight = false;
+
+
+    [SerializeField] protected bool hasWinSound;
     protected override void Awake()
     {
         base.Awake();
@@ -129,6 +132,7 @@ public class GameManager : BaseBehaviour
 
             this.isCanShowResult = true; // hiển thị kết quả luôn
             this.isTimeOver = true;
+            AudioManager.Instance.PlayAnnouncerSound(AnnouncerSoundType.TimeOver);
             return;
         }
 
@@ -137,6 +141,7 @@ public class GameManager : BaseBehaviour
         {
             this.winner = this.redPlayer.CharacterDamageReceiver.isDead ? this.bluePlayer : this.redPlayer;
             this.isCanShowResult = true;
+            AudioManager.Instance.PlayAnnouncerSound(AnnouncerSoundType.KO);
             StartCoroutine(this.SlowMotionGameOver());
         }
     }
@@ -163,6 +168,11 @@ public class GameManager : BaseBehaviour
         if (this.gameOverTimer < this.gameOverDelay) return;
 
         this.gameOverTimer = this.gameOverDelay;
+        if (this.hasWinSound) return;
+
+        this.hasWinSound = true;
+        if (this.winner == this.RedPlayer) AudioManager.Instance.PlayAnnouncerSound(AnnouncerSoundType.RedWin);
+        else AudioManager.Instance.PlayAnnouncerSound(AnnouncerSoundType.BlueWin);
     }
 
     protected void PlayReadyFight()
@@ -180,13 +190,13 @@ public class GameManager : BaseBehaviour
         UIManager.Instance.GetUIType(UIType.Clock).gameObject.SetActive(true);
         // hiện chữ "Ready" trên UI
         UIManager.Instance.GetUIType(UIType.Ready).gameObject.SetActive(true);
-        AudioManager.Instance.PlayReadySound();
+        AudioManager.Instance.PlayAnnouncerSound(AnnouncerSoundType.Ready);
         yield return new WaitForSeconds(1.5f);
 
         // hiện chữ "Fight"
         UIManager.Instance.GetUIType(UIType.Ready).gameObject.SetActive(false);
         UIManager.Instance.GetUIType(UIType.Fight).gameObject.SetActive(true);
-        AudioManager.Instance.PlayFightSound();
+        AudioManager.Instance.PlayAnnouncerSound(AnnouncerSoundType.Fight);
         yield return new WaitForSeconds(0.5f);
         UIManager.Instance.GetUIType(UIType.Fight).gameObject.SetActive(false);
         // bắt đầu trận đấu

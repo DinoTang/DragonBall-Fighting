@@ -17,7 +17,6 @@ public class BaseGroundHitState : BaseGroundAttackState
     protected override void PlayDodgeClip()
     {
         base.PlayDodgeClip();
-        AudioManager.Instance.AudioSource.PlayOneShot(
-              this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.dodgeHitClip);
+        AudioManager.Instance.PlayCharacterSound(CharacterSoundType.DodgeHit);
     }
 }

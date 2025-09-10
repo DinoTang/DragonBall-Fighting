@@ -44,8 +44,7 @@ public class CharacterDamageSender : DamageSender
         base.SendKnockdownDamage(damageReceiver);
         this.characterCtrl.Opponent.StateManager.SetNextState(new KnockDownState());
         this.isKnockingDown = false;
-        AudioManager.Instance.AudioSource.PlayOneShot(
-                 this.characterCtrl.CharacterData.CharacterDataSO.strongHitClip);
+        AudioManager.Instance.PlayCharacterSound(CharacterSoundType.StrongHit);
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
@@ -66,8 +65,7 @@ public class CharacterDamageSender : DamageSender
     protected override void OnSendDamage()
     {
         base.OnSendDamage();
-        AudioManager.Instance.AudioSource.PlayOneShot(
-               this.characterCtrl.CharacterData.CharacterDataSO.weakHitClip);
+        AudioManager.Instance.PlayCharacterSound(CharacterSoundType.WeakHit);
     }
 
     // protected override void OnNoSendDamage()

@@ -6,88 +6,80 @@ public class AudioManager : BaseBehaviour
 {
     protected static AudioManager instance;
     public static AudioManager Instance => instance;
-    [SerializeField] protected Camera mainCam;
     [SerializeField] protected AudioSource audioSource;
     public AudioSource AudioSource => audioSource;
-    [SerializeField] protected AudioClip koSound;
-    public AudioClip KoSound => koSound;
-    [SerializeField] protected AudioClip redWinSound;
-    [SerializeField] protected AudioClip blueWinSound;
-    [SerializeField] protected AudioClip timeOverSound;
-    [SerializeField] protected AudioClip readySound;
-    [SerializeField] protected AudioClip fightSound;
-    public bool hasKoSound;
-    public bool hasTimeOverSound;
-    public bool hasRedWinSound;
-    public bool hasBlueWinSound;
-    public bool hasReadySound;
-    public bool hasFightSound;
+    [SerializeField] protected AnnouncerSoundSO announcerSoundSO;
+    [SerializeField] protected CharacterSoundSO characterSoundSO;
+    [SerializeField] protected UISoundSO uiSoundSO;
     protected override void Awake()
     {
         base.Awake();
         if (AudioManager.instance != null) Debug.LogWarning("Only AudioManager allows to exist");
         instance = this;
     }
-    protected void Update()
+    protected override void LoadComponent()
     {
-        this.transform.position = this.mainCam.transform.position;
-        this.PlayKOSound();
-        this.PlayTeamWinSound();
-        this.PlayTimeOverSound();
+        base.LoadComponent();
+        this.LoadAudioSource();
+        this.LoadAnnouncerSoundSO();
+        this.LoadCharacterSoundSO();
+        this.LoadUISoundSO();
     }
-    public void PlayTimeOverSound()
+    protected void LoadAudioSource()
     {
-        if (!GameManager.Instance.IsTimeOver) return;
-        if (!this.hasTimeOverSound)
-        {
-            this.hasTimeOverSound = true;
-            this.audioSource.PlayOneShot(this.timeOverSound);
-        }
-    }
-    public void PlayKOSound()
-    {
-        if (GameManager.Instance.IsGameOver)
-        {
-            if (GameManager.Instance.IsTimeOver) return;
-            if (!this.hasKoSound)
-            {
-                this.hasKoSound = true;
-                this.audioSource.PlayOneShot(this.koSound);
-            }
-        }
-    }
-    protected void PlayTeamWinSound()
-    {
-        if (GameManager.Instance.GameOverTimer != GameManager.Instance.GameOverDelay) return;
-        if (GameManager.Instance.Winner.StateManager.CurrentState is not IdleCombatState) return;
-        if (GameManager.Instance.Winner == GameManager.Instance.RedPlayer && !this.hasRedWinSound)
-        {
-            this.hasRedWinSound = true;
-            this.audioSource.PlayOneShot(this.redWinSound);
-        }
-        else if (GameManager.Instance.Winner == GameManager.Instance.BluePlayer && !this.hasBlueWinSound)
-        {
-            this.hasBlueWinSound = true;
-            this.audioSource.PlayOneShot(this.blueWinSound);
-        }
-
+        if (this.audioSource != null) return;
+        this.audioSource = GetComponent<AudioSource>();
+        Debug.Log(transform.name + ": LoadAudioSource");
     }
 
-    public void PlayReadySound()
+    protected void LoadAnnouncerSoundSO()
     {
-        if (!this.hasReadySound)
-        {
-            this.hasReadySound = true;
-            this.audioSource.PlayOneShot(this.readySound);
-        }
+        if (this.announcerSoundSO != null) return;
+        this.announcerSoundSO = Resources.Load<AnnouncerSoundSO>("Sounds/AnnouncerSoundData");
+        Debug.Log(transform.name + ": LoadAnnouncerSoundSO");
     }
 
-    public void PlayFightSound()
+    protected void LoadCharacterSoundSO()
     {
-        if (!this.hasFightSound)
+        if (this.characterSoundSO != null) return;
+        this.characterSoundSO = Resources.Load<CharacterSoundSO>("Sounds/CharacterSoundData");
+        Debug.Log(transform.name + ": LoadCharacterSoundSO");
+    }
+
+    protected void LoadUISoundSO()
+    {
+        if (this.uiSoundSO != null) return;
+        this.uiSoundSO = Resources.Load<UISoundSO>("Sounds/UISoundData");
+        Debug.Log(transform.name + ": LoadUISoundSO");
+    }
+    public AudioClip PlayAnnouncerSound(AnnouncerSoundType type)
+    {
+        foreach (var sound in this.announcerSoundSO.sounds)
         {
-            this.hasFightSound = true;
-            this.audioSource.PlayOneShot(this.fightSound);
+            if (sound.type != type) continue;
+            this.audioSource.PlayOneShot(sound.clip);
+            return sound.clip;
         }
+        return null;
+    }
+    public AudioClip PlayCharacterSound(CharacterSoundType type)
+    {
+        foreach (var sound in this.characterSoundSO.sounds)
+        {
+            if (sound.type != type) continue;
+            this.audioSource.PlayOneShot(sound.clip);
+            return sound.clip;
+        }
+        return null;
+    }
+    public AudioClip PlayUISound(UISoundType type)
+    {
+        foreach (var sound in this.uiSoundSO.sounds)
+        {
+            if (sound.type != type) continue;
+            this.audioSource.PlayOneShot(sound.clip);
+            return sound.clip;
+        }
+        return null;
     }
 }

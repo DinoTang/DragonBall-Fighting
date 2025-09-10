@@ -18,4 +18,4 @@ MonoBehaviour:
   cooldown: 1
   damage: 50
   animationClip: {fileID: 7400000, guid: 500e2b088996580418cd42faff037225, type: 2}
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 47114b2ee7c6565459b756e07a54f042, type: 3}

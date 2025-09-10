@@ -8,6 +8,7 @@ public class EnergyProjectileSkillState : SkillState
     {
         base.OnEnter(stateManager);
         stateManager.CharacterCtrl.CharacterAnimEvent.StopCharacterActions();
+        AudioManager.Instance.AudioSource.PlayOneShot(this.skill.sfx);
     }
     public override void OnUpdate()
     {

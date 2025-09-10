@@ -11,8 +11,7 @@ public class MoveState : State
     {
         base.OnEnter(stateManager);
         this.animator.SetBool("IsMove", true);
-        AudioManager.Instance.AudioSource.PlayOneShot(
-                   this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.moveClip);
+        AudioManager.Instance.PlayCharacterSound(CharacterSoundType.Move);
     }
     public override void OnUpdate()
     {

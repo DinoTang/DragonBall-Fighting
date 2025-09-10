@@ -50,7 +50,7 @@ public class IdleCombatState : State
             {
                 if (this.stateManager.CharacterCtrl.CharacterKiManager.CurrentKi ==
             this.stateManager.CharacterCtrl.CharacterKiManager.KiMax) return;
-                AudioManager.Instance.AudioSource.PlayOneShot(this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.startChargeClip);
+                AudioManager.Instance.PlayCharacterSound(CharacterSoundType.StartCharge);
                 this.stateManager.SetNextState(new ChargeState());
             }
         }

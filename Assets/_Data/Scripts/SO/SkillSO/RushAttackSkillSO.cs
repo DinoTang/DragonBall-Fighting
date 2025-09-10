@@ -31,8 +31,7 @@ public class RushAttackSkillSO : SkillDataSO
     {
         if (!hasPlayedSound) // chỉ phát lần đầu
         {
-            AudioManager.Instance.AudioSource.PlayOneShot(
-                user.CharacterData.CharacterDataSO.groundHitClip);
+            AudioManager.Instance.PlayCharacterSound(CharacterSoundType.GroundHit);
             hasPlayedSound = true;
         }
 

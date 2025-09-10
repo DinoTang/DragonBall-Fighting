@@ -11,7 +11,7 @@ public class ChargeState : State
         ReadyKiChargeFXSpawner.Instance.Spawn(ReadyKiChargeFXSpawner.Instance.nameFX,
         this.stateManager.transform.position);
 
-        AudioManager.Instance.AudioSource.PlayOneShot(this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.chargingClip);
+        AudioManager.Instance.PlayCharacterSound(CharacterSoundType.Charging);
     }
     public override void OnUpdate()
     {
@@ -30,7 +30,7 @@ public class ChargeState : State
         this.stateManager.CharacterCtrl.CharacterKiManager.ChargeKi();
 
         AudioSource audio = AudioManager.Instance.AudioSource;
-        AudioClip clip = this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.chargingClip;
+        AudioClip clip = AudioManager.Instance.PlayCharacterSound(CharacterSoundType.Charging);
 
         audio.clip = clip;
         audio.loop = true;  // Cho phép loop

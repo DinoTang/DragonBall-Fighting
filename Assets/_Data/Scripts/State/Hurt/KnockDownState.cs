@@ -28,7 +28,6 @@ public class KnockDownState : State
         base.OnExit();
         this.animator.SetBool("IsKnockDown", false);
         this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsKnockDown(false);
-        AudioManager.Instance.AudioSource.PlayOneShot(
-                   this.stateManager.CharacterCtrl.CharacterData.CharacterDataSO.groundHitClip);
+        AudioManager.Instance.PlayCharacterSound(CharacterSoundType.GroundHit);
     }
 }
