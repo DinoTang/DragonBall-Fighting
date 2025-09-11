@@ -103,6 +103,7 @@ public class CharacterCombo : CharacterAbstract
         skillData.skillName != SkillNameEnum.Skill_Burst)
         {
             this.SpawnHitFlash();
+            AudioManager.Instance.PlayCharacterSound(CharacterSoundType.SkillActive);
         }
         State skillState = skillData.GetSkillState();
         characterCtrl.StateManager.SetNextState(skillState);

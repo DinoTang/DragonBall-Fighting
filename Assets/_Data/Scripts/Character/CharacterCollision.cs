@@ -29,9 +29,8 @@ public class CharacterCollision : CharacterAbstract
         this.isGround = true;
         SmokeLandedFXSpawner.Instance.Spawn(SmokeLandedFXSpawner.Instance.nameFX, transform.position);
 
-        if (this.characterCtrl.StateManager.CurrentState is BounceOnGroundState)
-            AudioManager.Instance.PlayCharacterSound(CharacterSoundType.BounceGroundHit);
-        else AudioManager.Instance.PlayCharacterSound(CharacterSoundType.Landing);
+        if (this.characterCtrl.StateManager.CurrentState is not BounceOnGroundState)
+            AudioManager.Instance.PlayCharacterSound(CharacterSoundType.Landing);
 
 
         if (!this.CanEnterIdleState()) return;

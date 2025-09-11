@@ -12,4 +12,5 @@ public enum CharacterSoundType
     Landing,
     StartCharge,
     Charging,
+    SkillActive
 }

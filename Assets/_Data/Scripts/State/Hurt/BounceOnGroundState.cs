@@ -17,6 +17,7 @@ public class BounceOnGroundState : State
         this.animator.SetBool("IsKnockUp", true);
         // this.stateManager.CharacterCtrl.Rgb.gravityScale = 15f;
         this.BounceUp();
+        AudioManager.Instance.PlayCharacterSound(CharacterSoundType.BounceGroundHit);
     }
 
 

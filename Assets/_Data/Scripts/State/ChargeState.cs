@@ -29,18 +29,7 @@ public class ChargeState : State
 
         this.stateManager.CharacterCtrl.CharacterKiManager.ChargeKi();
 
-        AudioSource audio = AudioManager.Instance.AudioSource;
-        AudioClip clip = AudioManager.Instance.PlayCharacterSound(CharacterSoundType.Charging);
-
-        audio.clip = clip;
-        audio.loop = true;  // Cho phép loop
-        if (!audio.isPlaying)
-        {
-            audio.Play();
-        }
-
-
-
+        AudioManager.Instance.PlayCharacterSound(CharacterSoundType.Charging, true);
         CameraManager.Instance.Shake(0.05f, 0.03f);
     }
     public override void OnExit()
@@ -48,8 +37,7 @@ public class ChargeState : State
         base.OnExit();
         this.animator.SetBool("IsCharge", false);
         this.stateManager.CharacterCtrl.DisableSmokeEffect();
-        AudioManager.Instance.AudioSource.Stop();
-        AudioManager.Instance.AudioSource.loop = false;
+        AudioManager.Instance.StopCharacterSound();
     }
 
 }

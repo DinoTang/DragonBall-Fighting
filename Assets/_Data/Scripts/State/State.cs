@@ -13,6 +13,7 @@ public abstract class State
         this.stateManager = stateManager;
         // Debug.Log(this.stateManager);
         this.animator = this.stateManager.CharacterCtrl.Animator;
+        Debug.LogWarning(this.stateManager.transform.name + " " + this.timed + ": " + this.stateManager.CurrentState);
     }
 
     public virtual void OnUpdate()

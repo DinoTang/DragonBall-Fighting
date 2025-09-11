@@ -17,6 +17,7 @@ public class KnockBackState : State
         float dir = this.stateManager.CharacterCtrl.CharacterFlip.Direct * -1;
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(dir * 50f, 0);
         if (!this.stateManager.CharacterCtrl.CharacterCollision.IsWall) return;
+        AudioManager.Instance.PlayCharacterSound(CharacterSoundType.GroundHit);
         this.stateManager.SetNextState(new FallKnockBackState());
     }
 

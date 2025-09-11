@@ -1423,20 +1423,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501497c107c777e4ab0584a637988c83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 519420031}
   audioSource: {fileID: 216506592}
-  koSound: {fileID: 8300000, guid: a94c790d2a623ad409a26e5b5351ed21, type: 3}
-  redWinSound: {fileID: 8300000, guid: bc0d1c01fdbb93c47a7357c1bbbe3f1b, type: 3}
-  blueWinSound: {fileID: 8300000, guid: 2d67c5a5dbe528d47960e6d103212e35, type: 3}
-  timeOverSound: {fileID: 8300000, guid: 0d4a415db2eb75246a21fca15436ca66, type: 3}
-  readySound: {fileID: 8300000, guid: 0707117eae8a38a4c9903afe6670ee63, type: 3}
-  fightSound: {fileID: 8300000, guid: 7642297ed4aca654ab359f67e722929b, type: 3}
-  hasKoSound: 0
-  hasTimeOverSound: 0
-  hasRedWinSound: 0
-  hasBlueWinSound: 0
-  hasReadySound: 0
-  hasFightSound: 0
+  announcerSoundSO: {fileID: 11400000, guid: c092525829e6a2e42b8b73036655fdb9, type: 2}
+  characterSoundSO: {fileID: 11400000, guid: 2053aba97b2466c4da626170d1f81133, type: 2}
+  uiSoundSO: {fileID: 11400000, guid: 4da6add97ae369948869d52a3dcfd60b, type: 2}
 --- !u!82 &216506592
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11874,6 +11864,7 @@ MonoBehaviour:
   gameOverDelay: 3
   timerMatchMax: 90
   timerMatchCurrent: 0
+  hasWinSound: 0
 --- !u!4 &1738959950
 Transform:
   m_ObjectHideFlags: 0

@@ -52,34 +52,82 @@ public class AudioManager : BaseBehaviour
         this.uiSoundSO = Resources.Load<UISoundSO>("Sounds/UISoundData");
         Debug.Log(transform.name + ": LoadUISoundSO");
     }
-    public AudioClip PlayAnnouncerSound(AnnouncerSoundType type)
+    
+    // Announcer
+    public AudioClip GetAnnouncerSound(AnnouncerSoundType type)
     {
         foreach (var sound in this.announcerSoundSO.sounds)
         {
-            if (sound.type != type) continue;
-            this.audioSource.PlayOneShot(sound.clip);
-            return sound.clip;
+            if (sound.type == type)
+                return sound.clip;
         }
         return null;
     }
-    public AudioClip PlayCharacterSound(CharacterSoundType type)
+
+    public void PlayAnnouncerSound(AnnouncerSoundType type)
+    {
+        AudioClip clip = this.GetAnnouncerSound(type);
+        if (clip != null) this.audioSource.PlayOneShot(clip);
+        else Debug.LogWarning($"AnnouncerSound not found: {type}");
+    }
+
+
+    // Character
+    public AudioClip GetCharacterSound(CharacterSoundType type)
     {
         foreach (var sound in this.characterSoundSO.sounds)
         {
-            if (sound.type != type) continue;
-            this.audioSource.PlayOneShot(sound.clip);
-            return sound.clip;
+            if (sound.type == type)
+                return sound.clip;
         }
         return null;
     }
-    public AudioClip PlayUISound(UISoundType type)
+
+    public void PlayCharacterSound(CharacterSoundType type, bool loop = false)
+    {
+        AudioClip clip = this.GetCharacterSound(type);
+        if (clip == null)
+        {
+            Debug.LogWarning($"CharacterSound not found: {type}");
+            return;
+        }
+
+        if (loop)
+        {
+            this.audioSource.clip = clip;
+            this.audioSource.loop = true;
+            if (!this.audioSource.isPlaying)
+                this.audioSource.Play();
+        }
+        else
+        {
+            this.audioSource.PlayOneShot(clip);
+        }
+    }
+
+    public void StopCharacterSound()
+    {
+        this.audioSource.Stop();
+        this.audioSource.loop = false;
+    }
+
+
+    // UI
+    public AudioClip GetUISound(UISoundType type)
     {
         foreach (var sound in this.uiSoundSO.sounds)
         {
-            if (sound.type != type) continue;
-            this.audioSource.PlayOneShot(sound.clip);
-            return sound.clip;
+            if (sound.type == type)
+                return sound.clip;
         }
         return null;
     }
+
+    public void PlayUISound(UISoundType type)
+    {
+        AudioClip clip = this.GetUISound(type);
+        if (clip != null) this.audioSource.PlayOneShot(clip);
+        else Debug.LogWarning($"UISound not found: {type}");
+    }
+
 }

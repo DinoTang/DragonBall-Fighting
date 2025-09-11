@@ -12,5 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: AnnouncerSoundData
   m_EditorClassIdentifier: Assembly-CSharp::AnnouncerSoundSO
-  soundType: 0
-  sounds: []
+  sounds:
+  - type: 1
+    clip: {fileID: 8300000, guid: 0707117eae8a38a4c9903afe6670ee63, type: 3}
+  - type: 2
+    clip: {fileID: 8300000, guid: be4b0fcebbe29754f841aba508f28085, type: 3}
+  - type: 3
+    clip: {fileID: 8300000, guid: a94c790d2a623ad409a26e5b5351ed21, type: 3}
+  - type: 4
+    clip: {fileID: 8300000, guid: bc0d1c01fdbb93c47a7357c1bbbe3f1b, type: 3}
+  - type: 5
+    clip: {fileID: 8300000, guid: 2d67c5a5dbe528d47960e6d103212e35, type: 3}
+  - type: 6
+    clip: {fileID: 8300000, guid: 0d4a415db2eb75246a21fca15436ca66, type: 3}
