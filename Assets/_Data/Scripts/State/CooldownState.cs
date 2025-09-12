@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CooldownState : State
+public class CooldownState : CharacterState
 {
     protected float cooldown = 0.5f;
 

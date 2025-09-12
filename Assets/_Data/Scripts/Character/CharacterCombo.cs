@@ -21,15 +21,15 @@ public class CharacterCombo : CharacterAbstract
     protected void Update()
     {
         if (GameManager.Instance.IsGameOver) return;
-        if (InputManager.Instance.GetDownInput()) this.inputBuffer.AddInput(InputKey.Down);
+        if (InputManager.Instance.GetDownInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.Down);
         if (InputManager.Instance.GetLeftInput()) this.inputBuffer.AddInput(InputKey.Left);
         if (InputManager.Instance.GetRightInput()) this.inputBuffer.AddInput(InputKey.Right);
-        if (InputManager.Instance.GetHitInput()) this.inputBuffer.AddInput(InputKey.Hit);
-        if (InputManager.Instance.GetKickInput()) this.inputBuffer.AddInput(InputKey.Kick);
-        if (InputManager.Instance.GetChargeInput()) this.inputBuffer.AddInput(InputKey.ChargeKi);
-        if (InputManager.Instance.GetPowerFiredInput()) this.inputBuffer.AddInput(InputKey.Skill);
-        if (InputManager.Instance.GetUInput()) this.inputBuffer.AddInput(InputKey.U);
-        if (InputManager.Instance.GetLauncherInput()) this.inputBuffer.AddInput(InputKey.O);
+        if (InputManager.Instance.GetHitInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.Hit);
+        if (InputManager.Instance.GetKickInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.Kick);
+        if (InputManager.Instance.GetChargeInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.ChargeKi);
+        if (InputManager.Instance.GetKiBlastInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.Skill);
+        if (InputManager.Instance.GetRushAttackInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.U);
+        if (InputManager.Instance.GetPowerSurgeInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.O);
         this.combo = this.inputBuffer.GetComboString();
 
         // if (this.combo == "Down+Left+Hit" || this.combo == "Down+Right+Hit")
@@ -105,7 +105,7 @@ public class CharacterCombo : CharacterAbstract
             this.SpawnHitFlash();
             AudioManager.Instance.PlayCharacterSound(CharacterSoundType.SkillActive);
         }
-        State skillState = skillData.GetSkillState();
+        CharacterState skillState = skillData.GetSkillState();
         characterCtrl.StateManager.SetNextState(skillState);
 
         return true;
@@ -143,7 +143,7 @@ public class CharacterCombo : CharacterAbstract
     protected void SkillShootBaseKiAirCombo()
     {
         if (this.currentSkill != "") return;
-        if (this.characterCtrl.StateManager.mainStateType is IdleCombatState) return;
+        if (this.characterCtrl.StateManager.mainStateType is IdleState) return;
         HandleSkillCombo("Skill", 1, SkillNameEnum.Skill_BasicProjectile_Air);
         HandleSkillCombo("Skill", -1, SkillNameEnum.Skill_BasicProjectile_Air);
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HurtDeadState : State
+public class HurtDeadState : CharacterState
 {
     public override void OnEnter(StateManager stateManager)
     {

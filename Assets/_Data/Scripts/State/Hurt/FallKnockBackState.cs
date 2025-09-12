@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallKnockBackState : State
+public class FallKnockBackState : CharacterState
 {
     public override void OnEnter(StateManager stateManager)
     {

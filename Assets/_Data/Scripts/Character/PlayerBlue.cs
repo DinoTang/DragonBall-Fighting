@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBlue : CharacterAbstract
+public class PlayerBlue : PlayerType
 {
     protected static PlayerBlue instance;
     public static PlayerBlue Instance => instance;

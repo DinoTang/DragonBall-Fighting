@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BounceOnGroundState : State
+public class BounceOnGroundState : CharacterState
 {
     private int bounceCount = 0;
     private int maxBounce = 3;

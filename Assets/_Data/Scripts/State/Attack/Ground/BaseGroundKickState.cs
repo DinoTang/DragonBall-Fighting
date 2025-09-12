@@ -8,7 +8,7 @@ public class BaseGroundKickState : BaseGroundAttackState
     {
         base.OnUpdate();
 
-        if (this.timed > duration * 0.5f && InputManager.Instance.GetKickInput())
+        if (this.timed > duration * 0.5f && InputManager.Instance.GetKickInput(this.playerType))
         {
             shouldCombo = true;
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : State
+public class JumpState : CharacterState
 {
     protected float jumpForce = 40f;
     public override void OnEnter(StateManager stateManager)

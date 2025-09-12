@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnockdownIdleState : State
+public class KnockdownIdleState : CharacterState
 {
     public override void OnEnter(StateManager stateManager)
     {

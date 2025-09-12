@@ -9,7 +9,7 @@ public class TeleportPunchSkillSO : SkillDataSO
     public AnimationClip firstHitAnim;
     public AnimationClip secondHitAnim;
     public float waitBetween = 2f;
-    public override State GetSkillState()
+    public override CharacterState GetSkillState()
     {
         return new TeleportPunchSkillState();
     }

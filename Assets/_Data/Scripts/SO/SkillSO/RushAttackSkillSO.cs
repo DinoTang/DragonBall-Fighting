@@ -19,7 +19,7 @@ public class RushAttackSkillSO : SkillDataSO
     public int gizmoResolution = 20;
     public float gizmoHeightScale = 3f;
 
-    public override State GetSkillState()
+    public override CharacterState GetSkillState()
     {
         return new RushAttackSkillState();
     }

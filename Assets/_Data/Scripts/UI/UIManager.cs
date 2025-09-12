@@ -94,7 +94,7 @@ public class UIManager : BaseBehaviour
     protected void ShowWinnerUI()
     {
         if (GameManager.Instance.GameOverTimer < GameManager.Instance.GameOverDelay) return;
-        if (GameManager.Instance.Winner.StateManager.CurrentState is not IdleCombatState) return;
+        if (GameManager.Instance.Winner.StateManager.CurrentState is not IdleState) return;
         if (!this.hasShowWinnerUI)
         {
             this.hasShowWinnerUI = true;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseCombo : State
+public class BaseCombo : CharacterState
 {
 
     public override void OnEnter(StateManager stateManager)

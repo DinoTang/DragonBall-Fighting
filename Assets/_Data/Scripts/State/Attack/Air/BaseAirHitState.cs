@@ -27,7 +27,7 @@ public class BaseAirHitState : BaseAirState
             this.stateManager.CharacterCtrl.Rgb.velocity = Vector2.zero;
             this.stateManager.CharacterCtrl.Rgb.gravityScale = 0;
         }
-        if (this.timed > duration * 0.3f && InputManager.Instance.GetHitInput())
+        if (this.timed > duration * 0.3f && InputManager.Instance.GetHitInput(this.playerType))
         {
             shouldCombo = true;
         }

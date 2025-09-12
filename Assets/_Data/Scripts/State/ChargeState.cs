@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargeState : State
+public class ChargeState : CharacterState
 {
     public override void OnEnter(StateManager stateManager)
     {
@@ -23,7 +23,7 @@ public class ChargeState : State
             this.stateManager.SetNextStateToMain();
             return;
         }
-        if (InputManager.Instance.ReleaseChargeInput()) this.stateManager.SetNextState(new IdleCombatState());
+        if (InputManager.Instance.ReleaseChargeInput(this.playerType)) this.stateManager.SetNextState(new IdleState());
         // Spawn Smoke Effect 
         this.stateManager.CharacterCtrl.EnableSmokeEffect();
 

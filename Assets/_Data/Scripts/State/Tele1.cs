@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tele1 : State
+public class Tele1 : CharacterState
 {
     public override void OnEnter(StateManager stateManager)
     {

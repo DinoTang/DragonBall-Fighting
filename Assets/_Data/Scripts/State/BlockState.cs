@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockState : State
+public class BlockState : CharacterState
 {
     public override void OnEnter(StateManager stateManager)
     {
@@ -14,7 +14,7 @@ public class BlockState : State
     {
         base.OnUpdate();
 
-        if (InputManager.Instance.ReleaseBlockHitInput())
+        if (InputManager.Instance.ReleaseBlockHitInput(this.playerType))
         {
             // this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsBlock(false);
             this.stateManager.SetNextStateToMain();

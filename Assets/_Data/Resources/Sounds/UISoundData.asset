@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: a2c8ca3aaf76ef449ba95f8e3bfeefaa, type: 3}
   m_Name: UISoundData
-  m_EditorClassIdentifier: Assembly-CSharp::UISoundSO
-  sounds: 
+  m_EditorClassIdentifier: 
+  sounds: []

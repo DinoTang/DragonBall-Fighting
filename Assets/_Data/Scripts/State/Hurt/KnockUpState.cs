@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnockUpState : State
+public class KnockUpState : CharacterState
 {
     protected float knockDuration = 0.5f;
     public override void OnEnter(StateManager stateManager)

@@ -9,14 +9,14 @@ public class StateManager : BaseBehaviour
     public bool IsClone { get => isClone; set => isClone = value; }
     [SerializeField] protected bool canSuperDash = false;
     public bool CanSuperDash { get => canSuperDash; set => canSuperDash = value; }
-    public State mainStateType;
-    public State CurrentState { get; set; }
-    public State nextState;
+    public CharacterState mainStateType;
+    public CharacterState CurrentState { get; set; }
+    public CharacterState nextState;
 
     protected override void Start()
     {
         base.Start();
-        this.mainStateType = new IdleCombatState();
+        this.mainStateType = new IdleState();
         this.SetState(mainStateType);
     }
     protected override void LoadComponent()
@@ -35,7 +35,7 @@ public class StateManager : BaseBehaviour
         if (this.characterCtrl.CharacterCollision.IsGround)
         {
             this.canSuperDash = true;
-            this.mainStateType = new IdleCombatState();
+            this.mainStateType = new IdleState();
         }
         else if (this.CurrentState.GetType() != typeof(SuperDashState))
         {
@@ -51,7 +51,7 @@ public class StateManager : BaseBehaviour
         CurrentState?.OnUpdate();
     }
 
-    private void SetState(State _newState)
+    private void SetState(CharacterState _newState)
     {
         nextState = null;
         CurrentState?.OnExit();
@@ -59,7 +59,7 @@ public class StateManager : BaseBehaviour
         CurrentState.OnEnter(this);
     }
 
-    public void SetNextState(State _newState)
+    public void SetNextState(CharacterState _newState)
     {
         if (_newState != null)
         {

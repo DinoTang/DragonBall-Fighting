@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : State
+public class MoveState : CharacterState
 {
     protected float speed = 15f;
     protected Vector2 movement;
-    protected float horizontal;
+    protected int horizontal;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
@@ -30,7 +30,7 @@ public class MoveState : State
     }
     protected virtual void UpdateMovement()
     {
-        this.horizontal = InputManager.Instance.GetHorizontal();
+        this.horizontal = InputManager.Instance.GetMoveInput(this.playerType);
 
         if (this.horizontal != 0)
         {
@@ -58,15 +58,15 @@ public class MoveState : State
     // }
     protected virtual bool HandleOtherActions()
     {
-        if (TrySwitchState(new JumpState(), InputManager.Instance.GetUpInput())) return true;
-        if (TrySwitchState(new GroundHit1State(), InputManager.Instance.GetHitInput())) return true;
-        if (TrySwitchState(new GroundKick1State(), InputManager.Instance.GetKickInput())) return true;
-        if (TrySwitchState(new BlockState(), InputManager.Instance.GetBlockHitInput())) return true;
+        if (TrySwitchState(new JumpState(), InputManager.Instance.GetJumpInput(this.playerType))) return true;
+        if (TrySwitchState(new GroundHit1State(), InputManager.Instance.GetHitInput(this.playerType))) return true;
+        if (TrySwitchState(new GroundKick1State(), InputManager.Instance.GetKickInput(this.playerType))) return true;
+        if (TrySwitchState(new BlockState(), InputManager.Instance.GetBlockInput(this.playerType))) return true;
         // if (TrySwitchState(new SuperDashState(), InputManager.Instance.GetSuperDashInput())) return true;
         return false;
     }
 
-    protected bool TrySwitchState(State newState, bool input)
+    protected bool TrySwitchState(CharacterState newState, bool input)
     {
         if (input)
         {

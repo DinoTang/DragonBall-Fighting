@@ -21,10 +21,10 @@ public class AirState : BaseAirState
             // this.animator.SetBool("IsJump", false);
         }
         if (this.stateManager.IsClone) return;
-        if (InputManager.Instance.GetHitInput()) this.stateManager.SetNextState(new AirHit1State());
-        if (InputManager.Instance.GetKickInput()) this.stateManager.SetNextState(new AirKickState());
-        if (InputManager.Instance.GetBlockHitInput()) this.stateManager.SetNextState(new AirBlockState());
-        if (InputManager.Instance.GetSuperDashInput() && this.stateManager.CanSuperDash)
+        if (InputManager.Instance.GetHitInput(this.playerType)) this.stateManager.SetNextState(new AirHit1State());
+        if (InputManager.Instance.GetKickInput(this.playerType)) this.stateManager.SetNextState(new AirKickState());
+        if (InputManager.Instance.GetBlockInput(this.playerType)) this.stateManager.SetNextState(new AirBlockState());
+        if (InputManager.Instance.GetSuperDashInput(this.playerType) && this.stateManager.CanSuperDash)
             this.stateManager.SetNextState(new SuperDashState());
 
     }

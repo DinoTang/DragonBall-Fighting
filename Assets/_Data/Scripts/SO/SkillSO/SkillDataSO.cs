@@ -10,7 +10,7 @@ public class SkillDataSO : ScriptableObject
     public float damage;
     public AnimationClip animationClip;
     public AudioClip sfx;
-    public virtual State GetSkillState()
+    public virtual CharacterState GetSkillState()
     {
         return new EnergyProjectileSkillState();
     }

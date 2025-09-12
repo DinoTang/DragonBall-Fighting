@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntroState : State
+public class IntroState : CharacterState
 {
     public override void OnEnter(StateManager stateManager)
     {

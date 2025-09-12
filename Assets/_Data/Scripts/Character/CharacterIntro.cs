@@ -38,7 +38,7 @@ public class CharacterIntro : CharacterAbstract
         this.characterCtrl.Animator.Play(transformClip.name);
         yield return new WaitForSeconds(transformClip.length + 0.5f);
 
-        this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
+        this.characterCtrl.StateManager.SetNextState(new IdleState());
         yield return new WaitForSeconds(1f);
 
         this.isReady = true;

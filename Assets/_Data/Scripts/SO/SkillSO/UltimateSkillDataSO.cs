@@ -7,7 +7,7 @@ public class UltimateSkillDataSO : BeamSkillDataSO
     public AnimationClip cutSceneReadyUltimateAnim;
     public AnimationClip performUltimateAnim;
     public AnimationClip cutScenePerformUltimateAnim;
-    public override State GetSkillState()
+    public override CharacterState GetSkillState()
     {
         return new UltimateSkillState();
     }

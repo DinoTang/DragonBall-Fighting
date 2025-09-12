@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseCrouchHitState : State
+public class BaseCrouchHitState : CharacterState
 {
     protected int attackCounter;
     public override void OnEnter(StateManager stateManager)
@@ -21,7 +21,7 @@ public class BaseCrouchHitState : State
         if (InputManager.Instance.ReleaseCrouchInput())
         {
             this.animator.SetBool("IsCrouch", false);
-            this.stateManager.SetNextState(new IdleCombatState());
+            this.stateManager.SetNextState(new IdleState());
         }
         if (this.timed >= this.duration)
         {

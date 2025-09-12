@@ -8,7 +8,7 @@ public class BaseGroundHitState : BaseGroundAttackState
     {
         base.OnUpdate();
 
-        if (this.timed > duration * 0.5f && InputManager.Instance.GetHitInput())
+        if (this.timed > duration * 0.5f && InputManager.Instance.GetHitInput(this.playerType))
         {
             shouldCombo = true;
         }

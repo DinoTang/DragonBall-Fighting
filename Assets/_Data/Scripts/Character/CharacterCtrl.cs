@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(StateManager))]
 public class CharacterCtrl : BaseBehaviour
 {
+    [Header("Character")]
     [SerializeField] protected CharacterEnum characterName;
     public CharacterEnum CharacterName => characterName;
     [SerializeField] protected Rigidbody2D rgb;
@@ -51,11 +52,15 @@ public class CharacterCtrl : BaseBehaviour
     public Trail Trail => trail;
     [SerializeField] protected Animator trailAnimator;
     public Animator TrailAnimator => trailAnimator;
+
+    [Header("Player Type")]
+    [SerializeField] protected PlayerType playerType;
+    public PlayerType PlayerType => playerType;
+
     public void SetOpponent(CharacterCtrl target)
     {
         opponent = target;
     }
-
 
     protected override void LoadComponent()
     {
@@ -76,6 +81,7 @@ public class CharacterCtrl : BaseBehaviour
         this.LoadCharacterKiManager();
         this.LoadCharacterSkillManager();
         this.LoadTrail();
+        this.LoadPlayerType();
     }
     protected void LoadRigidbody()
     {
@@ -179,6 +185,14 @@ public class CharacterCtrl : BaseBehaviour
         this.trailAnimator = this.trail.GetComponentInChildren<Animator>();
         Debug.Log(transform.name + ": LoadCharacterSkillManager", gameObject);
     }
+
+    protected void LoadPlayerType()
+    {
+        if (this.playerType != null) return;
+        this.playerType = GetComponentInChildren<PlayerType>();
+        Debug.Log(transform.name + ": LoadCharacterSkillManager", gameObject);
+    }
+
     public void EnableSmokeEffect()
     {
         this.kiCharge.gameObject.SetActive(true);

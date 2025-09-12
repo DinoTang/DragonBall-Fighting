@@ -124,6 +124,9 @@ public class RushAttackSkillState : SkillState
         string animName = rushAttackSkill.RushAttack_Combo.name;
         var animator = this.self.Animator;
         animator.Play(animName);
+        if (this.stateManager.CharacterCtrl.Opponent.CharacterDamageReceiver.isDead) this.stateManager.SetNextStateToMain();
+
+
 
         float animTime = rushAttackSkill.RushAttack_Combo.length;
         if (this.timed >= animTime)

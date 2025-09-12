@@ -35,7 +35,7 @@ public class CharacterCollision : CharacterAbstract
 
         if (!this.CanEnterIdleState()) return;
 
-        this.characterCtrl.StateManager.SetNextState(new IdleCombatState());
+        this.characterCtrl.StateManager.SetNextState(new IdleState());
 
         this.characterCtrl.StateManager.CharacterCtrl.Animator.SetBool("IsJump", false);
         this.characterCtrl.StateManager.CanSuperDash = true;
@@ -91,8 +91,8 @@ public class CharacterCollision : CharacterAbstract
 
     protected bool CanEnterIdleState()
     {
-        State currentState = this.characterCtrl.StateManager.CurrentState;
-        return !(currentState is IdleCombatState
+        CharacterState currentState = this.characterCtrl.StateManager.CurrentState;
+        return !(currentState is IdleState
                 || currentState is IntroState
                 || currentState is SuperDashState
                 || currentState is KnockDownState

@@ -21,17 +21,20 @@ public class GameManager : BaseBehaviour
     [SerializeField] protected bool isGameOver;
     public bool IsGameOver => isGameOver;
     [SerializeField] protected bool isCanShowResult;
+
+
+    [Header("Timing Match")]
+    [SerializeField] protected bool isNoTiming = false;
     [SerializeField] protected bool isTimeOver;
     public bool IsTimeOver => isTimeOver;
-    [SerializeField] private float gameOverTimer = 0f;
-    [SerializeField] private float gameOverDelay = 2.5f;   // khoảng chờ sau khi game over
-
-    public float GameOverTimer => gameOverTimer;
-    public float GameOverDelay => gameOverDelay;
     [SerializeField] protected float timerMatchMax = 90f;
     [SerializeField] protected float timerMatchCurrent;
+    public float GameOverTimer => gameOverTimer;
+    public float GameOverDelay => gameOverDelay;
     public float TimerMatch => timerMatchCurrent;
 
+    [SerializeField] private float gameOverTimer = 0f;
+    [SerializeField] private float gameOverDelay = 2.5f;   // khoảng chờ sau khi game over
     private bool canStartReadyFight = false;
 
 
@@ -105,6 +108,7 @@ public class GameManager : BaseBehaviour
     }
     protected void PlayFight()
     {
+        if (this.isNoTiming) return;
         if (!this.isGameOver) this.timerMatchCurrent -= Time.deltaTime;
         if (this.timerMatchCurrent <= 0) this.timerMatchCurrent = 0;
         if ((this.timerMatchCurrent == 0)

@@ -12,7 +12,7 @@ public class BeamSkillDataSO : SkillDataSO
     public float beamHeadLength;
     public float beamBodyLength;
     public float beamTailLength;
-    public override State GetSkillState()
+    public override CharacterState GetSkillState()
     {
         return new BeamSkillState();
     }

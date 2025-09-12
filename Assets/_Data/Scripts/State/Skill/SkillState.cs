@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class SkillState : State
+public class SkillState : CharacterState
 {
     protected SkillDataSO skill;
     protected float totalDuration;

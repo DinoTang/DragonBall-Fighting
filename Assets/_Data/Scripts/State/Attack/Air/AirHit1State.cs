@@ -15,7 +15,7 @@ public class AirHit1State : BaseAirHitState
         base.OnUpdate();
         // if (this.timed > duration * 0.3f && InputManager.Instance.GetKickInput()) this.otherAttack = true;
 
-        if (this.timed > duration * 0.3f && InputManager.Instance.GetKickInput())
+        if (this.timed > duration * 0.3f && InputManager.Instance.GetKickInput(this.playerType))
         {
             this.stateManager.SetNextState(new AirKickState());
         }

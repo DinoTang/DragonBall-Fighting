@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class SuperDashState : State
+public class SuperDashState : CharacterState
 {
     protected float speed = 70f;
     protected Vector2 targetLiftPos;
@@ -22,7 +22,7 @@ public class SuperDashState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (InputManager.Instance.ReleaseSuperDashInput()) this.stateManager.SetNextStateToMain();
+        if (InputManager.Instance.ReleaseSuperDashInput(this.playerType)) this.stateManager.SetNextStateToMain();
 
         if (this.timed < 0.35f)
         {
@@ -118,7 +118,7 @@ public class SuperDashState : State
         float heightOffset = self.transform.position.y - opponent.transform.position.y;
         float finalKnockbackY = this.hitKnockbackForceY + heightOffset * 1.2f; // nhân nhẹ để tạo lực bật cao hơn nếu chênh
 
-        bool bonusForceCondition = this.stateManager.mainStateType.GetType() == typeof(IdleCombatState);
+        bool bonusForceCondition = this.stateManager.mainStateType.GetType() == typeof(IdleState);
         float bonusForce = bonusForceCondition ? 2 : 3;
         opponent.Rgb.velocity = new Vector2(0, finalKnockbackY + bonusForce);
 

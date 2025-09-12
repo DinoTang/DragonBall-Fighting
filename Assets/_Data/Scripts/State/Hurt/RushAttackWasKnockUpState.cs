@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-public class RushAttackWasKnockUpState : State
+public class RushAttackWasKnockUpState : CharacterState
 {
     protected float knockDuration = 5f;
 

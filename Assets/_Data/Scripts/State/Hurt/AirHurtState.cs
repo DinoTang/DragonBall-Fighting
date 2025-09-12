@@ -18,5 +18,5 @@ public class AirHurtState : HurtState
         this.stateManager.CharacterCtrl.Rgb.gravityScale = 15;
     }
 
-   
+
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Principal;
 using UnityEngine;
 
-public class Tele2 : State
+public class Tele2 : CharacterState
 {
     protected float distanceTele = 5f;
     public override void OnEnter(StateManager stateManager)

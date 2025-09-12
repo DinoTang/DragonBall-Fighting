@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseGroundAttackState : State
+public class BaseGroundAttackState : CharacterState
 {
     protected bool shouldCombo = false;
     protected bool isHitting;

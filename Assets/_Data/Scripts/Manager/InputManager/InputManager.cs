@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,27 +7,34 @@ public class InputManager : BaseBehaviour
 {
     protected static InputManager instance;
     public static InputManager Instance => instance;
-
+    [Header("Player Inputs")]
+    [SerializeField] protected InputSO inputSO;
+    [SerializeField] protected PlayerInputConfig playerRedKeys;
+    [SerializeField] protected PlayerInputConfig playerBlueKeys;
     protected override void Awake()
     {
         base.Awake();
         if (InputManager.instance != null) Debug.LogWarning("Only 1 InputManager allows to exist");
         instance = this;
     }
-    protected void Update()
+    protected override void LoadComponent()
     {
-        if (this.GetInputChangePlayer1())
-        {
-            GameManager.Instance.RedPlayer.StateManager.IsClone = false;
-            GameManager.Instance.BluePlayer.StateManager.IsClone = true;
-            Debug.LogWarning("Player1");
-        }
-        if (this.GetInputChangePlayer2())
-        {
-            GameManager.Instance.BluePlayer.StateManager.IsClone = false;
-            GameManager.Instance.RedPlayer.StateManager.IsClone = true;
-            Debug.LogWarning("Player2");
-        }
+        base.LoadComponent();
+        this.LoadInputSO();
+        this.LoadPlayerInputConfig();
+    }
+
+    protected void LoadInputSO()
+    {
+        if (this.inputSO != null) return;
+        this.inputSO = Resources.Load<InputSO>("Options/InputSO");
+        Debug.Log(transform.name + ": LoadAudioSource");
+    }
+
+    protected void LoadPlayerInputConfig()
+    {
+        this.playerRedKeys = CloneConfig(inputSO.playerRedKeys);
+        this.playerBlueKeys = CloneConfig(inputSO.playerBlueKeys);
     }
 
     public bool GetInputChangePlayer1()
@@ -38,15 +46,35 @@ public class InputManager : BaseBehaviour
         return Input.GetKeyDown(KeyCode.Alpha2);
     }
 
+    private PlayerInputConfig GetConfig(PlayerType playerType)
+    {
+        if (playerType as PlayerRed) return this.playerRedKeys;
+        else if (playerType as PlayerBlue) return this.playerBlueKeys;
 
-    public float GetHorizontal()
-    {
-        return Input.GetAxisRaw("Horizontal");
+        return null;
     }
-    public bool GetInputToResetPosition()
+
+    public int GetMoveInput(PlayerType playerType)
     {
-        return Input.GetKeyDown(KeyCode.Space);
+        var cfg = GetConfig(playerType);
+        if (Input.GetKey(cfg.left)) return -1;
+        if (Input.GetKey(cfg.right)) return 1;
+        return 0;
     }
+    public bool GetJumpInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).up);
+    public bool GetBlockInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).block);
+    public bool ReleaseBlockHitInput(PlayerType playerType) => Input.GetKeyUp(this.GetConfig(playerType).block);
+    public bool GetDownInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).down);
+    public bool GetHitInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).punch);
+    public bool GetKickInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).kick);
+    public bool GetChargeInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).charge);
+    public bool ReleaseChargeInput(PlayerType playerType) => Input.GetKeyUp(this.GetConfig(playerType).charge);
+    public bool GetRushAttackInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).rushAttack);
+    public bool GetKiBlastInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).kiBlast);
+    public bool GetPowerSurgeInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).powerSurge);
+    public bool GetSuperDashInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).superDash);
+    public bool ReleaseSuperDashInput(PlayerType playerType) => Input.GetKeyUp(this.GetConfig(playerType).superDash);
+
     public bool GetLeftInput()
     {
         return Input.GetKeyDown(KeyCode.A);
@@ -55,64 +83,37 @@ public class InputManager : BaseBehaviour
     {
         return Input.GetKeyDown(KeyCode.D);
     }
-    public bool GetHitInput()
-    {
-        return Input.GetKeyDown(KeyCode.J);
-    }
-    public bool GetUInput()
-    {
-        return Input.GetKeyDown(KeyCode.U);
-    }
-    public bool GetKickInput()
-    {
-        return Input.GetKeyDown(KeyCode.K);
-    }
-    public bool GetUpInput()
-    {
-        return Input.GetKeyDown(KeyCode.W);
-    }
-    public bool GetDownInput()
-    {
-        return Input.GetKeyDown(KeyCode.S);
-    }
-    public bool GetBlockInput()
-    {
-        return Input.GetKey(KeyCode.S);
-    }
     public bool ReleaseCrouchInput()
     {
         return Input.GetKeyUp(KeyCode.S);
     }
-    public bool GetChargeInput()
+    public float GetHorizontalOld()
     {
-        return Input.GetKey(KeyCode.L);
+        return Input.GetAxisRaw("Horizontal");
     }
-    public bool ReleaseChargeInput()
+    public bool GetInputToResetPosition()
     {
-        return Input.GetKeyUp(KeyCode.L);
+        return Input.GetKeyDown(KeyCode.Space);
     }
-    public bool GetBlockHitInput()
+
+
+    private PlayerInputConfig CloneConfig(PlayerInputConfig src)
     {
-        return Input.GetKey(KeyCode.S);
-    }
-    public bool ReleaseBlockHitInput()
-    {
-        return Input.GetKeyUp(KeyCode.S);
-    }
-    public bool GetPowerFiredInput()
-    {
-        return Input.GetKeyDown(KeyCode.I);
-    }
-    public bool GetLauncherInput()
-    {
-        return Input.GetKeyDown(KeyCode.O);
-    }
-    public bool GetSuperDashInput()
-    {
-        return Input.GetKeyDown(KeyCode.F);
-    }
-    public bool ReleaseSuperDashInput()
-    {
-        return Input.GetKeyUp(KeyCode.F);
+        var clone = new PlayerInputConfig
+        {
+            up = src.up,
+            down = src.down,
+            left = src.left,
+            right = src.right,
+            punch = src.punch,
+            kick = src.kick,
+            block = src.block,
+            charge = src.charge,
+            rushAttack = src.rushAttack,
+            kiBlast = src.kiBlast,
+            powerSurge = src.powerSurge,
+            superDash = src.superDash
+        };
+        return clone;
     }
 }

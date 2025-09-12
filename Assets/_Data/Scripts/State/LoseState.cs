@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoseState : State
+public class LoseState : CharacterState
 {
     public override void OnEnter(StateManager stateManager)
     {

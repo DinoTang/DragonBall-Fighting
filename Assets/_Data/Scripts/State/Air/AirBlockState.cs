@@ -14,7 +14,7 @@ public class AirBlockState : BaseAirState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (InputManager.Instance.ReleaseBlockHitInput())
+        if (InputManager.Instance.ReleaseBlockHitInput(this.playerType))
         {
             this.BackMainState();
         }

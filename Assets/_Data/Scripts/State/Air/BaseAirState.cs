@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseAirState : State
+public class BaseAirState : CharacterState
 {
     protected float speed = 15f;
     public override void OnUpdate()
@@ -13,7 +13,7 @@ public class BaseAirState : State
     protected void MoveOnAir()
     {
         if (this.stateManager.IsClone) return;
-        float xInput = InputManager.Instance.GetHorizontal();
+        float xInput = InputManager.Instance.GetHorizontalOld();
         if (xInput != 0)
         {
             this.stateManager.CharacterCtrl.Rgb.velocity =
