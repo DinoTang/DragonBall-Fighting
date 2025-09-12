@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 216506592}
-  announcerSoundSO: {fileID: 11400000, guid: c092525829e6a2e42b8b73036655fdb9, type: 2}
+  announcerSoundSO: {fileID: 11400000, guid: f7ce92643651c5642886d5683b488d3b, type: 2}
   characterSoundSO: {fileID: 11400000, guid: 2053aba97b2466c4da626170d1f81133, type: 2}
   uiSoundSO: {fileID: 11400000, guid: 4da6add97ae369948869d52a3dcfd60b, type: 2}
 --- !u!82 &216506592
@@ -1582,6 +1582,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c290415174d99b45be36b6f294fb329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputSO: {fileID: 11400000, guid: 8bb4c6c89ea68f04fad10601f613b445, type: 2}
+  playerRedKeys:
+    left: 97
+    right: 100
+    up: 119
+    down: 115
+    block: 115
+    superDash: 102
+    punch: 106
+    kick: 107
+    charge: 108
+    rushAttack: 117
+    kiBlast: 105
+    powerSurge: 111
+  playerBlueKeys:
+    left: 276
+    right: 275
+    up: 273
+    down: 274
+    block: 274
+    superDash: 256
+    punch: 257
+    kick: 258
+    charge: 259
+    rushAttack: 260
+    kiBlast: 261
+    powerSurge: 262
 --- !u!1 &230567927
 GameObject:
   m_ObjectHideFlags: 0
@@ -5599,7 +5626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ccc9fbe12049a458d059748e2fa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: 1
+  characterName: 2
   rgb: {fileID: 751414177}
   animator: {fileID: 1864161640}
   stateManager: {fileID: 751414179}
@@ -5619,6 +5646,7 @@ MonoBehaviour:
   opponent: {fileID: 0}
   trail: {fileID: 112437301}
   trailAnimator: {fileID: 265037405}
+  playerType: {fileID: 1864161643}
 --- !u!114 &751414182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8855,7 +8883,7 @@ MonoBehaviour:
   isKnockDown: 0
   isKnockUp: 0
   currentHP: 5
-  hpMax: 1000
+  hpMax: 100000
   characterCtrl: {fileID: 751414181}
 --- !u!1 &1299843398
 GameObject:
@@ -9841,7 +9869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ccc9fbe12049a458d059748e2fa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: 1
+  characterName: 2
   rgb: {fileID: 1424784649}
   animator: {fileID: 651745897}
   stateManager: {fileID: 1424784648}
@@ -9854,13 +9882,14 @@ MonoBehaviour:
   characterDamageReceiver: {fileID: 1467487273}
   characterCombo: {fileID: 2057104911}
   kiCharge: {fileID: 1657318802}
-  firePoint: {fileID: 840159604}
+  firePoint: {fileID: 1327183334}
   firePointDiagonal: {fileID: 0}
   characterKiManager: {fileID: 300034727}
   characterSkillManager: {fileID: 2143680978}
   opponent: {fileID: 0}
   trail: {fileID: 112437301}
   trailAnimator: {fileID: 265037405}
+  playerType: {fileID: 651745898}
 --- !u!114 &1424784647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9889,7 +9918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterCtrl: {fileID: 1424784646}
-  isClone: 1
+  isClone: 0
   canSuperDash: 1
 --- !u!50 &1424784649
 Rigidbody2D:
@@ -10346,7 +10375,7 @@ MonoBehaviour:
   isKnockDown: 0
   isKnockUp: 0
   currentHP: 5
-  hpMax: 1000
+  hpMax: 100000
   characterCtrl: {fileID: 1424784646}
 --- !u!70 &1467487274
 CapsuleCollider2D:
@@ -11859,11 +11888,12 @@ MonoBehaviour:
   playerIsHit: {fileID: 0}
   isGameOver: 0
   isCanShowResult: 0
+  isNoTiming: 0
   isTimeOver: 0
-  gameOverTimer: 0
-  gameOverDelay: 3
   timerMatchMax: 90
   timerMatchCurrent: 0
+  gameOverTimer: 0
+  gameOverDelay: 3
   hasWinSound: 0
 --- !u!4 &1738959950
 Transform:

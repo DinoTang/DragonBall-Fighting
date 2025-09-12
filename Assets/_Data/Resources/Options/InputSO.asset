@@ -13,28 +13,28 @@ MonoBehaviour:
   m_Name: InputSO
   m_EditorClassIdentifier: 
   playerRedKeys:
-    left: 0
-    right: 0
-    up: 0
-    down: 0
-    block: 0
-    superDash: 0
-    punch: 0
-    kick: 0
-    charge: 0
-    rushAttack: 0
-    kiBlast: 0
-    powerSurge: 0
+    left: 97
+    right: 100
+    up: 119
+    down: 115
+    block: 115
+    superDash: 102
+    punch: 106
+    kick: 107
+    charge: 108
+    rushAttack: 117
+    kiBlast: 105
+    powerSurge: 111
   playerBlueKeys:
-    left: 0
-    right: 0
-    up: 0
-    down: 0
-    block: 0
-    superDash: 0
-    punch: 0
-    kick: 0
-    charge: 0
-    rushAttack: 0
-    kiBlast: 0
-    powerSurge: 0
+    left: 276
+    right: 275
+    up: 273
+    down: 274
+    block: 274
+    superDash: 256
+    punch: 257
+    kick: 258
+    charge: 259
+    rushAttack: 260
+    kiBlast: 261
+    powerSurge: 262
