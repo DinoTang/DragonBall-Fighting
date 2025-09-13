@@ -12,7 +12,7 @@ public class BeamSkillDamageSender : BaseSkillDamageSender
             boxCollider.size = new Vector2(4.3f, 1.7f);
         }
     }
-    
+
     protected override void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -45,7 +45,7 @@ public class BeamSkillDamageSender : BaseSkillDamageSender
     protected override void OnHitExplosionFX(Transform target)
     {
         base.OnHitExplosionFX(target);
-        ExplosionFX efx = this.SpawnHitExplosionFX(this.skillProjCtrl.SkillData.damageFxName, target);
+        ExplosionFX efx = this.SpawnHitExplosionFX(this.skillProjCtrl.SkillData.explosionFXName, target);
         efx.transform.position = new Vector2(efx.transform.position.x, efx.transform.position.y - 0.5f);
     }
 }

@@ -1,21 +1,16 @@
 using UnityEngine;
-[CreateAssetMenu(fileName = "CharacterData", menuName = "SO/CharacterData")]
+using System.Collections.Generic;
+[CreateAssetMenu(fileName = "CharacterData", menuName = "SO/Character/CharacterData")]
 public class CharacterDataSO : ScriptableObject
 {
     [Header("CharacterData")]
+    public CharacterEnum characterName;
+    public Sprite portrait;
+    public RuntimeAnimatorController animator;
+    public AnimationClip readyClip;
+    public List<SkillDataSO> skillList = new();
 
-    [Header("Sound")]
-    public AudioClip moveClip;
-    public AudioClip jumpClip;
-    public AudioClip dodgeHitClip;
-    public AudioClip dodgeKickClip;
-    public AudioClip weakHitClip;
-    public AudioClip strongHitClip;
-    public AudioClip groundHitClip;
-    public AudioClip bounceGroundHitClip;
-    public AudioClip landingClip;
-    public AudioClip startChargeClip;
-    public AudioClip chargingClip;
+    public AudioClip voiceChar;
 
 }
 

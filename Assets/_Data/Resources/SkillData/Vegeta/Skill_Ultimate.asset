@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Skill_Ultimate
   m_EditorClassIdentifier: 
   skillName: 9
-  damageFxName: 0
+  explosionFXName: 0
   kiCost: 300
   cooldown: 1
   damage: 50
   animationClip: {fileID: 7400000, guid: bcc2030a2af8a2e4cbec4c54e20b9751, type: 2}
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 8c0d595a16b7eb348ac5c1201519a1a8, type: 3}
+  SFXCharge: {fileID: 8300000, guid: d1e55c5a86c50804db4fc1077f563061, type: 3}
   endBeamSkillAnim: {fileID: 7400000, guid: 2b6ab778e160cff47b2671f846f0ab88, type: 2}
   beamHead: {fileID: 2173844217182431480, guid: 1dbc223e8d233ec45bcb9ed84bf1359f, type: 3}
   beamTail: {fileID: 7145446670710651124, guid: 5fc8f459b79574c46bb345f3f0021fa3, type: 3}

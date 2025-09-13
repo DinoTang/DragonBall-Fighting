@@ -5,9 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(StateManager))]
 public class CharacterCtrl : BaseBehaviour
 {
+    [Header("Note")]
+    public string note = "Click reset in GameManager is the best selection";
     [Header("Character")]
-    [SerializeField] protected CharacterEnum characterName;
-    public CharacterEnum CharacterName => characterName;
+    [SerializeField] protected CharacterDataSO characterDataSO;
+    public CharacterDataSO CharacterDataSO { get => characterDataSO; set => characterDataSO = value; }
     [SerializeField] protected Rigidbody2D rgb;
     public Rigidbody2D Rgb => rgb;
     [SerializeField] protected Animator animator;
@@ -17,10 +19,8 @@ public class CharacterCtrl : BaseBehaviour
     public StateManager StateManager => stateManager;
     [SerializeField] protected CharacterCollision characterCollision;
     public CharacterCollision CharacterCollision => characterCollision;
-    [SerializeField] protected CharacterData characterData;
-    public CharacterData CharacterData => characterData;
-    [SerializeField] protected CharacterIntro characterIntro;
-    public CharacterIntro CharacterIntro => characterIntro;
+    [SerializeField] protected CharacterModalCtrl characterModalCtrl;
+    public CharacterModalCtrl CharacterModalCtrl => characterModalCtrl;
     [SerializeField] protected CharacterFlip characterFlip;
     public CharacterFlip CharacterFlip => characterFlip;
     [SerializeField] protected CharacterAnimEvent characterAnimEvent;
@@ -61,7 +61,10 @@ public class CharacterCtrl : BaseBehaviour
     {
         opponent = target;
     }
-
+    public void LoadCharacterCtrl()
+    {
+        this.LoadComponent();
+    }
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -69,8 +72,7 @@ public class CharacterCtrl : BaseBehaviour
         this.LoadAnimator();
         this.LoadStateManager();
         this.LoadCharacterGroundCollision();
-        this.LoadCharacterData();
-        this.LoadCharacterIntro();
+        this.LoadCharacterModalCtrl();
         this.LoadCharacterFlip();
         this.LoadCharacterAnimEvent();
         this.LoadCharacterCombo();
@@ -107,17 +109,12 @@ public class CharacterCtrl : BaseBehaviour
         this.characterCollision = GetComponentInChildren<CharacterCollision>();
         Debug.Log(transform.name + ": LoadCharacterGroundCollision", gameObject);
     }
-    protected void LoadCharacterData()
+    protected void LoadCharacterModalCtrl()
     {
-        if (this.characterData != null) return;
-        this.characterData = GetComponentInChildren<CharacterData>();
-        Debug.Log(transform.name + ": LoadCharacterData", gameObject);
-    }
-    protected void LoadCharacterIntro()
-    {
-        if (this.characterIntro != null) return;
-        this.characterIntro = GetComponentInChildren<CharacterIntro>();
-        Debug.Log(transform.name + ": LoadCharacterIntro", gameObject);
+        if (this.characterModalCtrl != null) return;
+        this.characterModalCtrl = GetComponentInChildren<CharacterModalCtrl>();
+        this.characterModalCtrl.LoadCharacterModalCtrlComponent();
+        Debug.Log(transform.name + ": LoadCharacterModalCtrl", gameObject);
     }
     protected void LoadCharacterFlip()
     {
@@ -160,7 +157,7 @@ public class CharacterCtrl : BaseBehaviour
     protected void LoadFirePoint()
     {
         if (this.firePoint != null) return;
-        this.firePoint = FindAnyObjectByType<FirePoint>();
+        this.firePoint = GetComponentInChildren<FirePoint>();
         Debug.Log(transform.name + ": loadFirePoint", gameObject);
 
     }

@@ -11,8 +11,6 @@ public class IdleState : CharacterState
         this.animator.SetBool("IsIdle", true);
         this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.stateManager.CharacterCtrl.Rgb.velocity.y);
         this.stateManager.CharacterCtrl.CharacterDamageReceiver.ToggleIgnoreEnemy(false);
-
-        this.playerType = this.stateManager.CharacterCtrl.PlayerType;
     }
     public override void OnUpdate()
     {

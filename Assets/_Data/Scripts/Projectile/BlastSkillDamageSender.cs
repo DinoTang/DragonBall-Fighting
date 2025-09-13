@@ -26,6 +26,6 @@ public class BlastSkillDamageSender : BaseSkillDamageSender
     protected override void OnHitExplosionFX(Transform target)
     {
         base.OnHitExplosionFX(target);
-        this.SpawnHitExplosionFX(this.skillProjCtrl.SkillData.damageFxName, target);
+        this.SpawnHitExplosionFX(this.skillProjCtrl.SkillData.explosionFXName, target);
     }
 }

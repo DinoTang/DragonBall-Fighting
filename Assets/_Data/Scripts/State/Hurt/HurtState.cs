@@ -10,8 +10,8 @@ public class HurtState : CharacterState
         this.animator.SetBool("IsHurt", true);
         int indexRand = Random.Range(0, 3);
         this.animator.SetInteger("HurtCounter", indexRand);
-        this.stateManager.CharacterCtrl.CharacterIntro.Sprite.sortingOrder = -1;
-        this.stateManager.CharacterCtrl.Opponent.CharacterIntro.Sprite.sortingOrder = 0;
+        this.stateManager.CharacterCtrl.CharacterModalCtrl.Sprite.sortingOrder = -1;
+        this.stateManager.CharacterCtrl.Opponent.CharacterModalCtrl.Sprite.sortingOrder = 0;
         GameManager.Instance.PlayerIsHit = this.stateManager.CharacterCtrl;
         CameraManager.Instance.Shake(0.05f, 0.05f);
     }

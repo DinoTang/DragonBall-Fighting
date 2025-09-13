@@ -52,7 +52,14 @@ public class AudioManager : BaseBehaviour
         this.uiSoundSO = Resources.Load<UISoundSO>("Sounds/UISoundData");
         Debug.Log(transform.name + ": LoadUISoundSO");
     }
-    
+    protected void PlayLoopSound(AudioClip clip)
+    {
+        this.audioSource.clip = clip;
+        this.audioSource.loop = true;
+        if (!this.audioSource.isPlaying)
+            this.audioSource.Play();
+    }
+
     // Announcer
     public AudioClip GetAnnouncerSound(AnnouncerSoundType type)
     {
@@ -94,10 +101,7 @@ public class AudioManager : BaseBehaviour
 
         if (loop)
         {
-            this.audioSource.clip = clip;
-            this.audioSource.loop = true;
-            if (!this.audioSource.isPlaying)
-                this.audioSource.Play();
+            this.PlayLoopSound(clip);
         }
         else
         {

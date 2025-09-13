@@ -22,6 +22,7 @@ public class SkillProjCtrl : BaseBehaviour
     {
         base.OnEnable();
         this.skillProjDespawn.ResetCurrentTime();
+        AudioManager.Instance.AudioSource.PlayOneShot(this.skillData.sfx);
     }
     protected override void LoadComponent()
     {

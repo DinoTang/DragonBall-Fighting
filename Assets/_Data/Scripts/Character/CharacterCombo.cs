@@ -100,11 +100,8 @@ public class CharacterCombo : CharacterAbstract
         SkillDataSO skillData = characterCtrl.CharacterSkillManager.CurrentSkill;
         if (skillData.skillName != SkillNameEnum.Skill_BasicProjectile_Ground &&
         skillData.skillName != SkillNameEnum.Skill_BasicProjectile_Air &&
-        skillData.skillName != SkillNameEnum.Skill_Burst)
-        {
-            this.SpawnHitFlash();
-            AudioManager.Instance.PlayCharacterSound(CharacterSoundType.SkillActive);
-        }
+        skillData.skillName != SkillNameEnum.Skill_Burst) this.SpawnHitFlash();
+        
         CharacterState skillState = skillData.GetSkillState();
         characterCtrl.StateManager.SetNextState(skillState);
 

@@ -15,12 +15,11 @@ public class CharacterSkillManager : CharacterAbstract
 
     protected void LoadSkillListSO()
     {
-        if (skillList.Count > 0) return;
-
-        SkillDataSO[] loadedSkills = Resources.LoadAll<SkillDataSO>("SkillData/Vegeta");
-        foreach (var skillData in loadedSkills)
+        if (this.skillList.Count > 0) return;
+        List<SkillDataSO> skillList = this.characterCtrl.CharacterDataSO.skillList;
+        foreach (var skillData in skillList)
         {
-            skillList.Add(new SkillWithCooldown
+            this.skillList.Add(new SkillWithCooldown
             {
                 skillData = skillData,
                 cooldown = 0f

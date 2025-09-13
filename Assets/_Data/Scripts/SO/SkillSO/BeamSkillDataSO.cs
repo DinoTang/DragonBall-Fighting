@@ -1,6 +1,6 @@
 using UnityEngine;
 [CreateAssetMenu(fileName = "SkillData", menuName = "SO/BeamSkillData")]
-public class BeamSkillDataSO : SkillDataSO
+public class BeamSkillDataSO : SkillChargeSO
 {
     [Header("Beam Settings")]
     public AnimationClip endBeamSkillAnim;

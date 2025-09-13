@@ -17,7 +17,7 @@ public class BaseCrouchHitState : CharacterState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (!this.stateManager.CharacterCtrl.CharacterIntro.IsReady) return;
+        if (!this.stateManager.CharacterCtrl.CharacterModalCtrl.IsReady) return;
         if (InputManager.Instance.ReleaseCrouchInput())
         {
             this.animator.SetBool("IsCrouch", false);

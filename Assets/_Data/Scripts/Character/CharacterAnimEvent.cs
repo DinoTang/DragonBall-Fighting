@@ -21,7 +21,8 @@ public class CharacterAnimEvent : CharacterAbstract
 
     protected void EnableSpawnBasicProjectileEffect()
     {
-        BasicProjFXSpawner.Instance.Spawn(this.characterCtrl.CharacterName.ToString(), this.GetPosToSpawn(), this.characterCtrl);
+        string name = this.characterCtrl.CharacterDataSO.characterName.ToString();
+        BasicProjFXSpawner.Instance.Spawn(name, this.GetPosToSpawn(), this.characterCtrl);
     }
 
     protected SkillProjectile EnableSpawnSkillProj(SkillNameEnum skillName)

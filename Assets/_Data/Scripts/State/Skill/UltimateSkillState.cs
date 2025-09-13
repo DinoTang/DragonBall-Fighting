@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class UltimateSkillState : EnergyProjectileSkillState
+public class UltimateSkillState : EnergySkillState
 {
     protected enum UltimatePhase { StartUp, CutSceneReady, Ready, CutScenePerform, Perform, Finish }
     protected float startUpEnd, cutSceneReadyEnd, readyEnd, cutScenePerformEnd, performEnd, finishEnd;
     protected UltimatePhase currentPhase;
     protected CharacterCtrl self;
+    protected VegetaDataSO vegetaDataSO;
     protected UltimateSkillDataSO ultimateSkillDataSO;
     protected float ultimateTime = 0;
     protected float offset = 5f;
+    protected bool hasChargeSound;
+    protected bool hasVegetaFFReadySound;
+    protected bool hasVegetaFFSound;
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
@@ -22,6 +26,8 @@ public class UltimateSkillState : EnergyProjectileSkillState
         this.cutScenePerformEnd = this.readyEnd + this.ultimateSkillDataSO.cutScenePerformUltimateAnim.length;
         this.performEnd = this.cutScenePerformEnd + this.ultimateSkillDataSO.duration;
         this.finishEnd = this.performEnd + this.ultimateSkillDataSO.endBeamSkillAnim.length;
+
+        this.vegetaDataSO = this.characterDataSO as VegetaDataSO;
     }
     protected override float GetTotalDuration()
     {
@@ -79,6 +85,11 @@ public class UltimateSkillState : EnergyProjectileSkillState
 
     protected void PlayCutSceneReady()
     {
+        if (!this.hasVegetaFFReadySound)
+        {
+            this.hasVegetaFFReadySound = true;
+            AudioManager.Instance.AudioSource.PlayOneShot(this.vegetaDataSO.otherAudioClip1);
+        }
         CameraManager.Instance.Focus(this.stateManager.transform.position, 2f);
         this.animator.Play(this.ultimateSkillDataSO.cutSceneReadyUltimateAnim.name);
         Vector2 newOpponentPos = this.stateManager.CharacterCtrl.Opponent.transform.position;
@@ -89,12 +100,22 @@ public class UltimateSkillState : EnergyProjectileSkillState
 
     protected void PlayReady()
     {
+        if (!this.hasChargeSound)
+        {
+            this.hasChargeSound = true;
+            AudioManager.Instance.AudioSource.PlayOneShot(this.ultimateSkillDataSO.SFXCharge);
+        }
         this.animator.Play(this.ultimateSkillDataSO.readyUltimateAnim.name);
         if (this.ultimateTime >= this.readyEnd) this.currentPhase = UltimatePhase.CutScenePerform;
     }
 
     protected void PlayCutScenePerform()
     {
+        if (!this.hasVegetaFFSound)
+        {
+            this.hasVegetaFFSound = true;
+            AudioManager.Instance.AudioSource.PlayOneShot(this.characterDataSO.voiceChar);
+        }
         CameraManager.Instance.Focus(this.stateManager.transform.position, 2f);
         this.animator.Play(this.ultimateSkillDataSO.cutScenePerformUltimateAnim.name);
         if (this.ultimateTime >= this.cutScenePerformEnd) this.currentPhase = UltimatePhase.Perform;

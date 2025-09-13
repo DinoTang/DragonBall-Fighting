@@ -11,6 +11,7 @@ public class SkillState : CharacterState
         this.stateManager.CharacterCtrl.Animator.SetBool("IsSkill", true);
         skill = stateManager.CharacterCtrl.CharacterSkillManager.CurrentSkill;
         this.totalDuration = this.GetTotalDuration();
+        stateManager.CharacterCtrl.CharacterAnimEvent.StopCharacterActions();
     }
 
     public override void OnExit()
@@ -25,6 +26,7 @@ public class SkillState : CharacterState
 
         this.stateManager.CharacterCtrl.CharacterCombo.ClearCurrentSkill();
         this.stateManager.CharacterCtrl.Animator.SetBool("IsSkill", false);
+        this.stateManager.CharacterCtrl.CharacterAnimEvent.EnableCharacterActions();
     }
 
     protected virtual float GetTotalDuration()

@@ -7,6 +7,33 @@ public class GameManager : BaseBehaviour
     protected static GameManager instance;
     public static GameManager Instance => instance;
     public enum MatchStateEnum { Intro, Ready, Fight, GameOver }
+
+    [Header("Character Manager")]
+    [SerializeField] protected CharactersDataSO charactersDataSO;
+    [SerializeField] protected CharacterSelectSO characterSelectSO;
+    [SerializeField] protected CharacterDataSO redCharacterSelected;
+    [SerializeField] protected CharacterDataSO blueCharacterSelected;
+    protected void LoadCharactersDataSO()
+    {
+        if (this.charactersDataSO != null) return;
+        this.charactersDataSO = Resources.Load<CharactersDataSO>("CharacterData/CharactersDataSO");
+        Debug.Log(transform.name + ": LoadCharactersDataSO");
+    }
+    protected void LoadCharacterSelectSO()
+    {
+        if (this.characterSelectSO != null) return;
+        this.characterSelectSO = Resources.Load<CharacterSelectSO>("CharacterData/CharacterSelectSO");
+        Debug.Log(transform.name + ": LoadCharacterSelectSO");
+    }
+    protected void LoadCharacterSelected()
+    {
+        if (this.redCharacterSelected != null && this.blueCharacterSelected != null) return;
+        this.redCharacterSelected = this.charactersDataSO.GetCharacter(this.characterSelectSO.redCharacterName);
+        this.blueCharacterSelected = this.charactersDataSO.GetCharacter(this.characterSelectSO.blueCharacterName);
+        Debug.Log(transform.name + ": LoadCharacterSelected");
+    }
+
+    [Header("Match Manager")]
     [SerializeField] private MatchStateEnum matchState = MatchStateEnum.Ready;
     public MatchStateEnum MatchState => matchState;
     [SerializeField] protected CharacterCtrl winner;
@@ -34,7 +61,7 @@ public class GameManager : BaseBehaviour
     public float TimerMatch => timerMatchCurrent;
 
     [SerializeField] private float gameOverTimer = 0f;
-    [SerializeField] private float gameOverDelay = 2.5f;   // khoảng chờ sau khi game over
+    [SerializeField] private float gameOverDelay = 3f;   // khoảng chờ sau khi game over
     private bool canStartReadyFight = false;
 
 
@@ -50,26 +77,19 @@ public class GameManager : BaseBehaviour
         base.Start();
         this.timerMatchCurrent = this.timerMatchMax;
     }
+    protected void Update()
+    {
+        this.HandleMatchState();
+    }
     protected override void LoadComponent()
     {
-        CharacterCtrl[] characters = FindObjectsOfType<CharacterCtrl>();
-        if (characters[0].GetComponentInChildren<PlayerRed>())
-        {
-            this.redPlayer = characters[0];
-            this.bluePlayer = characters[1];
-            this.redPlayer.SetOpponent(this.bluePlayer);
-            this.bluePlayer.SetOpponent(this.redPlayer);
-        }
-
-        if (characters[0].GetComponentInChildren<PlayerBlue>())
-        {
-            this.bluePlayer = characters[0];
-            this.redPlayer = characters[1];
-            this.redPlayer.SetOpponent(this.bluePlayer);
-            this.bluePlayer.SetOpponent(this.redPlayer);
-        }
+        this.LoadCharactersDataSO();
+        this.LoadCharacterSelectSO();
+        this.LoadCharacterSelected();
+        this.LoadOpponentCharacter();
     }
-    protected void Update()
+
+    protected void HandleMatchState()
     {
         switch (this.matchState)
         {
@@ -88,25 +108,51 @@ public class GameManager : BaseBehaviour
                 break;
         }
     }
-    protected void PlayIntro()
+    protected void LoadOpponentCharacter()
     {
-        if (!this.redPlayer.CharacterIntro.IsReady)
+        CharacterCtrl[] characters = FindObjectsOfType<CharacterCtrl>();
+        if (characters[0].GetComponentInChildren<PlayerRed>())
         {
-            this.redPlayer.CharacterIntro.StartIntroCharacter(2);
+            this.redPlayer = characters[0];
+            this.bluePlayer = characters[1];
+            this.redPlayer.SetOpponent(this.bluePlayer);
+            this.bluePlayer.SetOpponent(this.redPlayer);
+        }
+
+        if (characters[0].GetComponentInChildren<PlayerBlue>())
+        {
+            this.bluePlayer = characters[0];
+            this.redPlayer = characters[1];
+            this.redPlayer.SetOpponent(this.bluePlayer);
+            this.bluePlayer.SetOpponent(this.redPlayer);
+        }
+
+        this.redPlayer.LoadCharacterCtrl();
+        this.bluePlayer.LoadCharacterCtrl();
+        this.redPlayer.CharacterDataSO = this.redCharacterSelected;
+        this.bluePlayer.CharacterDataSO = this.blueCharacterSelected;
+    }
+    protected void PlayIntro()
+
+    {
+        if (!this.redPlayer.CharacterModalCtrl.IsReady)
+        {
+            this.redPlayer.CharacterModalCtrl.StartIntroCharacter(2);
             return;
         }
-        if (!this.bluePlayer.CharacterIntro.IsReady)
+        if (!this.bluePlayer.CharacterModalCtrl.IsReady)
         {
-            this.bluePlayer.CharacterIntro.StartIntroCharacter(1);
+            this.bluePlayer.CharacterModalCtrl.StartIntroCharacter(1);
             return;
         }
 
-        if (this.redPlayer.CharacterIntro.IsReady && this.bluePlayer.CharacterIntro.IsReady)
+        if (this.redPlayer.CharacterModalCtrl.IsReady && this.bluePlayer.CharacterModalCtrl.IsReady)
         {
             this.matchState = MatchStateEnum.Ready;
         }
     }
     protected void PlayFight()
+
     {
         if (this.isNoTiming) return;
         if (!this.isGameOver) this.timerMatchCurrent -= Time.deltaTime;
@@ -117,6 +163,7 @@ public class GameManager : BaseBehaviour
 
     }
     protected void GameOver()
+
     {
         // nếu cả 2 chưa chết và chưa hết giờ -> chưa game over
         if (!this.redPlayer.CharacterDamageReceiver.isDead
@@ -149,8 +196,8 @@ public class GameManager : BaseBehaviour
             StartCoroutine(this.SlowMotionGameOver());
         }
     }
-
     private IEnumerator SlowMotionGameOver()
+
     {
         // làm chậm lại
         Time.timeScale = 0.1f;
@@ -164,8 +211,8 @@ public class GameManager : BaseBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
     }
-
     public void CanShowResult()
+
     {
         if (!this.isCanShowResult) return;
         this.gameOverTimer += Time.deltaTime;
@@ -178,8 +225,8 @@ public class GameManager : BaseBehaviour
         if (this.winner == this.RedPlayer) AudioManager.Instance.PlayAnnouncerSound(AnnouncerSoundType.RedWin);
         else AudioManager.Instance.PlayAnnouncerSound(AnnouncerSoundType.BlueWin);
     }
-
     protected void PlayReadyFight()
+
     {
         if (!this.canStartReadyFight)
         {

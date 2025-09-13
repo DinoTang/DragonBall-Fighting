@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class TeleportPunchSkillState : EnergyProjectileSkillState
+public class TeleportPunchSkillState : SkillState
 {
     public override void OnEnter(StateManager stateManager)
     {

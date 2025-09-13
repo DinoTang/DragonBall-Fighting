@@ -1,13 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class BurstSkillState : EnergyProjectileSkillState
+public class BurstSkillState : EnergySkillState
 {
-    public override void OnEnter(StateManager stateManager)
-    {
-        base.OnEnter(stateManager);
-        AudioManager.Instance.AudioSource.PlayOneShot(this.skill.sfx);
-    }
     public override void OnUpdate()
     {
         base.OnUpdate();

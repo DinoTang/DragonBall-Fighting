@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ef6939376fe8a4c9b5c49e0c15a943, type: 3}
+  m_Name: VegetaDataSO
+  m_EditorClassIdentifier: 
+  characterName: 2
+  portrait: {fileID: -1752233569, guid: f4aa692040643ba49a8134f4a4a1a08e, type: 3}
+  animator: {fileID: 9100000, guid: b15dda60f98b9414ca7f3d2682af05bd, type: 2}
+  readyClip: {fileID: 7400000, guid: 4d5e17819109f97449db3fe3f05fb294, type: 2}
+  skillList:
+  - {fileID: 11400000, guid: 64a2b11431cce184abe7b47ecd54dd16, type: 2}
+  - {fileID: 11400000, guid: 7ea101e55c4299f4fa8bc07a012ad137, type: 2}
+  - {fileID: 11400000, guid: 8bfca4645434a084e90688be4b708e9c, type: 2}
+  - {fileID: 11400000, guid: 76522b50af93f3548b899117c5cbce29, type: 2}
+  - {fileID: 11400000, guid: c9df1e8bc7f9ed5419f20e560b7485fc, type: 2}
+  - {fileID: 11400000, guid: e5a6f68a7395a3a4e8856bdff821f8bc, type: 2}
+  - {fileID: 11400000, guid: 3e25dda29119bdd40ba5a601d4aaad8d, type: 2}
+  - {fileID: 11400000, guid: 82aa368da079e0942bf573e55d44cd3a, type: 2}
+  voiceChar: {fileID: 8300000, guid: 9b8007d4dac29f1429454447bff6a14a, type: 3}
+  otherAudioClip1: {fileID: 8300000, guid: 1829e973617fdce448b5a2d2436c09c1, type: 3}

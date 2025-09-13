@@ -67,7 +67,7 @@ public class InputManager : BaseBehaviour
     public bool GetDownInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).down);
     public bool GetHitInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).punch);
     public bool GetKickInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).kick);
-    public bool GetChargeInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).charge);
+    public bool GetChargeInput(PlayerType playerType) => Input.GetKey(this.GetConfig(playerType).charge);
     public bool ReleaseChargeInput(PlayerType playerType) => Input.GetKeyUp(this.GetConfig(playerType).charge);
     public bool GetRushAttackInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).rushAttack);
     public bool GetKiBlastInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).kiBlast);

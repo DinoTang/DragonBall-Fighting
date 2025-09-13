@@ -4,7 +4,7 @@ public class SkillDataSO : ScriptableObject
 {
     [Header("Base SkillDataSO")]
     public SkillNameEnum skillName;
-    public ExplosionFXEnum damageFxName;
+    public ExplosionFXEnum explosionFXName;
     public float kiCost;
     public float cooldown;
     public float damage;
@@ -12,7 +12,7 @@ public class SkillDataSO : ScriptableObject
     public AudioClip sfx;
     public virtual CharacterState GetSkillState()
     {
-        return new EnergyProjectileSkillState();
+        return new EnergySkillState();
     }
 
 }
