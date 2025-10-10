@@ -94,6 +94,7 @@ public class CharacterCollision : CharacterAbstract
         CharacterState currentState = this.characterCtrl.StateManager.CurrentState;
         return !(currentState is IdleState
                 || currentState is IntroState
+                // || currentState is BlockState
                 || currentState is SuperDashState
                 || currentState is KnockDownState
                 || currentState is BounceOnGroundState

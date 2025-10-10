@@ -13,7 +13,7 @@ public class BaseAirState : CharacterState
     protected void MoveOnAir()
     {
         if (this.stateManager.IsClone) return;
-        float xInput = InputManager.Instance.GetHorizontalOld();
+        float xInput = InputManager.Instance.GetMoveInput(this.playerType);
         if (xInput != 0)
         {
             this.stateManager.CharacterCtrl.Rgb.velocity =

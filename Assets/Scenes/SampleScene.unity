@@ -1440,7 +1440,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.363
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11709,7 +11709,7 @@ MonoBehaviour:
   playerIsHit: {fileID: 0}
   isGameOver: 0
   isCanShowResult: 0
-  isNoTiming: 0
+  isNoTiming: 1
   isTimeOver: 0
   timerMatchMax: 90
   timerMatchCurrent: 0
@@ -19758,7 +19758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 2139523876350115111}
   EFX_Name: 5
-  EFXSound: {fileID: 0}
+  EFXSound: {fileID: 8300000, guid: b56b364288b31d9468d19b9e4c62a29c, type: 3}
 --- !u!4 &461895562192598506
 Transform:
   m_ObjectHideFlags: 0

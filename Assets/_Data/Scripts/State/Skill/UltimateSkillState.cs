@@ -129,6 +129,7 @@ public class UltimateSkillState : EnergySkillState
     protected void PlayFinish()
     {
         this.animator.Play(this.ultimateSkillDataSO.endBeamSkillAnim.name);
+        CameraManager.Instance.SetActiveWall(true);
     }
 }
 

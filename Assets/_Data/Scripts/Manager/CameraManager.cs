@@ -99,20 +99,20 @@ public class CameraManager : BaseBehaviour
     }
     public void Focus(Vector3 position, float targetSize)
     {
-        this.mainCam.enabled = false;
-        this.cutSceneCam.enabled = true;
-
-        Vector3 newCutSceneCamPos = position;
-        newCutSceneCamPos.z = -10;
-        this.cutSceneCam.transform.position = newCutSceneCamPos;
-        this.cutSceneCam.orthographicSize = targetSize;
-
-
+        // this.mainCam.enabled = false;
+        // this.cutSceneCam.enabled = true;
 
         // Vector3 newCutSceneCamPos = position;
         // newCutSceneCamPos.z = -10;
-        // this.mainCam.transform.position = newCutSceneCamPos;
-        // this.mainCam.orthographicSize = targetSize;
+        // this.cutSceneCam.transform.position = newCutSceneCamPos;
+        // this.cutSceneCam.orthographicSize = targetSize;
+
+
+        this.SetActiveWall(false);
+        Vector3 newCutSceneCamPos = position;
+        newCutSceneCamPos.z = -10;
+        this.mainCam.transform.position = newCutSceneCamPos;
+        this.mainCam.orthographicSize = targetSize;
     }
     public void ResetDefaultCamera()
     {
@@ -160,5 +160,11 @@ public class CameraManager : BaseBehaviour
         }
 
         transform.localPosition = originPos;
+    }
+
+    public void SetActiveWall(bool boolean)
+    {
+        this.leftWall.gameObject.SetActive(boolean);
+        this.rightWall.gameObject.SetActive(boolean);
     }
 }

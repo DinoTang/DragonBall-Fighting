@@ -12,7 +12,7 @@ public class CharacterDamageReceiver : DamageReceiver
     }
     protected void Update()
     {
-        this.TryEnterBlockState();
+        // this.TryEnterBlockState();
     }
     protected void LoadCharacterCtrl()
     {

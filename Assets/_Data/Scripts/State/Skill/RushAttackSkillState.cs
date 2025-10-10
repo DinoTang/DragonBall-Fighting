@@ -63,12 +63,13 @@ public class RushAttackSkillState : SkillState
 
     protected void PlayRushAttackStart()
     {
+        this.self.CharacterAnimEvent.EnableHitbox();
+
         if (this.timed >= this.totalDuration || this.stateManager.CharacterCtrl.Opponent.CharacterDamageReceiver.IsKnockDown)
         {
             this.self.Rgb.velocity = new Vector2(0, this.self.Rgb.velocity.y);
             this.self.CharacterAnimEvent.DisableHitbox();
             this.stateManager.SetNextStateToMain();
-            return;
         }
 
         this.self.Rgb.velocity = new Vector2(1 * this.dir, 0) * this.dashRushAttackSpeed;
@@ -77,36 +78,43 @@ public class RushAttackSkillState : SkillState
 
         if (distanceToAttack <= 1.5)
         {
+            if (this.stateManager.CharacterCtrl.Opponent.StateManager.CurrentState is BlockState)
+            {
+                this.stateManager.SetNextStateToMain();
+            }
             if (this.stateManager.CharacterCtrl.Opponent.StateManager.CurrentState is KnockdownIdleState)
             {
-                this.self.Rgb.velocity = new Vector2(0, this.self.Rgb.velocity.y);
+                // this.self.Rgb.velocity = new Vector2(0, this.self.Rgb.velocity.y);
                 this.self.CharacterAnimEvent.DisableHitbox();
-                this.stateManager.SetNextStateToMain();
+                // this.stateManager.SetNextStateToMain();
                 return;
             }
-            this.self.CharacterAnimEvent.EnableHitbox();
             if (this.self.Opponent.CharacterDamageReceiver.IsKnockDown) return;
 
-            bool selfGrounded = this.self.CharacterCollision.IsGround;
-            bool opponentGrounded = this.self.Opponent.CharacterCollision.IsGround;
-            if (!selfGrounded && !opponentGrounded || selfGrounded && !opponentGrounded)
-            {
-                Vector2 isHitPos = this.stateManager.CharacterCtrl.Opponent.transform.position;
-                isHitPos.y = this.stateManager.CharacterCtrl.transform.position.y;
-                this.stateManager.CharacterCtrl.Opponent.transform.position = isHitPos;
-            }
-            else if (!selfGrounded && opponentGrounded)
-            {
-                Vector2 isHittingPos = this.stateManager.CharacterCtrl.transform.position;
-                isHittingPos.y = this.stateManager.CharacterCtrl.Opponent.transform.position.y;
-                this.stateManager.CharacterCtrl.transform.position = isHittingPos;
-            }
-
+            this.AlignCharactersOnHit();
             this.stateManager.CharacterCtrl.Rgb.velocity = Vector2.zero;
             this.stateManager.CharacterCtrl.Opponent.Rgb.velocity = Vector2.zero;
             this.timed = 0;
             this.currentRushAttackType = RushAttack_Type.Combo;
         }
+    }
+    protected void AlignCharactersOnHit()
+    {
+        bool selfGrounded = this.self.CharacterCollision.IsGround;
+        bool opponentGrounded = this.self.Opponent.CharacterCollision.IsGround;
+        if (!selfGrounded && !opponentGrounded || selfGrounded && !opponentGrounded)
+        {
+            Vector2 isHitPos = this.stateManager.CharacterCtrl.Opponent.transform.position;
+            isHitPos.y = this.stateManager.CharacterCtrl.transform.position.y;
+            this.stateManager.CharacterCtrl.Opponent.transform.position = isHitPos;
+        }
+        else if (!selfGrounded && opponentGrounded)
+        {
+            Vector2 isHittingPos = this.stateManager.CharacterCtrl.transform.position;
+            isHittingPos.y = this.stateManager.CharacterCtrl.Opponent.transform.position.y;
+            this.stateManager.CharacterCtrl.transform.position = isHittingPos;
+        }
+
     }
     protected void SetUpIsHitPos()
     {
@@ -122,6 +130,8 @@ public class RushAttackSkillState : SkillState
         CameraManager.Instance.Focus(pos, 3f);
         var rushAttackSkill = this.skill as RushAttackSkillSO;
         string animName = rushAttackSkill.RushAttack_Combo.name;
+
+        CameraManager.Instance.SetActiveWall(true);
         var animator = this.self.Animator;
         animator.Play(animName);
         if (this.stateManager.CharacterCtrl.Opponent.CharacterDamageReceiver.isDead) this.stateManager.SetNextStateToMain();
@@ -159,6 +169,7 @@ public class RushAttackSkillState : SkillState
     protected void PlayRushAttackKnockUp()
     {
         CameraManager.Instance.Focus(this.stateManager.transform.position, 3f);
+        CameraManager.Instance.SetActiveWall(true);
         var rushAttackSkill = this.skill as RushAttackSkillSO;
         string animName = rushAttackSkill.RushAttack_KnockUp.name;
         var animator = this.self.Animator;

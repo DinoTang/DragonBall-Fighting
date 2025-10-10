@@ -169,7 +169,7 @@ public class CharacterCombo : CharacterAbstract
     protected void SkillFiveCombo()  //Rush Attack
     {
         if (this.characterCtrl.StateManager.CurrentState is AirHit3State
-        || this.characterCtrl.Opponent.StateManager.CurrentState is KnockdownIdleState) return;
+        ) return;
         if (this.currentSkill != "") return;
         HandleSkillCombo("U", 1, SkillNameEnum.Skill_5);
         HandleSkillCombo("U", -1, SkillNameEnum.Skill_5);
