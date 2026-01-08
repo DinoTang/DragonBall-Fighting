@@ -67,12 +67,28 @@ public abstract class DamageReceiver : BaseBehaviour
 
     public virtual bool DeductHP(float hp)
     {
-        if (this.isImmortal || this.isDead || this.isBlock) return false;
-        this.OnHurt();
-
-        this.currentHP -= hp;
-        this.IsDead();
+        if (!this.CanReceiveDamage()) return false;
+        if (this.TryHandleDamage()) return false;
+        this.TakeDamage(hp);
         return true;
+    }
+    protected virtual bool CanReceiveDamage()
+    {
+        return !isDead && !isImmortal;
+    }
+    protected virtual bool TryHandleDamage()
+    {
+        return false; // MẶC ĐỊNH: KHÔNG XỬ LÝ
+    }
+    protected void TakeDamage(float damage)
+    {
+        this.OnHurt();
+        this.ApplyDamage(damage);
+        this.IsDead();
+    }
+    protected void ApplyDamage(float damage)
+    {
+        this.currentHP -= damage;
     }
 
     public bool CheckDead()
@@ -90,7 +106,6 @@ public abstract class DamageReceiver : BaseBehaviour
     {
 
     }
-    public abstract bool OnBlock();
 
     protected virtual void OnHurt()
     {

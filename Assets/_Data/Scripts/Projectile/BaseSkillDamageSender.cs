@@ -19,5 +19,18 @@ public class BaseSkillDamageSender : DamageSender
         this.skillProjCtrl = GetComponentInParent<SkillProjCtrl>();
         Debug.Log(transform.name + ": LoadSkillProjCtrl", gameObject);
     }
-    
+
+    public override void SendDamage(DamageReceiver damageReceiver)
+    {
+        CharacterDamageReceiver charDmgRcvr = (CharacterDamageReceiver)damageReceiver;
+
+        if (!charDmgRcvr.DeductHPBySkill(this.skillProjCtrl.SkillData, this.damage))
+        {
+            this.OnNoSendDamage();
+            return;
+        }
+        this.isHitting = true;
+        this.OnSendDamage();
+        this.OnHitExplosionFX(damageReceiver.transform);
+    }
 }

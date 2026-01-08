@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class AnnouncerSoundEntry
+public class AnnouncerSoundEntryConfig
 {
     public AnnouncerSoundType type;
     public AudioClip clip;

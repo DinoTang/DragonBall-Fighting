@@ -1,5 +1,5 @@
 [System.Serializable]
-public struct ZoomSettings
+public struct ZoomConfig
 {
     public float minZoom;
     public float maxZoom;

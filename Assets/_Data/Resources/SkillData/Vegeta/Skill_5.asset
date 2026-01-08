@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Skill_5
   m_EditorClassIdentifier: 
   skillName: 7
-  damageFxName: 0
+  skillType: 1
+  explosionFXName: 0
   kiCost: 50
   cooldown: 0.5
-  damage: 50
+  damage: 20
   animationClip: {fileID: 7400000, guid: c04f8d3fadbb3e94cb0ca19cc4c0134f, type: 2}
   sfx: {fileID: 8300000, guid: f469975625f77584ca55489b72a44eda, type: 3}
   RushAttack_Combo: {fileID: 7400000, guid: fa8985ba669035449a0c4c85050a37a0, type: 2}

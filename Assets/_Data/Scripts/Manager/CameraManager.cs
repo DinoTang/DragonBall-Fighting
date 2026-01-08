@@ -18,9 +18,9 @@ public class CameraManager : BaseBehaviour
     [Header("Camera Settings")]
     [SerializeField] protected float followSpeed = 5;
 
-    [SerializeField] protected ZoomSettings zoomSettings;
-    [SerializeField] protected CameraBounds bounds;
-    public CameraBounds Bounds => bounds;
+    [SerializeField] protected ZoomConfig zoomSettings;
+    [SerializeField] protected CameraBoundsConfig bounds;
+    public CameraBoundsConfig Bounds => bounds;
     protected override void Awake()
     {
         base.Awake();

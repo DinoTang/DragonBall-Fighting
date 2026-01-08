@@ -58,7 +58,7 @@ public class CharacterDamageSender : DamageSender
     public override void SendDamage(DamageReceiver damageReceiver)
     {
         base.SendDamage(damageReceiver);
-        this.characterCtrl.CharacterKiManager.GainKi(2);
+        this.characterCtrl.CharacterKiManager.ApplyKiChange(KiChangeReason.Hit);
         this.DisableCollider();
     }
 

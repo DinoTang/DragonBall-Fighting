@@ -10,10 +10,7 @@ public class CharacterDamageReceiver : DamageReceiver
         base.LoadComponent();
         this.LoadCharacterCtrl();
     }
-    protected void Update()
-    {
-        // this.TryEnterBlockState();
-    }
+
     protected void LoadCharacterCtrl()
     {
         if (this.characterCtrl != null) return;
@@ -27,18 +24,13 @@ public class CharacterDamageReceiver : DamageReceiver
         if (this.characterCtrl.StateManager.mainStateType is AirState)
             this.characterCtrl.StateManager.SetNextState(new AirHurtState());
         else this.characterCtrl.StateManager.SetNextState(new HurtState());
-        this.characterCtrl.CharacterKiManager.GainKi(2);
+        this.characterCtrl.CharacterKiManager.ApplyKiChange(KiChangeReason.GetHit);
     }
-    protected void TryEnterBlockState()
+
+    public void OnBlock()
     {
-        if (!this.isBlock) return;
-        this.characterCtrl.StateManager.SetNextState(new BlockState());
-    }
-    public override bool OnBlock()
-    {
-        if (!this.isBlock) return false;
         this.OnParryFX();
-        return true;
+        this.characterCtrl.CharacterKiManager.ApplyKiChange(KiChangeReason.Block);
     }
     public void OnParryFX()
     {
@@ -55,5 +47,50 @@ public class CharacterDamageReceiver : DamageReceiver
 
         Physics2D.IgnoreCollision(playerCol, enemyCol, ignore);
     }
+    protected override bool TryHandleDamage()
+    {
+        if (!this.isBlock) return false;
+        this.OnBlock();
+        return true;
+    }
+    protected bool TryHandleDamageBySkill(SkillDataSO skill)
+    {
+        if (!this.isBlock) return false;
 
+        if (skill.skillType == SkillType.Normal)
+        {
+            this.OnBlock();
+            this.ApplyDamageBySkillWhenBlock(skill);
+            return true;
+        }
+
+        CharacterKiManager kiManager = this.characterCtrl.CharacterKiManager;
+        if (skill.skillType == SkillType.Medium || skill.skillType == SkillType.Hard)
+        {
+            if (kiManager.CurrentKi - kiManager.Balance.guardKiCost >= 0)
+            {
+                kiManager.ApplyKiChange(KiChangeReason.BlockingSkill, skill);
+                this.OnBlock();
+                this.ApplyDamageBySkillWhenBlock(skill);
+                return true;
+            }
+
+            return false; // guard break
+        }
+
+        return false;
+    }
+
+    public bool DeductHPBySkill(SkillDataSO skill, float hp)
+    {
+        if (!this.CanReceiveDamage()) return false;
+        if (this.TryHandleDamageBySkill(skill)) return false;
+        this.TakeDamage(hp);
+        return true;
+    }
+
+    protected void ApplyDamageBySkillWhenBlock(SkillDataSO skill)
+    {
+        this.ApplyDamage(skill.damage * skill.blockDamageMultiplier);
+    }
 }

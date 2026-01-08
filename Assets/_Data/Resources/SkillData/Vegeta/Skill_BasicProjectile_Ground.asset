@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Skill_BasicProjectile_Ground
   m_EditorClassIdentifier: 
   skillName: 1
+  skillType: 1
   explosionFXName: 0
   kiCost: 10
   cooldown: 0.2
-  damage: 50
+  damage: 10
   animationClip: {fileID: 7400000, guid: f0986df6b714ac24f9c32e5753ad332c, type: 2}
   sfx: {fileID: 8300000, guid: 1d1ad98edaff6014aaa1c46db01f2eaa, type: 3}

@@ -5,5 +5,5 @@ using System.Collections.Generic;
 public class UISoundSO : ScriptableObject
 {
     [Header("UISoundSO")]
-    public List<UISoundEntry> sounds;
+    public List<UISoundEntryConfig> sounds;
 }

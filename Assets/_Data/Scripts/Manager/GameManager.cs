@@ -226,10 +226,10 @@ public class GameManager : BaseBehaviour
         else AudioManager.Instance.PlayAnnouncerSound(AnnouncerSoundType.BlueWin);
     }
     protected void PlayReadyFight()
-
     {
         if (!this.canStartReadyFight)
         {
+            CameraManager.Instance.SetActiveWall(true);
             this.canStartReadyFight = true;
             StartCoroutine(StartReadyFight());
         }

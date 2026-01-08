@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class CharacterSoundEntry
+public class CharacterSoundEntryConfig
 {
     public CharacterSoundType type;
     public AudioClip clip;

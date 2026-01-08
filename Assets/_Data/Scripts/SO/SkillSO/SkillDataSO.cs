@@ -4,10 +4,11 @@ public class SkillDataSO : ScriptableObject
 {
     [Header("Base SkillDataSO")]
     public SkillNameEnum skillName;
+    public SkillType skillType;
     public ExplosionFXEnum explosionFXName;
-    public float kiCost;
     public float cooldown;
     public float damage;
+    public float blockDamageMultiplier = 0.4f;
     public AnimationClip animationClip;
     public AudioClip sfx;
     public virtual CharacterState GetSkillState()

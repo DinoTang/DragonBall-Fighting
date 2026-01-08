@@ -78,7 +78,7 @@ public class RushAttackSkillState : SkillState
 
         if (distanceToAttack <= 1.5)
         {
-            if (this.stateManager.CharacterCtrl.Opponent.StateManager.CurrentState is BlockState)
+            if (this.stateManager.CharacterCtrl.Opponent.CharacterDamageReceiver.IsBlock)
             {
                 this.stateManager.SetNextStateToMain();
             }

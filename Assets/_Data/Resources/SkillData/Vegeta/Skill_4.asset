@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Skill_4
   m_EditorClassIdentifier: 
   skillName: 6
-  damageFxName: 0
+  skillType: 0
+  explosionFXName: 0
   kiCost: 50
   cooldown: 1
-  damage: 50
+  damage: 20
   animationClip: {fileID: 0}
   sfx: {fileID: 0}
   offset: 1.5

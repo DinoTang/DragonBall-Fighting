@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Skill_2
   m_EditorClassIdentifier: 
   skillName: 4
+  skillType: 2
   explosionFXName: 3
   kiCost: 100
   cooldown: 1
-  damage: 50
+  damage: 20
   animationClip: {fileID: 7400000, guid: 44158a4303de0c2468cea8535b83d32b, type: 2}
   sfx: {fileID: 8300000, guid: c292cfa2f3a5ddc40bc61727ee0a3ff6, type: 3}
   SFXCharge: {fileID: 8300000, guid: 6c6c1c21e548dff4b9d1dea51d91de42, type: 3}

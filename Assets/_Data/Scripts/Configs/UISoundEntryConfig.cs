@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class UISoundEntry
+public class UISoundEntryConfig
 {
     public UISoundType type;
     public AudioClip clip;

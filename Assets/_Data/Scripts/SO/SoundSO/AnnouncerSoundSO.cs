@@ -5,5 +5,5 @@ using System.Collections.Generic;
 public class AnnouncerSoundSO : ScriptableObject
 {
     [Header("AnnouncerSoundSO")]
-    public List<AnnouncerSoundEntry> sounds;
+    public List<AnnouncerSoundEntryConfig> sounds;
 }

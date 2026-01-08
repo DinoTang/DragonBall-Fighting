@@ -10,36 +10,63 @@ public class CharacterKiManager : CharacterAbstract
     [SerializeField] protected float kiChargeRate = 20f;
     [SerializeField] protected float currentKi;
     public float CurrentKi => currentKi;
-    protected override void Start()
-    {
-        // base.Start();
-        // this.currentKi = kiMax;
-    }
+    [SerializeField] protected KiBalanceConfig balance;
+    public KiBalanceConfig Balance => balance;
     public void ChargeKi()
     {
         if (this.currentKi >= this.kiMax) return;
         float amount = Time.deltaTime * this.kiChargeRate;
         this.currentKi = Mathf.Clamp(this.currentKi + amount, 0, this.kiMax);
     }
-    public float GetCurrentKi()
+
+    public bool CanUseSkill(SkillDataSO skill)
     {
-        return currentKi;
-    }
-    public bool CanUseSkill(float kiCost)
-    {
+        float kiCost = this.GetSkillCost(skill);
         if (this.currentKi - kiCost >= 0) return true;
         return false;
     }
-    public void GainKi(float kiCost)
+    public void ApplyKiChange(KiChangeReason reason, SkillDataSO skillDataSO = null)
     {
-        this.currentKi += kiCost;
-        if (this.currentKi >= this.kiMax)
+
+
+        float delta = 0;
+
+        switch (reason)
+        {
+            case KiChangeReason.Hit:
+                delta = this.balance.hitGain;
+                break;
+            case KiChangeReason.GetHit:
+                delta = this.balance.hurtGain;
+                break;
+            case KiChangeReason.Block:
+                delta = this.balance.blockGain;
+                break;
+            case KiChangeReason.SkillCast:
+                delta = -this.GetSkillCost(skillDataSO);
+                break;
+            case KiChangeReason.BlockingSkill:
+                delta = -this.balance.guardKiCost;
+                break;
+        }
+
+        if (this.currentKi >= this.kiMax && delta > 0)
         {
             this.currentKi = this.kiMax;
+            return;
+        }
+        this.currentKi += delta;
+    }
+
+    protected float GetSkillCost(SkillDataSO skill)
+    {
+        switch (skill.skillType)
+        {
+            case SkillType.Normal: return balance.normalSkillCost;
+            case SkillType.Medium: return balance.mediumSkillCost;
+            default: return balance.strongSkillCost;
         }
     }
-    public void ConsumeKi(float kiCost)
-    {
-        this.currentKi -= kiCost;
-    }
+
+
 }

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Skill_Burst
   m_EditorClassIdentifier: 
   skillName: 8
+  skillType: 2
   explosionFXName: 7
   kiCost: 30
   cooldown: 1
-  damage: 50
+  damage: 5
   animationClip: {fileID: 7400000, guid: 6dfe41e4627c1b24a82193005bb8c6af, type: 2}
   sfx: {fileID: 8300000, guid: 147f11fd018c39348bcbc29ece1f5a32, type: 3}

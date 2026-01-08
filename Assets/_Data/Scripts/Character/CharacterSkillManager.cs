@@ -43,16 +43,16 @@ public class CharacterSkillManager : CharacterAbstract
             return false;
         }
 
-        if (!characterCtrl.CharacterKiManager.CanUseSkill(skill.skillData.kiCost))
+        if (!characterCtrl.CharacterKiManager.CanUseSkill(skill.skillData))
         {
-            Debug.Log("Không đủ ki");
+            Debug.Log($"{transform.parent.name}: Không đủ ki sử dụng {skill.skillData.skillName}");
             return false;
         }
 
 
         this.currentSkill = skill.skillData;
         if (this.currentSkill.animationClip != null) characterCtrl.Animator.Play(this.currentSkill.animationClip.name);
-        characterCtrl.CharacterKiManager.ConsumeKi(this.currentSkill.kiCost);
+        characterCtrl.CharacterKiManager.ApplyKiChange(KiChangeReason.SkillCast, this.currentSkill);
 
         return true;
     }

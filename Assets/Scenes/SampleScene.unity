@@ -2152,6 +2152,14 @@ MonoBehaviour:
   kiMax: 300
   kiChargeRate: 100
   currentKi: 0
+  balance:
+    hitGain: 2
+    hurtGain: 2
+    blockGain: 1
+    parryGain: 5
+    normalSkillCost: 20
+    mediumSkillCost: 50
+    strongSkillCost: 300
 --- !u!4 &300034728
 Transform:
   m_ObjectHideFlags: 0
@@ -4235,6 +4243,14 @@ MonoBehaviour:
   kiMax: 300
   kiChargeRate: 100
   currentKi: 0
+  balance:
+    hitGain: 2
+    hurtGain: 2
+    blockGain: 1
+    parryGain: 5
+    normalSkillCost: 20
+    mediumSkillCost: 50
+    strongSkillCost: 300
 --- !u!4 &584261298
 Transform:
   m_ObjectHideFlags: 0
@@ -8666,7 +8682,7 @@ MonoBehaviour:
   isKnockDown: 0
   isKnockUp: 0
   currentHP: 5
-  hpMax: 100000
+  hpMax: 1000
   characterCtrl: {fileID: 751414181}
 --- !u!1 &1299843398
 GameObject:
@@ -10157,7 +10173,7 @@ MonoBehaviour:
   isKnockDown: 0
   isKnockUp: 0
   currentHP: 5
-  hpMax: 100000
+  hpMax: 1000
   characterCtrl: {fileID: 1424784646}
 --- !u!70 &1467487274
 CapsuleCollider2D:
@@ -11702,7 +11718,7 @@ MonoBehaviour:
   characterSelectSO: {fileID: 11400000, guid: f52a9a58f7e15e74eb91f7bef400398f, type: 2}
   redCharacterSelected: {fileID: 11400000, guid: 948bf6777ae71b643905fc4244a942a4, type: 2}
   blueCharacterSelected: {fileID: 11400000, guid: 948bf6777ae71b643905fc4244a942a4, type: 2}
-  matchState: 1
+  matchState: 2
   winner: {fileID: 0}
   redPlayer: {fileID: 751414181}
   bluePlayer: {fileID: 1424784646}

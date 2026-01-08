@@ -9,6 +9,7 @@ public class AirBlockState : BaseAirState
         base.OnEnter(stateManager);
         this.animator.SetBool("IsJump", true);
         this.animator.SetBool("IsBlock", true);
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsBlock(true);
     }
 
     public override void OnUpdate()
@@ -24,5 +25,6 @@ public class AirBlockState : BaseAirState
     {
         base.OnExit();
         this.animator.SetBool("IsBlock", false);
+        this.stateManager.CharacterCtrl.CharacterDamageReceiver.SetIsBlock(false);
     }
 }

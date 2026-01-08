@@ -19,7 +19,8 @@ public abstract class State
     public virtual void OnUpdate()
     {
         this.timed += UnityEngine.Time.deltaTime;
-        // Debug.Log(this.stateManager.transform.name + " " + this.timed + ": " + this.stateManager.CurrentState);
+        // if (this.stateManager.transform.name == "PlayerBlue")
+            // Debug.Log(this.stateManager.transform.name + " " + this.timed + ": " + this.stateManager.CurrentState);
         // Debug.Log(this.stateManager.transform.name + ": " + this.stateManager.mainStateType);
     }
 
