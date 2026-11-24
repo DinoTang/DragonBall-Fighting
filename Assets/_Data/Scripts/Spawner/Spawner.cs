@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Spawner<T> : BaseBehaviour where T : PoolObj
@@ -12,6 +9,17 @@ public abstract class Spawner<T> : BaseBehaviour where T : PoolObj
     [SerializeField] protected Transform prefab;
     [SerializeField] protected List<T> poolObjsList = new();
     [SerializeField] protected List<T> prefabs = new();
+
+    // Fast O(1) lookup dictionaries
+    protected readonly Dictionary<string, Queue<T>> poolDict = new();
+    protected readonly Dictionary<string, T> prefabDict = new();
+
+    protected override void Awake()
+    {
+        base.Awake();
+        this.InitializePool();
+    }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -19,98 +27,138 @@ public abstract class Spawner<T> : BaseBehaviour where T : PoolObj
         this.LoadPrefabs();
     }
 
+    protected void InitializePool()
+    {
+        this.prefabDict.Clear();
+        foreach (T child in this.prefabs)
+        {
+            if (child == null) continue;
+            string key = child.GetName();
+            if (!this.prefabDict.ContainsKey(key))
+            {
+                this.prefabDict[key] = child;
+            }
+            if (!this.poolDict.ContainsKey(key))
+            {
+                this.poolDict[key] = new Queue<T>();
+            }
+        }
+    }
+
     protected void LoadPoolHolder()
     {
         if (this.poolHolder != null) return;
         this.poolHolder = GetComponentInChildren<PoolHolder>();
-        Debug.Log(transform.name + ": LoadPoolHolder", gameObject);
     }
+
     protected void LoadPrefab()
     {
         if (this.prefab != null) return;
         this.prefab = transform.Find("Prefab");
-        Debug.Log(transform.name + ": LoadPoolHolder", gameObject);
     }
+
     protected void LoadPrefabs()
     {
         this.LoadPrefab();
-        if (this.prefabs.Count > 0) return;
-        foreach (Transform prefab in this.prefab)
+        if (this.prefabs.Count > 0 || this.prefab == null) return;
+
+        foreach (Transform child in this.prefab)
         {
-            T prefabT = prefab.GetComponent<T>();
-            this.prefabs.Add(prefabT);
-            prefabT.gameObject.SetActive(false);
+            T prefabT = child.GetComponent<T>();
+            if (prefabT != null)
+            {
+                this.prefabs.Add(prefabT);
+                prefabT.gameObject.SetActive(false);
+            }
         }
-        Debug.Log(transform.name + ": LoadPrefabs", gameObject);
-    }
-    public virtual T Spawn(string prefabName, Vector2 pos, CharacterCtrl owner = null)
-    {
-        T prefab = GetPrefabByName(prefabName);
-        if (prefab == null) return null;
-        return Spawn(prefab, pos, owner);
-    }
-    public virtual T Spawn(T prefab, Vector2 pos, CharacterCtrl owner = null)
-    {
-        T new_Obj = Spawn(prefab);
-        new_Obj.transform.position = pos;
-        new_Obj.transform.parent = this.poolHolder.transform;
-        new_Obj.gameObject.SetActive(true);
-        if (owner != null) new_Obj.Init(owner);
-        return new_Obj;
+        this.InitializePool();
     }
 
-    public virtual T Spawn(T prefab)
+    public virtual T Spawn(string prefabName, Vector2 pos, CharacterCtrl owner = null)
     {
-        T new_Obj = this.GetObjFromPool(prefab);
-        if (new_Obj == null)
+        T targetPrefab = GetPrefabByName(prefabName);
+        if (targetPrefab == null) return null;
+        return Spawn(targetPrefab, pos, owner);
+    }
+
+    public virtual T Spawn(T targetPrefab, Vector2 pos, CharacterCtrl owner = null)
+    {
+        T newObj = Spawn(targetPrefab);
+        newObj.transform.position = pos;
+        if (this.poolHolder != null)
+        {
+            newObj.transform.SetParent(this.poolHolder.transform, false);
+            newObj.transform.position = pos;
+        }
+        newObj.gameObject.SetActive(true);
+        if (owner != null) newObj.Init(owner);
+        return newObj;
+    }
+
+    public virtual T Spawn(T targetPrefab)
+    {
+        T newObj = this.GetObjFromPool(targetPrefab);
+        if (newObj == null)
         {
             this.spawnCount++;
-            new_Obj = Instantiate(prefab);
-            this.UpdateName(prefab.transform, new_Obj.transform);
+            newObj = Instantiate(targetPrefab);
+            this.UpdateName(targetPrefab.transform, newObj.transform);
         }
-        return new_Obj;
+        return newObj;
     }
 
     protected virtual T GetPrefabByName(string prefabName)
     {
+        if (this.prefabDict.TryGetValue(prefabName, out T foundPrefab))
+            return foundPrefab;
+
         foreach (T child in this.prefabs)
         {
-            if (child.GetName() != prefabName) continue;
-            return child;
+            if (child != null && child.GetName() == prefabName)
+            {
+                this.prefabDict[prefabName] = child;
+                return child;
+            }
         }
         return null;
     }
+
     public void Despawn(T obj)
     {
-        if (obj is MonoBehaviour monoBehaviour)
-        {
-            monoBehaviour.gameObject.SetActive(false);
-            this.AddObjIntoPool(obj);
-        }
+        if (obj == null) return;
+        obj.gameObject.SetActive(false);
+        this.AddObjIntoPool(obj);
     }
 
     protected void AddObjIntoPool(T obj)
     {
-        this.poolObjsList.Add(obj);
+        string key = obj.GetName();
+        if (!this.poolDict.TryGetValue(key, out Queue<T> queue))
+        {
+            queue = new Queue<T>();
+            this.poolDict[key] = queue;
+        }
+        queue.Enqueue(obj);
+
+        if (!this.poolObjsList.Contains(obj))
+        {
+            this.poolObjsList.Add(obj);
+        }
     }
 
-    protected void RemoveObjIntoPool(T obj)
+    protected virtual void UpdateName(Transform targetPrefab, Transform newObject)
     {
-        this.poolObjsList.Remove(obj);
+        newObject.name = targetPrefab.name + "_" + this.spawnCount;
     }
-    protected virtual void UpdateName(Transform prefab, Transform newObject)
+
+    protected T GetObjFromPool(T targetPrefab)
     {
-        newObject.name = prefab.name + "_" + this.spawnCount;
-    }
-    protected T GetObjFromPool(T prefab)
-    {
-        foreach (T poolObj in this.poolObjsList)
+        string key = targetPrefab.GetName();
+        if (this.poolDict.TryGetValue(key, out Queue<T> queue) && queue.Count > 0)
         {
-            if (poolObj.GetName() == prefab.GetName())
-            {
-                this.RemoveObjIntoPool(poolObj);
-                return poolObj;
-            }
+            T poolObj = queue.Dequeue();
+            this.poolObjsList.Remove(poolObj);
+            return poolObj;
         }
         return null;
     }

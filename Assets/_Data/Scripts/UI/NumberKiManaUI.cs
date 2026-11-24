@@ -7,6 +7,7 @@ public class NumberKiManaUI : BaseBehaviour
     [SerializeField] protected CharacterCtrl characterCtrl;
     [SerializeField] protected List<RectTransform> numbersKi = new();
     protected int numberKiCount;
+    private int lastNumberKiCount = -1;
 
     protected override void LoadComponent()
     {
@@ -40,14 +41,23 @@ public class NumberKiManaUI : BaseBehaviour
 
     protected void UpdateNumberKi()
     {
+        if (this.characterCtrl == null || this.characterCtrl.CharacterKiManager == null) return;
         float current = this.characterCtrl.CharacterKiManager.CurrentKi;
 
-        this.numberKiCount = (int)current / 100;
+        int newCount = (int)current / 100;
+        if (newCount == this.lastNumberKiCount) return;
 
-        // reset hết
+        this.lastNumberKiCount = newCount;
+        this.numberKiCount = newCount;
+
         for (int i = 0; i < numbersKi.Count; i++)
         {
-            numbersKi[i].gameObject.SetActive(i == this.numberKiCount);
+            if (numbersKi[i] == null) continue;
+            bool shouldBeActive = (i == this.numberKiCount);
+            if (numbersKi[i].gameObject.activeSelf != shouldBeActive)
+            {
+                numbersKi[i].gameObject.SetActive(shouldBeActive);
+            }
         }
     }
 }
