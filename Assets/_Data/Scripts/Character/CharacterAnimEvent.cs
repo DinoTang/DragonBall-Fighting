@@ -7,7 +7,9 @@ public class CharacterAnimEvent : CharacterAbstract
     public void EnableHitbox() => this.characterCtrl.CharacterDamageSender.EnableCollider();
     public void DisableHitbox() => this.characterCtrl.CharacterDamageSender.DisableCollider();
     protected void EnableKnockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockingUp(true);
-    protected void DisablenockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockingUp(false);
+    // Kept for backward compatibility with existing Unity .anim events
+    protected void DisablenockUp() => DisableKnockUp();
+    public void DisableKnockUp() => this.characterCtrl.CharacterDamageSender.SetIsKnockingUp(false);
     public void EnableZoomCamera() => CameraManager.Instance.Focus(this.transform.position, 2.5f);
     public void StopCharacterActions()
     {
@@ -58,9 +60,21 @@ public class CharacterAnimEvent : CharacterAbstract
         BeamFadeFXSpawner.Instance.Spawn(beamSkillName.ToString(), pos, this.characterCtrl);
     }
 
-    protected void EnableSkillOne() => EnableSpawnSkillProj(SkillNameEnum.Skill_1);
-    protected void EnableSkillTwo() => EnableSpawnStraightBeamSkillProj(SkillNameEnum.Skill_2, this.skillSpawnOffsetX);
-    protected void EnableSkillUltimate() => EnableSpawnStraightBeamSkillProj(SkillNameEnum.Skill_Ultimate, 1.95f);
+    protected void EnableSkillOne()
+    {
+        SuperFreezeManager.Instance?.EndSuperFreeze();
+        EnableSpawnSkillProj(SkillNameEnum.Skill_1);
+    }
+    protected void EnableSkillTwo()
+    {
+        SuperFreezeManager.Instance?.EndSuperFreeze();
+        EnableSpawnStraightBeamSkillProj(SkillNameEnum.Skill_2, this.skillSpawnOffsetX);
+    }
+    protected void EnableSkillUltimate()
+    {
+        SuperFreezeManager.Instance?.EndSuperFreeze();
+        EnableSpawnStraightBeamSkillProj(SkillNameEnum.Skill_Ultimate, 1.95f);
+    }
     protected void EnableBeamFadeFXProj() => EnableSpawnBeamFadeFXProj(BeamSkillNameEnum.Final_Flash, 7.35f);
     protected void EnableSpawnSkillBPAir()
     {

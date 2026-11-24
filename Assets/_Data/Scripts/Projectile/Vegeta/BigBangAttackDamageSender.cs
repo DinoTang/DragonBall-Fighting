@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class BigBangAttackDamageSender : BlastSkillDamageSender
 {

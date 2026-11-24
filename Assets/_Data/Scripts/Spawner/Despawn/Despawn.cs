@@ -19,6 +19,7 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
     protected void Update()
     {
         if (!this.isNeedDespawn) return;
+        if (SuperFreezeManager.Instance != null && SuperFreezeManager.Instance.IsFreezing) return;
         this.DespawnByTime();
     }
     public void ResetCurrentTime()

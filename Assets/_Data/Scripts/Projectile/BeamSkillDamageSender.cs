@@ -1,5 +1,4 @@
-using System.Collections;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
+﻿using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class BeamSkillDamageSender : BaseSkillDamageSender

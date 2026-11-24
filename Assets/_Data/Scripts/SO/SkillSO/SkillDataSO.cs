@@ -11,6 +11,8 @@ public class SkillDataSO : ScriptableObject
     public float blockDamageMultiplier = 0.4f;
     public AnimationClip animationClip;
     public AudioClip sfx;
+    [Header("Super Freeze")]
+    public virtual bool HasSuperFreeze => false;
     public virtual CharacterState GetSkillState()
     {
         return new EnergySkillState();

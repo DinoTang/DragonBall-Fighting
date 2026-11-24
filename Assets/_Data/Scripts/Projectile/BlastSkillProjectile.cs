@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlastSkillProjectile : SkillProjectile
@@ -13,6 +12,7 @@ public class BlastSkillProjectile : SkillProjectile
 
     protected void Update()
     {
+        if (SuperFreezeManager.Instance != null && SuperFreezeManager.Instance.IsFreezing) return;
         this.OnUpdate();
     }
     protected virtual void OnUpdate()

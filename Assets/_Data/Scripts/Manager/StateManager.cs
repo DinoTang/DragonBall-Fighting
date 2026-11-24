@@ -9,39 +9,69 @@ public class StateManager : BaseBehaviour
     public bool IsClone { get => isClone; set => isClone = value; }
     [SerializeField] protected bool canSuperDash = false;
     public bool CanSuperDash { get => canSuperDash; set => canSuperDash = value; }
+    [Header("Super Freeze")]
+    [SerializeField] protected bool isFrozen = false;
+    public bool IsFrozen { get => isFrozen; set => isFrozen = value; }
+    
     public CharacterState mainStateType;
     public CharacterState CurrentState { get; set; }
     public CharacterState nextState;
 
+    // Cached states to eliminate per-frame GC allocations
+    protected IdleState cachedIdleState;
+    protected AirState cachedAirState;
+
+    public IdleState CachedIdleState => cachedIdleState ??= new IdleState();
+    public AirState CachedAirState => cachedAirState ??= new AirState();
+
+    protected override void Awake()
+    {
+        base.Awake();
+        this.cachedIdleState = new IdleState();
+        this.cachedAirState = new AirState();
+    }
+
     protected override void Start()
     {
         base.Start();
-        this.mainStateType = new IdleState();
-        this.SetState(mainStateType);
+        this.mainStateType = this.cachedIdleState;
+        this.SetState(this.mainStateType);
     }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
         this.LoadCharacterCtrl();
     }
+
     protected void LoadCharacterCtrl()
     {
         if (this.characterCtrl != null) return;
         this.characterCtrl = GetComponent<CharacterCtrl>();
-        Debug.Log(transform.name + ": LoadCharacterCtrl", gameObject);
     }
+
     protected void Update()
     {
-        if (this.characterCtrl.CharacterCollision.IsGround)
-        {
-            this.canSuperDash = true;
-            this.mainStateType = new IdleState();
-        }
-        else if (this.CurrentState.GetType() != typeof(SuperDashState))
-        {
-            this.mainStateType = new AirState();
-        }
+        if (this.isFrozen) return;
 
+        if (this.characterCtrl != null && this.characterCtrl.CharacterCollision != null)
+        {
+            if (this.characterCtrl.CharacterCollision.IsGround)
+            {
+                this.canSuperDash = true;
+                if (this.mainStateType != this.cachedIdleState)
+                {
+                    this.mainStateType = this.cachedIdleState;
+                }
+            }
+            else if (this.CurrentState is not SuperDashState)
+            {
+                if (this.mainStateType != this.cachedAirState)
+                {
+                    this.mainStateType = this.cachedAirState;
+                }
+            }
+        }
 
         if (nextState != null)
         {
@@ -56,7 +86,7 @@ public class StateManager : BaseBehaviour
         nextState = null;
         CurrentState?.OnExit();
         CurrentState = _newState;
-        CurrentState.OnEnter(this);
+        CurrentState?.OnEnter(this);
     }
 
     public void SetNextState(CharacterState _newState)
@@ -67,14 +97,9 @@ public class StateManager : BaseBehaviour
         }
     }
 
-    // private void LateUpdate()
-    // {
-    //     if (CurrentState != null)
-    //         CurrentState.OnLateUpdate();
-    // }
-
     private void FixedUpdate()
     {
+        if (this.isFrozen) return;
         if (CurrentState != null)
             CurrentState.OnFixedUpdate();
     }
@@ -83,5 +108,4 @@ public class StateManager : BaseBehaviour
     {
         nextState = mainStateType;
     }
-
 }

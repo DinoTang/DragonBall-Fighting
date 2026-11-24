@@ -28,6 +28,7 @@ public class UltimateSkillState : EnergySkillState
         this.finishEnd = this.performEnd + this.ultimateSkillDataSO.endBeamSkillAnim.length;
 
         this.vegetaDataSO = this.characterDataSO as VegetaDataSO;
+        SuperFreezeManager.Instance?.TriggerSuperFreeze(this.self);
     }
     protected override float GetTotalDuration()
     {
@@ -122,6 +123,7 @@ public class UltimateSkillState : EnergySkillState
     }
     protected void PlayPerform()
     {
+        SuperFreezeManager.Instance?.EndSuperFreeze();
         CameraManager.Instance.ResetDefaultCamera();
         this.animator.Play(this.ultimateSkillDataSO.performUltimateAnim.name);
         if (this.ultimateTime >= this.performEnd) this.currentPhase = UltimatePhase.Finish;
@@ -130,6 +132,12 @@ public class UltimateSkillState : EnergySkillState
     {
         this.animator.Play(this.ultimateSkillDataSO.endBeamSkillAnim.name);
         CameraManager.Instance.SetActiveWall(true);
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        SuperFreezeManager.Instance?.EndSuperFreezeIfCaster(this.self);
     }
 }
 
