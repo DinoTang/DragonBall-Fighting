@@ -40,6 +40,19 @@ public abstract class DamageReceiver : BaseBehaviour
     {
         this.isKnockUp = isKnockUp;
     }
+    public void ResetHP()
+    {
+        this.currentHP = this.hpMax;
+        this.isDead = false;
+        this.isHurt = false;
+        this.isKnockDown = false;
+        this.isKnockUp = false;
+    }
+    public void SetCurrentHP(float hp)
+    {
+        this.currentHP = Mathf.Clamp(hp, 0, this.hpMax);
+        this.isDead = this.currentHP <= 0;
+    }
     protected override void OnEnable()
     {
         this.isDead = false;

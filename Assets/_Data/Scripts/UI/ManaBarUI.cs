@@ -6,6 +6,7 @@ public class ManaBarUI : BaseBehaviour
     [SerializeField] protected CharacterCtrl characterCtrl;
     [SerializeField] protected List<RectTransform> manaBars; // 3 thanh mana
     private float fullWidth;
+    private float lastKi = -1f;
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -39,7 +40,11 @@ public class ManaBarUI : BaseBehaviour
     }
     protected void UpdateManaBar()
     {
+        if (this.characterCtrl == null || this.characterCtrl.CharacterKiManager == null) return;
         float currentKi = characterCtrl.CharacterKiManager.CurrentKi;
+        if (Mathf.Approximately(currentKi, this.lastKi)) return;
+        this.lastKi = currentKi;
+
         float kiMax = characterCtrl.CharacterKiManager.KiMax;
         float kiPerBar = kiMax / manaBars.Count;
 

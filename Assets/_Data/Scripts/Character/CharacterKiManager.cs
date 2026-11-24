@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class CharacterKiManager : CharacterAbstract
@@ -21,14 +20,12 @@ public class CharacterKiManager : CharacterAbstract
 
     public bool CanUseSkill(SkillDataSO skill)
     {
+        if (skill == null) return false;
         float kiCost = this.GetSkillCost(skill);
-        if (this.currentKi - kiCost >= 0) return true;
-        return false;
+        return (this.currentKi - kiCost >= 0);
     }
     public void ApplyKiChange(KiChangeReason reason, SkillDataSO skillDataSO = null)
     {
-
-
         float delta = 0;
 
         switch (reason)
@@ -43,23 +40,19 @@ public class CharacterKiManager : CharacterAbstract
                 delta = this.balance.blockGain;
                 break;
             case KiChangeReason.SkillCast:
-                delta = -this.GetSkillCost(skillDataSO);
+                delta = skillDataSO != null ? -this.GetSkillCost(skillDataSO) : 0;
                 break;
             case KiChangeReason.BlockingSkill:
                 delta = -this.balance.guardKiCost;
                 break;
         }
 
-        if (this.currentKi >= this.kiMax && delta > 0)
-        {
-            this.currentKi = this.kiMax;
-            return;
-        }
-        this.currentKi += delta;
+        this.currentKi = Mathf.Clamp(this.currentKi + delta, 0, this.kiMax);
     }
 
     protected float GetSkillCost(SkillDataSO skill)
     {
+        if (skill == null) return 0;
         switch (skill.skillType)
         {
             case SkillType.Normal: return balance.normalSkillCost;
