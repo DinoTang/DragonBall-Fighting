@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 public class CharacterDamageSender : DamageSender
 {
@@ -33,6 +33,14 @@ public class CharacterDamageSender : DamageSender
     {
         base.LoadCollider();
         this._collider.enabled = false;
+    }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        // DamageSender.OnEnable bật collider (dành cho projectile lấy từ pool).
+        // Hitbox nhân vật chỉ được bật qua Animation Event / skill, nên tắt lại để
+        // không gây sát thương ngay khi chạm đối thủ lúc vào trận.
+        this.DisableCollider();
     }
     protected override void OnHitExplosionFX(Transform target)
     {
