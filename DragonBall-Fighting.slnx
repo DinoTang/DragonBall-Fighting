@@ -1,0 +1,6 @@
+﻿<Solution>
+  <Project Path="DragonBall.Game.csproj" />
+  <Project Path="DragonBall.Editor.csproj" />
+  <Project Path="DragonBall.UI.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+</Solution>

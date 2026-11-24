@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "DragonBall.sln"
+    "dotnet.defaultSolution": "DragonBall-Fighting.slnx"
 }
