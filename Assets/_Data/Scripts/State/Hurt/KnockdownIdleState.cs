@@ -19,7 +19,14 @@ public class KnockdownIdleState : CharacterState
 
         if (this.timed >= this.duration)
         {
-            this.stateManager.SetNextState(new Tele2());
+            if (this.stateManager.CharacterCtrl.CharacterDamageReceiver.isDead)
+            {
+                this.stateManager.SetNextState(new DeadState());
+            }
+            else
+            {
+                this.stateManager.SetNextState(new Tele2());
+            }
         }
     }
 

@@ -1,6 +1,5 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 [RequireComponent(typeof(StateManager))]
 public class CharacterCtrl : BaseBehaviour
@@ -176,18 +175,20 @@ public class CharacterCtrl : BaseBehaviour
     }
     protected void LoadTrail()
     {
-        if (this.trail != null) return;
-        this.trail = FindAnyObjectByType<Trail>();
-        if (this.trailAnimator != null) return;
-        this.trailAnimator = this.trail.GetComponentInChildren<Animator>();
-        Debug.Log(transform.name + ": LoadCharacterSkillManager", gameObject);
+        if (this.trail == null)
+        {
+            this.trail = FindAnyObjectByType<Trail>();
+        }
+        if (this.trail != null && this.trailAnimator == null)
+        {
+            this.trailAnimator = this.trail.GetComponentInChildren<Animator>();
+        }
     }
 
     protected void LoadPlayerType()
     {
         if (this.playerType != null) return;
         this.playerType = GetComponentInChildren<PlayerType>();
-        Debug.Log(transform.name + ": LoadCharacterSkillManager", gameObject);
     }
 
     public void EnableSmokeEffect()

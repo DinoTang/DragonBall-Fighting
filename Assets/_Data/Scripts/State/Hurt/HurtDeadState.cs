@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ public class HurtDeadState : CharacterState
         base.OnUpdate();
         if (this.timed > this.duration - 0.2f) this.stateManager.SetNextStateToMain();
 
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(this.stateManager.transform.localScale.x * -10f, 15f);
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(this.stateManager.transform.localScale.x * -10f, 15f);
     }
 
     public override void OnExit()
