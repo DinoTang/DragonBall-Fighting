@@ -41,12 +41,6 @@ public class CharacterFlip : CharacterAbstract
     }
     protected void Update()
     {
-        if (InputManager.Instance.GetInputToResetPosition())
-        {
-            this.characterCtrl.transform.position = new Vector2(-2, -1);
-            this.characterCtrl.Opponent.transform.position = new Vector2(2, -1);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
         this.Flipping();
         this.distanceOther = Vector2.Distance(this.transform.position, this.characterCtrl.Opponent.transform.position);
     }

@@ -1,105 +1,127 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : BaseBehaviour
 {
     protected static InputManager instance;
     public static InputManager Instance => instance;
+
     [Header("Player Inputs")]
     [SerializeField] protected InputSO inputSO;
     [SerializeField] protected PlayerInputConfig playerRedKeys;
     [SerializeField] protected PlayerInputConfig playerBlueKeys;
+
+    private IPlayerInputProvider redInputProvider;
+    private IPlayerInputProvider blueInputProvider;
+
+    public IPlayerInputProvider RedInputProvider => redInputProvider;
+    public IPlayerInputProvider BlueInputProvider => blueInputProvider;
+
     protected override void Awake()
     {
         base.Awake();
-        if (InputManager.instance != null) Debug.LogWarning("Only 1 InputManager allows to exist");
+        if (InputManager.instance != null && InputManager.instance != this)
+        {
+            Debug.LogWarning("Only 1 InputManager allows to exist");
+        }
         instance = this;
+        this.InitializeProviders();
     }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
         this.LoadInputSO();
         this.LoadPlayerInputConfig();
+        this.InitializeProviders();
+    }
+
+    protected void InitializeProviders()
+    {
+        if (this.redInputProvider == null && this.playerRedKeys != null)
+        {
+            this.redInputProvider = new KeyboardInputProvider(this.playerRedKeys);
+        }
+        if (this.blueInputProvider == null && this.playerBlueKeys != null)
+        {
+            this.blueInputProvider = new KeyboardInputProvider(this.playerBlueKeys);
+        }
+    }
+
+    public void SetPlayerInputProvider(PlayerType playerType, IPlayerInputProvider provider)
+    {
+        if (playerType is PlayerRed) this.redInputProvider = provider;
+        else if (playerType is PlayerBlue) this.blueInputProvider = provider;
+    }
+
+    public void SetPlayerDevice(PlayerType playerType, InputDeviceType deviceType, int joystickIndex = 1)
+    {
+        IPlayerInputProvider provider = deviceType switch
+        {
+            InputDeviceType.Gamepad => new GamepadInputProvider(joystickIndex),
+            InputDeviceType.NewInputSystem => new NewInputSystemProvider(joystickIndex - 1),
+            _ => new KeyboardInputProvider(playerType is PlayerRed ? playerRedKeys : playerBlueKeys)
+        };
+        SetPlayerInputProvider(playerType, provider);
     }
 
     protected void LoadInputSO()
     {
         if (this.inputSO != null) return;
         this.inputSO = Resources.Load<InputSO>("Options/InputSO");
-        Debug.Log(transform.name + ": LoadAudioSource");
     }
 
     protected void LoadPlayerInputConfig()
     {
-        this.playerRedKeys = CloneConfig(inputSO.playerRedKeys);
-        this.playerBlueKeys = CloneConfig(inputSO.playerBlueKeys);
+        if (this.inputSO == null) return;
+        this.playerRedKeys = CloneConfig(this.inputSO.playerRedKeys);
+        this.playerBlueKeys = CloneConfig(this.inputSO.playerBlueKeys);
     }
 
-    public bool GetInputChangePlayer1()
-    {
-        return Input.GetKeyDown(KeyCode.Alpha1);
-    }
-    public bool GetInputChangePlayer2()
-    {
-        return Input.GetKeyDown(KeyCode.Alpha2);
-    }
+    public bool GetInputChangePlayer1() => Input.GetKeyDown(KeyCode.Alpha1);
+    public bool GetInputChangePlayer2() => Input.GetKeyDown(KeyCode.Alpha2);
 
-    private PlayerInputConfig GetConfig(PlayerType playerType)
+    public PlayerInputConfig GetConfig(PlayerType playerType)
     {
-        if (playerType as PlayerRed) return this.playerRedKeys;
-        else if (playerType as PlayerBlue) return this.playerBlueKeys;
-
+        if (playerType is PlayerRed) return this.playerRedKeys;
+        if (playerType is PlayerBlue) return this.playerBlueKeys;
         return null;
     }
 
-    public int GetMoveInput(PlayerType playerType)
+    public IPlayerInputProvider GetProvider(PlayerType playerType)
     {
-        var cfg = GetConfig(playerType);
-        if (Input.GetKey(cfg.left)) return -1;
-        if (Input.GetKey(cfg.right)) return 1;
-        return 0;
-    }
-    public bool GetJumpInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).up);
-    public bool GetBlockInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).block);
-    public bool ReleaseBlockHitInput(PlayerType playerType) => Input.GetKeyUp(this.GetConfig(playerType).block);
-    public bool GetDownInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).down);
-    public bool GetHitInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).punch);
-    public bool GetKickInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).kick);
-    public bool GetChargeInput(PlayerType playerType) => Input.GetKey(this.GetConfig(playerType).charge);
-    public bool ReleaseChargeInput(PlayerType playerType) => Input.GetKeyUp(this.GetConfig(playerType).charge);
-    public bool GetRushAttackInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).rushAttack);
-    public bool GetKiBlastInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).kiBlast);
-    public bool GetPowerSurgeInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).powerSurge);
-    public bool GetSuperDashInput(PlayerType playerType) => Input.GetKeyDown(this.GetConfig(playerType).superDash);
-    public bool ReleaseSuperDashInput(PlayerType playerType) => Input.GetKeyUp(this.GetConfig(playerType).superDash);
-
-    public bool GetLeftInput()
-    {
-        return Input.GetKeyDown(KeyCode.A);
-    }
-    public bool GetRightInput()
-    {
-        return Input.GetKeyDown(KeyCode.D);
-    }
-    public bool ReleaseCrouchInput()
-    {
-        return Input.GetKeyUp(KeyCode.S);
-    }
-    public float GetHorizontalOld()
-    {
-        return Input.GetAxisRaw("Horizontal");
-    }
-    public bool GetInputToResetPosition()
-    {
-        return Input.GetKeyDown(KeyCode.Space);
+        if (playerType is PlayerRed) return this.redInputProvider;
+        if (playerType is PlayerBlue) return this.blueInputProvider;
+        return null;
     }
 
+    public int GetMoveInput(PlayerType playerType) => GetProvider(playerType)?.GetMoveHorizontal() ?? 0;
+    public bool GetJumpInput(PlayerType playerType) => GetProvider(playerType)?.GetJumpDown() ?? false;
+    public bool GetBlockInput(PlayerType playerType) => GetProvider(playerType)?.GetBlockDown() ?? false;
+    public bool ReleaseBlockHitInput(PlayerType playerType) => GetProvider(playerType)?.GetBlockUp() ?? false;
+    public bool GetDownInput(PlayerType playerType) => GetProvider(playerType)?.GetDownDown() ?? false;
+    public bool GetHitInput(PlayerType playerType) => GetProvider(playerType)?.GetHitDown() ?? false;
+    public bool GetKickInput(PlayerType playerType) => GetProvider(playerType)?.GetKickDown() ?? false;
+    public bool GetChargeInput(PlayerType playerType) => GetProvider(playerType)?.GetChargeKey() ?? false;
+    public bool ReleaseChargeInput(PlayerType playerType) => GetProvider(playerType)?.GetChargeKeyUp() ?? false;
+    public bool GetRushAttackInput(PlayerType playerType) => GetProvider(playerType)?.GetRushAttackDown() ?? false;
+    public bool GetKiBlastInput(PlayerType playerType) => GetProvider(playerType)?.GetKiBlastDown() ?? false;
+    public bool GetPowerSurgeInput(PlayerType playerType) => GetProvider(playerType)?.GetPowerSurgeDown() ?? false;
+    public bool GetSuperDashInput(PlayerType playerType) => GetProvider(playerType)?.GetSuperDashDown() ?? false;
+    public bool ReleaseSuperDashInput(PlayerType playerType) => GetProvider(playerType)?.GetSuperDashUp() ?? false;
+    public bool GetLeftInput(PlayerType playerType) => GetProvider(playerType)?.GetLeftDown() ?? false;
+    public bool GetRightInput(PlayerType playerType) => GetProvider(playerType)?.GetRightDown() ?? false;
+
+    public bool GetLeftInput() => Input.GetKeyDown(KeyCode.A);
+    public bool GetRightInput() => Input.GetKeyDown(KeyCode.D);
+    public bool ReleaseCrouchInput() => Input.GetKeyUp(KeyCode.S);
+    public float GetHorizontalOld() => Input.GetAxisRaw("Horizontal");
+    public bool GetInputToResetPosition() => Input.GetKeyDown(KeyCode.Space);
 
     private PlayerInputConfig CloneConfig(PlayerInputConfig src)
     {
-        var clone = new PlayerInputConfig
+        if (src == null) return new PlayerInputConfig();
+        return new PlayerInputConfig
         {
             up = src.up,
             down = src.down,
@@ -114,6 +136,5 @@ public class InputManager : BaseBehaviour
             powerSurge = src.powerSurge,
             superDash = src.superDash
         };
-        return clone;
     }
 }

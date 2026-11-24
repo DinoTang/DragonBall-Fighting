@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterCombo : CharacterAbstract
@@ -22,8 +22,8 @@ public class CharacterCombo : CharacterAbstract
     {
         if (GameManager.Instance.IsGameOver) return;
         if (InputManager.Instance.GetDownInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.Down);
-        if (InputManager.Instance.GetLeftInput()) this.inputBuffer.AddInput(InputKey.Left);
-        if (InputManager.Instance.GetRightInput()) this.inputBuffer.AddInput(InputKey.Right);
+        if (InputManager.Instance.GetLeftInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.Left);
+        if (InputManager.Instance.GetRightInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.Right);
         if (InputManager.Instance.GetHitInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.Hit);
         if (InputManager.Instance.GetKickInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.Kick);
         if (InputManager.Instance.GetChargeInput(this.characterCtrl.PlayerType)) this.inputBuffer.AddInput(InputKey.ChargeKi);

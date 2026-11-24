@@ -1,4 +1,4 @@
-public enum InputKey
+﻿public enum InputKey
 {
     Up,
     Down,
