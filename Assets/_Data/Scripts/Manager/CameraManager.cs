@@ -45,12 +45,21 @@ public class CameraManager : BaseBehaviour
         this.LoadCamera();
         this.LoadWall();
     }
-    protected void Update()
+    // Frame gần nhất có skill gọi Focus(). Trong frame đó camera không tự follow/zoom
+    // để không ghi đè vị trí và zoom mà skill đã đặt.
+    protected int focusFrame = -1;
+
+    // Dùng LateUpdate để luôn chạy sau Update của StateManager (nơi skill gọi Focus),
+    // không phụ thuộc thứ tự Update ngẫu nhiên giữa các script.
+    protected void LateUpdate()
     {
         if (GameManager.Instance.MatchState == GameManager.MatchStateEnum.Intro) return;
-        this.Zooming();
-        this.Following();
-        this.ClampCameraBounds();
+        if (this.focusFrame != Time.frameCount)
+        {
+            this.Zooming();
+            this.Following();
+            this.ClampCameraBounds();
+        }
         this.FollowWalls();
     }
     protected void LoadCamera()
@@ -108,6 +117,7 @@ public class CameraManager : BaseBehaviour
         // this.cutSceneCam.orthographicSize = targetSize;
 
 
+        this.focusFrame = Time.frameCount;
         this.SetActiveWall(false);
         Vector3 newCutSceneCamPos = position;
         newCutSceneCamPos.z = -10;
