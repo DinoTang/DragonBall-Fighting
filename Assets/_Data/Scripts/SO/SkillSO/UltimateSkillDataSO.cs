@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 [CreateAssetMenu(fileName = "SkillData", menuName = "SO/Skill/UltimateSkillData")]
 public class UltimateSkillDataSO : BeamSkillDataSO
 {

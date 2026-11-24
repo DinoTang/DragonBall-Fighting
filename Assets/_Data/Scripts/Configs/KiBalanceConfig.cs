@@ -1,4 +1,4 @@
-[System.Serializable]
+﻿[System.Serializable]
 public class KiBalanceConfig
 {
     public float guardKiCost = 20f;

@@ -1,4 +1,4 @@
-public enum AnnouncerSoundType
+﻿public enum AnnouncerSoundType
 {
     None = 0,
     Ready,

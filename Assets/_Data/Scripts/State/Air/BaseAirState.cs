@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,8 +16,8 @@ public class BaseAirState : CharacterState
         float xInput = InputManager.Instance.GetMoveInput(this.playerType);
         if (xInput != 0)
         {
-            this.stateManager.CharacterCtrl.Rgb.velocity =
-            new Vector2(xInput * this.speed, this.stateManager.CharacterCtrl.Rgb.velocity.y);
+            this.stateManager.CharacterCtrl.Rgb.linearVelocity =
+            new Vector2(xInput * this.speed, this.stateManager.CharacterCtrl.Rgb.linearVelocity.y);
         }
     }
     protected void BackMainState()

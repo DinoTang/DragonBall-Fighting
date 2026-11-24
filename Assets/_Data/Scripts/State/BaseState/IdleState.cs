@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +7,9 @@ public class IdleState : CharacterState
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
-        this.stateManager.mainStateType = new IdleState();
+        this.stateManager.mainStateType = this.stateManager.CachedIdleState;
         this.animator.SetBool("IsIdle", true);
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.stateManager.CharacterCtrl.Rgb.velocity.y);
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(0, this.stateManager.CharacterCtrl.Rgb.linearVelocity.y);
         this.stateManager.CharacterCtrl.CharacterDamageReceiver.ToggleIgnoreEnemy(false);
     }
     public override void OnUpdate()

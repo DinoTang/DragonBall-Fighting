@@ -19,7 +19,7 @@ public class FallKnockBackState : CharacterState
 
     public override void OnExit()
     {
-        base.OnEnter(stateManager);
+        base.OnExit();
         this.animator.SetBool("IsFallKnockBack", false);
     }
 }

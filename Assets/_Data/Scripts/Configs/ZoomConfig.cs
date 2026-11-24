@@ -1,4 +1,4 @@
-[System.Serializable]
+﻿[System.Serializable]
 public struct ZoomConfig
 {
     public float minZoom;

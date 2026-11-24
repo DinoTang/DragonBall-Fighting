@@ -1,4 +1,4 @@
-public enum BeamSkillNameEnum
+﻿public enum BeamSkillNameEnum
 {
     None = 0,
     Galick_Gun,

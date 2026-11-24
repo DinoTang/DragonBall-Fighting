@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
@@ -14,7 +14,7 @@ public class RushAttackWasKnockUpState : CharacterState
 
         // Đẩy nhân vật lên bằng velocity
         int dir = this.stateManager.CharacterCtrl.CharacterFlip.Direct * -1;
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(10 * dir, 30);
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(10 * dir, 30);
 
         // Không freeze ở đây nữa
         this.stateManager.CharacterCtrl.Rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -27,9 +27,9 @@ public class RushAttackWasKnockUpState : CharacterState
         Rigidbody2D rb = this.stateManager.CharacterCtrl.Rgb;
 
         // Khi tới gần đỉnh bay lên (velocity.y gần 0) thì freeze lại
-        if (rb.velocity.y < 0.1f)
+        if (rb.linearVelocity.y < 0.1f)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.gravityScale = 0;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
@@ -41,7 +41,7 @@ public class RushAttackWasKnockUpState : CharacterState
         base.OnExit();
         this.animator.SetBool("IsKnockUp", false);
         this.stateManager.CharacterCtrl.Rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, 30);
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(0, 30);
         this.stateManager.CharacterCtrl.Rgb.gravityScale = 15;
     }
 }

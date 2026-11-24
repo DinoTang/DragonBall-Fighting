@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,12 +44,12 @@ public class MoveState : CharacterState
     }
     public void StopAddVelocity()
     {
-        this.stateManager.CharacterCtrl.Rgb.velocity = Vector2.zero;
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = Vector2.zero;
     }
     protected virtual void ApplyMovement()
     {
         Rigidbody2D rb = this.stateManager.CharacterCtrl.Rgb;
-        rb.velocity = new Vector2(this.movement.x * this.speed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(this.movement.x * this.speed, rb.linearVelocity.y);
     }
     // protected void Flipping()
     // {

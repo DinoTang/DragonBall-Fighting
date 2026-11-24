@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 [CreateAssetMenu(fileName = "SkillData", menuName = "SO/BeamSkillData")]
 public class BeamSkillDataSO : SkillChargeSO
 {

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -47,7 +47,7 @@ public class SuperDashState : CharacterState
         Rigidbody2D rb = this.stateManager.CharacterCtrl.Rgb;
         this.originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
 
     }
@@ -109,18 +109,18 @@ public class SuperDashState : CharacterState
     protected void HandleBlockedDashHit(int dir)
     {
         this.stateManager.CharacterCtrl.CharacterDamageReceiver.OnParryFX();
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(-dir * this.knockbackForceX, this.knockbackForceY);
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(-dir * this.knockbackForceX, this.knockbackForceY);
     }
 
     protected void HandleSuccessfulDashHit(CharacterCtrl self, CharacterCtrl opponent)
     {
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.hitKnockbackForceY);
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(0, this.hitKnockbackForceY);
         float heightOffset = self.transform.position.y - opponent.transform.position.y;
         float finalKnockbackY = this.hitKnockbackForceY + heightOffset * 1.2f; // nhân nhẹ để tạo lực bật cao hơn nếu chênh
 
         bool bonusForceCondition = this.stateManager.mainStateType.GetType() == typeof(IdleState);
         float bonusForce = bonusForceCondition ? 2 : 3;
-        opponent.Rgb.velocity = new Vector2(0, finalKnockbackY + bonusForce);
+        opponent.Rgb.linearVelocity = new Vector2(0, finalKnockbackY + bonusForce);
 
         opponent.StateManager.SetNextState(new KnockUpState());
     }

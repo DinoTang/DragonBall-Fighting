@@ -46,7 +46,7 @@ public class RushAttackSkillSO : SkillDataSO
 
     IEnumerator CurveMove(CharacterCtrl obj, Vector3 start, Vector3 end, float duration)
     {
-        obj.Rgb.isKinematic = true;
+        obj.Rgb.bodyType = RigidbodyType2D.Kinematic;
         // obj.Rgb.velocity = Vector2.zero;
 
         float timer = 0f;
@@ -69,7 +69,7 @@ public class RushAttackSkillSO : SkillDataSO
 
         obj.transform.position = end;
 
-        obj.Rgb.isKinematic = false;
+        obj.Rgb.bodyType = RigidbodyType2D.Dynamic;
         // obj.Rgb.velocity = Vector2.zero;
     }
 }

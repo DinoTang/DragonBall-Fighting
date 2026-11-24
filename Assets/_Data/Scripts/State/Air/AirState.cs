@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,14 +7,14 @@ public class AirState : BaseAirState
     public override void OnEnter(StateManager stateManager)
     {
         base.OnEnter(stateManager);
-        this.stateManager.mainStateType = new AirState();
+        this.stateManager.mainStateType = this.stateManager.CachedAirState;
         this.animator.SetBool("IsJump", true);
         this.stateManager.CharacterCtrl.CharacterDamageReceiver.ToggleIgnoreEnemy(true);
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (this.stateManager.CharacterCtrl.Rgb.velocity.y < 0)
+        if (this.stateManager.CharacterCtrl.Rgb.linearVelocity.y < 0)
         {
             this.animator.SetBool("IsFall", true);
             this.stateManager.CharacterCtrl.CharacterDamageReceiver.ToggleIgnoreEnemy(true);

@@ -1,1 +1,1 @@
-public enum SkillType { None, Normal, Medium, Hard }
+﻿public enum SkillType { None, Normal, Medium, Hard }

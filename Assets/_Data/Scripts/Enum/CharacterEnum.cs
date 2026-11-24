@@ -1,4 +1,4 @@
-public enum CharacterEnum
+﻿public enum CharacterEnum
 {
     None = 0,
     Goku,

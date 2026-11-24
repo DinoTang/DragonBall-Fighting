@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +24,7 @@ public class BaseAirHitState : BaseAirState
         this.isHitting = this.stateManager.CharacterCtrl.CharacterDamageSender.IsHitting;
         if (this.isHitting)
         {
-            this.stateManager.CharacterCtrl.Rgb.velocity = Vector2.zero;
+            this.stateManager.CharacterCtrl.Rgb.linearVelocity = Vector2.zero;
             this.stateManager.CharacterCtrl.Rgb.gravityScale = 0;
         }
         if (this.timed > duration * 0.3f && InputManager.Instance.GetHitInput(this.playerType))

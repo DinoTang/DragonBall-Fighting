@@ -1,4 +1,4 @@
-public enum CharacterSoundType
+﻿public enum CharacterSoundType
 {
     None = 0,
     Move,

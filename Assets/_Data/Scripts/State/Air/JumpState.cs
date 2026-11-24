@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class JumpState : CharacterState
         AudioManager.Instance.PlayCharacterSound(CharacterSoundType.Jump);
         // this.stateManager.CharacterCtrl.CharacterGroundCollision.IsGround = false;
         this.animator.SetBool("IsJump", true);
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, this.jumpForce);
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(0, this.jumpForce);
         SmokeJumpFXSpawner.Instance.Spawn(SmokeJumpFXSpawner.Instance.nameFX, this.animator.transform.position);
 
         this.stateManager.SetNextState(new AirState());

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 [CreateAssetMenu(fileName = "SkillData", menuName = "SO/Skill/TeleportPunchSkill")]

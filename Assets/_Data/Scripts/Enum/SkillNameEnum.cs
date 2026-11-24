@@ -1,4 +1,4 @@
-public enum SkillNameEnum
+﻿public enum SkillNameEnum
 {
     none = 0,
     Skill_BasicProjectile_Ground = 1,

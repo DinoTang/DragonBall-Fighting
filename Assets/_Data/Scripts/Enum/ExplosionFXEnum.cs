@@ -1,4 +1,4 @@
-public enum ExplosionFXEnum
+﻿public enum ExplosionFXEnum
 {
     Default = 0,
     Hit_Effect = 1,

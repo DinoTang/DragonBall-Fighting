@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public class KnockDownState : CharacterState
     {
         base.OnUpdate();
         float dir = this.stateManager.CharacterCtrl.CharacterFlip.Direct * -1;
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(dir * 20f, -40f);
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(dir * 20f, -40f);
         if (!this.stateManager.CharacterCtrl.CharacterCollision.IsGround) return;
         this.stateManager.SetNextState(new BounceOnGroundState());
         // if (this.timed < this.knockDuration) return;

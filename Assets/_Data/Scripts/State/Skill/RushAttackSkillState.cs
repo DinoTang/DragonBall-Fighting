@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -67,12 +67,12 @@ public class RushAttackSkillState : SkillState
 
         if (this.timed >= this.totalDuration || this.stateManager.CharacterCtrl.Opponent.CharacterDamageReceiver.IsKnockDown)
         {
-            this.self.Rgb.velocity = new Vector2(0, this.self.Rgb.velocity.y);
+            this.self.Rgb.linearVelocity = new Vector2(0, this.self.Rgb.linearVelocity.y);
             this.self.CharacterAnimEvent.DisableHitbox();
             this.stateManager.SetNextStateToMain();
         }
 
-        this.self.Rgb.velocity = new Vector2(1 * this.dir, 0) * this.dashRushAttackSpeed;
+        this.self.Rgb.linearVelocity = new Vector2(1 * this.dir, 0) * this.dashRushAttackSpeed;
         float distanceToAttack = Vector2.Distance(this.self.transform.position, this.self.Opponent.transform.position);
 
 
@@ -92,8 +92,8 @@ public class RushAttackSkillState : SkillState
             if (this.self.Opponent.CharacterDamageReceiver.IsKnockDown) return;
 
             this.AlignCharactersOnHit();
-            this.stateManager.CharacterCtrl.Rgb.velocity = Vector2.zero;
-            this.stateManager.CharacterCtrl.Opponent.Rgb.velocity = Vector2.zero;
+            this.stateManager.CharacterCtrl.Rgb.linearVelocity = Vector2.zero;
+            this.stateManager.CharacterCtrl.Opponent.Rgb.linearVelocity = Vector2.zero;
             this.timed = 0;
             this.currentRushAttackType = RushAttack_Type.Combo;
         }
@@ -178,14 +178,14 @@ public class RushAttackSkillState : SkillState
         if (this.self.CharacterDamageSender.IsKnockingUp)
         {
             this.self.Opponent.StateManager.SetNextState(new RushAttackWasKnockUpState());
-            this.self.Rgb.velocity = new Vector2(this.dir * -1 * 10, 20);
+            this.self.Rgb.linearVelocity = new Vector2(this.dir * -1 * 10, 20);
         }
 
 
         float animTime = rushAttackSkill.RushAttack_KnockUp.length;
         if (this.timed >= animTime)
         {
-            this.self.Rgb.velocity = new Vector2(0, -10);
+            this.self.Rgb.linearVelocity = new Vector2(0, -10);
             if (!this.self.CharacterCollision.IsGround) return;
             Vector2 newTrailPos = this.stateManager.transform.position;
             newTrailPos.y -= 1.32f;
@@ -242,7 +242,7 @@ public class RushAttackSkillState : SkillState
         if (distance <= 1f)
         {
             this.self.Rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            this.self.Rgb.velocity = new Vector2(0, 30);
+            this.self.Rgb.linearVelocity = new Vector2(0, 30);
 
             // this.self.Opponent.StateManager.SetNextState(new AirHurtState());
             this.stateManager.CharacterCtrl.CharacterDamageSender.SendDamage(this.stateManager.CharacterCtrl.Opponent.CharacterDamageReceiver);

@@ -1,4 +1,4 @@
-public enum TeleFXNameEnum
+﻿public enum TeleFXNameEnum
 {
     None = 0,
     Goku,

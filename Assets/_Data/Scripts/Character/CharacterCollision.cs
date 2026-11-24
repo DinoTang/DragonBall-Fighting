@@ -1,6 +1,5 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 [RequireComponent(typeof(StateManager))]
 public class CharacterCollision : CharacterAbstract
@@ -83,7 +82,7 @@ public class CharacterCollision : CharacterAbstract
 
         if (selfPos.y > opponentPos.y + 0.3f)
         {
-            this.characterCtrl.Rgb.velocity = new Vector2(10f * this.characterCtrl.transform.localScale.x, 0);
+            this.characterCtrl.Rgb.linearVelocity = new Vector2(10f * this.characterCtrl.transform.localScale.x, 0);
             Debug.LogWarning("Bật ra khỏi enemy!");
         }
     }

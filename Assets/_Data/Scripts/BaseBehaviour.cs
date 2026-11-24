@@ -1,15 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class BaseBehaviour : MonoBehaviour
 {
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         this.LoadComponent();
     }
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
-        this.LoadComponent();
+        // Initialization logic after components are loaded in Awake
     }
 
     protected virtual void Reset()
@@ -17,10 +17,12 @@ public abstract class BaseBehaviour : MonoBehaviour
         this.ResetValue();
         this.LoadComponent();
     }
+
     protected virtual void OnEnable()
     {
 
     }
+
     protected virtual void LoadComponent()
     {
 

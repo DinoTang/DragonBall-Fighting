@@ -1,0 +1,19 @@
+{
+    "name": "DragonBall.Editor",
+    "rootNamespace": "",
+    "references": [
+        "DragonBall.Game",
+        "DragonBall.UI"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

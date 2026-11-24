@@ -1,4 +1,4 @@
-public enum KiChangeReason
+﻿public enum KiChangeReason
 {
     Hit,
     GetHit,

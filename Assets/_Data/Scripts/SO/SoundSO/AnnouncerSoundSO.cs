@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "AnnouncerSoundData", menuName = "SO/Sound/Announcer")]

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ public class KnockBackState : CharacterState
     {
         base.OnUpdate();
         float dir = this.stateManager.CharacterCtrl.CharacterFlip.Direct * -1;
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(dir * 50f, 0);
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(dir * 50f, 0);
         if (!this.stateManager.CharacterCtrl.CharacterCollision.IsWall) return;
         AudioManager.Instance.PlayCharacterSound(CharacterSoundType.GroundHit);
         this.stateManager.SetNextState(new FallKnockBackState());

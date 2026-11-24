@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class AirHurtState : HurtState
         base.OnEnter(stateManager);
         this.duration = 0.2f;
         this.stateManager.CharacterCtrl.Rgb.gravityScale = 0;
-        this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(0, 1f);
+        this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(0, 1f);
     }
     public override void OnExit()
     {

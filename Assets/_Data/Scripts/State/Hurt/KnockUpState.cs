@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +20,7 @@ public class KnockUpState : CharacterState
         {
             if (this.stateManager.CharacterCtrl.CharacterDamageReceiver.IsHurt && this.stateManager.CharacterCtrl.Opponent.CharacterDamageSender.IsHitting) return;
             int dir = this.stateManager.CharacterCtrl.CharacterFlip.Direct * -1;
-            this.stateManager.CharacterCtrl.Rgb.velocity = new Vector2(dir * 10f, 30f);
+            this.stateManager.CharacterCtrl.Rgb.linearVelocity = new Vector2(dir * 10f, 30f);
             this.stateManager.SetNextStateToMain();
         }
     }

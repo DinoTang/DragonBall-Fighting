@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,7 +50,7 @@ public class BounceOnGroundState : CharacterState
     private void BounceUp()
     {
         Rigidbody2D rb = this.stateManager.CharacterCtrl.Rgb;
-        rb.velocity = new Vector2(0, bounceForce);
+        rb.linearVelocity = new Vector2(0, bounceForce);
         bounceForce *= damping;
         bounceCount++;
     }

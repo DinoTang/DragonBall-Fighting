@@ -1,4 +1,4 @@
-public enum UISoundType
+﻿public enum UISoundType
 {
     None = 0,
 
